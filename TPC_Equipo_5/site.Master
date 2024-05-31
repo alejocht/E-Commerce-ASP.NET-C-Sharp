@@ -6,6 +6,7 @@
 <head runat="server">
     <title>OverCloaked Tienda Virtual </title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/stylePaginaWeb.css" rel="stylesheet" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

@@ -1,3 +1,8 @@
 ﻿#containerPrincipal {
-    
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#Titulo {
+    text-align: center;
+    font-size: 50px;
 }
