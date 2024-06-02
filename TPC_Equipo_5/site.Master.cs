@@ -21,7 +21,7 @@ namespace TPC_Equipo_5
         {
             if (Session["listaArticulosEnCarrito"] == null)
             {
-                Contador.Text = "0";
+                Contador.Text = "";
             }
             else
             {
@@ -29,7 +29,7 @@ namespace TPC_Equipo_5
             }
         }
 
-        protected void btnBusqueda_Click(object sender, EventArgs e)
+        protected void imgBusqueda_Click(object sender, ImageClickEventArgs e)
         {
             busqueda = txtBusqueda.Text;
             if (ValidarTextBox(busqueda))
