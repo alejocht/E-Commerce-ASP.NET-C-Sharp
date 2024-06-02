@@ -27,18 +27,18 @@
                     <div>
                         <ul class="navbar-nav me-auto ml-3 mb-2 mb-lg-0" style="color: white; width: 20%;">
                             <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="Ventanaproductos.aspx">Productos</a>
+                                <a class="nav-link " aria-current="page" href="Productos.aspx">Productos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link " aria-current="page" href="#footer">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="VentanaUsuario.aspx">
+                                <a class="nav-link " aria-current="page" href="Usuario.aspx">
                                     <img style="width: 24px; height: 24px" src="https://i.imgur.com/RR9DK3V.png" alt="Usuario">
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="VentanaCarrito.aspx">
+                                <a class="nav-link " aria-current="page" href="Carrito.aspx">
                                     <img style="width: 24px; height: 24px" src="https://i.imgur.com/n26R5aw.png" alt="carrito">
                                 </a>
                             </li>
@@ -65,13 +65,13 @@
                                 <a class="nav-link" aria-current="page" style="color: white" href="#header">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" style="color: white" href="VentanaProductos.aspx">Productos</a>
+                                <a class="nav-link" aria-current="page" style="color: white" href="Productos.aspx">Productos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" style="color: white" href="VentanaUsuario.aspx">Usuario</a>
+                                <a class="nav-link" aria-current="page" style="color: white" href="Usuario.aspx">Usuario</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" style="color: white" href="VentanaCarrito.aspx">Carrito</a>
+                                <a class="nav-link" aria-current="page" style="color: white" href="Carrito.aspx">Carrito</a>
                             </li>
                         </ul>
                     </div>
