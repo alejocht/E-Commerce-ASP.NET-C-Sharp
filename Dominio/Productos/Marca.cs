@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio
+namespace Dominio.Productos
 {
-    public class Categoria
+    public class Marca
     {
-        public Categoria()
+        public Marca()
         {
             id = -1;
-            descripcion = "";
+            nombre = "";
         }
         public int id { get; set; }
-        public string descripcion { get; set; }
+        public string nombre { get; set; }
         public override string ToString()
         {
-            return descripcion;
+            return nombre;
         }
     }
 }

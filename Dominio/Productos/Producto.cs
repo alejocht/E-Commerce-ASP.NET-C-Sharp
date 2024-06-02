@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace Dominio
+namespace Dominio.Productos
 {
     public class Producto
     {
