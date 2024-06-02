@@ -29,7 +29,7 @@ namespace TPC_Equipo_5
             }
         }
 
-        protected void btnBusqueda_Click(object sender, EventArgs e)
+        protected void imgBusqueda_Click(object sender, ImageClickEventArgs e)
         {
             busqueda = txtBusqueda.Text;
             if (ValidarTextBox(busqueda))
@@ -42,11 +42,6 @@ namespace TPC_Equipo_5
                 //caso en el que tiene que mostrar todo
                 Response.Redirect("default.aspx", false);
             }
-        }
-
-        protected void imgBusqueda_Click(object sender, ImageClickEventArgs e)
-        {
-
         }
     }
 }

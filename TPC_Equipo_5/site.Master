@@ -12,29 +12,29 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <script src="js/bootstrap.min.js" ></script>
+    <script src="js/bootstrap.min.js"></script>
     <form id="form1" runat="server">
-        <header>
+        <header id="header">
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-image: linear-gradient(to right, #D32F2F 0%, #b82727 100%); padding-inline: 10%">
                 <div class="container-fluid">
                     <a class="nav-link active  d-inline-flex p-2" aria-current="page" href="default.aspx">
                         <img style="height: 50px" src="https://i.imgur.com/9ffo48f.png" alt="OverCloaked">
                     </a>
                     <div class="d-inline-flex p-2 w-50 justify-content-center" style="max-width: 500px; align-items: center" id="navbarSupportedContent">
-                        <asp:TextBox ID="txtBusqueda" runat="server" CssClass="form-control me-2"></asp:TextBox>
+                        <asp:TextBox ID="txtBusqueda" runat="server" CssClass="form-control me-2" placeholder="Buscar árticulos"></asp:TextBox>
                         <asp:ImageButton ID="imgBusqueda" runat="server" ImageUrl="https://i.imgur.com/nsJrYF4.png" Width="24px" Height="24px" OnClick="imgBusqueda_Click" />
                     </div>
                     <div>
                         <ul class="navbar-nav me-auto ml-3 mb-2 mb-lg-0" style="color: white; width: 20%;">
                             <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="default.aspx">Productos</a>
+                                <a class="nav-link " aria-current="page" href="Ventanaproductos.aspx">Productos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="#about">About</a>
+                                <a class="nav-link " aria-current="page" href="#footer">About</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link " aria-current="page" href="VentanaUsuario.aspx">
-                                     <img style="width: 24px; height: 24px" src="https://i.imgur.com/RR9DK3V.png" alt="Usuario">
+                                    <img style="width: 24px; height: 24px" src="https://i.imgur.com/RR9DK3V.png" alt="Usuario">
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -55,69 +55,73 @@
             </asp:ContentPlaceHolder>
         </div>
 
-        <footer id="about" style="background-image: linear-gradient(to right, #D32F2F 0%, #b82727 100%)"; position: relative; bottom: 0;">
-    <div class="container-fluid text-center">
-        <div class="row p-5 text-white">
-            <div class="col-xs-12 col-md-6 col-lg-3">
-                <p class="h6">Medios de pago</p>
-                <div>
-                    <img class="img-thumbnail" src="img\formas-pago.png" alt="Medios de pago" />
+        <footer id="footer" style="background-image: linear-gradient(to right, #D32F2F 0%, #b82727 100%); padding-inline: 10%">
+            <div>
+                <div class="row pt-5 pb-5 text-white">
+                    <div class="col-md-3">
+                        <h5>Navegación</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" style="color: white" href="#header">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" style="color: white" href="VentanaProductos.aspx">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" style="color: white" href="VentanaUsuario.aspx">Usuario</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" style="color: white" href="VentanaCarrito.aspx">Carrito</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Contacto</h5>
+                        <ul class="nav flex-column" style="padding-block: 10px">
+                            <li>
+                                <p>0800-1234-5687</p>
+                            </li>
+                            <li>
+                                <p>ovcloaked@mail.com</p>
+                            </li>
+                            <li>
+                                <p>Calle Falsa 123</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="nav flex-column">
+                            <li style="margin-inline: 10px">
+                                <h5 style="margin-bottom: 15px">Redes sociales</h5>
+                                <img style="height: 32px" src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Whatsapp" />
+                                <img style="height: 32px" src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="Linkedin" />
+                                <img style="height: 32px" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+                                <img style="height: 32px" src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+                            </li>
+                            <li style="margin-block: 15px; margin-inline: 10px">
+                                <h5>Medios de Pago</h5>
+                                <img style="height: 32px" src="https://www.ryrcomputacion.com/images/tarjetas.png?v=109" alt="Medios de pago" />
+                                <img style="height: 32px" src="https://www.ryrcomputacion.com/images/mp.png?v=109" alt="Mercado Pago" />
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Newslestter</h5>
+                        <h6>Recibi ofertas por mail!</h6>
+                        <div class="mb-3">
+                            <asp:TextBox ID="txtNombreSuscribite" runat="server" CssClass="form-control" placeholder="Nombre" ></asp:TextBox>
+                        </div>
+                        <div class="mb-3">
+                            <asp:TextBox ID="txtMailSuscribite" runat="server" CssClass="form-control" placeholder="Email" ></asp:TextBox>
+                        </div>
+                        <asp:Button ID="btnSuscribite" runat="server" Text="Suscribite" CssClass="btn btn-primary" Style="background-color: #ff3535; border-color: #b82727" />
+                    </div>
                 </div>
-            </div>
-            <div class="col-s-12 col-md-6 col-lg-3">
-                <p class="h6">Integrantes del proyecto Web</p>
-                <br />
-                <ul class="list-unstyled">
-                    <li>Santiago Javier Escobar Mendoza</li>
-                    <li>Mariano Stoessel</li>
-                    <li>Alejo Chavez Tolosa</li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3">
-                <p class="h6">Nuestras Redes</p>
-                <br />
-                <ul class="list-unstyled list-inline">
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <img style="width: 32px; height: 32px" src="img\icons8-facebook-50.png" alt="Facebook" /></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <img style="width: 32px; height: 32px" src="img\icons8-instagram-50.png" alt="Instagram" /></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <img style="width: 32px; height: 32px" src="img/icons8-twitter-50.png"" alt="Twitter" /></a>
-                    </li>
-                </ul>
-                <ul class="list-unstyled list-inline">
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <img style="width: 32px; height: 32px" src="img\icons8-tik-tok-50.png" alt="TikTok" /></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <img style="width: 32px; height: 32px" src="img\icons8-youtube-50.png" alt="Youtube" /></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <img style="width: 32px; height: 32px" src="img\icons8-linkedin-50.png" alt="Linkedin" /></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-md-6 col-lg-3">
-                <p class="h6">Programación III - Equipo docente:</p>
-                <br />
-                   <ul class="list-unstyled">
-                        <li>Maximiliano Sar Fernández</li>
-                        <li>Regina Laurentino</li>
-                        <li>Gonzalo Ligero</li>
-                    </ul>
-            </div>
-        </div>
-    </div>
-
-</footer>
+                <div class="row pb-4 text-white text-center text-opacity-75">
+                    <p>© 2024 OverCloaked - Todos los derechos reservados.</p>
+                </div>
+            </div>          
+        </footer>
     </form>
 </body>
 </html>
