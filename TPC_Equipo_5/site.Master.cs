@@ -21,7 +21,7 @@ namespace TPC_Equipo_5
         {
             if (Session["listaArticulosEnCarrito"] == null)
             {
-                Contador.Text = "0";
+                Contador.Text = "";
             }
             else
             {
@@ -42,6 +42,11 @@ namespace TPC_Equipo_5
                 //caso en el que tiene que mostrar todo
                 Response.Redirect("default.aspx", false);
             }
+        }
+
+        protected void imgBusqueda_Click(object sender, ImageClickEventArgs e)
+        {
+
         }
     }
 }

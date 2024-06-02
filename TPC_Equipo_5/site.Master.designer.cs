@@ -42,13 +42,13 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.TextBox txtBusqueda;
 
         /// <summary>
-        /// btnBusqueda control.
+        /// imgBusqueda control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBusqueda;
+        protected global::System.Web.UI.WebControls.ImageButton imgBusqueda;
 
         /// <summary>
         /// Contador control.
