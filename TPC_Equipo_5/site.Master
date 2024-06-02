@@ -9,6 +9,7 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
         <link href="css/stylePaginaWeb.css" rel="stylesheet" />
+        <link href="css/EstilosBannerCarousel.css" rel="stylesheet" />
     </asp:ContentPlaceHolder>
 </head>
 <body>
