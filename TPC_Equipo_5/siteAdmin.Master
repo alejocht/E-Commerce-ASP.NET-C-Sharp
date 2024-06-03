@@ -11,7 +11,7 @@
         <link href="css/stylePaginaWeb.css" rel="stylesheet" />
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body style="background-color: black">
 
     <form id="form1" runat="server">
         <header id="header">

@@ -1,10 +1,10 @@
- insert into Marcas (Descripcion) values
+ insert into Marcas (nombre) values
  ('AMD'),
  ('Asrock'),
  ('Corsair'),
  ('XFX');
 
- insert into Categorias (Descripcion) values
+ insert into Categorias (nombre) values
  ('Procesadores'),
  ('Motherboards'),
  ('Memorias RAM'),
@@ -23,6 +23,7 @@
  (2,2,'Mother Asrock B450M-HDV 4.0 AM4 HDMI M.2','lindo placa, anda bien ',78800,5),
  (3,3,'Memoria Corsair DDR4 8GB 3200Mhz Vengeance LPX Black CL16','Muy rapida',29150,2),
  (4,4,'Placa de Video XFX Radeon RX 580 8GB GDDR5 GTS 2048SP','Buena relacion calidad-precio',179240,1)
+
  insert into Imagen (UrlImagen,ID_Producto,Tipo_Imagen) values
  ('https://innovatech.ar/wp-content/uploads/2021/08/11-2.jpg',1,1),
  ('https://asrock.com/mb/photo/B450M-HDV(L1).png',2,1),
