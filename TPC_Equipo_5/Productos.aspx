@@ -13,7 +13,7 @@
 
                     <img src="img\91a192b77d77a80a4b7e9768877d.jpg" class="w-100 h-70 object-fit-cover" alt="..." onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'">
                     <div class="card-body">
-                        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="text-decoration-none"> 
+                        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="text-decoration-none" OnClick="Link_Click"> 
                         <h5 class="card-title m-2 text-center fw-bolder">Titulo</h5>
                         </asp:LinkButton>
                         <h5 class="card-subtitle m-1 p-0 text-body-secondary text-end">$###,##</h5>
