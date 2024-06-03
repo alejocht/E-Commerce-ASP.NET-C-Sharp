@@ -1,93 +1,79 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.Master" AutoEventWireup="true" CodeBehind="VentanaCarrito.aspx.cs" Inherits="TPC_Equipo_5.VentanaCarrito" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/stylePaginaWeb.css" rel="stylesheet" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" >
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" >  
     
-   
-<div class="container text-center">
-    <div class="container text-center">
-        <h1>Carrito de Compras</h1>
-    </div>
-
-    <div class="container" id="containerCarrito">
+    <div class="container" id="containerPrincipal" style="height: 800px;">
         <div class="row">
             <%--<asp:Repeater runat="server" ID="repCarrito">
-                <ItemTemplate>
+                <ItemTemplate>--%> 
                     <div>
-                        <div class="container">
-                            <div class="row">
+                        <div class="container border border-danger" style="background-color: whitesmoke; height: 125px; width:1000px;" >
+                            <div class="row ">
                                 <div class="col-4">
-                                    <img src="https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png" class="card-img-top" alt="Image description" onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'">
+                                    <img src="https://innovatech.ar/wp-content/uploads/2021/08/11-2.jpg"style="width: 100px; height: 100px" class="card-img-top" alt="Image description" onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'">
                                 </div>
                                 <div class="col text-start p-md-5">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col">
-                                                <div>
-                                                    <label>Articulo:  </label>
+                                            
+                                                <div class="text-start">
+                                                    <label style="">Nombre  </label>                                               
+                                                    <label>Precio: $100000 </label>
                                                 </div>
-                                                <div>
-                                                    <label>Descripcion:  </label>
-
-                                                </div>
-                                                <div>
-                                                    <label>Precio: $ </label>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="container">
-                                        <div class="row">
-                                            
-                                            <div class="col-6 text-end">
-                                               -- <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("Id") %>' CommandName="IdArticulo" />--
+                                        <div class="row">                                           
+                                            <div class="text-end">
+                                                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" CommandArgument='' CommandName="IdArticulo" />
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="container text-end">
-                                        <div class="row">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr style="width: 90%; margin-inline: 10%;" />
-                </ItemTemplate>
+                   
+                <%--</ItemTemplate>
             </asp:Repeater>--%>
         </div>
+        <br />
         <div class="text-start">
             <div class="container" id="containerResumenCompra">
                 <div class="row">
                     <div class="col">
                         <h4>Resumen del pedido</h4>
                         <div>
-                            <%--<asp:Label ID="lblSubTotal" runat="server" Text="Subtotal: xxxx" CssClass="p" />--%>
+                            <asp:Label ID="lblSubTotal" runat="server" Text="Subtotal: xxxx" CssClass="p" />
                         </div>
                         <div>
-                            <%--<asp:Label ID="lblEnvio" runat="server" Text="Envio: xxxx" CssClass="p" />--%>
+                            <asp:Label ID="lblEnvio" runat="server" Text="Envio: xxxx" CssClass="p" />
                         </div>
                         <div>
-                            <%--<asp:Label ID="lblTotalCompra" runat="server" Text="Total: $xxxx" CssClass="h4" />--%>
+                            <asp:Label ID="lblTotalCompra" runat="server" Text="Total: $xxxx" CssClass="h4" />
                         </div>
 
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button type="button" class="btn btn-success w-75" data-bs-toggle="modal" data-bs-target="#btnAvisoCompra">
+                        <button type="button" class="btn  w-75" data-bs-toggle="modal" data-bs-target="#btnAvisoCompra " style="background-color: black; color:white;">
                             Comprar
                         </button>
                     </div>
                     <div class="col">
-                        <%--<asp:Button ID="btnContinuarComprando" runat="server" Text="Continuar comprando" CssClass="btn btn-primary w-75" OnClick="btnContinuarComprando_Click" />--%>
+                        <asp:Button ID="btnContinuarComprando" runat="server" Text="Continuar comprando" CssClass="btn  w-75" OnClick="btnContinuarComprando_Click" style="background-color: #c02a2a ; color:white;" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="container" id="containerCarritoVacio" style="height: 500px">
+    
+    <%--<div class="container" id="containerCarritoVacio" style="height: 500px">
         <div class="row">
             <div class="col">
                 <h3>Lista de productos</h3>
@@ -98,7 +84,7 @@
                             <div class="container text-end">
                                 <div class="row">
                                     <div class="col">
-                                        <%--<asp:Button ID="Button2" runat="server" Text="Continuar comprando" CssClass="btn btn-primary" OnClick="btnContinuarComprando_Click" />--%>
+                                        <asp:Button ID="Button2" runat="server" Text="Continuar comprando" CssClass="btn btn-primary" OnClick="Button2_Click" style="background-color: #c02a2a ;" />
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +93,7 @@
                 </div>
             </div>
         </div>
-    </div>
   
+    </div>--%>
 </div>
 </asp:Content>
