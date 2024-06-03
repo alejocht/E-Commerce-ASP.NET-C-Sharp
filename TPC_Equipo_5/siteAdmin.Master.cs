@@ -7,16 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace TPC_Equipo_5
 {
-    public partial class _default : System.Web.UI.Page
+    public partial class siteAdmin : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void Link_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("DetalleProducto.aspx", false);
         }
     }
 }
