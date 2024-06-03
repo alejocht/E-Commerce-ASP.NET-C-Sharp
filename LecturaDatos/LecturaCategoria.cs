@@ -46,7 +46,7 @@ namespace LecturaDatos
             try
             {
                 datos.SetearConsulta("insert into CATEGORIAS (Descripcion) values (@descripcion)");
-                datos.SetearParametro("@descripcion", categoria.Descripcion);
+                datos.SetearParametro("@descripcion", categoria.nombre);
                 datos.ejecutarAccion();
 
 
@@ -70,7 +70,7 @@ namespace LecturaDatos
             {
                 datos.SetearConsulta("UPDATE CATEGORIAS SET  Descripcion = @Descripcion WHERE Id = @Id");
                 datos.SetearParametro("@Id", nueva.Id);
-                datos.SetearParametro("@Descripcion", nueva.Descripcion);
+                datos.SetearParametro("@Descripcion", nueva.nombre);
                 
                 datos.ejecutarAccion();
 

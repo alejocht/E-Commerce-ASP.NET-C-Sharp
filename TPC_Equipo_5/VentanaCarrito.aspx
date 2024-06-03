@@ -17,12 +17,12 @@
                                 <div class="col text-start p-md-5">
                                     <div class="container">
                                         <div class="row">
-                                            
-                                                <div class="text-start">
+                                            <div class="col">
+                                                <div>
                                                     <label style="">Nombre  </label>                                               
                                                     <label>Precio: $100000 </label>
                                                 </div>
-                                            
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="container">

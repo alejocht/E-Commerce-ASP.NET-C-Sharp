@@ -18,14 +18,14 @@ namespace LecturaDatos
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("SELECt Id,Descripcion from MARCAS");
+                datos.SetearConsulta("SELECt Id,nombre from MARCAS");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Marca aux = new Marca();
                     aux.Id = (int)datos.Lector["Id"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Descripcion = (string)datos.Lector["nombre"];
 
                     lista.Add(aux);
                 }
@@ -45,7 +45,7 @@ namespace LecturaDatos
             AccesoDatos datos = new AccesoDatos();
             try
             {   
-                datos.SetearConsulta("insert into MARCAS (Descripcion) values ('"+nueva+"')");
+                datos.SetearConsulta("insert into MARCAS (nombre) values ('"+nueva+"')");
                 datos.ejecutarAccion();
 
 
@@ -67,9 +67,9 @@ namespace LecturaDatos
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("UPDATE MARCAS SET  Descripcion = @Descripcion WHERE Id = @Id");
+                datos.SetearConsulta("UPDATE MARCAS SET  nombre = @Descripcion WHERE Id = @Id");
                 datos.SetearParametro("@Id", nueva.Id);
-                datos.SetearParametro("@Descripcion", nueva.Descripcion);
+                datos.SetearParametro("@Descripcion", nueva.nombre);
 
                 datos.ejecutarAccion();
 
