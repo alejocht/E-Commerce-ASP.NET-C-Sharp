@@ -42,10 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
-    <Compile Include="LecturaArticulo.cs" />
-    <Compile Include="LecturaCategoria.cs" />
-    <Compile Include="LecturaImagen.cs" />
-    <Compile Include="LecturaMarca.cs" />
+    <Compile Include="LecturaProducto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

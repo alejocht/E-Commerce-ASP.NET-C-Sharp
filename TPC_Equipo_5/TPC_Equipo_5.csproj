@@ -195,6 +195,16 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominioo\Dominio.csproj">
+      <Project>{8cc9f615-42b3-4165-8553-90dcda5f56dd}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LecturaDatos\LecturaDatos.csproj">
+      <Project>{30cafd36-06ee-4bc4-b9da-dda4f1f55b0c}</Project>
+      <Name>LecturaDatos</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
