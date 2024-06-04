@@ -13,10 +13,5 @@ namespace TPC_Equipo_5
         {
 
         }
-
-        protected void Link_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("DetalleProducto.aspx", false);
-        }
     }
 }
