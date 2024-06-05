@@ -1,10 +1,10 @@
- insert into Marcas (Descripcion) values
+ insert into Marcas (nombre) values
  ('AMD'),
  ('Asrock'),
  ('Corsair'),
  ('XFX');
 
- insert into Categorias (Descripcion) values
+ insert into Categorias (nombre) values
  ('Procesadores'),
  ('Motherboards'),
  ('Memorias RAM'),

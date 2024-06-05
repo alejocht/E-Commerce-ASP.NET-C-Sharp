@@ -100,6 +100,7 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="Productos.aspx" />
+    <Content Include="Usuario.aspx" />
     <Content Include="VentanaCarrito.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -149,6 +150,13 @@
     </Compile>
     <Compile Include="siteAdmin.Master.designer.cs">
       <DependentUpon>siteAdmin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.aspx.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario.aspx.designer.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="VentanaCarrito.aspx.cs">
       <DependentUpon>VentanaCarrito.aspx</DependentUpon>
