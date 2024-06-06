@@ -4,8 +4,8 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container d-flex justify-content-center align-items-center vh-100" style="background-color: whitesmoke">
-        <div class="bg-white p-5 rounded-5 text-secondary" style="width: 25rem; height:30rem;">
+    <div class="container d-flex justify-content-center align-items-center vh-100" >
+        <div class="card shadow p-3 mb-5 mt-5 bg-body-tertiary rounded  bg-white p-5 rounded-5 text-secondary" style="width: 25rem; border-color:#c32a2a; height:30rem;">
             <div class="d-flex justify-content-center">
                 <img  style="height: 50px" src="https://i.imgur.com/9ffo48f.png" alt="OverCloaked">
                 <%--hay que cambiar imagen --%>
@@ -38,8 +38,8 @@
             </div>
                 <div class="btn text-white w-100 mt-4" style="background-color:#c32a2a">Login</div>
                 <div class="d-flex gap-1 justify-content-center mt-1">
-                    <div>Don´t have an account?</div>
-                    <a href="#"class="text-decoration-none  fw-semibold"style=" color: #c32a2a">Register</a>
+                    <div>No tenes cuenta?</div>
+                    <a href="RegistroUsuario.aspx"class="text-decoration-none  fw-semibold"style=" color: #c32a2a">Crear cuenta</a>
                 </div>
         </div>
     </div>
