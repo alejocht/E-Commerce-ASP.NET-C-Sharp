@@ -34,7 +34,7 @@
                                 <a class="nav-link " aria-current="page" href="#footer">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="Usuario.aspx">
+                                <a class="nav-link " aria-current="page" href="Usuario.aspx" >
                                     <img style="width: 24px; height: 24px" src="https://i.imgur.com/RR9DK3V.png" alt="Usuario">
                                 </a>
                             </li>

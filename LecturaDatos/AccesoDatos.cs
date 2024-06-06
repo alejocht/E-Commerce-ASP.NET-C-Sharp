@@ -21,7 +21,7 @@ namespace LecturaDatos
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=TPC_EQUIPO_5; integrated security=true");
             comando = new SqlCommand();
         }
         public void SetearConsulta(string consulta)
