@@ -12,8 +12,27 @@
     </asp:ContentPlaceHolder>
 </head>
 <body style="background-color: black">
-
+    <script src="js/bootstrap.min.js"></script>
     <form id="form1" runat="server">
+
+        <div class="modal fade" id="modalCerrarSesion" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-5">Cerrar Sesión</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Está seguro de que desea cerrar sesión? Se perderá el progreso no guardado.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar Sesión" CssClass="btn btn-danger" OnClick="btnCerrarSesion_Click"></asp:Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <header id="header">
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1b1f23; padding-inline: 10%">
                 <div class="container-fluid">
@@ -35,7 +54,9 @@
                                 <a class="nav-link " aria-current="page" href="categoriasxMarcasAdmin.aspx">Categorías y Marcas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="default.aspx">Cerrar Sesión</a>
+                                <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#modalCerrarSesion">
+                                    Cerrar Sesión
+                                </button>
                             </li>
                         </ul>
                     </div>
