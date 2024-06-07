@@ -7,10 +7,12 @@
     <div class="container d-flex justify-content-center align-items-center vh-100" >
         <div class="card shadow p-3 mb-5 mt-5 bg-body-tertiary rounded  bg-white p-5 rounded-5 text-secondary" style="width: 25rem; border-color:#c32a2a; height:30rem;">
             <div class="d-flex justify-content-center">
-                <img  style="height: 50px" src="https://i.imgur.com/9ffo48f.png" alt="OverCloaked">
                 <%--hay que cambiar imagen --%>
             </div>
-            <div class="text-center fs-1 fw-bold">Login</div>
+            <div class="text-center fs-1 fw-bold">
+                <img  style="height: 50px" src="https://i.imgur.com/9E31weS.png" alt="OverCloaked">     
+                Login
+            </div>
             <div class="input-group mt-4">
                 <div class="input-group-text " style="background-color: #c32a2a">
                     <img src="/assets/person.svg"
@@ -36,7 +38,10 @@
                     <a href="#" class="text-decoration-none fw-semibold fst-italic" style="font-size:0.9rem; color: #c32a2a">Forgot your password?</a>
                 </div>
             </div>
-                <div class="btn text-white w-100 mt-4" style="background-color:#c32a2a">Login</div>
+                <div>
+                    <asp:Button class="btn text-white w-100 mt-4" ID="Btn_login" style="background-color:#c32a2a" Text="Login" runat="server" OnClick="Btn_login_Click" />
+
+                </div>
                 <div class="d-flex gap-1 justify-content-center mt-1">
                     <div>No tenes cuenta?</div>
                     <a href="RegistroUsuario.aspx"class="text-decoration-none  fw-semibold"style=" color: #c32a2a">Crear cuenta</a>

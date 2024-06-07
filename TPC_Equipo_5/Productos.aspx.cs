@@ -23,5 +23,10 @@ namespace TPC_Equipo_5
             
             
         }
+
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DetalleProducto.aspx", false);
+        }
     }
 }

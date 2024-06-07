@@ -13,5 +13,11 @@ namespace TPC_Equipo_5
         {
 
         }
+
+
+        protected void Btn_login_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("defaultAdmin.aspx", false);
+        }
     }
 }
