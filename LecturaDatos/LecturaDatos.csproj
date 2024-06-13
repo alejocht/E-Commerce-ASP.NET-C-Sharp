@@ -42,6 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="LecturaMetodoPago.cs" />
+    <Compile Include="LecturaUsuario.cs" />
+    <Compile Include="LecturaTipoUsuario.cs" />
+    <Compile Include="LecturaProvincia.cs" />
+    <Compile Include="LecturaEstadoPedido.cs" />
+    <Compile Include="LecturaCiudad.cs" />
+    <Compile Include="LecturaImagen.cs" />
+    <Compile Include="LecturaCategoria.cs" />
+    <Compile Include="LecturaMarca.cs" />
     <Compile Include="LecturaProducto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

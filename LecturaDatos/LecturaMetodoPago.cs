@@ -1,4 +1,4 @@
-﻿using Dominio.Productos;
+﻿using Dominio.Pedidos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,59 +7,23 @@ using System.Threading.Tasks;
 
 namespace LecturaDatos
 {
-    public class LecturaImagen
+    public class LecturaMetodoPago
     {
-        public List<Imagen> listar()
+        public List<MetodoPago> listar()
         {
-            List<Imagen> lista = new List<Imagen>();
+            List<MetodoPago> lista = new List<MetodoPago>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta("select * from Imagen");
+                datos.SetearConsulta("select * from Metodos_de_pago");
                 datos.EjecutarLectura();
 
                 while(datos.Lector.Read())
                 {
-                    Imagen aux = new Imagen();
+                    MetodoPago aux = new MetodoPago();
                     aux.id = (int)datos.Lector["ID"];
-                    aux.imagenUrl = (string)datos.Lector["UrlImagen"];
-                    aux.idProducto = (int)datos.Lector["ID_Producto"];
-                    aux.tipo = (int)datos.Lector["Tipo_Imagen"];
-
-                    lista.Add(aux);
-                }
-
-                return  lista; 
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-        }
-
-        public List<Imagen> listar(int id)
-        {
-            List<Imagen> lista = new List<Imagen>();
-            AccesoDatos datos = new AccesoDatos();
-
-            try
-            {
-                datos.SetearConsulta("select * from Imagen where ID_Producto = " + id.ToString() );
-                datos.EjecutarLectura();
-
-                while (datos.Lector.Read())
-                {
-                    Imagen aux = new Imagen();
-                    aux.id = (int)datos.Lector["ID"];
-                    aux.imagenUrl = (string)datos.Lector["UrlImagen"];
-                    aux.idProducto = (int)datos.Lector["ID_Producto"];
-                    aux.tipo = (int)datos.Lector["Tipo_Imagen"];
+                    aux.nombre = (string)datos.Lector["Metodo_de_pago"];
 
                     lista.Add(aux);
                 }
@@ -77,5 +41,36 @@ namespace LecturaDatos
             }
         }
 
+        public List<MetodoPago> listar(int id)
+        {
+            List<MetodoPago> lista = new List<MetodoPago>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("select * from Metodos_de_pago where ID = "+ id.ToString());
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    MetodoPago aux = new MetodoPago();
+                    aux.id = (int)datos.Lector["ID"];
+                    aux.nombre = (string)datos.Lector["Metodo_de_pago"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }

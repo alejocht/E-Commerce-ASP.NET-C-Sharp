@@ -14,7 +14,7 @@ namespace LecturaDatos
         {
             List<Producto> listaProductos = new List<Producto>();
             AccesoDatos datosProductos = new AccesoDatos();
-            AccesoDatos datosImagenes = new AccesoDatos();
+            //AccesoDatos datosImagenes = new AccesoDatos();
             try
             {
                 datosProductos.SetearConsulta("SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID");
@@ -25,6 +25,7 @@ namespace LecturaDatos
                     aux.marca = new Marca();
                     aux.categoria = new Categoria();
                     aux.imagenes = new List<Imagen>();
+                    LecturaImagen lecturaImagen = new LecturaImagen();
 
                     aux.id = (int)datosProductos.Lector["ProductoID"];
                     aux.nombre = (string)datosProductos.Lector["ProductoNombre"];
@@ -42,6 +43,8 @@ namespace LecturaDatos
                         aux.categoria.id = (int)datosProductos.Lector["CategoriaID"];
                     if (!Convert.IsDBNull(datosProductos.Lector["CategoriaNombre"]))
                         aux.categoria.nombre = (string)datosProductos.Lector["CategoriaNombre"];
+
+                    aux.imagenes = lecturaImagen.listar(aux.id);
                     // ACA HAY UN PROBLEMA
                     //datosImagenes.SetearConsulta("SELECT Imagen.ID as ImagenID, Imagen.ID_Producto as ImagenProducto, Imagen.Tipo_Imagen as ImagenTipo, Imagen.UrlImagen as ImagenURL FROM Imagen WHERE Imagen.ID_Producto =" + aux.id.ToString() );
                     //datosImagenes.EjecutarLectura();
@@ -70,7 +73,7 @@ namespace LecturaDatos
             }
             finally
             {
-                datosImagenes.CerrarConexion();
+                //datosImagenes.CerrarConexion();
                 datosProductos.CerrarConexion();
             }
         }

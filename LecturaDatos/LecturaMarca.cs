@@ -40,5 +40,37 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+
+        public List<Marca> listar(int id)
+        {
+            List<Marca> lista = new List<Marca>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("select * from Marcas where ID = "+ id.ToString());
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Marca aux = new Marca();
+                    aux.id = (int)datos.Lector["ID"];
+                    aux.nombre = (string)datos.Lector["nombre"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }
