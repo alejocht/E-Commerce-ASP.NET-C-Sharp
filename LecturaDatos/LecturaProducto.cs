@@ -45,6 +45,13 @@ namespace LecturaDatos
                         aux.categoria.nombre = (string)datosProductos.Lector["CategoriaNombre"];
 
                     aux.imagenes = lecturaImagen.listar(aux.id);
+
+                    Random random = new Random();
+                    int cantidadImagenes = aux.imagenes.Count;
+                    int numeroAleatorio = random.Next(0,cantidadImagenes);
+
+                    aux.imagenPrincipal = aux.imagenes[numeroAleatorio].imagenUrl;
+
                     // ACA HAY UN PROBLEMA
                     //datosImagenes.SetearConsulta("SELECT Imagen.ID as ImagenID, Imagen.ID_Producto as ImagenProducto, Imagen.Tipo_Imagen as ImagenTipo, Imagen.UrlImagen as ImagenURL FROM Imagen WHERE Imagen.ID_Producto =" + aux.id.ToString() );
                     //datosImagenes.EjecutarLectura();
