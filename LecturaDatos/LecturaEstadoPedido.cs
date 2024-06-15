@@ -40,5 +40,60 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+        public void agregar(EstadoPedido nuevo) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("insert into Estados_Pedido (Descripcion) values (@descripcion)");
+                datos.SetearParametro("@descripcion", nuevo.nombre);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void modificar(EstadoPedido nuevo) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("update Estados_Pedido set Descripcion = @descripcion where ID = @id");
+                datos.SetearParametro("@descripcion", nuevo.nombre);
+                datos.SetearParametro("@id", nuevo.id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void eliminarFisica(EstadoPedido nuevo) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("delete Estados_Pedido where ID = @id");
+                datos.SetearParametro("@id", nuevo.id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }

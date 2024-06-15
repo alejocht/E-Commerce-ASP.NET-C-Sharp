@@ -40,7 +40,6 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
-
         public List<MetodoPago> listar(int id)
         {
             List<MetodoPago> lista = new List<MetodoPago>();
@@ -71,6 +70,32 @@ namespace LecturaDatos
             {
                 datos.CerrarConexion();
             }
+        }
+        public void agregar(MetodoPago nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("insert into Metodos_de_pago (Metodo_de_pago) values (@metodopago)");
+                datos.SetearParametro("@metodopago", nuevo.nombre);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void modificar(MetodoPago nuevo) 
+        {
+
+        }
+        public void eliminarFisica(MetodoPago nuevo)
+        {
+
         }
     }
 }
