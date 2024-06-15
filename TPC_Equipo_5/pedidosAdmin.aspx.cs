@@ -11,6 +11,11 @@ namespace TPC_Equipo_5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Agregar datos a la grilla
+        }
+
+        protected void dgvPedidos_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

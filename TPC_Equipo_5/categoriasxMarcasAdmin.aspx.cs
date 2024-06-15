@@ -13,5 +13,15 @@ namespace TPC_Equipo_5
         {
 
         }
+
+        protected void dgvCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dgvMarcas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
