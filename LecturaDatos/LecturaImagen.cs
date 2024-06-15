@@ -42,7 +42,6 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
-
         public List<Imagen> listar(int id)
         {
             List<Imagen> lista = new List<Imagen>();
@@ -76,6 +75,70 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+        public void agregar(Imagen nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.SetearConsulta("insert into Imagen (UrlImagen, ID_Producto, Tipo_Imagen) values (@urlimagen, @idproducto, @tipoimagen)");
+                datos.SetearParametro("@urlimagen", nuevo.imagenUrl);
+                datos.SetearParametro("@idproducto", nuevo.idProducto);
+                datos.SetearParametro("@tipoimagen", nuevo.tipo);
+                datos.ejecutarAccion(); 
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        } //agrega una imagen a db pasandole el objeto por parametro
+        public void modificar(Imagen nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("update Imagen set UrlImagen = @urlimagen, ID_Producto = @idproducto, Tipo_Imagen = @tipoimagen where ID = @id");
+                datos.SetearParametro("@urlimagen",nuevo.imagenUrl);
+                datos.SetearParametro("@idproducto", nuevo.idProducto);
+                datos.SetearParametro("@tipoimagen", nuevo.tipo);
+                datos.SetearParametro("@id", nuevo.id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        } // modifica una imagen
+        public void eliminarFisica(Imagen nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("delete from Imagen where ID = @ID)");
+                datos.SetearParametro("@ID", nuevo.id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        } // elimina la imagen
     }
 }

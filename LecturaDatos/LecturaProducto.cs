@@ -1,5 +1,6 @@
 ﻿using Dominio.Productos;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -29,11 +30,11 @@ namespace LecturaDatos
 
                     aux.id = (int)datosProductos.Lector["ProductoID"];
                     aux.nombre = (string)datosProductos.Lector["ProductoNombre"];
-                    //aux.codigo = (string)datosProductos.Lector[""];
                     aux.descripcion = (string)datosProductos.Lector["ProductoDescripcion"];
                     aux.stock = (int)datosProductos.Lector["ProductoStock"];
                     aux.precio = (decimal)datosProductos.Lector["ProductoPrecio"];
 
+                    //Carga de Marca y categoria
                     if (!Convert.IsDBNull(datosProductos.Lector["MarcaID"]))
                         aux.marca.id = (int)datosProductos.Lector["MarcaID"];
                     if (!Convert.IsDBNull(datosProductos.Lector["MarcaNombre"]))
@@ -44,28 +45,17 @@ namespace LecturaDatos
                     if (!Convert.IsDBNull(datosProductos.Lector["CategoriaNombre"]))
                         aux.categoria.nombre = (string)datosProductos.Lector["CategoriaNombre"];
 
+                    //Carga de Imagenes + imagenprincipal (la que sale en la tarjeta)
                     aux.imagenes = lecturaImagen.listar(aux.id);
 
-                    Random random = new Random();
-                    int cantidadImagenes = aux.imagenes.Count;
-                    int numeroAleatorio = random.Next(0,cantidadImagenes);
+                    if (aux.imagenes.Count != 0)
+                    {
+                        Random random = new Random();
+                        int cantidadImagenes = aux.imagenes.Count;
+                        int numeroAleatorio = random.Next(0, cantidadImagenes);
 
-                    aux.imagenPrincipal = aux.imagenes[numeroAleatorio].imagenUrl;
-
-                    // ACA HAY UN PROBLEMA
-                    //datosImagenes.SetearConsulta("SELECT Imagen.ID as ImagenID, Imagen.ID_Producto as ImagenProducto, Imagen.Tipo_Imagen as ImagenTipo, Imagen.UrlImagen as ImagenURL FROM Imagen WHERE Imagen.ID_Producto =" + aux.id.ToString() );
-                    //datosImagenes.EjecutarLectura();
-                    //while (datosImagenes.Lector.Read())
-                    //{
-                    //    Imagen auximg = new Imagen();
-                    //    auximg.id = (int)datosImagenes.Lector[""];
-                    //    auximg.idProducto = (int)datosImagenes.Lector[""];
-                    //    auximg.imagenUrl = (string)datosImagenes.Lector[""];
-
-                    //    aux.imagenes.Add(auximg);
-
-                    //}
-                    // ACA HAY UN PROBLEMA
+                        aux.imagenPrincipal = aux.imagenes[numeroAleatorio].imagenUrl;
+                    }
 
                     listaProductos.Add(aux);
                 }
@@ -80,10 +70,83 @@ namespace LecturaDatos
             }
             finally
             {
-                //datosImagenes.CerrarConexion();
                 datosProductos.CerrarConexion();
             }
         }
+        public void agregar(Producto nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("insert into Productos (ID_Categoria, ID_Marca,Nombre, Descripcion, Precio,Stock)\r\nvalues (@IDCategoria,@IDMarca,@Nombre,@Descripcion, @Precio, @Stock)");
+                datos.SetearParametro("@IDCategoria", nuevo.categoria.id);
+                datos.SetearParametro("@IDMarca", nuevo.marca.id);
+                datos.SetearParametro("@Nombre", nuevo.nombre);
+                datos.SetearParametro("@Descripcion", nuevo.descripcion);
+                datos.SetearParametro("@Precio", nuevo.precio);
+                datos.SetearParametro("@Stock", nuevo.stock);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        } //agrega un nuevo producto a db pasandolo el objeto por parametro
+        public void modificar(Producto nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("update Productos set ID_Categoria = @IDCategoria  ID_Marca = @IDMarca , Nombre = @Nombre , Descripcion = @Descripcion, Precio = @Precio , Stock = @Stock  where ID = @ID)");
+                datos.SetearParametro("@IDCategoria", nuevo.categoria.id);
+                datos.SetearParametro("@IDMarca", nuevo.marca.id);
+                datos.SetearParametro("@Nombre", nuevo.nombre);
+                datos.SetearParametro("@Descripcion", nuevo.descripcion);
+                datos.SetearParametro("@Precio", nuevo.precio);
+                datos.SetearParametro("@Stock", nuevo.stock);
+                datos.SetearParametro("@ID", nuevo.id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        } //modifica un producto en db pasandole el objeto por parametro
+        public void eliminarFisica(Producto nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("delete from Productos where ID = @ID)");
+                datos.SetearParametro("@ID", nuevo.id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }//elimina el producto en db pasandole el objeto por parametro
+        //agregar baja logica
     }
 
 }

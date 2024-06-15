@@ -72,6 +72,70 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+        public void agregar(Categoria nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("insert into Categorias (nombre) values (@nombre)");
+                datos.SetearParametro("@nombre", nuevo.nombre);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void modificar(Categoria nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("update Categorias set nombre = @nombre where ID = @id");
+                datos.SetearParametro("@nombre", nuevo.nombre);
+                datos.SetearParametro("@id", nuevo.id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void eliminarFisica(Marca nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("delete Categorias where ID = @id");
+                datos.SetearParametro("@id", nuevo.id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
 }

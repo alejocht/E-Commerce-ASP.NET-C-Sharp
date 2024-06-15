@@ -40,7 +40,6 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
-
         public List<Marca> listar(int id)
         {
             List<Marca> lista = new List<Marca>();
@@ -60,6 +59,70 @@ namespace LecturaDatos
                 }
 
                 return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void agregar(Marca nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("insert into Marcas (nombre) values (@nombre)");
+                datos.SetearParametro("@nombre",nuevo.nombre);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void modificar(Marca nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("update Marcas set nombre = @nombre where ID = @id");
+                datos.SetearParametro("@nombre", nuevo.nombre);
+                datos.SetearParametro("@id", nuevo.id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void eliminarFisica(Marca nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("delete Marcas where ID = @id");
+                datos.SetearParametro("@id", nuevo.id);
+                datos.ejecutarAccion();
 
             }
             catch (Exception ex)
