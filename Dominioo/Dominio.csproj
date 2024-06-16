@@ -52,7 +52,6 @@
     <Compile Include="Ciudad.cs" />
     <Compile Include="DatosUsuario.cs" />
     <Compile Include="Provincia.cs" />
-    <Compile Include="TipoUsuario.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

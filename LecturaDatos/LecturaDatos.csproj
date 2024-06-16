@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="LecturaDatosUsuario.cs" />
     <Compile Include="LecturaMetodoPago.cs" />
     <Compile Include="LecturaUsuario.cs" />
-    <Compile Include="LecturaTipoUsuario.cs" />
     <Compile Include="LecturaProvincia.cs" />
     <Compile Include="LecturaEstadoPedido.cs" />
     <Compile Include="LecturaCiudad.cs" />

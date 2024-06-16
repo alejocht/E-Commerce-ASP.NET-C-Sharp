@@ -91,11 +91,42 @@ namespace LecturaDatos
         }
         public void modificar(MetodoPago nuevo) 
         {
-
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("update Metodos_de_pago set Metodo_de_pago = @metodopago where ID = @id");
+                datos.SetearParametro("@metodopago", nuevo.nombre);
+                datos.SetearParametro("@id", nuevo.id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
         public void eliminarFisica(MetodoPago nuevo)
         {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("delete Metodos_de_pago where ID = @id");
+                datos.SetearParametro("@id", nuevo.id);
+                datos.ejecutarAccion();
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
     }
 }
