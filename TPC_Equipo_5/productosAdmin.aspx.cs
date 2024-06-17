@@ -18,6 +18,16 @@ namespace TPC_Equipo_5
             dgvProductos.DataBind();
         }
 
+        protected void btnBusqueda_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
         protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             var id = dgvProductos.SelectedDataKey.Value.ToString();

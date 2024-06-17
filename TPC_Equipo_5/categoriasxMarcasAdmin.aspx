@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/siteAdmin.Master" AutoEventWireup="true" CodeBehind="categoriasxMarcasAdmin.aspx.cs" Inherits="TPC_Equipo_5.categoriasxMarcasAdmin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/stylePaginaWeb.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Lista de Categorías</h1>
+                <h1 class="text-center">LISTA DE CATEGORÍAS</h1>
             </div>
         </div>
         <div class="row">
@@ -22,7 +23,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Lista de Marcas</h1>
+                <h1 class="text-center">LISTA DE MARCAS</h1>
             </div>
         </div>
         <div class="row">

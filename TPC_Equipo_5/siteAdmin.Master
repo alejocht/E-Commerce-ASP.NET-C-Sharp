@@ -54,6 +54,9 @@
                                 <a class="nav-link " aria-current="page" href="categoriasxMarcasAdmin.aspx">Categorías y Marcas</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link " aria-current="page" href="PublicidadAdmin.aspx">Publicidad</a>
+                            </li>
+                            <li class="nav-item">
                                 <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#modalCerrarSesion">
                                     Cerrar Sesión
                                 </button>
