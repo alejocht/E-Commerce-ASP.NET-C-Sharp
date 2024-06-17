@@ -34,7 +34,7 @@
             <div class="col-12">
                 <asp:GridView ID="dgvProductos" runat="server" DataKeyNames="id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" >
                     <Columns>
-                        <asp:BoundField HeaderText="Código" DataField="codigo" />
+                        <asp:BoundField HeaderText="Código" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
                         <asp:BoundField HeaderText="Precio" DataField="precio" />
                         <asp:BoundField HeaderText="Stock" DataField="stock" />
@@ -50,7 +50,7 @@
             </div>
             <div class="col-4 text-center">
                 <asp:Label ID="lblPagina" runat="server" Text="Página: 1" CssClass="form-label"></asp:Label>
-                <asp:Label ID="Label1" runat="server" Text=" de 10" CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblTotal" runat="server" Text=" de 10" CssClass="form-label"></asp:Label>
             </div>
             <div class="col-4 text-end">
                 <asp:Button ID="btnAgregar" runat="server" Text="Agregar producto" CssClass="btn btn-outline-light" />

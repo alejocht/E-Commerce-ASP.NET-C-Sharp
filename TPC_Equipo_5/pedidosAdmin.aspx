@@ -13,8 +13,8 @@
         <div class="col-md-12">
             <asp:GridView ID="dgvPedidos" runat="server" DataKeyNames="id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvPedidos_SelectedIndexChanged">
                 <Columns>
-                    <asp:BoundField HeaderText="Código" DataField="codigo" />
-                    <asp:BoundField HeaderText="Precio" DataField="DateTime" />
+                    <asp:BoundField HeaderText="Código" DataField="id" />
+                    <asp:BoundField HeaderText="Precio" DataField="fecha" />
                     <asp:BoundField HeaderText="Stock" DataField="estado" />
                     <asp:CommandField SelectText="Ver detalles" ShowSelectButton="true" />
                 </Columns>

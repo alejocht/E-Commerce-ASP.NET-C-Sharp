@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using LecturaDatos;
 
 namespace TPC_Equipo_5
 {
@@ -11,7 +13,9 @@ namespace TPC_Equipo_5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Agregar datos a la grilla
+            LecturaEstadoPedido lecturaEstadoPedido = new LecturaEstadoPedido();
+            dgvPedidos.DataSource = lecturaEstadoPedido.listar();
+            dgvPedidos.DataBind();
         }
 
         protected void dgvPedidos_SelectedIndexChanged(object sender, EventArgs e)
