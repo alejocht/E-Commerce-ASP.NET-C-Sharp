@@ -23,10 +23,10 @@ namespace TPC_Equipo_5
             
             
         }
-
-        protected void LinkButton2_Click(object sender, EventArgs e)
+        protected void LinkButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("DetalleProducto.aspx", false);
+            string ID = ((LinkButton)sender).CommandArgument.ToString();
+            Response.Redirect("DetalleProducto.aspx?ID="+ID, false);
         }
     }
 }

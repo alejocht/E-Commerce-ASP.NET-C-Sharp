@@ -40,26 +40,24 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
-
-        public List<Categoria> listar(int id)
+        public Categoria listar(int id)
         {
-            List<Categoria> lista = new List<Categoria>();
+            
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
                 datos.SetearConsulta("select * from Categorias where ID = " + id.ToString());
                 datos.EjecutarLectura();
+                Categoria aux = new Categoria();
                 while (datos.Lector.Read())
                 {
-                    Categoria aux = new Categoria();
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["nombre"];
 
-                    lista.Add(aux);
                 }
 
-                return lista;
+                return aux;
 
             }
             catch (Exception ex)
