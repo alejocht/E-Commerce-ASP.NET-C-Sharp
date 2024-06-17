@@ -17,5 +17,6 @@ namespace Dominio.Productos
         public int id { get; set; }
         public int idProducto { get; set; }
         public string imagenUrl { get; set; }
+        public int tipo { get; set; }
     }
 }

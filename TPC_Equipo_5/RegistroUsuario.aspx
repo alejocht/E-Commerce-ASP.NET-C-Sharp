@@ -7,10 +7,14 @@
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card shadow p-3 mb-5 mt-5 bg-body-tertiary rounded  bg-white p-5 rounded-5 text-secondary" style="width: 40rem; border-color: #c32a2a; height: 40rem;">
             <div class="d-flex justify-content-center">
-                <img style="height: 50px" src="https://i.imgur.com/9ffo48f.png" alt="OverCloaked">
+                
                 <%--hay que cambiar imagen --%>
             </div>
-            <div class="text-center fs-1 fw-bold">Crear cuenta</div>
+            <div class="text-center fs-1 fw-bold">
+                <img  style="height: 50px" src="https://i.imgur.com/9E31weS.png" alt="OverCloaked">  
+                Crear cuenta
+
+            </div>
             <div class="container" >
                 <div>
                     <div class="input-group mt-4">

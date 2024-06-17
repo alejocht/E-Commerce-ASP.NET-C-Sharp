@@ -21,7 +21,7 @@ namespace TPC_Equipo_5
 
         protected void btnContinuarComprando_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Productos.aspx",false);
         }
 
         protected void Button2_Click(object sender, EventArgs e)

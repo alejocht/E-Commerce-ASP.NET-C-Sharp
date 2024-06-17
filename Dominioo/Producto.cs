@@ -30,6 +30,7 @@ namespace Dominio.Productos
         public Categoria categoria { get; set; }
         public Marca marca { get; set; }
         public List<Imagen> imagenes { get; set; }
+        public string imagenPrincipal { get; set; }
 
     }
 }
