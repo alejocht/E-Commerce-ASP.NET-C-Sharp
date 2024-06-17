@@ -73,6 +73,51 @@ namespace LecturaDatos
                 datosProductos.CerrarConexion();
             }
         }
+        public Producto listar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("select * from Productos where ID = @id");
+                datos.SetearParametro("@id", id);
+                datos.EjecutarLectura();
+                Producto aux = new Producto();
+                while(datos.Lector.Read())
+                {
+                    LecturaImagen lecturaImagen = new LecturaImagen();
+                    LecturaCategoria lecturaCategoria = new LecturaCategoria();
+                    LecturaMarca lecturaMarca = new LecturaMarca();
+                    aux.id = (int)datos.Lector["ID"];
+                    aux.nombre = (string)datos.Lector["Nombre"];
+                    aux.descripcion = (string)datos.Lector["Descripcion"];
+                    aux.stock = (int)datos.Lector["Stock"];
+                    aux.precio = (decimal)datos.Lector["Precio"];
+                    aux.marca = lecturaMarca.listar(id);
+                    aux.categoria = lecturaCategoria.listar(id);
+                    aux.imagenes = lecturaImagen.listar(id);
+                    if(aux.imagenes.Count > 0)
+                    {
+                        aux.imagenPrincipal = aux.imagenes[0].imagenUrl;
+                    }
+                    else
+                    {
+                        aux.imagenPrincipal = "";
+                    }
+
+
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+
+            }
+        }
         public void agregar(Producto nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
