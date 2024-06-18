@@ -24,7 +24,7 @@
             <div class="col-6">
                 <div class="dropdown text-end">
                     <asp:DropDownList ID="ddlOrdenarMarca" runat="server" OnSelectedIndexChanged="ddlOrdenarMarca_SelectedIndexChanged" AutoPostBack="true"
-                        aria-label="Default select example" CssClass="btn dropdown-toggle"
+                        aria-label="Por defecto" CssClass="btn dropdown-menu-end btn-dark"
                         Style="background-color: #1b1f23; width: 30%;">
                     </asp:DropDownList>
                 </div>

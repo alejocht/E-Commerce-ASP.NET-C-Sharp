@@ -24,7 +24,7 @@
             <div class="col-6">
                 <div class="dropdown text-end">
                     <asp:DropDownList ID="ddlOrdenar" runat="server" OnSelectedIndexChanged="ddlOrdenar_SelectedIndexChanged" AutoPostBack="true"
-                        aria-label="Default select example" CssClass="btn dropdown-toggle"
+                        aria-label="Por defecto" CssClass="btn dropdown-menu-end btn-dark"
                         Style="background-color: #1b1f23; width: 30%;">
                     </asp:DropDownList>
                 </div>
@@ -44,16 +44,16 @@
             </div>
         </div>
         <div class="row" style="padding: 20px 10px;">
-            <div class="col-4">
+            <div class="col-2">
                 <asp:Button ID="btnAnterior" runat="server" Text="Anterior" CssClass="btn btn-outline-light" />
                 <asp:Button ID="btnSiguiente" runat="server" Text="Siguiente" CssClass="btn btn-outline-light" />
             </div>
-            <div class="col-4 text-center">
-                <asp:Label ID="lblPagina" runat="server" Text="Página: 1" CssClass="form-label"></asp:Label>
-                <asp:Label ID="lblTotal" runat="server" Text=" de 10" CssClass="form-label"></asp:Label>
+            <div class="col-6 align-content-center">
+                <asp:Label ID="lblPagina" runat="server" Text="Página: X" CssClass="form-label"></asp:Label>
+                <asp:Label ID="lblTotal" runat="server" Text=" de XX" CssClass="form-label"></asp:Label>
             </div>
             <div class="col-4 text-end">
-                <asp:Button ID="btnAgregar" runat="server" Text="Agregar producto" CssClass="btn btn-outline-light" />
+                <asp:Button ID="btnAgregar" runat="server" Text="Agregar producto" CssClass="btn btn-outline-light" OnClick="btnAgregar_Click" />
             </div>
         </div>
     </div>
