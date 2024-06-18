@@ -108,6 +108,7 @@
     <Content Include="RegistroUsuario.aspx" />
     <Content Include="Usuario.aspx" />
     <Content Include="VentanaCarrito.aspx" />
+    <Content Include="VentanaCompra.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +213,13 @@
     </Compile>
     <Compile Include="VentanaCarrito.aspx.designer.cs">
       <DependentUpon>VentanaCarrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VentanaCompra.aspx.cs">
+      <DependentUpon>VentanaCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VentanaCompra.aspx.designer.cs">
+      <DependentUpon>VentanaCompra.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

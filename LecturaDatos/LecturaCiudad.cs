@@ -42,6 +42,40 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+        public List<Ciudad> listar(int id)
+        {
+            List<Ciudad> lista = new List<Ciudad>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("select * from Ciudades where IDProvincia =  @id");
+                datos.SetearParametro("@id", id);
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    LecturaProvincia lecturaProvincia = new LecturaProvincia();
+                    Ciudad aux = new Ciudad();
+                    aux.id = (int)datos.Lector["ID"];
+                    aux.nombre = (string)datos.Lector["Nombre"];
+                    Provincia provincia = lecturaProvincia.listar(aux.id)[0];
+                    aux.provincia = provincia;
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
         public void agregar(Ciudad nuevo)
         {
             AccesoDatos datos = new AccesoDatos();

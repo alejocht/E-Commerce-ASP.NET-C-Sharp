@@ -60,9 +60,8 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button type="button" class="btn  w-75" data-bs-toggle="modal" data-bs-target="#btnAvisoCompra " style="background-color: black; color:white;">
-                            Comprar
-                        </button>
+                        <asp:Button  ID="btnComprar" runat="server"  text="Comprar" CssClass="btn  w-75" OnClick="btnComprar_Click" style="background-color: black; color:white;">
+                        </asp:Button>
                     </div>
                     <div class="col">
                         <asp:Button ID="btnContinuarComprando" runat="server" Text="Continuar comprando" CssClass="btn  w-75" OnClick="btnContinuarComprando_Click" style="background-color: #c02a2a ; color:white;" />
