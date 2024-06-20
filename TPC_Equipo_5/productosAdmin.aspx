@@ -2,13 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/stylePaginaWeb.css" rel="stylesheet" />
-    <script>
-        $(document).ready(function () {
-            $('#BtnDetalleProducto').click(function () {
-                $('#modalDetalleProducto').modal('show');
-            });
-        });
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white">
@@ -40,7 +33,8 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <asp:GridView ID="dgvProductos" runat="server" CssClass="table table-dark table-bordered" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvProductos" runat="server" CssClass="table table-dark table-bordered"
+                    AutoGenerateColumns="false" OnRowCommand="dgvProductos_RowCommand">
                     <Columns>
                         <asp:BoundField HeaderText="Código" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
@@ -50,7 +44,8 @@
                         <asp:TemplateField HeaderText="Detalle">
                             <ItemTemplate>
                                 <asp:Button ID="BtnDetalleProducto" runat="server" Text="Seleccionar" CssClass="btn btn-info"
-                                    data-bs-toggle="modal" data-bs-target="#modalDetalleProducto" OnClick="BtnDetalleProducto_Click"></asp:Button>
+                                    data-bs-toggle="modal" data-bs-target="#modalDetalleProducto"
+                                    CommandName="Detalle" CommandArgument='<%# Eval("id") %>'></asp:Button>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

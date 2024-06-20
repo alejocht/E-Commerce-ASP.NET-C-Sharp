@@ -21,11 +21,10 @@ namespace TPC_Equipo_5
         protected void Page_Load(object sender, EventArgs e)
         {
             try
-            {
-                cargardatos();
-
+            {      
                 if (!IsPostBack)
                 {
+                    cargardatos();
                     cargarddl();
                     dgvProductos.DataSource = listaLecturaProducto;
                     dgvProductos.DataBind();
@@ -197,33 +196,29 @@ namespace TPC_Equipo_5
                 ddlMarca.SelectedIndex = 0;
             }
         }
-        public void cargarProducto()
+
+        protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            LecturaProducto lecturaProducto = new LecturaProducto();
-            Producto detalleProducto = new Producto();
-            detalleProducto = lecturaProducto.listar(seleccionado);
-
-            txtDetalleNombre.Text = detalleProducto.nombre;
-            txtDetalleDescripcion.Text = detalleProducto.descripcion;
-            txtDetallePrecio.Text = detalleProducto.precio.ToString();
-            txtDetalleStock.Text = detalleProducto.stock.ToString();
-
-            if (detalleProducto.imagenPrincipal != "")
+            if (e.CommandName == "Detalle")
             {
-                imgDetalleProducto.ImageUrl = detalleProducto.imagenPrincipal;
-            }
-            else
-            {
-                imgDetalleProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
-            }
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = dgvProductos.Rows[index];
 
-            lblDetalleCategoria.Text = detalleProducto.categoria.nombre;
-            lblDetalleMarca.Text = detalleProducto.marca.nombre;
-        }
+                // Aquí puedes acceder a los valores de la fila seleccionada
+                string id = row.Cells[0].Text;
+                string nombre = row.Cells[1].Text;
+                string precio = row.Cells[2].Text;
+                string stock = row.Cells[3].Text;
 
-        protected void BtnDetalleProducto_Click(object sender, EventArgs e)
-        {
-            txtDetalleNombre.Text = "HOLA SEÑORA";
+                // Ahora puedes pasar estos valores a tu modal
+                txtDetalleNombre.Text = nombre;
+                txtDetallePrecio.Text = precio;
+                txtDetalleStock.Text = stock;
+                // y otros campos necesarios...
+
+                // Mostrar el modal (si es necesario, puede hacerlo en el frontend con JavaScript)
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showModalScript", "$('#modalDetalleProducto').modal('show');", true);
+            }
         }
     }
 }
