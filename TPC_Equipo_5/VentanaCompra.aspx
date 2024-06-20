@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="dropdown mt-2">
-                                            <asp:DropDownList ID="DdlLocalidad" runat="server" 
+                                            <asp:DropDownList ID="DdlLocalidad" runat="server"
                                                 aria-label="Default select example" CssClass="btn btn-secondary dropdown-toggle" Style="background-color: #c32a2a; color: whitesmoke;">
                                                 <asp:ListItem Value="Localidad"> Localidad </asp:ListItem>
                                             </asp:DropDownList>
@@ -115,36 +115,44 @@
                                 {  %>
                             <div class="text-center fs-1 fw-bold">
                                 <img style="height: 3rem; width: 3rem;" src="/assets/cash-coin.svg" />
-                                Metodo de pago
+                                Resumen
                             </div>
 
-                            <div class="container">
-                                <div class=" mt-1 input-group">
-                                    <div class="d-flex align-items-center gap-4 ms-2 ">
+                            <div class="container mt-3">
+                                <div>
+                                    <div class="container border border-danger" style="background-color: whitesmoke; height: 125px; width: 1000px;">
+                                        <div class="row ">
+                                            <div class="col-4">
+                                                <img src="https://innovatech.ar/wp-content/uploads/2021/08/11-2.jpg" style="width: 100px; height: 100px" class="card-img-top" alt="Image description" onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'">
+                                            </div>
+                                            <div class="col text-start p-md-5">
 
-                                        <div class="pt-1" style="font-size: 0.9rem">
-                                            
-                                            <asp:Button ID="btnTrasferencia" runat="server" Text="Transferencia bancaria 💵" CssClass="btn btn-primary" style="background-color: #c32a2a; color: whitesmoke;" OnClick="btnTrasferencia_Click" />
-                                       
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div>
+                                                            <label style="">Nombre del producto  </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
 
-                                        </div>
+                                                        <label>Precio: $100000 </label>
+                                                    </div>
+                                                </div>
 
-                                        <div class="pt-1" style="font-size: 0.9rem">
-                                            <asp:Button ID="Button1" runat="server" Text="Mercado Pago" CssClass="btn btn-primary" style="background-color: #c32a2a; color: whitesmoke;" />                                                                              
+
+                                                <div class="row">
+                                                    <div class="text-end">
+                                                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" CommandArgument="" CommandName="IdArticulo" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
-                            <%} %>
-                            <%if (cambiopag == 3)
-                                {  %>
-                            <div class="text-center fs-1 fw-bold">
-                                <img style="height: 3rem; width: 3rem;" src="/assets/cash-coin.svg" />
-                                Datos de pago
-                            </div>
 
-                            <div class="container">
-                                <div class=" mt-1 input-group">
+
+                                <div class=" mt-1 input-group mt-3">
 
                                     <div class="input-group-text" style="background-color: #c32a2a; width: auto; color: white">
                                         <label>Metodo de pago</label>
@@ -153,7 +161,7 @@
 
                                         <div class="pt-1" style="font-size: 0.9rem">
                                             <label>Transferencia bancaria 💵</label>
-                                            <asp:RadioButton ID="RadioButton1" runat="server" CssClass="form-check-input" Style="background-color: whitesmoke;" />
+                                            <asp:RadioButton ID="Tansf" runat="server" CssClass="form-check-input" OnCheckedChanged="Tansf_CheckedChanged" GroupName="Metodo_de_pago" />
 
                                         </div>
 
@@ -161,7 +169,7 @@
                                             <label>Mercado Pago </label>
                                             <asp:Image ImageUrl="https://cdn.icon-icons.com/icons2/3913/PNG/512/mercadopago_logo_icon_248494.png" runat="server" Style="width: 2rem; height: 2rem;" />
 
-                                            <asp:RadioButton ID="RadioButton2" runat="server" CssClass="form-check-input mb-auto" Style="background-color: whitesmoke;" />
+                                            <asp:RadioButton ID="Mp" runat="server" CssClass="form-check-input mb-auto" OnCheckedChanged="Mp_CheckedChanged" GroupName="Metodo_de_pago" />
                                         </div>
                                     </div>
 
@@ -173,15 +181,147 @@
                                     </div>
                                     <input class="form-control " type="text" placeholder="Example@gmail.com" />
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="input-group mt-1">
+                                            <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
+                                                <label>Provincia</label>
+                                            </div>
+                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="input-group mt-1">
+                                            <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
+                                                <label>Localidad</label>
+                                            </div>
+                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+
+                                        <div class="input-group mt-1">
+                                            <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
+                                                <label>CP</label>
+                                            </div>
+                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-4">
+
+                                        <div class="input-group mt-1">
+                                            <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
+                                                <label>Calle</label>
+                                            </div>
+                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+
+                                        <div class="input-group mt-1">
+                                            <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
+                                                <label>Numero</label>
+                                            </div>
+                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+
+                                        <div class="input-group mt-1">
+                                            <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
+                                                <label>Piso</label>
+                                            </div>
+                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        
+                                        <div class="input-group mt-1">
+                                            <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
+                                                <label>Comentario:</label>
+                                            </div>
+                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
                             </div>
+
+                            <%} %>
+                            <%if (cambiopag == 3)
+                                {  %>
+
+                            <%if (Trasferencia == true)
+                                {%>
+
+                            <div class="text-center fs-1 fw-bold">
+                                💵Trasferencia Bancaria💵
+                            </div>
+                            <div class="row align-content-center">
+                                <div>
+                                    Nombre: Ovcloaked SA
+                                </div>
+                                <div>
+                                    Alias: Ovcloaked.compra.pago
+                                </div>
+                                <div>
+                                    Cbu:3226545311100003697079
+                                </div>
+                                <div>
+                                    <div>
+                                        Carga aqui tu comprobante de pago
+
+                                    </div>
+                                    <div>
+                                        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="btn btn-primary" Style="background-color: #c32a2a color()" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <%}
+                                else if (Mercadopago == true)
+                                {
+                            %>
+                            <div class="text-center fs-1 fw-bold">
+                                <asp:Image ImageUrl="https://cdn.icon-icons.com/icons2/3913/PNG/512/mercadopago_logo_icon_248494.png" runat="server" Style="width: 2rem; height: 2rem;" />
+                                Mercado Pago 
+                                 <asp:Image ImageUrl="https://cdn.icon-icons.com/icons2/3913/PNG/512/mercadopago_logo_icon_248494.png" runat="server" Style="width: 2rem; height: 2rem;" />
+                                <div class="row">
+                                    <div>
+                                        EN BREVES SERAS REDIRECCIONADO A MERCADO PAGO PARA REALIZAR EL PAGO!
+                                    </div>
+                                </div>
+                            </div>
+                            <%}
+                                else
+                                {
+                                    ;%>
+                            <div class="text-center fs-1 fw-bold">
+                                Seleccione un metodo de pagos antes de continuar
+                            </div>
+                            <%} %>
+
                             <%} %>
                             <div class="row mt-5">
                                 <div class=" col-6 align-items-start">
                                     <asp:Button ID="btnAtras" runat="server" Text="Atras" CssClass="btn btn-secondary dropdown-toggle" OnClick="btnAtras_Click" Style="background-color: black; color: whitesmoke;" />
                                 </div>
-                                <div class="col-6 align-content-end">
-                                    <asp:Button ID="btnSiguiente" runat="server" Text="Siguiente" CssClass="btn btn-secondary dropdown-toggle" OnClick="btnSiguiente_Click" Style="background-color: black; color: whitesmoke;" />
+                                <%if (cambiopag < 3 || Trasferencia == true || Mercadopago == true)
+                                    { %>
+                                <div class="col-6 ">
+                                    <div class=" ">
+                                        <asp:Button ID="btnSiguiente" runat="server" Text="Siguiente" CssClass="btn btn-secondary dropdown-toggle" OnClick="btnSiguiente_Click" Style="background-color: black; color: whitesmoke;" />
+
+                                    </div>
                                 </div>
+
+                                <%} %>
                             </div>
                         </div>
                     </div>

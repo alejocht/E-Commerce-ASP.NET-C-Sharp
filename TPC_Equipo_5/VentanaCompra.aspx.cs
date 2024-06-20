@@ -18,12 +18,15 @@ namespace TPC_Equipo_5
         List<Provincia> ListaProvincias;
         LecturaProvincia lecturaProvincias;
         public bool Trasferencia = false;
+        public bool Mercadopago=false;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 if(!IsPostBack)
                 {
+                    
+                    
                     lecturaProvincias = new LecturaProvincia();
                     List<Provincia> listaprovincia = lecturaProvincias.listar();
                     LecturaCiudad lecturaciudad = new LecturaCiudad();
@@ -40,16 +43,14 @@ namespace TPC_Equipo_5
                     DdlLocalidad.DataBind();
 
                 }
+
                 if (Session["Trasferencia"] != null)
                 {
                     Trasferencia = (bool)Session["Trasferencia"];
                 }else { Session["Trasferencia"]= Trasferencia; }
                 
                 
-                    if (Session["Cambiopag"] == null)
-                    {
-                        Session.Add("Cambiopag", cambiopag);
-                    }else { cambiopag = (int)Session["Cambiopag"]; }
+                    
             }
             catch (Exception ex)
             {
@@ -97,6 +98,30 @@ namespace TPC_Equipo_5
             }else Trasferencia=false;
             Session.Add("Trasferencia", Trasferencia);
             
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }     
+        protected void Mp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Mercadopago == false)
+            {
+                Mercadopago = true;
+                Trasferencia = false;
+            }
+            else { Mercadopago = false; }
+        }
+
+        protected void Tansf_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Trasferencia == false)
+            {
+                Trasferencia = true;
+                Mercadopago =false;
+            }
+            else { Trasferencia = false; }
         }
     }
 }
