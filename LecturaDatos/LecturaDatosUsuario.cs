@@ -53,13 +53,14 @@ namespace LecturaDatos
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 { 
+                    LecturaCiudad lecturaCiudad = new LecturaCiudad();
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["Nombres"];
                     aux.apellido = (string)datos.Lector["Apellidos"];
                     aux.email = (string)datos.Lector["Email"];
                     aux.telefono = (int)datos.Lector["Telefono"];
                     aux.direccion = (string)datos.Lector["Direccion"];
-                    aux.ciudad.id = (int)(datos.Lector["IDCiudad"]);
+                    aux.ciudad = lecturaCiudad.listar((int)datos.Lector["IDCiudad"]);
                 }
 
                 return aux;

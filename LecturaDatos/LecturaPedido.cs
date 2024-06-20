@@ -1,4 +1,5 @@
 ﻿using Dominio.Pedidos;
+using Dominio.Productos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace LecturaDatos
 {
     public class LecturaPedido
     {
+        //falta desarrollar la lista de items en el pedido
+        //falta calcular el importe de la lista de items
         public List<Pedido> listar()
         {
             List<Pedido> lista = new List<Pedido>();
@@ -23,6 +26,8 @@ namespace LecturaDatos
                     LecturaMetodoPago lecturaMetodoPago = new LecturaMetodoPago();
                     LecturaEstadoPedido lecturaEstadoPedido = new LecturaEstadoPedido();
                     LecturaUsuario lecturaUsuario = new LecturaUsuario();
+                    List<Producto> productos = new List<Producto>();
+                    
                     aux.id = (int)datos.Lector["ID"];
                     aux.metodoPago = lecturaMetodoPago.listar((int)datos.Lector["ID_MetodoDePago"]);
                     aux.estado = lecturaEstadoPedido.listar((int)datos.Lector["ID_EstadosPedido"]);

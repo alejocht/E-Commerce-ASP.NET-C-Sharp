@@ -42,7 +42,37 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
-        public List<Ciudad> listar(int id)
+        public Ciudad listar(int id)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("select * from Ciudades where ID = @id");
+                datos.SetearParametro("@id", id);
+                datos.EjecutarLectura();
+                Ciudad aux = new Ciudad();
+                while (datos.Lector.Read())
+                {
+                    LecturaProvincia lecturaProvincia = new LecturaProvincia();
+                    aux.id = (int)datos.Lector["ID"];
+                    aux.nombre = (string)datos.Lector["Nombre"];
+                    Provincia provincia = lecturaProvincia.listar((int)datos.Lector["IDProvincia"]);
+                    aux.provincia = provincia;
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public List<Ciudad> listarPorProvincia(int idprovincia)
         {
             List<Ciudad> lista = new List<Ciudad>();
             AccesoDatos datos = new AccesoDatos();
@@ -50,7 +80,7 @@ namespace LecturaDatos
             try
             {
                 datos.SetearConsulta("select * from Ciudades where IDProvincia =  @id");
-                datos.SetearParametro("@id", id);
+                datos.SetearParametro("@id", idprovincia);
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -58,7 +88,7 @@ namespace LecturaDatos
                     Ciudad aux = new Ciudad();
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["Nombre"];
-                    Provincia provincia = lecturaProvincia.listar(aux.id)[0];
+                    Provincia provincia = lecturaProvincia.listar((int)datos.Lector["IDProvincia"]);
                     aux.provincia = provincia;
 
                     lista.Add(aux);
@@ -66,10 +96,10 @@ namespace LecturaDatos
 
                 return lista;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally
             {
