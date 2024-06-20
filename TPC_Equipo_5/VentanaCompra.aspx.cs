@@ -50,7 +50,10 @@ namespace TPC_Equipo_5
                 }else { Session["Trasferencia"]= Trasferencia; }
                 
                 
-                    
+                    if (Session["Cambiopag"] == null)
+                    {
+                        Session.Add("Cambiopag", cambiopag);
+                    }else { cambiopag = (int)Session["Cambiopag"]; }
             }
             catch (Exception ex)
             {
@@ -65,7 +68,7 @@ namespace TPC_Equipo_5
             LecturaCiudad lecturaciudad = new LecturaCiudad();
             List<Ciudad> listaciudad = new List<Ciudad>();
             int id = int.Parse(DdlProvincias.SelectedItem.Value);
-            listaciudad=lecturaciudad.listar(id);
+            listaciudad=lecturaciudad.listarPorProvincia(id);
             DdlLocalidad.DataSource = listaciudad;
             DdlLocalidad.DataTextField = "Nombre";
             DdlLocalidad.DataBind();

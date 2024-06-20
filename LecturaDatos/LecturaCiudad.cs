@@ -24,7 +24,7 @@ namespace LecturaDatos
                     Ciudad aux = new Ciudad();
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["Nombre"];
-                    Provincia provincia = lecturaProvincia.listar(aux.id)[0];
+                    Provincia provincia = lecturaProvincia.listar(aux.id);
                     aux.provincia = provincia;
                     
                     lista.Add(aux);
