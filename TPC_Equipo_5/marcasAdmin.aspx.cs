@@ -66,14 +66,16 @@ namespace TPC_Equipo_5
 
         protected void dgvMarcas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var id = dgvMarcas.SelectedDataKey.Value.ToString();
+            string id = dgvMarcas.SelectedDataKey.Value.ToString();
+            Response.Redirect("ModificarMarca.aspx?id="+id, false);
+
 
             //Nueva ventana o usar javascript para abrir un modal
         }
 
         protected void btnAgregarMarca_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("AgregarMarca.aspx", false);
         }
         public void cargardatos()
         {
