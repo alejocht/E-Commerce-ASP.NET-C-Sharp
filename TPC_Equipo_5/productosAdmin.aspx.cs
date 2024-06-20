@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,16 +16,26 @@ namespace TPC_Equipo_5
         public List<Producto> listaLecturaProducto;
         string busqueda;
         public bool listaMostrable;
+        int seleccionado;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargardatos();
-
-            if (!IsPostBack)
+            try
             {
-                cargarddl();
-                dgvProductos.DataSource = listaLecturaProducto;
-                dgvProductos.DataBind();
+                cargardatos();
+
+                if (!IsPostBack)
+                {
+                    cargarddl();
+                    dgvProductos.DataSource = listaLecturaProducto;
+                    dgvProductos.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+                //Puede redireccionar a una pagina de error
             }
         }
 
@@ -65,7 +76,7 @@ namespace TPC_Equipo_5
             {
                 listaFiltrada = listaLecturaProducto.OrderBy(x => x.stock).ToList();
             }
-            else 
+            else
             {
                 listaFiltrada = listaLecturaProducto.OrderBy(x => x.id).ToList();
             }
@@ -74,17 +85,40 @@ namespace TPC_Equipo_5
             dgvProductos.DataBind();
         }
 
-        protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
+        protected void txtImagenUrl_TextChanged(object sender, EventArgs e)
         {
-            var id = dgvProductos.SelectedDataKey.Value.ToString();
-
-            //Nueva ventana o usar javascript para abrir un modal
-            //Response.Redirect("detalleAdmin.aspx?id=" + id);
+            if (txtImagenUrl.Text == "")
+            {
+                imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+            }
+            else
+            {
+                imgProducto.ImageUrl = txtImagenUrl.Text;
+            }
+        }
+        protected void btnCerrarProducto_Click(object sender, EventArgs e)
+        {
+            limpiarCampos();
         }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
+        protected void btnCancelarProducto_Click(object sender, EventArgs e)
         {
+            limpiarCampos();
+        }
 
+        protected void btnAgregarProducto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                limpiarCampos();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+                //Puede redireccionar a una pagina de error
+            }
         }
 
         public void cargardatos()
@@ -97,15 +131,14 @@ namespace TPC_Equipo_5
         protected bool ValidarTextBox(string busqueda)
         {
             if (string.IsNullOrEmpty(busqueda))
-            { 
-                return false; 
+            {
+                return false;
             }
-            else 
-            { 
-                return true; 
+            else
+            {
+                return true;
             }
         }
-
         public void validarListaMostrable()
         {
             int cantidadRegistros = listaLecturaProducto.Count();
@@ -130,6 +163,67 @@ namespace TPC_Equipo_5
             ddlOrdenar.Items.Add("Precio Menor");
             ddlOrdenar.Items.Add("Stock Mayor");
             ddlOrdenar.Items.Add("Stock Menor");
+
+            LecturaCategoria lecturaCategoria = new LecturaCategoria();
+            List<Categoria> listaCategoria = new List<Categoria>();
+            listaCategoria = lecturaCategoria.listar();
+
+            ddlCategoria.DataSource = listaCategoria;
+            ddlCategoria.DataTextField = "nombre";
+            ddlCategoria.DataBind();
+            ddlCategoria.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
+
+            LecturaMarca lecturaMarca = new LecturaMarca();
+            List<Marca> listaMarca = new List<Marca>();
+            listaMarca = lecturaMarca.listar();
+
+            ddlMarca.DataSource = listaMarca;
+            ddlMarca.DataTextField = "nombre";
+            ddlMarca.DataBind();
+            ddlMarca.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
+        }
+
+        public void limpiarCampos()
+        {
+            if (txtNombre.Text != "" || txtDescripcion.Text != "" || txtPrecio.Text != "" || txtStock.Text != "" || txtImagenUrl.Text != "" || ddlCategoria.SelectedIndex != 0 || ddlMarca.SelectedIndex != 0)
+            {
+                txtNombre.Text = "";
+                txtDescripcion.Text = "";
+                txtPrecio.Text = "";
+                txtStock.Text = "";
+                txtImagenUrl.Text = "";
+                imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+                ddlCategoria.SelectedIndex = 0;
+                ddlMarca.SelectedIndex = 0;
+            }
+        }
+        public void cargarProducto()
+        {
+            LecturaProducto lecturaProducto = new LecturaProducto();
+            Producto detalleProducto = new Producto();
+            detalleProducto = lecturaProducto.listar(seleccionado);
+
+            txtDetalleNombre.Text = detalleProducto.nombre;
+            txtDetalleDescripcion.Text = detalleProducto.descripcion;
+            txtDetallePrecio.Text = detalleProducto.precio.ToString();
+            txtDetalleStock.Text = detalleProducto.stock.ToString();
+
+            if (detalleProducto.imagenPrincipal != "")
+            {
+                imgDetalleProducto.ImageUrl = detalleProducto.imagenPrincipal;
+            }
+            else
+            {
+                imgDetalleProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+            }
+
+            lblDetalleCategoria.Text = detalleProducto.categoria.nombre;
+            lblDetalleMarca.Text = detalleProducto.marca.nombre;
+        }
+
+        protected void BtnDetalleProducto_Click(object sender, EventArgs e)
+        {
+            txtDetalleNombre.Text = "HOLA SEÑORA";
         }
     }
 }

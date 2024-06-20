@@ -12,9 +12,9 @@ namespace Dominio.Productos
         public Producto()
         {
             id = -1;
-            nombre = "NULL";
-            codigo = "NULL";
-            descripcion = "NULL";
+            nombre = "";
+            codigo = "";
+            descripcion = "";
             stock = -1;
             precio = -1;
             categoria = new Categoria();
