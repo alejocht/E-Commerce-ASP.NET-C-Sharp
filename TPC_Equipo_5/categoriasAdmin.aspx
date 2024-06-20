@@ -32,7 +32,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <asp:GridView ID="dgvCategorias" runat="server" DataKeyNames="id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvCategorias_SelectedIndexChanged">
+                <asp:GridView ID="dgvCategorias" runat="server" DataKeyNames="ID" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvCategorias_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
@@ -43,7 +43,7 @@
         </div>
         <div class="row" style="padding: 20px 10px;">
             <div class="col text-end">
-                <asp:Button ID="btnAgregarCategoría" runat="server" Text="Agregar Categoría" CssClass="btn btn-outline-light" />
+                <asp:Button ID="btnAgregarCategoría" runat="server" Text="Agregar Categoría" CssClass="btn btn-outline-light" OnClick="btnAgregarCategoría_Click" />
             </div>
         </div>
     </div>

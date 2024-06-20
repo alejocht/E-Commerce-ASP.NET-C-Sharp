@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AgregarCategoria.aspx" />
+    <Content Include="AgregarMarca.aspx" />
     <Content Include="categoriasAdmin.aspx" />
     <Content Include="css\bootstrap-grid.css" />
     <Content Include="css\bootstrap-grid.min.css" />
@@ -101,6 +103,8 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="marcasAdmin.aspx" />
+    <Content Include="ModificarCategoria.aspx" />
+    <Content Include="ModificarMarca.aspx" />
     <Content Include="pedidosAdmin.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="productosAdmin.aspx" />
@@ -112,6 +116,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarCategoria.aspx.cs">
+      <DependentUpon>AgregarCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarCategoria.aspx.designer.cs">
+      <DependentUpon>AgregarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarMarca.aspx.cs">
+      <DependentUpon>AgregarMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarMarca.aspx.designer.cs">
+      <DependentUpon>AgregarMarca.aspx</DependentUpon>
+    </Compile>
     <Compile Include="categoriasAdmin.aspx.cs">
       <DependentUpon>categoriasAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -149,6 +167,20 @@
     </Compile>
     <Compile Include="marcasAdmin.aspx.designer.cs">
       <DependentUpon>marcasAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarCategoria.aspx.cs">
+      <DependentUpon>ModificarCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarCategoria.aspx.designer.cs">
+      <DependentUpon>ModificarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarMarca.aspx.cs">
+      <DependentUpon>ModificarMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarMarca.aspx.designer.cs">
+      <DependentUpon>ModificarMarca.aspx</DependentUpon>
     </Compile>
     <Compile Include="pedidosAdmin.aspx.cs">
       <DependentUpon>pedidosAdmin.aspx</DependentUpon>

@@ -67,13 +67,14 @@ namespace TPC_Equipo_5
 
         protected void dgvCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string id = dgvCategorias.SelectedDataKey.Value.ToString();
+            Response.Redirect("ModificarCategoria.aspx?id="+id,false);
         }
 
         protected void btnAgregarCategoría_Click(object sender, EventArgs e)
         {
-            var id = dgvCategorias.SelectedDataKey.Value.ToString();
-
+            //var id = dgvCategorias.SelectedDataKey.Value.ToString();
+            Response.Redirect("AgregarCategoria.aspx",false);
             //Nueva ventana o usar javascript para abrir un modal
         }
 
