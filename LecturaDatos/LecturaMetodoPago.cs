@@ -40,9 +40,8 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
-        public List<MetodoPago> listar(int id)
+        public MetodoPago listar(int id)
         {
-            List<MetodoPago> lista = new List<MetodoPago>();
             AccesoDatos datos = new AccesoDatos();
 
             try
@@ -50,16 +49,14 @@ namespace LecturaDatos
                 datos.SetearConsulta("select * from Metodos_de_pago where ID = "+ id.ToString());
                 datos.EjecutarLectura();
 
+                MetodoPago aux = new MetodoPago();
                 while (datos.Lector.Read())
                 {
-                    MetodoPago aux = new MetodoPago();
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["Metodo_de_pago"];
-
-                    lista.Add(aux);
                 }
+                return aux;
 
-                return lista;
             }
             catch (Exception ex)
             {

@@ -40,6 +40,31 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+        public EstadoPedido listar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("select * from Estados_Pedido");
+                datos.EjecutarLectura();
+                EstadoPedido aux = new EstadoPedido();
+                while(datos.Lector.Read())
+                {
+                    aux.id = (int)datos.Lector["ID"];
+                    aux.nombre = (string)datos.Lector["Descripcion"];
+                        
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
         public void agregar(EstadoPedido nuevo) 
         {
             AccesoDatos datos = new AccesoDatos();
