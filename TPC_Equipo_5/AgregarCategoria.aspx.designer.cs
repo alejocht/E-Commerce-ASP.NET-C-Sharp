@@ -11,52 +11,34 @@ namespace TPC_Equipo_5
 {
 
 
-    public partial class marcasAdmin
+    public partial class AgregarCategoria
     {
 
         /// <summary>
-        /// Control txtBuscarMarca.
+        /// Control txtCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscarMarca;
+        protected global::System.Web.UI.WebControls.TextBox txtCategoria;
 
         /// <summary>
-        /// Control btnBusquedaMarca.
+        /// Control btnCancelarProducto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBusquedaMarca;
+        protected global::System.Web.UI.WebControls.Button btnCancelarProducto;
 
         /// <summary>
-        /// Control ddlOrdenarMarca.
+        /// Control btnAgregarProducto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlOrdenarMarca;
-
-        /// <summary>
-        /// Control dgvMarcas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvMarcas;
-
-        /// <summary>
-        /// Control btnAgregarMarca.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarMarca;
+        protected global::System.Web.UI.WebControls.Button btnAgregarProducto;
     }
 }

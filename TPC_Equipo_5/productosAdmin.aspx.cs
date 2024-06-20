@@ -57,6 +57,7 @@ namespace TPC_Equipo_5
 
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cargardatos();
             List<Producto> listaFiltrada;
 
             if (ddlOrdenar.SelectedValue == "Precio Mayor")
@@ -150,6 +151,7 @@ namespace TPC_Equipo_5
 
         private void filtrarProducto(string filtro)
         {
+            cargardatos();
             List<Producto> listaFiltrada;
             listaFiltrada = listaLecturaProducto.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
             listaLecturaProducto = listaFiltrada;

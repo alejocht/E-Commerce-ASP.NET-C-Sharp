@@ -113,7 +113,7 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
-        public void eliminarFisica(Marca nuevo)
+        public void eliminarFisica(Categoria nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 
