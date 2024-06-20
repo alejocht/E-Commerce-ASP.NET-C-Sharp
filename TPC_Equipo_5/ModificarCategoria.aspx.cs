@@ -14,13 +14,10 @@ namespace TPC_Equipo_5
         Categoria seleccionada = new Categoria();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            {
                 LecturaCategoria lecturaCategoria = new LecturaCategoria();
                 int id = int.Parse(Request.QueryString["id"].ToString());
                 seleccionada = lecturaCategoria.listar(id);
                 txtCategoria.Text = seleccionada.nombre;
-            }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

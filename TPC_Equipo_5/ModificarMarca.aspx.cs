@@ -14,13 +14,10 @@ namespace TPC_Equipo_5
         Marca seleccionada = new Marca();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            {
                 LecturaMarca lecturaMarca = new LecturaMarca();
                 int id = int.Parse(Request.QueryString["id"].ToString());
                 seleccionada = lecturaMarca.listar(id);
                 txtNombre.Text = seleccionada.nombre;
-            }
         }
 
         protected void btnCancelarProducto_Click(object sender, EventArgs e)
