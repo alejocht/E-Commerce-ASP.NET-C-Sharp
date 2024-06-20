@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio.Productos;
+using Dominio.Usuarios;
 
 namespace Dominio.Pedidos
 {
@@ -12,7 +13,7 @@ namespace Dominio.Pedidos
         public Pedido() 
         {
             id = -1;
-            nombreUsuario = "";
+            usuario = new Usuario();
             fecha = new DateTime();
             productos = new List<Producto>();
             importe = -1;
@@ -20,7 +21,7 @@ namespace Dominio.Pedidos
             metodoPago = new MetodoPago();
         }
         public int id { get; set; }
-        public string nombreUsuario { get; set; }
+        public Usuario usuario { get; set; }
         public DateTime fecha { get; set; }
         public List<Producto> productos { get; set; }
         public decimal importe { get; set; }

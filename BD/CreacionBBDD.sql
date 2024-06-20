@@ -69,3 +69,14 @@ CREATE TABLE Pedidos(
 	ID_EstadosPedido  INT not null FOREIGN KEY REFERENCES Estados_Pedido(ID)
 )
 
+alter table Pedidos
+add ID_Usuario int not null,
+Fecha date not null
+
+create table Productos_x_pedido(
+	ID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	ID_Pedido int not null foreign key references Pedidos(ID),
+	ID_Producto int not null foreign key references Productos(ID),
+	Cantidad int not null
+)
+

@@ -22,11 +22,12 @@ namespace LecturaDatos
                 while(datos.Lector.Read())
                 {
                     Usuario aux = new Usuario();
+                    LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();
                     aux.id = (int)datos.Lector["ID"];
                     aux.usuario = (string)datos.Lector["Usuario"];
                     aux.password = (string)datos.Lector["Clave"];
                     aux.admin = (bool)datos.Lector["Administrar"];
-                    aux.dato.id = (int)datos.Lector["IDDatos_Personales"];
+                    aux.dato = lecturaDatosUsuario.listar(aux.id);
                 }
 
                 return lista;
@@ -34,6 +35,37 @@ namespace LecturaDatos
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public Usuario listar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("select * from Usuarios where ID = @id");
+                datos.SetearParametro("@id", id);
+                datos.EjecutarLectura();
+                Usuario aux = new Usuario();
+                while (datos.Lector.Read())
+                {
+                    LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();
+                    aux.id = (int)datos.Lector["ID"];
+                    aux.usuario = (string)datos.Lector["Usuario"];
+                    aux.password = (string)(datos.Lector["Password"]);
+                    aux.admin = (bool)(datos.Lector["Administrar"]);
+                    aux.dato.id = (int)datos.Lector["IDDatos_Personales"];
+                    aux.dato = lecturaDatosUsuario.listar(aux.id);
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
             finally
             {
