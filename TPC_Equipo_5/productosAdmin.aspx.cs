@@ -169,7 +169,7 @@ namespace TPC_Equipo_5
             listaCategoria = lecturaCategoria.listar();
 
             ddlCategoria.DataSource = listaCategoria;
-            ddlCategoria.DataTextField = "nombre";
+            ddlCategoria.DataTextField = "Nombre";
             ddlCategoria.DataBind();
             ddlCategoria.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
 
@@ -178,7 +178,7 @@ namespace TPC_Equipo_5
             listaMarca = lecturaMarca.listar();
 
             ddlMarca.DataSource = listaMarca;
-            ddlMarca.DataTextField = "nombre";
+            ddlMarca.DataTextField = "Nombre";
             ddlMarca.DataBind();
             ddlMarca.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
         }

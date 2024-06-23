@@ -14,31 +14,65 @@ namespace TPC_Equipo_5
         Categoria seleccionada = new Categoria();
         protected void Page_Load(object sender, EventArgs e)
         {
+            try 
+            {
                 LecturaCategoria lecturaCategoria = new LecturaCategoria();
                 int id = int.Parse(Request.QueryString["id"].ToString());
                 seleccionada = lecturaCategoria.listar(id);
-                txtCategoria.Text = seleccionada.nombre;
+                if (!IsPostBack)
+                {
+                    txtCategoria.Text = seleccionada.nombre;
+                }
+            } 
+            catch (Exception ex) 
+            {
+                throw ex;
+            }    
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("categoriasAdmin.aspx",false);
+            try
+            {
+                Response.Redirect("categoriasAdmin.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }  
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            if (txtCategoria.Text == "") return;
-            LecturaCategoria lecturaCategoria = new LecturaCategoria();
-            seleccionada.nombre = txtCategoria.Text;
-            lecturaCategoria.modificar(seleccionada);
-            Response.Redirect("categoriasAdmin.aspx", false);
+            try
+            {
+                if (txtCategoria.Text == "")
+                {
+                    return;
+                }
+                LecturaCategoria lecturaCategoria = new LecturaCategoria();
+                seleccionada.nombre = txtCategoria.Text;
+                lecturaCategoria.modificar(seleccionada);
+                Response.Redirect("categoriasAdmin.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }   
         }
 
         protected void BtnEliminar_Click(object sender, EventArgs e)
         {
-            LecturaCategoria lecturaCategoria = new LecturaCategoria();
-            lecturaCategoria.eliminarFisica(seleccionada);
-            Response.Redirect("categoriasAdmin.aspx", false);
+            try
+            {
+                LecturaCategoria lecturaCategoria = new LecturaCategoria();
+                lecturaCategoria.eliminarFisica(seleccionada);
+                Response.Redirect("categoriasAdmin.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

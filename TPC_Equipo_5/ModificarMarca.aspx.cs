@@ -14,31 +14,63 @@ namespace TPC_Equipo_5
         Marca seleccionada = new Marca();
         protected void Page_Load(object sender, EventArgs e)
         {
+            try 
+            {
                 LecturaMarca lecturaMarca = new LecturaMarca();
                 int id = int.Parse(Request.QueryString["id"].ToString());
                 seleccionada = lecturaMarca.listar(id);
-                txtNombre.Text = seleccionada.nombre;
+                if (!IsPostBack)
+                {
+                    txtNombre.Text = seleccionada.nombre;
+                }
+            } 
+            catch (Exception ex) 
+            {
+                throw ex;
+            }
+            
         }
 
-        protected void btnCancelarProducto_Click(object sender, EventArgs e)
+        protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("marcasAdmin.aspx", false);
+            try
+            {
+                Response.Redirect("marcasAdmin.aspx", false);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
-        protected void btnAgregarProducto_Click(object sender, EventArgs e)
+        protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            LecturaMarca lecturaMarca = new LecturaMarca();
-            seleccionada.nombre = txtNombre.Text;
-            lecturaMarca.modificar(seleccionada);
-            Response.Redirect("marcasAdmin.aspx", false);
-
+            try
+            {
+                LecturaMarca lecturaMarca = new LecturaMarca();
+                seleccionada.nombre = txtNombre.Text;
+                lecturaMarca.modificar(seleccionada);
+                Response.Redirect("marcasAdmin.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }     
         }
 
         protected void BtnEliminar_Click(object sender, EventArgs e)
         {
-            LecturaMarca lecturaMarca = new LecturaMarca();
-            lecturaMarca.eliminarFisica(seleccionada);
-            Response.Redirect("marcasAdmin.aspx", false);
+            try
+            {
+                LecturaMarca lecturaMarca = new LecturaMarca();
+                lecturaMarca.eliminarFisica(seleccionada);
+                Response.Redirect("marcasAdmin.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }        
         }
     }
 }

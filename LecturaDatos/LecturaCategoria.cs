@@ -97,7 +97,7 @@ namespace LecturaDatos
 
             try
             {
-                datos.SetearConsulta("update Categorias set nombre = @nombre where ID = @id");
+                datos.SetearConsulta("update Categorias set Nombre = @nombre where ID = @id");
                 datos.SetearParametro("@nombre", nuevo.nombre);
                 datos.SetearParametro("@id", nuevo.id);
                 datos.ejecutarAccion();
