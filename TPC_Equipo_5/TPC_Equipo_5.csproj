@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="AgregarCategoria.aspx" />
     <Content Include="AgregarMarca.aspx" />
+    <Content Include="AgregarProducto.aspx" />
     <Content Include="categoriasAdmin.aspx" />
     <Content Include="css\bootstrap-grid.css" />
     <Content Include="css\bootstrap-grid.min.css" />
@@ -129,6 +130,13 @@
     </Compile>
     <Compile Include="AgregarMarca.aspx.designer.cs">
       <DependentUpon>AgregarMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarProducto.aspx.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarProducto.aspx.designer.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="categoriasAdmin.aspx.cs">
       <DependentUpon>categoriasAdmin.aspx</DependentUpon>
