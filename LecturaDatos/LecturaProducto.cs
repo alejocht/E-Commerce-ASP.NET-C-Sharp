@@ -132,6 +132,20 @@ namespace LecturaDatos
                 datos.SetearParametro("@Precio", nuevo.precio);
                 datos.SetearParametro("@Stock", nuevo.stock);
                 datos.ejecutarAccion();
+                //Para encontrar el ID del producto que recien creamos
+                List<Producto> lista = new List<Producto>();
+                LecturaProducto lecturaProducto = new LecturaProducto();
+                Producto aux = new Producto();
+                lista = lecturaProducto.listar();
+                aux = lista.Last();
+                //Para darle el IDProducto a las imagenes que contenga la lista
+                foreach (Imagen img in nuevo.imagenes) 
+                {
+                    img.idProducto = aux.id;
+                }
+                //Cargar las imagenes
+                LecturaImagen lecturaImagen = new LecturaImagen();
+                lecturaImagen.agregarLista(nuevo.imagenes);
 
             }
             catch (Exception ex)

@@ -2,13 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/stylePaginaWeb.css" rel="stylesheet" />
-    <script>
+    <%--<script>
         $(document).ready(function () {
             $('#BtnDetalleProducto').click(function () {
                 $('#modalDetalleProducto').modal('show');
             });
         });
-    </script>
+    </script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white">
@@ -46,13 +46,14 @@
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
                         <asp:BoundField HeaderText="Precio" DataField="precio" />
                         <asp:BoundField HeaderText="Stock" DataField="stock" />
-
+                        <%--
                         <asp:TemplateField HeaderText="Detalle">
                             <ItemTemplate>
                                 <asp:Button ID="BtnDetalleProducto" runat="server" Text="Seleccionar" CssClass="btn btn-info"
                                     data-bs-toggle="modal" data-bs-target="#modalDetalleProducto" OnClick="BtnDetalleProducto_Click"></asp:Button>
                             </ItemTemplate>
                         </asp:TemplateField>
+                            --%>
                     </Columns>
                 </asp:GridView>
             </div>
@@ -66,10 +67,13 @@
                 <asp:Label ID="lblPagina" runat="server" Text="Página: X" CssClass="form-label"></asp:Label>
                 <asp:Label ID="lblTotal" runat="server" Text=" de XX" CssClass="form-label"></asp:Label>
             </div>
-            <div class="col-4 text-end">
-                <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalAgregarProducto">Agregar Producto</button>
             </div>
         </div>
+            <div class="col-4 text-end">
+                <asp:Button ID="btnAgregarProducto" type="button" runat="server" Text="Agregar Producto" class="btn btn-outline-light" OnClick="btnAgregarProducto_Click"/>
+            </div>
+    <%--    
+    </div>
     </div>
 
     <div class="modal fade modal-lg" id="modalAgregarProducto" tabindex="-1" aria-hidden="true">
@@ -108,8 +112,8 @@
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
-                    </div>
-                    <div class="row g-3">
+                    </div>--%>
+                    <%--<div class="row g-3">
                         <div class="col">
                             <asp:Label ID="lblCategoria" runat="server" Text="Categoría" CssClass="form-label" />
                             <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-select" aria-label="Default"></asp:DropDownList>
@@ -126,9 +130,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 
-    <div class="modal fade modal-lg" id="modalDetalleProducto" tabindex="-1" aria-hidden="true">
+    <%--<div class="modal fade modal-lg" id="modalDetalleProducto" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -186,6 +190,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 
 </asp:Content>

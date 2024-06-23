@@ -16,24 +16,42 @@
                     <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <label class="form-label">Descripción</label>
-                <asp:TextBox ID="txtDescripcion" runat="server" TextMode="Multiline" CssClass="form-control" Rows="3"></asp:TextBox>
+                <asp:TextBox ID="txtDescripcion" runat="server" TextMode="Multiline" CssClass="form-control" Rows="5"></asp:TextBox>
 
                 <label class="form-label">Stock</label>
                 <asp:TextBox ID="txtStock" runat="server" CssClass="form-control"></asp:TextBox>
 
                 <asp:Label ID="Label1" runat="server" Text="Categoría" CssClass="form-label" />
-                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-select" aria-label="Default"></asp:DropDownList>
+                <asp:DropDownList ID="DDLCategoria" runat="server" CssClass="form-select" aria-label="Default"></asp:DropDownList>
 
                 <asp:Label ID="Label2" runat="server" Text="Marca" CssClass="form-label" />
-                <asp:DropDownList ID="DropDownList2" runat="server" CssClass="form-select" aria-label="Default"></asp:DropDownList>
+                <asp:DropDownList ID="DDLMarca" runat="server" CssClass="form-select" aria-label="Default"></asp:DropDownList>
             </div>
             <div class="col d-flex flex-wrap">
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <label class="form-label">Imagen URL</label>
+                        <asp:TextBox ID="txtImagenUrl" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtImagenUrl_TextChanged">
+                        </asp:TextBox>
+                        <asp:Image ID="imgProducto" runat="server" CssClass="img-thumbnail mt-4"
+                            ImageUrl="https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png" 
+                            AutoPostBack="true"/>
+                        <div class="mt-2">
+                            <asp:Button ID="btnAgregarImagen" Text="Agregar Imagen" runat="server" CssClass="btn btn-success" OnClick="btnAgregarImagen_Click" />
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
 
-                <label class="form-label">Imagen URL</label>
-                <asp:TextBox ID="txtImagenUrl" runat="server" CssClass="form-control" AutoPostBack="true">
-                </asp:TextBox>
-                <asp:Image ID="imgProducto" runat="server" CssClass="img-thumbnail mt-4" ImageUrl="https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png" />
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m-2 p-lg-4">
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
+            </div>
+            <div class="col m-2 p-lg-4">
+                <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click"></asp:Button>
             </div>
         </div>
     </div>

@@ -85,41 +85,53 @@ namespace TPC_Equipo_5
             dgvProductos.DataBind();
         }
 
-        protected void txtImagenUrl_TextChanged(object sender, EventArgs e)
-        {
-            if (txtImagenUrl.Text == "")
-            {
-                imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
-            }
-            else
-            {
-                imgProducto.ImageUrl = txtImagenUrl.Text;
-            }
-        }
-        protected void btnCerrarProducto_Click(object sender, EventArgs e)
-        {
-            limpiarCampos();
-        }
+        //protected void txtImagenUrl_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (txtImagenUrl.Text == "")
+        //    {
+        //        imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+        //    }
+        //    else
+        //    {
+        //        imgProducto.ImageUrl = txtImagenUrl.Text;
+        //    }
+    
+        //protected void btnCerrarProducto_Click(object sender, EventArgs e)
+        //{
+        //    limpiarCampos();
+        //}
 
-        protected void btnCancelarProducto_Click(object sender, EventArgs e)
-        {
-            limpiarCampos();
-        }
+        //protected void btnCancelarProducto_Click(object sender, EventArgs e)
+        //{
+        //    limpiarCampos();
+        //}
 
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             try
             {
-
-                limpiarCampos();
+                Response.Redirect("AgregarProducto.aspx", false);
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                throw;
-                //Puede redireccionar a una pagina de error
+                throw ex;
             }
         }
+
+        //protected void btnAgregarProducto_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+
+        //        limpiarCampos();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Session.Add("error", ex);
+        //        throw;
+        //        //Puede redireccionar a una pagina de error
+        //    }
+        //}
 
         public void cargardatos()
         {
@@ -148,14 +160,12 @@ namespace TPC_Equipo_5
                 listaMostrable = false;
             }
         }
-
         private void filtrarProducto(string filtro)
         {
             List<Producto> listaFiltrada;
             listaFiltrada = listaLecturaProducto.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
             listaLecturaProducto = listaFiltrada;
         }
-
         public void cargarddl()
         {
             ddlOrdenar.Items.Add("Por defecto");
@@ -164,66 +174,67 @@ namespace TPC_Equipo_5
             ddlOrdenar.Items.Add("Stock Mayor");
             ddlOrdenar.Items.Add("Stock Menor");
 
-            LecturaCategoria lecturaCategoria = new LecturaCategoria();
-            List<Categoria> listaCategoria = new List<Categoria>();
-            listaCategoria = lecturaCategoria.listar();
+            //LecturaCategoria lecturaCategoria = new LecturaCategoria();
+            //List<Categoria> listaCategoria = new List<Categoria>();
+            //listaCategoria = lecturaCategoria.listar();
 
-            ddlCategoria.DataSource = listaCategoria;
-            ddlCategoria.DataTextField = "Nombre";
-            ddlCategoria.DataBind();
-            ddlCategoria.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
+            //ddlCategoria.DataSource = listaCategoria;
+            //ddlCategoria.DataTextField = "Nombre";
+            //ddlCategoria.DataBind();
+            //ddlCategoria.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
 
-            LecturaMarca lecturaMarca = new LecturaMarca();
-            List<Marca> listaMarca = new List<Marca>();
-            listaMarca = lecturaMarca.listar();
+            //LecturaMarca lecturaMarca = new LecturaMarca();
+            //List<Marca> listaMarca = new List<Marca>();
+            //listaMarca = lecturaMarca.listar();
 
-            ddlMarca.DataSource = listaMarca;
-            ddlMarca.DataTextField = "Nombre";
-            ddlMarca.DataBind();
-            ddlMarca.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
+            //ddlMarca.DataSource = listaMarca;
+            //ddlMarca.DataTextField = "Nombre";
+            //ddlMarca.DataBind();
+            //ddlMarca.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
         }
 
-        public void limpiarCampos()
-        {
-            if (txtNombre.Text != "" || txtDescripcion.Text != "" || txtPrecio.Text != "" || txtStock.Text != "" || txtImagenUrl.Text != "" || ddlCategoria.SelectedIndex != 0 || ddlMarca.SelectedIndex != 0)
-            {
-                txtNombre.Text = "";
-                txtDescripcion.Text = "";
-                txtPrecio.Text = "";
-                txtStock.Text = "";
-                txtImagenUrl.Text = "";
-                imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
-                ddlCategoria.SelectedIndex = 0;
-                ddlMarca.SelectedIndex = 0;
-            }
-        }
-        public void cargarProducto()
-        {
-            LecturaProducto lecturaProducto = new LecturaProducto();
-            Producto detalleProducto = new Producto();
-            detalleProducto = lecturaProducto.listar(seleccionado);
-
-            txtDetalleNombre.Text = detalleProducto.nombre;
-            txtDetalleDescripcion.Text = detalleProducto.descripcion;
-            txtDetallePrecio.Text = detalleProducto.precio.ToString();
-            txtDetalleStock.Text = detalleProducto.stock.ToString();
-
-            if (detalleProducto.imagenPrincipal != "")
-            {
-                imgDetalleProducto.ImageUrl = detalleProducto.imagenPrincipal;
-            }
-            else
-            {
-                imgDetalleProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
-            }
-
-            lblDetalleCategoria.Text = detalleProducto.categoria.nombre;
-            lblDetalleMarca.Text = detalleProducto.marca.nombre;
-        }
-
-        protected void BtnDetalleProducto_Click(object sender, EventArgs e)
-        {
-            txtDetalleNombre.Text = "HOLA SEÑORA";
-        }
+        //public void limpiarCampos()
+        //{
+        //    if (txtNombre.Text != "" || txtDescripcion.Text != "" || txtPrecio.Text != "" || txtStock.Text != "" || txtImagenUrl.Text != "" || ddlCategoria.SelectedIndex != 0 || ddlMarca.SelectedIndex != 0)
+        //    {
+        //        txtNombre.Text = "";
+        //        txtDescripcion.Text = "";
+        //        txtPrecio.Text = "";
+        //        txtStock.Text = "";
+        //        txtImagenUrl.Text = "";
+        //        imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+        //        ddlCategoria.SelectedIndex = 0;
+        //        ddlMarca.SelectedIndex = 0;
+        //    }
+        //}
+        //
+        //public void cargarProducto()
+        //{
+        //    LecturaProducto lecturaProducto = new LecturaProducto();
+        //    Producto detalleProducto = new Producto();
+        //    detalleProducto = lecturaProducto.listar(seleccionado);
+        //
+        //    txtDetalleNombre.Text = detalleProducto.nombre;
+        //    txtDetalleDescripcion.Text = detalleProducto.descripcion;
+        //    txtDetallePrecio.Text = detalleProducto.precio.ToString();
+        //    txtDetalleStock.Text = detalleProducto.stock.ToString();
+        //
+        //    if (detalleProducto.imagenPrincipal != "")
+        //    {
+        //        imgDetalleProducto.ImageUrl = detalleProducto.imagenPrincipal;
+        //    }
+        //    else
+        //    {
+        //        imgDetalleProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+        //    }
+        //
+        //    lblDetalleCategoria.Text = detalleProducto.categoria.nombre;
+        //    lblDetalleMarca.Text = detalleProducto.marca.nombre;
+        //}
+        //
+        //protected void BtnDetalleProducto_Click(object sender, EventArgs e)
+        //{
+        //    txtDetalleNombre.Text = "HOLA SEÑORA";
+        //}
     }
 }
