@@ -12,13 +12,19 @@ namespace TPC_Equipo_5
     public partial class AgregarProducto : System.Web.UI.Page
     {
         public Producto seleccionado = new Producto();
-        public List<Imagen> imagenesForm = new List<Imagen>();
+        public List<Imagen> imagenesForm;
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
                 cargarddl();
+                imagenesForm = new List<Imagen>();
+                Session["ImagenesCargadas"] = imagenesForm;
+            }
+            else
+            {
+                imagenesForm = (List<Imagen>)Session["ImagenesCargadas"];
             }
         }
         public void cargarddl()
@@ -50,8 +56,8 @@ namespace TPC_Equipo_5
         {
             Imagen aux = new Imagen();
             aux.imagenUrl = txtImagenUrl.Text;
-            aux.tipo = 1;
             imagenesForm.Add(aux);
+            Session["ImagenesCargadas"] = imagenesForm;
             txtImagenUrl.Text = string.Empty;
             imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
         }
@@ -74,7 +80,7 @@ namespace TPC_Equipo_5
             seleccionado.precio = decimal.Parse(txtPrecio.Text);
             seleccionado.stock = int.Parse(txtStock.Text);
             seleccionado.nombre = txtNombre.Text;
-            seleccionado.imagenes = imagenesForm;
+            seleccionado.imagenes = (List<Imagen>)Session["ImagenesCargadas"];
             LecturaProducto lecturaProducto = new LecturaProducto();
             lecturaProducto.agregar(seleccionado);
             Response.Redirect("productosAdmin.aspx",false);

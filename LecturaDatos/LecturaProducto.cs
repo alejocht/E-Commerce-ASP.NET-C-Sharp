@@ -142,6 +142,7 @@ namespace LecturaDatos
                 foreach (Imagen img in nuevo.imagenes) 
                 {
                     img.idProducto = aux.id;
+                    img.tipo = 1;
                 }
                 //Cargar las imagenes
                 LecturaImagen lecturaImagen = new LecturaImagen();
