@@ -28,6 +28,8 @@ namespace TPC_Equipo_5
                     txtPrecio.Text = seleccionado.precio.ToString();
                     txtStock.Text = seleccionado.stock.ToString();
                     //faltarian los items de la ddl
+                    buscarIndiceDDLCategoria(seleccionado);
+                    buscarIndiceDDLMarca(seleccionado);
                     LecturaImagen lecturaImagen = new LecturaImagen();
                     seleccionado.imagenes = lecturaImagen.listar(seleccionado.id);
                     if(seleccionado.imagenes.Count > 0)
@@ -107,6 +109,42 @@ namespace TPC_Equipo_5
                 throw ex;
             }
             
+        }
+        public void buscarIndiceDDLCategoria(Producto seleccionado)
+        {
+            try
+            {
+                string id = seleccionado.categoria.id.ToString();
+                ListItem listItem = new ListItem();
+                listItem = DDLCategoria.Items.FindByValue(id);
+
+                if (listItem != null)
+                {
+                    DDLCategoria.SelectedIndex = DDLCategoria.Items.IndexOf(listItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void buscarIndiceDDLMarca(Producto seleccionado)
+        {
+            try
+            {
+                string id = seleccionado.marca.id.ToString();
+                ListItem listItem = new ListItem();
+                listItem = DDLMarca.Items.FindByValue(id);
+
+                if (listItem != null)
+                {
+                    DDLMarca.SelectedIndex = DDLMarca.Items.IndexOf(listItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

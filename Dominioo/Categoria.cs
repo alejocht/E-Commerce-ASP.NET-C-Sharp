@@ -13,9 +13,11 @@ namespace Dominio.Productos
         {
             id = -1;
             nombre = "";
+            estado = true;
         }
         public int id { get; set; }
         public string nombre { get; set; }
+        public bool estado { get; set; }
         public override string ToString()
         {
             return nombre;

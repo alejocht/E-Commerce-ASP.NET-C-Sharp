@@ -165,7 +165,7 @@ namespace LecturaDatos
 
             try
             {
-                datos.SetearConsulta("update Productos set ID_Categoria = @IDCategoria  ID_Marca = @IDMarca , Nombre = @Nombre , Descripcion = @Descripcion, Precio = @Precio , Stock = @Stock  where ID = @ID)");
+                datos.SetearConsulta("update Productos set ID_Categoria = @IDCategoria,  ID_Marca = @IDMarca , Nombre = @Nombre , Descripcion = @Descripcion, Precio = @Precio , Stock = @Stock  where ID = @ID");
                 datos.SetearParametro("@IDCategoria", nuevo.categoria.id);
                 datos.SetearParametro("@IDMarca", nuevo.marca.id);
                 datos.SetearParametro("@Nombre", nuevo.nombre);

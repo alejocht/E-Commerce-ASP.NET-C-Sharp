@@ -17,15 +17,17 @@ namespace Dominio.Pedidos
             fecha = new DateTime();
             productos = new List<Producto>();
             importe = -1;
-            estado = new EstadoPedido();
+            estadoPedido = new EstadoPedido();
             metodoPago = new MetodoPago();
+            estado = true;
         }
         public int id { get; set; }
         public Usuario usuario { get; set; }
         public DateTime fecha { get; set; }
         public List<Producto> productos { get; set; }
         public decimal importe { get; set; }
-        public EstadoPedido estado { get; set; }
+        public EstadoPedido estadoPedido { get; set; }
         public MetodoPago metodoPago { get; set; }
+        public bool estado { get; set; }
     }
 }
