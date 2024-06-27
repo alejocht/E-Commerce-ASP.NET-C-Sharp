@@ -38,74 +38,67 @@ namespace TPC_Equipo_5
                 //Puede redireccionar a una pagina de error
             }
         }
-
         protected void btnBusqueda_Click(object sender, EventArgs e)
         {
-            busqueda = txtBuscar.Text;
-            if (ValidarTextBox(busqueda))
+            try
             {
-                filtrarProducto(busqueda);
-                dgvProductos.DataSource = listaLecturaProducto;
-                dgvProductos.DataBind();
+                busqueda = txtBuscar.Text;
+                if (ValidarTextBox(busqueda))
+                {
+                    filtrarProducto(busqueda);
+                    dgvProductos.DataSource = listaLecturaProducto;
+                    dgvProductos.DataBind();
+                }
+                else
+                {
+                    cargardatos();
+                    dgvProductos.DataSource = listaLecturaProducto;
+                    dgvProductos.DataBind();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                cargardatos();
-                dgvProductos.DataSource = listaLecturaProducto;
-                dgvProductos.DataBind();
-            }
-        }
 
+                throw ex;
+            }
+            
+        }
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Producto> listaFiltrada;
+            try
+            {
+                List<Producto> listaFiltrada;
 
-            if (ddlOrdenar.SelectedValue == "Precio Mayor")
-            {
-                listaFiltrada = listaLecturaProducto.OrderByDescending(x => x.precio).ToList();
+                if (ddlOrdenar.SelectedValue == "Precio Mayor")
+                {
+                    listaFiltrada = listaLecturaProducto.OrderByDescending(x => x.precio).ToList();
+                }
+                else if (ddlOrdenar.SelectedValue == "Precio Menor")
+                {
+                    listaFiltrada = listaLecturaProducto.OrderBy(x => x.precio).ToList();
+                }
+                else if (ddlOrdenar.SelectedValue == "Stock Mayor")
+                {
+                    listaFiltrada = listaLecturaProducto.OrderByDescending(x => x.stock).ToList();
+                }
+                else if (ddlOrdenar.SelectedValue == "Stock Menor")
+                {
+                    listaFiltrada = listaLecturaProducto.OrderBy(x => x.stock).ToList();
+                }
+                else
+                {
+                    listaFiltrada = listaLecturaProducto.OrderBy(x => x.id).ToList();
+                }
+                listaLecturaProducto = listaFiltrada;
+                dgvProductos.DataSource = listaLecturaProducto;
+                dgvProductos.DataBind();
             }
-            else if (ddlOrdenar.SelectedValue == "Precio Menor")
+            catch (Exception ex)
             {
-                listaFiltrada = listaLecturaProducto.OrderBy(x => x.precio).ToList();
-            }
-            else if (ddlOrdenar.SelectedValue == "Stock Mayor")
-            {
-                listaFiltrada = listaLecturaProducto.OrderByDescending(x => x.stock).ToList();
-            }
-            else if (ddlOrdenar.SelectedValue == "Stock Menor")
-            {
-                listaFiltrada = listaLecturaProducto.OrderBy(x => x.stock).ToList();
-            }
-            else
-            {
-                listaFiltrada = listaLecturaProducto.OrderBy(x => x.id).ToList();
-            }
-            listaLecturaProducto = listaFiltrada;
-            dgvProductos.DataSource = listaLecturaProducto;
-            dgvProductos.DataBind();
+
+                throw ex;
+            }  
         }
-
-        //protected void txtImagenUrl_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (txtImagenUrl.Text == "")
-        //    {
-        //        imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
-        //    }
-        //    else
-        //    {
-        //        imgProducto.ImageUrl = txtImagenUrl.Text;
-        //    }
-    
-        //protected void btnCerrarProducto_Click(object sender, EventArgs e)
-        //{
-        //    limpiarCampos();
-        //}
-
-        //protected void btnCancelarProducto_Click(object sender, EventArgs e)
-        //{
-        //    limpiarCampos();
-        //}
-
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             try
@@ -117,124 +110,101 @@ namespace TPC_Equipo_5
                 throw ex;
             }
         }
-
-        //protected void btnAgregarProducto_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-
-        //        limpiarCampos();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Session.Add("error", ex);
-        //        throw;
-        //        //Puede redireccionar a una pagina de error
-        //    }
-        //}
-
         public void cargardatos()
         {
-            LecturaProducto lecturaProducto = new LecturaProducto();
-            listaLecturaProducto = lecturaProducto.listar();
-            dgvProductos.DataSource = listaLecturaProducto;
-            dgvProductos.DataBind();
+            try
+            {
+                LecturaProducto lecturaProducto = new LecturaProducto();
+                listaLecturaProducto = lecturaProducto.listar();
+                dgvProductos.DataSource = listaLecturaProducto;
+                dgvProductos.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
         protected bool ValidarTextBox(string busqueda)
         {
-            if (string.IsNullOrEmpty(busqueda))
+            try
             {
-                return false;
+                if (string.IsNullOrEmpty(busqueda))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return true;
-            }
+
+                throw ex;
+            }     
         }
         public void validarListaMostrable()
         {
-            int cantidadRegistros = listaLecturaProducto.Count();
-            listaMostrable = true;
-            if (cantidadRegistros < 1)
+            try
             {
-                listaMostrable = false;
+                int cantidadRegistros = listaLecturaProducto.Count();
+                listaMostrable = true;
+                if (cantidadRegistros < 1)
+                {
+                    listaMostrable = false;
+                }
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
         private void filtrarProducto(string filtro)
         {
-            List<Producto> listaFiltrada;
-            listaFiltrada = listaLecturaProducto.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
-            listaLecturaProducto = listaFiltrada;
+            try
+            {
+                List<Producto> listaFiltrada;
+                listaFiltrada = listaLecturaProducto.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
+                listaLecturaProducto = listaFiltrada;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }         
         }
         public void cargarddl()
         {
-            ddlOrdenar.Items.Add("Por defecto");
-            ddlOrdenar.Items.Add("Precio Mayor");
-            ddlOrdenar.Items.Add("Precio Menor");
-            ddlOrdenar.Items.Add("Stock Mayor");
-            ddlOrdenar.Items.Add("Stock Menor");
+            try
+            {
+                ddlOrdenar.Items.Add("Por defecto");
+                ddlOrdenar.Items.Add("Precio Mayor");
+                ddlOrdenar.Items.Add("Precio Menor");
+                ddlOrdenar.Items.Add("Stock Mayor");
+                ddlOrdenar.Items.Add("Stock Menor");
+            }
+            catch (Exception ex)
+            {
 
-            //LecturaCategoria lecturaCategoria = new LecturaCategoria();
-            //List<Categoria> listaCategoria = new List<Categoria>();
-            //listaCategoria = lecturaCategoria.listar();
-
-            //ddlCategoria.DataSource = listaCategoria;
-            //ddlCategoria.DataTextField = "Nombre";
-            //ddlCategoria.DataBind();
-            //ddlCategoria.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
-
-            //LecturaMarca lecturaMarca = new LecturaMarca();
-            //List<Marca> listaMarca = new List<Marca>();
-            //listaMarca = lecturaMarca.listar();
-
-            //ddlMarca.DataSource = listaMarca;
-            //ddlMarca.DataTextField = "Nombre";
-            //ddlMarca.DataBind();
-            //ddlMarca.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
+                throw ex;
+            }
         }
 
-        //public void limpiarCampos()
-        //{
-        //    if (txtNombre.Text != "" || txtDescripcion.Text != "" || txtPrecio.Text != "" || txtStock.Text != "" || txtImagenUrl.Text != "" || ddlCategoria.SelectedIndex != 0 || ddlMarca.SelectedIndex != 0)
-        //    {
-        //        txtNombre.Text = "";
-        //        txtDescripcion.Text = "";
-        //        txtPrecio.Text = "";
-        //        txtStock.Text = "";
-        //        txtImagenUrl.Text = "";
-        //        imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
-        //        ddlCategoria.SelectedIndex = 0;
-        //        ddlMarca.SelectedIndex = 0;
-        //    }
-        //}
-        //
-        //public void cargarProducto()
-        //{
-        //    LecturaProducto lecturaProducto = new LecturaProducto();
-        //    Producto detalleProducto = new Producto();
-        //    detalleProducto = lecturaProducto.listar(seleccionado);
-        //
-        //    txtDetalleNombre.Text = detalleProducto.nombre;
-        //    txtDetalleDescripcion.Text = detalleProducto.descripcion;
-        //    txtDetallePrecio.Text = detalleProducto.precio.ToString();
-        //    txtDetalleStock.Text = detalleProducto.stock.ToString();
-        //
-        //    if (detalleProducto.imagenPrincipal != "")
-        //    {
-        //        imgDetalleProducto.ImageUrl = detalleProducto.imagenPrincipal;
-        //    }
-        //    else
-        //    {
-        //        imgDetalleProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
-        //    }
-        //
-        //    lblDetalleCategoria.Text = detalleProducto.categoria.nombre;
-        //    lblDetalleMarca.Text = detalleProducto.marca.nombre;
-        //}
-        //
-        //protected void BtnDetalleProducto_Click(object sender, EventArgs e)
-        //{
-        //    txtDetalleNombre.Text = "HOLA SEÑORA";
-        //}
+        protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string id = dgvProductos.SelectedDataKey.Value.ToString();
+                Response.Redirect("ModificarProducto.aspx?id=" + id, false);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }        
+        }
     }
 }
