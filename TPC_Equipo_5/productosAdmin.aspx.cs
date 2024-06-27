@@ -21,11 +21,10 @@ namespace TPC_Equipo_5
         protected void Page_Load(object sender, EventArgs e)
         {
             try
-            {
-                cargardatos();
-
+            {      
                 if (!IsPostBack)
                 {
+                    cargardatos();
                     cargarddl();
                     dgvProductos.DataSource = listaLecturaProducto;
                     dgvProductos.DataBind();
@@ -65,6 +64,7 @@ namespace TPC_Equipo_5
         }
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             try
             {
                 List<Producto> listaFiltrada;
@@ -172,9 +172,9 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }         
+
         }
         public void cargarddl()
         {
