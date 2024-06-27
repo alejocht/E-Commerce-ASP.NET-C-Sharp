@@ -37,190 +37,174 @@ namespace TPC_Equipo_5
                 //Puede redireccionar a una pagina de error
             }
         }
-
         protected void btnBusqueda_Click(object sender, EventArgs e)
         {
-            busqueda = txtBuscar.Text;
-            if (ValidarTextBox(busqueda))
+            try
             {
-                filtrarProducto(busqueda);
-                dgvProductos.DataSource = listaLecturaProducto;
-                dgvProductos.DataBind();
+                busqueda = txtBuscar.Text;
+                if (ValidarTextBox(busqueda))
+                {
+                    filtrarProducto(busqueda);
+                    dgvProductos.DataSource = listaLecturaProducto;
+                    dgvProductos.DataBind();
+                }
+                else
+                {
+                    cargardatos();
+                    dgvProductos.DataSource = listaLecturaProducto;
+                    dgvProductos.DataBind();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                cargardatos();
-                dgvProductos.DataSource = listaLecturaProducto;
-                dgvProductos.DataBind();
-            }
-        }
 
+                throw ex;
+            }
+            
+        }
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cargardatos();
-            List<Producto> listaFiltrada;
 
-            if (ddlOrdenar.SelectedValue == "Precio Mayor")
+            try
             {
-                listaFiltrada = listaLecturaProducto.OrderByDescending(x => x.precio).ToList();
-            }
-            else if (ddlOrdenar.SelectedValue == "Precio Menor")
-            {
-                listaFiltrada = listaLecturaProducto.OrderBy(x => x.precio).ToList();
-            }
-            else if (ddlOrdenar.SelectedValue == "Stock Mayor")
-            {
-                listaFiltrada = listaLecturaProducto.OrderByDescending(x => x.stock).ToList();
-            }
-            else if (ddlOrdenar.SelectedValue == "Stock Menor")
-            {
-                listaFiltrada = listaLecturaProducto.OrderBy(x => x.stock).ToList();
-            }
-            else
-            {
-                listaFiltrada = listaLecturaProducto.OrderBy(x => x.id).ToList();
-            }
-            listaLecturaProducto = listaFiltrada;
-            dgvProductos.DataSource = listaLecturaProducto;
-            dgvProductos.DataBind();
-        }
+                List<Producto> listaFiltrada;
 
-        protected void txtImagenUrl_TextChanged(object sender, EventArgs e)
-        {
-            if (txtImagenUrl.Text == "")
-            {
-                imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+                if (ddlOrdenar.SelectedValue == "Precio Mayor")
+                {
+                    listaFiltrada = listaLecturaProducto.OrderByDescending(x => x.precio).ToList();
+                }
+                else if (ddlOrdenar.SelectedValue == "Precio Menor")
+                {
+                    listaFiltrada = listaLecturaProducto.OrderBy(x => x.precio).ToList();
+                }
+                else if (ddlOrdenar.SelectedValue == "Stock Mayor")
+                {
+                    listaFiltrada = listaLecturaProducto.OrderByDescending(x => x.stock).ToList();
+                }
+                else if (ddlOrdenar.SelectedValue == "Stock Menor")
+                {
+                    listaFiltrada = listaLecturaProducto.OrderBy(x => x.stock).ToList();
+                }
+                else
+                {
+                    listaFiltrada = listaLecturaProducto.OrderBy(x => x.id).ToList();
+                }
+                listaLecturaProducto = listaFiltrada;
+                dgvProductos.DataSource = listaLecturaProducto;
+                dgvProductos.DataBind();
             }
-            else
+            catch (Exception ex)
             {
-                imgProducto.ImageUrl = txtImagenUrl.Text;
-            }
-        }
-        protected void btnCerrarProducto_Click(object sender, EventArgs e)
-        {
-            limpiarCampos();
-        }
 
-        protected void btnCancelarProducto_Click(object sender, EventArgs e)
-        {
-            limpiarCampos();
+                throw ex;
+            }  
         }
-
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             try
             {
-
-                limpiarCampos();
+                Response.Redirect("AgregarProducto.aspx", false);
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                throw;
-                //Puede redireccionar a una pagina de error
+                throw ex;
             }
         }
-
         public void cargardatos()
         {
-            LecturaProducto lecturaProducto = new LecturaProducto();
-            listaLecturaProducto = lecturaProducto.listar();
-            dgvProductos.DataSource = listaLecturaProducto;
-            dgvProductos.DataBind();
+            try
+            {
+                LecturaProducto lecturaProducto = new LecturaProducto();
+                listaLecturaProducto = lecturaProducto.listar();
+                dgvProductos.DataSource = listaLecturaProducto;
+                dgvProductos.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
         protected bool ValidarTextBox(string busqueda)
         {
-            if (string.IsNullOrEmpty(busqueda))
+            try
             {
-                return false;
+                if (string.IsNullOrEmpty(busqueda))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return true;
-            }
+
+                throw ex;
+            }     
         }
         public void validarListaMostrable()
         {
-            int cantidadRegistros = listaLecturaProducto.Count();
-            listaMostrable = true;
-            if (cantidadRegistros < 1)
+            try
             {
-                listaMostrable = false;
+                int cantidadRegistros = listaLecturaProducto.Count();
+                listaMostrable = true;
+                if (cantidadRegistros < 1)
+                {
+                    listaMostrable = false;
+                }
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
-
         private void filtrarProducto(string filtro)
         {
-            cargardatos();
-            List<Producto> listaFiltrada;
-            listaFiltrada = listaLecturaProducto.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
-            listaLecturaProducto = listaFiltrada;
-        }
+            try
+            {
+                List<Producto> listaFiltrada;
+                listaFiltrada = listaLecturaProducto.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
+                listaLecturaProducto = listaFiltrada;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }         
 
+        }
         public void cargarddl()
         {
-            ddlOrdenar.Items.Add("Por defecto");
-            ddlOrdenar.Items.Add("Precio Mayor");
-            ddlOrdenar.Items.Add("Precio Menor");
-            ddlOrdenar.Items.Add("Stock Mayor");
-            ddlOrdenar.Items.Add("Stock Menor");
-
-            LecturaCategoria lecturaCategoria = new LecturaCategoria();
-            List<Categoria> listaCategoria = new List<Categoria>();
-            listaCategoria = lecturaCategoria.listar();
-
-            ddlCategoria.DataSource = listaCategoria;
-            ddlCategoria.DataTextField = "nombre";
-            ddlCategoria.DataBind();
-            ddlCategoria.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
-
-            LecturaMarca lecturaMarca = new LecturaMarca();
-            List<Marca> listaMarca = new List<Marca>();
-            listaMarca = lecturaMarca.listar();
-
-            ddlMarca.DataSource = listaMarca;
-            ddlMarca.DataTextField = "nombre";
-            ddlMarca.DataBind();
-            ddlMarca.Items.Insert(0, new ListItem("Sin seleccionar", "0"));
-        }
-
-        public void limpiarCampos()
-        {
-            if (txtNombre.Text != "" || txtDescripcion.Text != "" || txtPrecio.Text != "" || txtStock.Text != "" || txtImagenUrl.Text != "" || ddlCategoria.SelectedIndex != 0 || ddlMarca.SelectedIndex != 0)
+            try
             {
-                txtNombre.Text = "";
-                txtDescripcion.Text = "";
-                txtPrecio.Text = "";
-                txtStock.Text = "";
-                txtImagenUrl.Text = "";
-                imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
-                ddlCategoria.SelectedIndex = 0;
-                ddlMarca.SelectedIndex = 0;
+                ddlOrdenar.Items.Add("Por defecto");
+                ddlOrdenar.Items.Add("Precio Mayor");
+                ddlOrdenar.Items.Add("Precio Menor");
+                ddlOrdenar.Items.Add("Stock Mayor");
+                ddlOrdenar.Items.Add("Stock Menor");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 
-        protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (e.CommandName == "Detalle")
+            try
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = dgvProductos.Rows[index];
-
-                // Aquí puedes acceder a los valores de la fila seleccionada
-                string id = row.Cells[0].Text;
-                string nombre = row.Cells[1].Text;
-                string precio = row.Cells[2].Text;
-                string stock = row.Cells[3].Text;
-
-                // Ahora puedes pasar estos valores a tu modal
-                txtDetalleNombre.Text = nombre;
-                txtDetallePrecio.Text = precio;
-                txtDetalleStock.Text = stock;
-                // y otros campos necesarios...
-
-                // Mostrar el modal (si es necesario, puede hacerlo en el frontend con JavaScript)
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "showModalScript", "$('#modalDetalleProducto').modal('show');", true);
+                string id = dgvProductos.SelectedDataKey.Value.ToString();
+                Response.Redirect("ModificarProducto.aspx?id=" + id, false);
             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }        
         }
     }
 }

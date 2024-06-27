@@ -7,7 +7,7 @@
     <div class="container" id="containerPrincipal" style="color: white">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">LISTA DE MARCAS</h1>
+                <h1 class="text-center">Marcas</h1>
             </div>
         </div>
         <div class="row" style="padding: 30px 10px; align-items: end;">

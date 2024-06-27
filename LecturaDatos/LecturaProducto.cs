@@ -132,6 +132,21 @@ namespace LecturaDatos
                 datos.SetearParametro("@Precio", nuevo.precio);
                 datos.SetearParametro("@Stock", nuevo.stock);
                 datos.ejecutarAccion();
+                //Para encontrar el ID del producto que recien creamos
+                List<Producto> lista = new List<Producto>();
+                LecturaProducto lecturaProducto = new LecturaProducto();
+                Producto aux = new Producto();
+                lista = lecturaProducto.listar();
+                aux = lista.Last();
+                //Para darle el IDProducto a las imagenes que contenga la lista
+                foreach (Imagen img in nuevo.imagenes) 
+                {
+                    img.idProducto = aux.id;
+                    img.tipo = 1;
+                }
+                //Cargar las imagenes
+                LecturaImagen lecturaImagen = new LecturaImagen();
+                lecturaImagen.agregarLista(nuevo.imagenes);
 
             }
             catch (Exception ex)
@@ -150,7 +165,7 @@ namespace LecturaDatos
 
             try
             {
-                datos.SetearConsulta("update Productos set ID_Categoria = @IDCategoria  ID_Marca = @IDMarca , Nombre = @Nombre , Descripcion = @Descripcion, Precio = @Precio , Stock = @Stock  where ID = @ID)");
+                datos.SetearConsulta("update Productos set ID_Categoria = @IDCategoria,  ID_Marca = @IDMarca , Nombre = @Nombre , Descripcion = @Descripcion, Precio = @Precio , Stock = @Stock  where ID = @ID");
                 datos.SetearParametro("@IDCategoria", nuevo.categoria.id);
                 datos.SetearParametro("@IDMarca", nuevo.marca.id);
                 datos.SetearParametro("@Nombre", nuevo.nombre);

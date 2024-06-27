@@ -30,7 +30,7 @@ namespace LecturaDatos
                     
                     aux.id = (int)datos.Lector["ID"];
                     aux.metodoPago = lecturaMetodoPago.listar((int)datos.Lector["ID_MetodoDePago"]);
-                    aux.estado = lecturaEstadoPedido.listar((int)datos.Lector["ID_EstadosPedido"]);
+                    aux.estadoPedido = lecturaEstadoPedido.listar((int)datos.Lector["ID_EstadosPedido"]);
                     aux.usuario = lecturaUsuario.listar((int)datos.Lector["ID_Usuario"]);
                     aux.fecha = (DateTime)datos.Lector["Fecha"];
                     lista.Add(aux);
@@ -62,7 +62,7 @@ namespace LecturaDatos
                 {
                     aux.id = (int)datos.Lector["ID"];
                     aux.metodoPago = lecturaMetodoPago.listar((int)datos.Lector["ID_MetodoDePago"]);
-                    aux.estado = lecturaEstadoPedido.listar((int)datos.Lector["ID_EstadosPedido"]);
+                    aux.estadoPedido = lecturaEstadoPedido.listar((int)datos.Lector["ID_EstadosPedido"]);
                     aux.usuario = lecturaUsuario.listar((int)datos.Lector["ID_Usuario"]);
                     aux.fecha = (DateTime)datos.Lector["Fecha"];
                 }

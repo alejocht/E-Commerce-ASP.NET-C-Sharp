@@ -16,12 +16,12 @@ namespace TPC_Equipo_5
 
         }
 
-        protected void btnCancelarProducto_Click(object sender, EventArgs e)
+        protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("marcasAdmin.aspx", false);
         }
 
-        protected void btnAgregarProducto_Click(object sender, EventArgs e)
+        protected void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {

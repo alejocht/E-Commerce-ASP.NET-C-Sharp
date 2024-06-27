@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="AgregarCategoria.aspx" />
     <Content Include="AgregarMarca.aspx" />
+    <Content Include="AgregarProducto.aspx" />
     <Content Include="categoriasAdmin.aspx" />
     <Content Include="css\bootstrap-grid.css" />
     <Content Include="css\bootstrap-grid.min.css" />
@@ -105,6 +106,7 @@
     <Content Include="marcasAdmin.aspx" />
     <Content Include="ModificarCategoria.aspx" />
     <Content Include="ModificarMarca.aspx" />
+    <Content Include="ModificarProducto.aspx" />
     <Content Include="pedidosAdmin.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="productosAdmin.aspx" />
@@ -129,6 +131,13 @@
     </Compile>
     <Compile Include="AgregarMarca.aspx.designer.cs">
       <DependentUpon>AgregarMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarProducto.aspx.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarProducto.aspx.designer.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="categoriasAdmin.aspx.cs">
       <DependentUpon>categoriasAdmin.aspx</DependentUpon>
@@ -181,6 +190,13 @@
     </Compile>
     <Compile Include="ModificarMarca.aspx.designer.cs">
       <DependentUpon>ModificarMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarProducto.aspx.cs">
+      <DependentUpon>ModificarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarProducto.aspx.designer.cs">
+      <DependentUpon>ModificarProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="pedidosAdmin.aspx.cs">
       <DependentUpon>pedidosAdmin.aspx</DependentUpon>
