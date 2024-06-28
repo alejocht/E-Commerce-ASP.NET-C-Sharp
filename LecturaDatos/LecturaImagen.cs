@@ -75,6 +75,26 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+        public void agregarLista(List<Imagen> lista)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                foreach (Imagen imagen in lista) 
+                {
+                    LecturaImagen lecturaImagen = new LecturaImagen();
+                    lecturaImagen.agregar(imagen);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
         public void agregar(Imagen nuevo)
         {
             AccesoDatos datos = new AccesoDatos();

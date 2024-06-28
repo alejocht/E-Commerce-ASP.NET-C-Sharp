@@ -13,10 +13,12 @@ namespace Dominio.Productos
             id = -1;
             idProducto = -1;
             imagenUrl = "";
+            estado = true;
         }
         public int id { get; set; }
         public int idProducto { get; set; }
         public string imagenUrl { get; set; }
         public int tipo { get; set; }
+        public bool estado { get; set; }
     }
 }

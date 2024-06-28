@@ -17,6 +17,7 @@ namespace Dominio.Usuarios
             dato = new DatosUsuario();
             admin = false;
             pedidos = new List<Pedido>();
+            estado = true;
         }
         public int id { get; set; }
         public string usuario { get; set; }
@@ -24,5 +25,6 @@ namespace Dominio.Usuarios
         public DatosUsuario dato { get; set; }
         public bool admin { get; set; }
         public List<Pedido> pedidos { get; set; }
+        public bool estado { get; set; }
     }
 }

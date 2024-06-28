@@ -13,10 +13,10 @@
             </div>
         <div class="row">
             <div class="col m-2 p-lg-4">
-                <asp:Button ID="btnCancelarProducto" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelarProducto_Click" />
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
             </div>
             <div class="col m-2 p-lg-4">
-                <asp:Button ID="btnAgregarProducto" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregarProducto_Click"></asp:Button>
+                <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click"></asp:Button>
             </div>
         </div>
     <div style="padding: 100px 10px;">

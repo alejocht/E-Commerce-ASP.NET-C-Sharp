@@ -20,6 +20,7 @@ namespace Dominio.Productos
             categoria = new Categoria();
             marca = new Marca();
             imagenes = new List<Imagen>();
+            estado = true;
         }
         public int id { get; set; }
         public string nombre { get; set; }
@@ -31,6 +32,7 @@ namespace Dominio.Productos
         public Marca marca { get; set; }
         public List<Imagen> imagenes { get; set; }
         public string imagenPrincipal { get; set; }
+        public bool estado { get; set; }
 
     }
 }

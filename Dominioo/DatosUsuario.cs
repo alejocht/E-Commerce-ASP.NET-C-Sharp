@@ -17,6 +17,7 @@ namespace Dominio.Usuarios
             telefono = -1;
             direccion = "";
             ciudad = new Ciudad();
+            estado = true;
         }
         public int id { get; set; }
         public string nombre { get; set; }
@@ -25,5 +26,6 @@ namespace Dominio.Usuarios
         public int telefono { get; set; }
         public string direccion { get; set; }
         public Ciudad ciudad { get; set; }
+        public bool estado { get; set; }
     }
 }
