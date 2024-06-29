@@ -26,6 +26,8 @@ namespace TPC_Equipo_5
             {
                 imagenesForm = (List<Imagen>)Session["ImagenesCargadas"];
             }
+            dgv_ImgProductos.DataSource = imagenesForm;
+            dgv_ImgProductos.DataBind();
         }
         public void cargarddl()
         {
@@ -60,10 +62,12 @@ namespace TPC_Equipo_5
             Session["ImagenesCargadas"] = imagenesForm;
             txtImagenUrl.Text = string.Empty;
             imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+            dgv_ImgProductos.DataSource = imagenesForm;
+            dgv_ImgProductos.DataBind();
         }
         protected void txtImagenUrl_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(imgProducto.ImageUrl))
+            if (string.IsNullOrEmpty(txtImagenUrl.Text))
             {
                 imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
             }
@@ -85,5 +89,19 @@ namespace TPC_Equipo_5
             lecturaProducto.agregar(seleccionado);
             Response.Redirect("productosAdmin.aspx",false);
         }
+        protected void dgv_ImgProductos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+                TableCell campo = e.Row.Cells[0];
+                string imagenUrl = campo.Text;
+                int maximo_caracteres = 30;
+                if(imagenUrl.Length > maximo_caracteres)
+                {
+                    campo.Text = imagenUrl.Substring(0, maximo_caracteres) + "...";
+                }
+                campo.ToolTip = imagenUrl;
+            }
+        } //acorta los url para que no se rompa el disenio
     }
 }

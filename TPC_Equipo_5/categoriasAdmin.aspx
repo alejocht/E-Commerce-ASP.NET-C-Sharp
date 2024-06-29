@@ -36,7 +36,7 @@
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
-                        <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Detalle" />
+                        <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Detalle" />
                     </Columns>
                 </asp:GridView>
             </div>

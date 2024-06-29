@@ -17,9 +17,9 @@ namespace TPC_Equipo_5
         {
             try
             {
-                cargarddl();
                 if(!IsPostBack)
                 {
+                    cargarddl();
                     LecturaProducto lecturaProducto = new LecturaProducto();
                     int id = int.Parse(Request.QueryString["id"].ToString());
                     seleccionado = lecturaProducto.listar(id);
@@ -63,6 +63,7 @@ namespace TPC_Equipo_5
         {
             try
             {
+                seleccionado.id = int.Parse(Request.QueryString["id"].ToString());
                 seleccionado.categoria.id = int.Parse(DDLCategoria.SelectedItem.Value);
                 seleccionado.marca.id = int.Parse(DDLMarca.SelectedItem.Value);
                 seleccionado.descripcion = txtDescripcion.Text;

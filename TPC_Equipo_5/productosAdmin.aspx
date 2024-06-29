@@ -35,14 +35,13 @@
             <div class="col-12">
 
                 <asp:GridView ID="dgvProductos" DataKeyNames="ID" runat="server" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged">
-
                     <Columns>
                         <asp:BoundField HeaderText="Código" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
                         <asp:BoundField HeaderText="Precio" DataField="precio" />
                         <asp:BoundField HeaderText="Stock" DataField="stock" />
 
-                        <asp:CommandField ShowSelectButton="true" SelectText="editar" HeaderText="" />          
+                        <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Detalle" />          
 
                     </Columns>
                 </asp:GridView>
