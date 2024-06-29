@@ -46,8 +46,8 @@
                             <asp:GridView ID="dgv_ImgProductos" runat="server" DataKeyNames="ID" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnRowDataBound="dgv_ImgProductos_RowDataBound">
                                 <Columns>
                                     <asp:BoundField HeaderText="Imagenes agregadas" DataField="imagenUrl" />
-                                    <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="" />
-                                    <asp:CommandField ShowSelectButton="true" SelectText="Ver" HeaderText="" />
+                                    <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Edicion" />
+                                    <asp:CommandField ShowSelectButton="true" SelectText="Ver" HeaderText="Vista Previa" />
                                 </Columns>
                             </asp:GridView>
                         </div>
