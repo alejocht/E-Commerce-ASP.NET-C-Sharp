@@ -40,8 +40,8 @@
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
                         <asp:BoundField HeaderText="Precio" DataField="precio" />
                         <asp:BoundField HeaderText="Stock" DataField="stock" />
-
-                        <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Detalle" />          
+                        <asp:CheckBoxField HeaderText="Activo" DataField="estado" />
+                        <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Detalle" />      
 
                     </Columns>
                 </asp:GridView>

@@ -43,11 +43,10 @@
 
 
                         <div class="m-lg-2">
-                            <asp:GridView ID="dgv_ImgProductos" runat="server" DataKeyNames="ID" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnRowDataBound="dgv_ImgProductos_RowDataBound">
+                            <asp:GridView ID="dgv_ImgProductos" runat="server" DataKeyNames="ID" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnRowDataBound="dgv_ImgProductos_RowDataBound" OnSelectedIndexChanged="dgv_ImgProductos_SelectedIndexChanged">
                                 <Columns>
-                                    <asp:BoundField HeaderText="Imagenes agregadas" DataField="imagenUrl" />
-                                    <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Edicion" />
-                                    <asp:CommandField ShowSelectButton="true" SelectText="Ver" HeaderText="Vista Previa" />
+                                    <asp:BoundField HeaderText="Imagenes seleccionadas" DataField="imagenUrl" />
+                                    <asp:CommandField ShowSelectButton="true" SelectText="Quitar" HeaderText="" />
                                 </Columns>
                             </asp:GridView>
                         </div>
