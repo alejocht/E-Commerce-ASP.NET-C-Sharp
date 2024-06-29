@@ -4,9 +4,16 @@
     <link href="css/stylePaginaWeb.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="container" id="containerPrincipal" style="color: white">
         <div class="row g-3">
             <div class="col">
+                <div>
+                <label class="form-check-label">Activo</label>
+                    <br />
+                <asp:CheckBox ID="ckbActivo" runat="server"/>
+                </div>
+
                 <label class="form-label">Nombre</label>
                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
 
@@ -54,7 +61,7 @@
                 <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-success" OnClick="btnModificar_Click"></asp:Button>
             </div>
             <div class="col m-2 p-lg-4">
-                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" ></asp:Button>
+                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"></asp:Button>
             </div>
         </div>
     </div>

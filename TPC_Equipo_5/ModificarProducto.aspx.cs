@@ -23,6 +23,7 @@ namespace TPC_Equipo_5
                     LecturaProducto lecturaProducto = new LecturaProducto();
                     int id = int.Parse(Request.QueryString["id"].ToString());
                     seleccionado = lecturaProducto.listar(id);
+                    ckbActivo.Checked = seleccionado.estado;
                     txtNombre.Text = seleccionado.nombre;
                     txtDescripcion.Text = seleccionado.descripcion;
                     txtPrecio.Text = seleccionado.precio.ToString();
@@ -63,6 +64,7 @@ namespace TPC_Equipo_5
         {
             try
             {
+                seleccionado.estado = ckbActivo.Checked;
                 seleccionado.id = int.Parse(Request.QueryString["id"].ToString());
                 seleccionado.categoria.id = int.Parse(DDLCategoria.SelectedItem.Value);
                 seleccionado.marca.id = int.Parse(DDLMarca.SelectedItem.Value);

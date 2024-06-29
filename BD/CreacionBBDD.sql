@@ -80,15 +80,15 @@ create table Productos_x_pedido(
 	Cantidad int not null
 )
 
-alter table Provincias add Estado bit not null;
-alter table Ciudades add Estado bit not null;
-alter table Categorias add Estado bit not null;
-alter table Marcas add Estado bit not null;
-alter table Datos_Personales add Estado bit not null;
-alter table Usuarios add Estado bit not null;
-alter table Productos add Estado bit not null;
-alter table Imagen add Estado bit not null;
-alter table Pedido add Estado bit not null;
+alter table Provincias add Estado bit not null default 1;
+alter table Ciudades add Estado bit not null default 1;
+alter table Categorias add Estado bit not null default 1;
+alter table Marcas add Estado bit not null default 1;
+alter table Datos_Personales add Estado bit not null default 1;
+alter table Usuarios add Estado bit not null default 1;
+alter table Productos add Estado bit not null default 1;
+alter table Imagen add Estado bit not null default 1;
+alter table Pedido add Estado bit not null default 1;
 
 alter  table Imagen alter column ID_Producto INT NULL
 
