@@ -33,19 +33,20 @@ namespace TPC_Equipo_5
                     buscarIndiceDDLMarca(seleccionado);
                     LecturaImagen lecturaImagen = new LecturaImagen();
                     seleccionado.imagenes = lecturaImagen.listar(seleccionado.id);
+                    dgv_ImgProductos.DataSource = seleccionado.imagenes;
+                    dgv_ImgProductos.DataBind();
+                }
                     if(seleccionado.imagenes.Count > 0)
                     {
                         seleccionado.imagenPrincipal = seleccionado.imagenes[0].imagenUrl;
                         imgProducto.ImageUrl = seleccionado.imagenPrincipal;
                     }
-                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             try
@@ -59,7 +60,6 @@ namespace TPC_Equipo_5
             }
             
         }
-
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             try
@@ -72,7 +72,6 @@ namespace TPC_Equipo_5
                 seleccionado.precio = decimal.Parse(txtPrecio.Text);
                 seleccionado.stock = int.Parse(txtStock.Text);
                 seleccionado.nombre = txtNombre.Text;
-                seleccionado.imagenes = (List<Imagen>)Session["ImagenesCargadas"];
                 LecturaProducto lecturaProducto = new LecturaProducto();
                 lecturaProducto.modificar(seleccionado);
                 Response.Redirect("productosAdmin.aspx", false);
@@ -148,6 +147,28 @@ namespace TPC_Equipo_5
             {
                 throw ex;
             }
+        }
+        protected void dgv_ImgProductos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                TableCell campo = e.Row.Cells[0];
+                string imagenUrl = campo.Text;
+                int maximo_caracteres = 50;
+                if (imagenUrl.Length > maximo_caracteres)
+                {
+                    campo.Text = imagenUrl.Substring(0, maximo_caracteres) + "...";
+                }
+                campo.ToolTip = imagenUrl;
+            }
+        } //acorta los url para que no se rompa el disenio
+        protected void dgv_ImgProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Imagen imagenSeleccionada =  new Imagen();
+            string id = dgv_ImgProductos.SelectedDataKey.Value.ToString();
+            imagenSeleccionada.id = int.Parse(id);
+            LecturaImagen lecturaImagen = new LecturaImagen();
+            lecturaImagen.eliminarFisica(imagenSeleccionada);
         }
     }
 }

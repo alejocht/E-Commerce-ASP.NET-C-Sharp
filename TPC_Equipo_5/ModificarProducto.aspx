@@ -9,9 +9,9 @@
         <div class="row g-3">
             <div class="col">
                 <div>
-                <label class="form-check-label">Activo</label>
+                    <label class="form-check-label">Activo</label>
                     <br />
-                <asp:CheckBox ID="ckbActivo" runat="server"/>
+                    <asp:CheckBox ID="ckbActivo" runat="server" />
                 </div>
 
                 <label class="form-label">Nombre</label>
@@ -47,9 +47,18 @@
                         <div class="mt-2">
                             <asp:Button ID="btnAgregarImagen" Text="Agregar Imagen" runat="server" CssClass="btn btn-success" />
                         </div>
+
+                        <div class="m-lg-2">
+                            <asp:GridView ID="dgv_ImgProductos" runat="server" DataKeyNames="ID" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnRowDataBound="dgv_ImgProductos_RowDataBound" OnSelectedIndexChanged="dgv_ImgProductos_SelectedIndexChanged">
+                                <Columns>
+                                    <asp:BoundField HeaderText="Imagenes seleccionadas" DataField="imagenUrl" />
+                                    <asp:CommandField ShowSelectButton="true" SelectText="Quitar" HeaderText="" />
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+
                     </ContentTemplate>
                 </asp:UpdatePanel>
-
 
             </div>
         </div>

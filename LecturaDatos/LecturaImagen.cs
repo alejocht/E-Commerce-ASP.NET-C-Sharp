@@ -146,7 +146,7 @@ namespace LecturaDatos
 
             try
             {
-                datos.SetearConsulta("delete from Imagen where ID = @ID)");
+                datos.SetearConsulta("delete from Imagen where ID = @ID");
                 datos.SetearParametro("@ID", nuevo.id);
                 datos.ejecutarAccion();
 
