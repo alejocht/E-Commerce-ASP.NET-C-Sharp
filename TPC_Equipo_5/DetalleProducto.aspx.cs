@@ -34,5 +34,14 @@ namespace TPC_Equipo_5
         {
             Response.Redirect("Productos.aspx", false);
         }
+
+        protected void BtnAgregarAlCarrito_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(Request.QueryString["ID"].ToString());
+            LecturaProducto lecturaProducto = new LecturaProducto();
+            Producto producto = new Producto();
+            producto = lecturaProducto.listar(ID);
+            Session.Add("ArticulosEnCarrito", producto);
+        }
     }
 }

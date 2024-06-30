@@ -4,12 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Dominio.Productos;
 
 namespace TPC_Equipo_5
 {
     public partial class site : System.Web.UI.MasterPage
     {
         string busqueda;
+        List<Producto> listaDeCompras;
+        public string cantidadItems
+        {
+            get { return cantidadItems; }
+            set { Contador.Text = value; }
+        }
 
         protected bool ValidarTextBox(string busqueda)
         {

@@ -24,7 +24,7 @@
                         <asp:Label ID="lblPrecio" runat="server" CssClass="h6"></asp:Label>
                     </div>
                     <div>
-                        <asp:Button ID="BtnAgregarAlCarrito" runat="server" Text="Agregar al Carrito" CssClass="btn btn-success m-3" />
+                        <asp:Button ID="BtnAgregarAlCarrito" runat="server" Text="Agregar al Carrito" OnClick="BtnAgregarAlCarrito_Click" CssClass="btn btn-success m-3" />
                     </div>
 
                 </div>
