@@ -13,16 +13,18 @@ namespace TPC_Equipo_5
     {
         public Producto seleccionado = new Producto();
         public List<Imagen> imagenesProducto;
+        public bool confirmaEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                if(!IsPostBack)
+                LecturaProducto lecturaProducto = new LecturaProducto();
+                int id = int.Parse(Request.QueryString["id"].ToString());
+                seleccionado = lecturaProducto.listar(id);
+                if (!IsPostBack)
                 {
                     cargarddl();
-                    LecturaProducto lecturaProducto = new LecturaProducto();
-                    int id = int.Parse(Request.QueryString["id"].ToString());
-                    seleccionado = lecturaProducto.listar(id);
+                    
                     ckbActivo.Checked = seleccionado.estado;
                     txtNombre.Text = seleccionado.nombre;
                     txtDescripcion.Text = seleccionado.descripcion;
@@ -82,6 +84,22 @@ namespace TPC_Equipo_5
                 throw ex;
             }
             
+        }
+        protected void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            Imagen aux = new Imagen();
+            aux.imagenUrl = txtImagenUrl.Text;
+            List<Imagen> listaNueva = (List<Imagen>)dgv_ImgProductos.DataSource;
+            if(listaNueva == null)
+            {
+                listaNueva = new List<Imagen>();
+            }
+            listaNueva.Add(aux);
+            txtImagenUrl.Text = string.Empty;
+            imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+            dgv_ImgProductos.DataSource = null;
+            dgv_ImgProductos.DataSource = listaNueva;
+            dgv_ImgProductos.DataBind();
         }
         public void cargarddl()
         {
@@ -148,6 +166,17 @@ namespace TPC_Equipo_5
                 throw ex;
             }
         }
+        protected void txtImagenUrl_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtImagenUrl.Text))
+            {
+                imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+            }
+            else
+            {
+                imgProducto.ImageUrl = txtImagenUrl.Text;
+            }
+        }
         protected void dgv_ImgProductos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -170,5 +199,32 @@ namespace TPC_Equipo_5
             LecturaImagen lecturaImagen = new LecturaImagen();
             lecturaImagen.eliminarFisica(imagenSeleccionada);
         }
+        protected void BtnConfirmarEliminacion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(chkConfirmarEliminacion.Checked)
+                {
+                    LecturaProducto lecturaProducto = new LecturaProducto();
+                    foreach (var imagen in seleccionado.imagenes)
+                    {
+                        LecturaImagen lecturaImagen = new LecturaImagen();
+                        lecturaImagen.eliminarFisica(imagen);
+                    }
+                    lecturaProducto.eliminarFisica(seleccionado);
+                    Response.Redirect("productosAdmin.aspx", false);
+                }          
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            confirmaEliminacion = true;
+        }
+
     }
 }

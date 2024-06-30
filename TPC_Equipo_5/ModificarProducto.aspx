@@ -39,19 +39,19 @@
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <label class="form-label">Imagen URL</label>
-                        <asp:TextBox ID="txtImagenUrl" runat="server" CssClass="form-control" AutoPostBack="true">
+                        <asp:TextBox ID="txtImagenUrl" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtImagenUrl_TextChanged">
                         </asp:TextBox>
                         <asp:Image ID="imgProducto" runat="server" CssClass="img-thumbnail mt-4"
                             ImageUrl="https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png"
                             AutoPostBack="true" />
                         <div class="mt-2">
-                            <asp:Button ID="btnAgregarImagen" Text="Agregar Imagen" runat="server" CssClass="btn btn-success" />
+                            <asp:Button ID="btnAgregarImagen" Text="Agregar Imagen" runat="server" CssClass="btn btn-success" OnClick="btnAgregarImagen_Click" />
                         </div>
 
                         <div class="m-lg-2">
                             <asp:GridView ID="dgv_ImgProductos" runat="server" DataKeyNames="ID" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnRowDataBound="dgv_ImgProductos_RowDataBound" OnSelectedIndexChanged="dgv_ImgProductos_SelectedIndexChanged">
                                 <Columns>
-                                    <asp:BoundField HeaderText="Imagenes seleccionadas" DataField="imagenUrl" />
+                                    <asp:BoundField HeaderText="Imagenes Cargadas" DataField="imagenUrl" />
                                     <asp:CommandField ShowSelectButton="true" SelectText="Quitar" HeaderText="" />
                                 </Columns>
                             </asp:GridView>
@@ -69,9 +69,23 @@
             <div class="col m-2 p-lg-4">
                 <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-success" OnClick="btnModificar_Click"></asp:Button>
             </div>
-            <div class="col m-2 p-lg-4">
-                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"></asp:Button>
-            </div>
+
+
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <ContentTemplate>
+                    <div class="col m-2 p-lg-4">
+                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click"></asp:Button>
+                    </div>
+                    <%if(confirmaEliminacion)
+                      { %>
+                        <div class="col m-2 p-lg-4">
+                            <asp:CheckBox Text="Confirmar Eliminacion" ID="chkConfirmarEliminacion" runat="server" />
+                            <asp:Button ID="BtnConfirmarEliminacion" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger" OnClick="BtnConfirmarEliminacion_Click"></asp:Button>
+                        </div>
+                  <%  } %>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
         </div>
     </div>
     <div style="padding: 100px 10px;">

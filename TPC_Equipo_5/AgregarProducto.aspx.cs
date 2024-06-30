@@ -103,7 +103,6 @@ namespace TPC_Equipo_5
                 campo.ToolTip = imagenUrl;
             }
         } //acorta los url para que no se rompa el disenio
-
         protected void dgv_ImgProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dgv_ImgProductos.SelectedIndex >= 0)
