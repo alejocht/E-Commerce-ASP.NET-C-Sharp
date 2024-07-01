@@ -1,4 +1,5 @@
 ﻿using Dominio.Pedidos;
+using Dominio.Productos;
 using LecturaDatos;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace TPC_Equipo_5
                 LecturaPedido lecturaPedido = new LecturaPedido();
                 int id = int.Parse(Request.QueryString["id"].ToString());
                 seleccionado = lecturaPedido.listar(id);
+
                 if (!IsPostBack)
                 {
                     lblNumeroPedido.Text = seleccionado.id.ToString();
@@ -33,6 +35,16 @@ namespace TPC_Equipo_5
 
                 throw ex;
             }
+        }
+
+        protected void btnActualizar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
