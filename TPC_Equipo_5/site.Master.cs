@@ -11,6 +11,7 @@ namespace TPC_Equipo_5
 {
     public partial class site : System.Web.UI.MasterPage
     {
+        int cantidad;
         string busqueda;
         List<Producto> listaDeCompras;
         public string cantidadItems
@@ -33,7 +34,9 @@ namespace TPC_Equipo_5
             }
             else
             {
-                //Pasar contador de carrito a la vista
+                listaDeCompras = (List<Producto>)Session["listaArticulosEnCarrito"];
+                cantidad = listaDeCompras.Count();
+                Contador.Text = cantidad.ToString();
             }
         }
 
