@@ -34,9 +34,9 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <asp:GridView ID="dgvPedidos" runat="server" DataKeyNames="id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" >
+                <asp:GridView ID="dgvPedidos" runat="server" DataKeyNames="id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvPedidos_SelectedIndexChanged" >
                     <Columns>
-                        <asp:BoundField HeaderText="Código" DataField="id" />
+                        <asp:BoundField HeaderText="Pedido" DataField="id" />
                         <asp:BoundField HeaderText="Cliente" DataField="usuario.usuario" />
                         <asp:BoundField HeaderText="Método de pago" DataField="metodoPago.nombre" />
                         <asp:BoundField HeaderText="Fecha" DataField="fecha" />

@@ -68,16 +68,18 @@ namespace LecturaDatos
                 datosPedidos.SetearParametro("@id",id);
                 datosPedidos.EjecutarLectura();
                 Pedido aux = new Pedido();
-                LecturaMetodoPago lecturaMetodoPago = new LecturaMetodoPago();
-                LecturaEstadoPedido lecturaEstadoPedido = new LecturaEstadoPedido();
-                LecturaUsuario lecturaUsuario = new LecturaUsuario();
                 while (datosPedidos.Lector.Read())
                 {
+                    LecturaMetodoPago lecturaMetodoPago = new LecturaMetodoPago();
+                    LecturaEstadoPedido lecturaEstadoPedido = new LecturaEstadoPedido();
+                    LecturaUsuario lecturaUsuario = new LecturaUsuario();
+
                     aux.id = (int)datosPedidos.Lector["ID"];
+                    aux.fecha = (DateTime)datosPedidos.Lector["Fecha"];
+
                     aux.metodoPago = lecturaMetodoPago.listar((int)datosPedidos.Lector["ID_MetodoDePago"]);
                     aux.estadoPedido = lecturaEstadoPedido.listar((int)datosPedidos.Lector["ID_EstadosPedido"]);
                     aux.usuario = lecturaUsuario.listar((int)datosPedidos.Lector["ID_Usuario"]);
-                    aux.fecha = (DateTime)datosPedidos.Lector["Fecha"];
                 }
                 return aux;
             }

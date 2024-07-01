@@ -16,7 +16,7 @@ namespace TPC_Equipo_5
         public List<Producto> listaLecturaProducto;
         string busqueda;
         public bool listaMostrable;
-        int seleccionado;
+        string seleccionado;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -119,6 +119,21 @@ namespace TPC_Equipo_5
                 throw ex;
             }
         }
+
+        protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                seleccionado = dgvProductos.SelectedDataKey.Value.ToString();
+                Response.Redirect("ModificarProducto.aspx?id=" + seleccionado, false);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }        
+        }
+
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             try
@@ -213,19 +228,6 @@ namespace TPC_Equipo_5
 
                 throw ex;
             }
-        }
-        protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                string id = dgvProductos.SelectedDataKey.Value.ToString();
-                Response.Redirect("ModificarProducto.aspx?id=" + id, false);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }        
         }
     }
 }

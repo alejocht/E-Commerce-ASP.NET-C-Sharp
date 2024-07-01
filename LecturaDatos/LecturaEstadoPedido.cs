@@ -22,7 +22,7 @@ namespace LecturaDatos
                 while (datos.Lector.Read())
                 {
                     EstadoPedido aux = new EstadoPedido();
-                    aux.id = (int)datos.Lector["ÏD"];
+                    aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["Descripcion"];
 
                     lista.Add(aux);
@@ -45,7 +45,8 @@ namespace LecturaDatos
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("select * from Estados_Pedido");
+                datos.SetearConsulta("select * from Estados_Pedido where ID = @id");
+                datos.SetearParametro("@id", id);
                 datos.EjecutarLectura();
                 EstadoPedido aux = new EstadoPedido();
                 while(datos.Lector.Read())

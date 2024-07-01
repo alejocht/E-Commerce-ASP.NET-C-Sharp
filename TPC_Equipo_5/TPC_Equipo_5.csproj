@@ -91,6 +91,7 @@
     <Content Include="css\stylePaginaWeb.css" />
     <Content Include="default.aspx" />
     <Content Include="defaultAdmin.aspx" />
+    <Content Include="DetallePedidoAdmin.aspx" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="Global.asax" />
     <Content Include="img\91a192b77d77a80a4b7e9768877d.jpg" />
@@ -159,6 +160,13 @@
     </Compile>
     <Compile Include="defaultAdmin.aspx.designer.cs">
       <DependentUpon>defaultAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallePedidoAdmin.aspx.cs">
+      <DependentUpon>DetallePedidoAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePedidoAdmin.aspx.designer.cs">
+      <DependentUpon>DetallePedidoAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="DetalleProducto.aspx.cs">
       <DependentUpon>DetalleProducto.aspx</DependentUpon>
