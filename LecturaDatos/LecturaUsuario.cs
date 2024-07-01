@@ -55,7 +55,7 @@ namespace LecturaDatos
                     LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();
                     aux.id = (int)datos.Lector["ID"];
                     aux.usuario = (string)datos.Lector["Usuario"];
-                    aux.password = (string)(datos.Lector["Password"]);
+                    aux.password = (string)(datos.Lector["Clave"]);
                     aux.admin = (bool)(datos.Lector["Administrar"]);
                     aux.dato.id = (int)datos.Lector["IDDatos_Personales"];
                     aux.dato = lecturaDatosUsuario.listar(aux.id);
