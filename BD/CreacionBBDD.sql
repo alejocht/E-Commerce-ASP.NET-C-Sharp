@@ -91,17 +91,3 @@ alter table Imagen add Estado bit not null default 1;
 alter table Pedido add Estado bit not null default 1;
 
 alter  table Imagen alter column ID_Producto INT NULL
-
---create or alter procedure SP_AgregarProducto(@IDCategoria int, @IDMarca int, @Nombre varchar(80), @Descripcion varchar(80), @Precio money, @Stock int)
---as
---begin
---	begin try
---		begin transaction
---			insert into Productos (ID_Categoria, ID_Marca,Nombre, Descripcion, Precio,Stock) values (@IDCategoria, @IDMarca, @Nombre, @Descripcion, @Precio, @Stock);
---		commit transaction
---	end try
---	begin catch
---		rollback transaction
---	end catch
---end
-
