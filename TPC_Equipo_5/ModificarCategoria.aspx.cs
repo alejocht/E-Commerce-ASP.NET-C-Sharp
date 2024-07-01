@@ -22,6 +22,7 @@ namespace TPC_Equipo_5
                 if (!IsPostBack)
                 {
                     txtCategoria.Text = seleccionada.nombre;
+                    ckbActivo.Checked = seleccionada.estado;
                 }
             } 
             catch (Exception ex) 
@@ -52,6 +53,7 @@ namespace TPC_Equipo_5
                 }
                 LecturaCategoria lecturaCategoria = new LecturaCategoria();
                 seleccionada.nombre = txtCategoria.Text;
+                seleccionada.estado = ckbActivo.Checked;
                 lecturaCategoria.modificar(seleccionada);
                 Response.Redirect("categoriasAdmin.aspx", false);
             }
