@@ -13,20 +13,44 @@ namespace TPC_Equipo_5
     public partial class Productos : System.Web.UI.Page
     {
         public List<Producto> listaProductos;
+        string busqueda = null;
+        bool listaMostrable;
         protected void Page_Load(object sender, EventArgs e)
         {
             LecturaProducto lecturaProducto = new LecturaProducto();
             listaProductos = new List<Producto>();
             listaProductos = lecturaProducto.listar();
-            RepeaterProducto.DataSource = listaProductos;
-            RepeaterProducto.DataBind();
             
-            
+            busqueda = Request.QueryString["busqueda"];
+            if (busqueda != null) filtrarArticulo(busqueda);
+            validarListaMostrable();
+
+            if (!IsPostBack)
+            {
+                RepeaterProducto.DataSource = listaProductos;
+                RepeaterProducto.DataBind();
+            }
         }
         protected void LinkButton_Click(object sender, EventArgs e)
         {
             string ID = ((LinkButton)sender).CommandArgument.ToString();
             Response.Redirect("DetalleProducto.aspx?ID="+ID, false);
+        }
+
+        public void validarListaMostrable()
+        {
+            int cantidadRegistros = listaProductos.Count();
+            listaMostrable = true;
+            if (cantidadRegistros < 1)
+            {
+                listaMostrable = false;
+            }
+        }
+        private void filtrarArticulo(string filtro)
+        {
+            List<Producto> listaFiltrada;
+            listaFiltrada = listaProductos.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
+            listaProductos = listaFiltrada;
         }
     }
 }
