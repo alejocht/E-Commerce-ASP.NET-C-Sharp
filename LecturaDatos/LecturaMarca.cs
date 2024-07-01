@@ -23,6 +23,7 @@ namespace LecturaDatos
                     Marca aux = new Marca();
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["nombre"];
+                    aux.estado = (bool)datos.Lector["estado"];
 
                     lista.Add(aux);
                 }
@@ -54,7 +55,7 @@ namespace LecturaDatos
                 {
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["nombre"];
-
+                    aux.estado = (bool)datos.Lector["estado"];
                 }
 
                 return aux;
@@ -97,8 +98,9 @@ namespace LecturaDatos
 
             try
             {
-                datos.SetearConsulta("update Marcas set nombre = @nombre where ID = @id");
+                datos.SetearConsulta("update Marcas set nombre = @nombre, estado = @estado where ID = @id");
                 datos.SetearParametro("@nombre", nuevo.nombre);
+                datos.SetearParametro("@estado", nuevo.estado ? 1 : 0);
                 datos.SetearParametro("@id", nuevo.id);
                 datos.ejecutarAccion();
 

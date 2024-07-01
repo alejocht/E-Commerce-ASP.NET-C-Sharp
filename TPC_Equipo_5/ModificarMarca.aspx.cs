@@ -22,6 +22,7 @@ namespace TPC_Equipo_5
                 if (!IsPostBack)
                 {
                     txtNombre.Text = seleccionada.nombre;
+                    ckbActivo.Checked = seleccionada.estado;
                 }
             } 
             catch (Exception ex) 
@@ -50,6 +51,7 @@ namespace TPC_Equipo_5
             {
                 LecturaMarca lecturaMarca = new LecturaMarca();
                 seleccionada.nombre = txtNombre.Text;
+                seleccionada.estado = ckbActivo.Checked;
                 lecturaMarca.modificar(seleccionada);
                 Response.Redirect("marcasAdmin.aspx", false);
             }

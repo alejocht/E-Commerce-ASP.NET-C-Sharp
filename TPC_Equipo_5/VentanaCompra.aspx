@@ -119,36 +119,51 @@
                             </div>
 
                             <div class="container mt-3">
-                                <div>
-                                    <div class="container border border-danger" style="background-color: whitesmoke; height: 125px; width: 1000px;">
-                                        <div class="row ">
-                                            <div class="col-4">
-                                                <img src="https://innovatech.ar/wp-content/uploads/2021/08/11-2.jpg" style="width: 100px; height: 100px" class="card-img-top" alt="Image description" onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'">
-                                            </div>
-                                            <div class="col text-start p-md-5">
+                                <div class="row">
+                                    <asp:Repeater runat="server" ID="repCarrito">
+                                        <ItemTemplate>
+                                            <div>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <img src="<%#Eval("imagenPrincipal")%>" class="card-img-top" alt="Image description" onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'">
+                                                        </div>
+                                                        <div class="col text-start p-md-5">
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div>
+                                                                            <label>Articulo: <%#Eval("Nombre")%> </label>
+                                                                        </div>
+                                                                        <div>
+                                                                            <label>Descripcion: <%#Eval("Descripcion")%> </label>
 
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <div>
-                                                            <label style="">Nombre del producto  </label>
+                                                                        </div>
+                                                                        <div>
+                                                                            <label>Precio: $ <%#Eval("Precio")%> </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="container">
+                                                                <div class="row">
+
+                                                                    <div class="col-6 text-end">
+                                                                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("ID") %>' CommandName="IdArticulo" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="container text-end">
+                                                                <div class="row">
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
-
-                                                        <label>Precio: $100000 </label>
-                                                    </div>
                                                 </div>
-
-
-                                                <div class="row">
-                                                    <div class="text-end">
-                                                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" CommandArgument="" CommandName="IdArticulo" />
-                                                    </div>
-                                                </div>
-
                                             </div>
-                                        </div>
-                                    </div>
+                                            <hr style="width: 90%; margin-inline: 10%;" />
+                                        </ItemTemplate>
+                                    </asp:Repeater>
                                 </div>
 
 
@@ -239,7 +254,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        
+
                                         <div class="input-group mt-1">
                                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                                 <label>Comentario:</label>

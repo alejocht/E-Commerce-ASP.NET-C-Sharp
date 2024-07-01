@@ -23,6 +23,7 @@ namespace LecturaDatos
                     Categoria aux = new Categoria();
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["nombre"];
+                    aux.estado = (bool)datos.Lector["estado"];
 
                     lista.Add(aux);
                 }
@@ -54,6 +55,7 @@ namespace LecturaDatos
                 {
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["nombre"];
+                    aux.estado = (bool)datos.Lector["estado"];
 
                 }
 
@@ -97,9 +99,10 @@ namespace LecturaDatos
 
             try
             {
-                datos.SetearConsulta("update Categorias set Nombre = @nombre where ID = @id");
+                datos.SetearConsulta("update Categorias set Nombre = @nombre, Estado = @estado where ID = @id");
                 datos.SetearParametro("@nombre", nuevo.nombre);
                 datos.SetearParametro("@id", nuevo.id);
+                datos.SetearParametro("@estado", nuevo.estado ? 1 : 0);
                 datos.ejecutarAccion();
 
             }

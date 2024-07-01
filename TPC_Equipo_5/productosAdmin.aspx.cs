@@ -21,13 +21,11 @@ namespace TPC_Equipo_5
         protected void Page_Load(object sender, EventArgs e)
         {
             try
-            {      
+            {   
+                cargardatos();
                 if (!IsPostBack)
                 {
-                    cargardatos();
                     cargarddl();
-                    dgvProductos.DataSource = listaLecturaProducto;
-                    dgvProductos.DataBind();
                 }
             }
             catch (Exception ex)
@@ -85,6 +83,14 @@ namespace TPC_Equipo_5
                 {
                     listaFiltrada = listaLecturaProducto.OrderBy(x => x.stock).ToList();
                 }
+                else if (ddlOrdenar.SelectedValue == "Activos")
+                {
+                    listaFiltrada = filtrarXEstado(true);
+                }
+                else if (ddlOrdenar.SelectedValue == "Inactivos")
+                {
+                    listaFiltrada = filtrarXEstado(false);
+                }
                 else
                 {
                     listaFiltrada = listaLecturaProducto.OrderBy(x => x.id).ToList();
@@ -98,6 +104,20 @@ namespace TPC_Equipo_5
 
                 throw ex;
             }  
+        }
+        protected List<Producto> filtrarXEstado(bool estado)
+        {
+            try
+            {
+                List<Producto> listaFiltrada;
+                listaFiltrada = listaLecturaProducto.FindAll(x => x.estado == estado);
+                return listaFiltrada;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
@@ -181,6 +201,8 @@ namespace TPC_Equipo_5
             try
             {
                 ddlOrdenar.Items.Add("Por defecto");
+                ddlOrdenar.Items.Add("Activos");
+                ddlOrdenar.Items.Add("Inactivos");
                 ddlOrdenar.Items.Add("Precio Mayor");
                 ddlOrdenar.Items.Add("Precio Menor");
                 ddlOrdenar.Items.Add("Stock Mayor");
@@ -192,7 +214,6 @@ namespace TPC_Equipo_5
                 throw ex;
             }
         }
-
         protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

@@ -35,14 +35,13 @@
             <div class="col-12">
 
                 <asp:GridView ID="dgvProductos" DataKeyNames="ID" runat="server" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged">
-
                     <Columns>
                         <asp:BoundField HeaderText="Código" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
                         <asp:BoundField HeaderText="Precio" DataField="precio" />
                         <asp:BoundField HeaderText="Stock" DataField="stock" />
-
-                        <asp:CommandField ShowSelectButton="true" SelectText="editar" HeaderText="" />          
+                        <asp:CheckBoxField HeaderText="Activo" DataField="estado" />
+                        <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Detalle" />
 
                     </Columns>
                 </asp:GridView>
@@ -57,10 +56,12 @@
                 <asp:Label ID="lblPagina" runat="server" Text="Página: X" CssClass="form-label"></asp:Label>
                 <asp:Label ID="lblTotal" runat="server" Text=" de XX" CssClass="form-label"></asp:Label>
             </div>
+            <div class="col text-end">
+                <asp:Button ID="btnAgregarProducto" type="button" runat="server" Text="Agregar Producto" class="btn btn-outline-light" OnClick="btnAgregarProducto_Click" />
             </div>
         </div>
-            <div class="col-4 text-end">
-                <asp:Button ID="btnAgregarProducto" type="button" runat="server" Text="Agregar Producto" class="btn btn-outline-light" OnClick="btnAgregarProducto_Click"/>
-            </div>
+
+    </div>
+
 
 </asp:Content>

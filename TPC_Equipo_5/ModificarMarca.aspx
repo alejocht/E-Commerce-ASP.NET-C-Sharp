@@ -9,20 +9,24 @@
             <div class="col">
                 <label class="form-label">Nombre de la marca</label>
                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
             </div>
+            <div class="col">
+                <label class="form-check-label">Activo</label>
+                <asp:CheckBox ID="ckbActivo" runat="server" />
+            </div>
+        </div>
         <div class="row">
             <div class="col m-2 p-lg-4">
-                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" onclick="btnCancelar_Click" />
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
             </div>
             <div class="col m-2 p-lg-4">
-                <asp:Button ID="btnAgregar" runat="server" Text="Modificar" CssClass="btn btn-success" onclick="btnAgregar_Click"></asp:Button>
+                <asp:Button ID="btnAgregar" runat="server" Text="Modificar" CssClass="btn btn-success" OnClick="btnAgregar_Click"></asp:Button>
             </div>
             <div class="col m-2 p-lg-4">
-                <asp:Button ID="BtnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" onclick="BtnEliminar_Click" ></asp:Button>
+                <asp:Button ID="BtnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="BtnEliminar_Click"></asp:Button>
             </div>
         </div>
-    <div style="padding: 100px 10px;">
+        <div style="padding: 100px 10px;">
+        </div>
     </div>
-        </div>
 </asp:Content>

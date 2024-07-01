@@ -18,7 +18,7 @@ namespace LecturaDatos
             //AccesoDatos datosImagenes = new AccesoDatos();
             try
             {
-                datosProductos.SetearConsulta("SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID");
+                datosProductos.SetearConsulta("SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, P.Estado as EstadoProducto , M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID");
                 datosProductos.EjecutarLectura();
                 while(datosProductos.Lector.Read())
                 {
@@ -33,6 +33,7 @@ namespace LecturaDatos
                     aux.descripcion = (string)datosProductos.Lector["ProductoDescripcion"];
                     aux.stock = (int)datosProductos.Lector["ProductoStock"];
                     aux.precio = (decimal)datosProductos.Lector["ProductoPrecio"];
+                    aux.estado = (bool)datosProductos.Lector["EstadoProducto"];
 
                     //Carga de Marca y categoria
                     if (!Convert.IsDBNull(datosProductos.Lector["MarcaID"]))
@@ -92,6 +93,7 @@ namespace LecturaDatos
                     aux.descripcion = (string)datos.Lector["Descripcion"];
                     aux.stock = (int)datos.Lector["Stock"];
                     aux.precio = (decimal)datos.Lector["Precio"];
+                    aux.estado = (bool)datos.Lector["Estado"];
                     aux.marca = lecturaMarca.listar(id);
                     aux.categoria = lecturaCategoria.listar(id);
                     aux.imagenes = lecturaImagen.listar(id);
@@ -165,7 +167,7 @@ namespace LecturaDatos
 
             try
             {
-                datos.SetearConsulta("update Productos set ID_Categoria = @IDCategoria,  ID_Marca = @IDMarca , Nombre = @Nombre , Descripcion = @Descripcion, Precio = @Precio , Stock = @Stock  where ID = @ID");
+                datos.SetearConsulta("update Productos set ID_Categoria = @IDCategoria,  ID_Marca = @IDMarca , Nombre = @Nombre , Descripcion = @Descripcion, Precio = @Precio , Stock = @Stock, Estado = @Estado  where ID = @ID");
                 datos.SetearParametro("@IDCategoria", nuevo.categoria.id);
                 datos.SetearParametro("@IDMarca", nuevo.marca.id);
                 datos.SetearParametro("@Nombre", nuevo.nombre);
@@ -173,6 +175,7 @@ namespace LecturaDatos
                 datos.SetearParametro("@Precio", nuevo.precio);
                 datos.SetearParametro("@Stock", nuevo.stock);
                 datos.SetearParametro("@ID", nuevo.id);
+                datos.SetearParametro("@Estado", nuevo.estado);
                 datos.ejecutarAccion();
 
             }
@@ -192,7 +195,7 @@ namespace LecturaDatos
 
             try
             {
-                datos.SetearConsulta("delete from Productos where ID = @ID)");
+                datos.SetearConsulta("delete from Productos where ID = @ID");
                 datos.SetearParametro("@ID", nuevo.id);
                 datos.ejecutarAccion();
 
