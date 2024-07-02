@@ -181,7 +181,6 @@ namespace LecturaDatos
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally

@@ -27,7 +27,8 @@ namespace LecturaDatos
                     aux.usuario = (string)datos.Lector["Usuario"];
                     aux.password = (string)datos.Lector["Clave"];
                     aux.admin = (bool)datos.Lector["Administrar"];
-                    aux.dato = lecturaDatosUsuario.listar(aux.id);
+                    aux.dato.id = (int)datos.Lector["IDDatos_Personales"];
+                    aux.dato = lecturaDatosUsuario.listar(aux.dato.id);
                 }
 
                 return lista;
@@ -58,7 +59,7 @@ namespace LecturaDatos
                     aux.password = (string)(datos.Lector["Clave"]);
                     aux.admin = (bool)(datos.Lector["Administrar"]);
                     aux.dato.id = (int)datos.Lector["IDDatos_Personales"];
-                    aux.dato = lecturaDatosUsuario.listar(aux.id);
+                    aux.dato = lecturaDatosUsuario.listar(aux.dato.id);
                 }
                 return aux;
             }
@@ -77,11 +78,19 @@ namespace LecturaDatos
             AccesoDatos datos = new AccesoDatos();
             try
             {
+                //agregar datos personales y enlazarlos a usuario
+                LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();
+                lecturaDatosUsuario.agregar(nuevo.dato);
+                List<DatosUsuario> lista = new List<DatosUsuario>();
+                lista = lecturaDatosUsuario.listar();
+                DatosUsuario aux = lista.Last();
+                int idDatosPersonales = aux.id;
+                //agregar ususario
                 datos.SetearConsulta("insert into Usuarios (Usuario,Clave,Administrar,IDDatos_Personales) values (@usuario, @clave, @admin, @iddatospersonales)");
                 datos.SetearParametro("@usuario", nuevo.usuario);
                 datos.SetearParametro("@clave", nuevo.password);
                 datos.SetearParametro("@admin", nuevo.admin);
-                datos.SetearParametro("@iddatospersonales",nuevo.dato.id);
+                datos.SetearParametro("@iddatospersonales",idDatosPersonales);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -98,13 +107,14 @@ namespace LecturaDatos
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("update Usuarios set Usuario = @usuario, Clave = @clave, Administrar = @admin, IDDatos_Personales = @iddatospersonales where ID = @id");
+                datos.SetearConsulta("update Usuarios set Usuario = @usuario, Clave = @clave, Administrar = @admin where ID = @id");
                 datos.SetearParametro("@usuario", nuevo.usuario);
                 datos.SetearParametro("@clave", nuevo.password);
                 datos.SetearParametro("@admin", nuevo.admin);
-                datos.SetearParametro("@iddatospersonales", nuevo.dato.id);
                 datos.SetearParametro("@id", nuevo.id);
                 datos.ejecutarAccion();
+                LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();
+                lecturaDatosUsuario.modificar(nuevo.dato);
             }
             catch (Exception ex)
             {
