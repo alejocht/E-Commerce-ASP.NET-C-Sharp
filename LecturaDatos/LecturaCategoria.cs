@@ -9,14 +9,21 @@ namespace LecturaDatos
 {
     public class LecturaCategoria
     {
-        public List<Categoria> listar()
+        public List<Categoria> listar(bool SoloActivos = false)
         {
             List<Categoria> lista = new List<Categoria>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta("select * from Categorias");
+                if(SoloActivos)
+                {
+                    datos.SetearConsulta("select * from Categorias WHERE Estado = 1");
+                }
+                else
+                {
+                    datos.SetearConsulta("select * from Categorias");
+                }
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 {

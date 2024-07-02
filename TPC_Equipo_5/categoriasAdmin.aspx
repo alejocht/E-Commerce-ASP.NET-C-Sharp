@@ -36,6 +36,7 @@
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
+                        <asp:CheckBoxField HeaderText="Estado" DataField="estado" />
                         <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Detalle" />
                     </Columns>
                 </asp:GridView>
