@@ -19,7 +19,7 @@ namespace TPC_Equipo_5
                 //Carga los primeros 3 productos de db
                 LecturaProducto lecturaProducto = new LecturaProducto();
                 listaProductos = new List<Producto>();
-                listaProductos = lecturaProducto.listar();
+                listaProductos = lecturaProducto.listar(true);
                 RepeaterProducto.DataSource = listaProductos.Take(3);
                 RepeaterProducto.DataBind();
             }

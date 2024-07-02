@@ -19,7 +19,7 @@ namespace TPC_Equipo_5
         {
             LecturaProducto lecturaProducto = new LecturaProducto();
             listaProductos = new List<Producto>();
-            listaProductos = lecturaProducto.listar();
+            listaProductos = lecturaProducto.listar(true);
             
             busqueda = Request.QueryString["busqueda"];
             if (busqueda != null) filtrarArticulo(busqueda);

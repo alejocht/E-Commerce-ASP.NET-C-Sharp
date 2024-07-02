@@ -11,14 +11,21 @@ namespace LecturaDatos
 {
     public class LecturaProducto
     {
-        public List<Producto> listar() //return listaProductos
+        public List<Producto> listar(bool soloActivos = false) //return listaProductos
         {
             List<Producto> listaProductos = new List<Producto>();
             AccesoDatos datosProductos = new AccesoDatos();
             //AccesoDatos datosImagenes = new AccesoDatos();
             try
             {
-                datosProductos.SetearConsulta("SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, P.Estado as EstadoProducto , M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID");
+                if(soloActivos)
+                {
+                    datosProductos.SetearConsulta("SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, P.Estado as EstadoProducto , M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID WHERE P.Estado = 1");
+                }
+                else
+                {
+                    datosProductos.SetearConsulta("SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, P.Estado as EstadoProducto , M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID");         
+                }
                 datosProductos.EjecutarLectura();
                 while(datosProductos.Lector.Read())
                 {
