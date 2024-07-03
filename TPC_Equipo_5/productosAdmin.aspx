@@ -5,6 +5,27 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white">
+
+        <%if (!FiltroValido)
+          {  %> <script>$("#modalError").modal("show");</script> <%} %>
+        <!-- Modal -->
+        <div class="modal fade" id="modalError" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Deben Completarse todos los campos</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p> <%=msgError%> </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Entendido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <div class="row">
             <div class="col-12">

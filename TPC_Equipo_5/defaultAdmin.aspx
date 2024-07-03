@@ -13,6 +13,7 @@
         <div style="padding: 100px 10px;">
             <div>
                 <h2 class="text-center">Seleccione una opción del menú</h2>
+
             </div>
         </div>
     </div>
