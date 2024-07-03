@@ -106,6 +106,31 @@ namespace TPC_Equipo_5
 
         protected void btnSiguiente_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if(!Page.IsValid)
+            { return; }
+            switch (cambiopag)
+            {
+                case 1:
+                    {
+
+                    }
+                    break; 
+                case 2:
+                    {
+
+                    }
+                    break; 
+                case 3:
+                    {
+
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+
             if (cambiopag < 3)
             {
                 cambiopag++;

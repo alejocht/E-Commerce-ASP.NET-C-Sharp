@@ -1,17 +1,101 @@
-﻿using System;
+﻿using Dominio;
+using Dominio.Productos;
+using LecturaDatos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio.Usuarios;
 
 namespace TPC_Equipo_5
 {
     public partial class RegistroUsuario : System.Web.UI.Page
     {
+        List<Provincia> ListaProvincias;
+        LecturaProvincia lecturaProvincias;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            try
+            {
+                if (!IsPostBack)
+                {
+
+
+                    lecturaProvincias = new LecturaProvincia();
+                    List<Provincia> listaprovincia = lecturaProvincias.listar();
+                    LecturaCiudad lecturaciudad = new LecturaCiudad();
+                    List<Ciudad> listaciudad = lecturaciudad.listar();
+
+
+                    DdlProvincias.DataSource = listaprovincia;
+                    DdlProvincias.DataValueField = "ID";
+                    DdlProvincias.DataTextField = "Nombre";
+                    DdlProvincias.DataBind();
+
+                    DdlLocalidad.DataSource = listaciudad;
+                    DdlLocalidad.DataTextField = "Nombre";
+                    DdlLocalidad.DataBind();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex);
+            }
+        }
+
+        protected void DdlProvincias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LecturaCiudad lecturaciudad = new LecturaCiudad();
+            List<Ciudad> listaciudad = new List<Ciudad>();
+            int id = int.Parse(DdlProvincias.SelectedItem.Value);
+            listaciudad = lecturaciudad.listarPorProvincia(id);
+            DdlLocalidad.DataSource = listaciudad;
+            DdlLocalidad.DataTextField = "Nombre";
+            DdlLocalidad.DataBind();
+        }
+
+        protected void Rb_Mujer_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Rb_Hombre_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Rb_PnD_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void Btn_CrearCuenta_Click(object sender, EventArgs e)
+        {
+            Page.Validate();
+            if(!Page.IsValid)
+            {
+
+            }
+            else
+            {
+                
+               /* LecturaUsuario lecturaUsuario = new LecturaUsuario();
+                
+                LecturaDatosUsuario lecturadatos = new LecturaDatosUsuario();
+                DatosUsuario datosUsuario = new DatosUsuario();
+                Usuario aux = new Usuario();
+                
+                datosUsuario.nombre = Txt_Nombre.ToString();
+                datosUsuario.apellido= Txt_Apellido.ToString();
+                datosUsuario.telefono =  int.Parse(Txt_Telefono.Text);
+                datosUsuario.email= Txt_Email.ToString();
+                datosUsuario.direccion= Txt_Direccion.ToString();
+                datosUsuario.ciudad.id = int.Parse(DdlLocalidad.SelectedItem.Value);
+                lecturadatos.agregar(datosUsuario);*/
+            }
         }
     }
 }

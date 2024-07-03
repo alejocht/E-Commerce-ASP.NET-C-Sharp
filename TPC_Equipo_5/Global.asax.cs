@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Web.UI;
 
 namespace TPC_Equipo_5
 {
@@ -11,6 +12,18 @@ namespace TPC_Equipo_5
     {
         protected void Application_Start(object sender, EventArgs e)
         {
+           
         }
+
+       /* void Application_Error(object sender, EventArgs e)
+        {
+            Exception exc = Server.GetLastError();
+
+            Session.Add("error", exc.ToString() );
+            //Response.Redirect("Error.aspx");
+            Server.Transfer("Error.aspx");
+
+        }*/
+
     }
 }

@@ -74,7 +74,7 @@
                                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                                 <label>CP</label>
                                             </div>
-                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                            <asp:TextBox CssClass="form-control" style="flex: none; width: 40%;" runat="server" ID="Txt_Cp" />                                                  
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                                 <label>Calle</label>
                                             </div>
-                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                            <asp:TextBox CssClass="form-control" style="flex: none; width: 40%;" runat="server" ID="Txt_Calle" /> 
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -94,7 +94,7 @@
                                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                                 <label>Numero</label>
                                             </div>
-                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                            <asp:TextBox CssClass="form-control" style="flex: none; width: 40%;" runat="server" ID="Txt_Num"/> 
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -103,7 +103,8 @@
                                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                                 <label>Piso</label>
                                             </div>
-                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                            <asp:TextBox CssClass="form-control" style="flex: none; width: 40%;" runat="server" ID="Txt_Piso" /> 
+                                            <asp:RequiredFieldValidator CssClass="validation" ErrorMessage="Campo requerido" ControlToValidate="Txt_Piso" runat="server" />
                                         </div>
                                     </div>
 
@@ -194,7 +195,7 @@
                                     <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke; width: 5.3rem">
                                         <label>Email</label>
                                     </div>
-                                    <input class="form-control " type="text" placeholder="Example@gmail.com" />
+                                    <asp:TextBox CssClass="form-control" style="flex: none; width: 40%;" runat="server" /> 
                                 </div>
 
                                 <div class="row">
@@ -221,7 +222,7 @@
                                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                                 <label>CP</label>
                                             </div>
-                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                            <asp:TextBox CssClass="form-control" style="flex: none; width: 40%;" runat="server" ID="Txt_Cp_R" /> 
                                         </div>
                                     </div>
                                 </div>
@@ -232,7 +233,7 @@
                                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                                 <label>Calle</label>
                                             </div>
-                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                           <asp:TextBox CssClass="form-control" style="flex: none; width: 40%;" runat="server" ID="Txt_Calle_R" /> 
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -241,7 +242,7 @@
                                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                                 <label>Numero</label>
                                             </div>
-                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                           <asp:TextBox CssClass="form-control" style="flex: none; width: 40%;" runat="server" ID="Txt_Num_R" /> 
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -250,7 +251,7 @@
                                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                                 <label>Piso</label>
                                             </div>
-                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                           <asp:TextBox CssClass="form-control" style="flex: none; width: 40%;" runat="server" ID="Txt_Piso_R" /> 
                                         </div>
                                     </div>
                                     <div>
@@ -259,7 +260,7 @@
                                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                                 <label>Comentario:</label>
                                             </div>
-                                            <input class="form-control" type="text" style="flex: none; width: 40%;" />
+                                            <asp:TextBox CssClass="form-control" style="flex: none; width: 40%;" runat="server" /> 
                                         </div>
 
                                     </div>
