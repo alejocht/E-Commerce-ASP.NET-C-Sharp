@@ -33,6 +33,15 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.Button btnBusqueda;
 
         /// <summary>
+        /// ChkCompletados control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkCompletados;
+
+        /// <summary>
         /// ddlOrdenar control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace TPC_Equipo_5
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlOrdenar;
+
+        /// <summary>
+        /// rblFiltroBusqueda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rblFiltroBusqueda;
 
         /// <summary>
         /// dgvPedidos control.

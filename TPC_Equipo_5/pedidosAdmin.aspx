@@ -25,21 +25,31 @@
             </div>
             <div class="col-6">
                 <div class="dropdown text-end">
+                    <asp:CheckBox ID="ChkCompletados" runat="server" Text="Filtrar Completados" style="margin-right: 20px;" OnCheckedChanged="ChkCompletados_CheckedChanged" AutoPostBack="true"/>
                     <asp:DropDownList ID="ddlOrdenar" runat="server" OnSelectedIndexChanged="ddlOrdenar_SelectedIndexChanged" AutoPostBack="true"
                         aria-label="Por defecto" CssClass="btn dropdown-menu-end btn-dark"
                         Style="background-color: #1b1f23; width: 30%;">
                     </asp:DropDownList>
                 </div>
             </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col" >
+                    <asp:RadioButtonList ID="rblFiltroBusqueda" runat="server" RepeatColumns="3">
+                        <asp:ListItem Text="N° Pedido" style="margin-right: 20px;" />
+                        <asp:ListItem Text="Cliente" style="margin-right: 20px;" />
+                        <asp:ListItem Text="Fecha" style="margin-right: 20px;" />
+                    </asp:RadioButtonList>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <asp:GridView ID="dgvPedidos" runat="server" DataKeyNames="id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvPedidos_SelectedIndexChanged" >
+                <asp:GridView ID="dgvPedidos" runat="server" DataKeyNames="id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvPedidos_SelectedIndexChanged">
                     <Columns>
-                        <asp:BoundField HeaderText="Pedido" DataField="id" />
+                        <asp:BoundField HeaderText="N° Pedido" DataField="id" />
                         <asp:BoundField HeaderText="Cliente" DataField="usuario.usuario" />
-                        <asp:BoundField HeaderText="Método de pago" DataField="metodoPago.nombre" />
                         <asp:BoundField HeaderText="Fecha" DataField="fecha" />
+                        <asp:BoundField HeaderText="Método de pago" DataField="metodoPago.nombre" />
                         <asp:BoundField HeaderText="Estado" DataField="estadoPedido.nombre" />
                         <asp:CommandField SelectText="Ver detalles" ShowSelectButton="true" />
                     </Columns>

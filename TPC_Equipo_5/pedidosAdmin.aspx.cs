@@ -14,6 +14,7 @@ namespace TPC_Equipo_5
     public partial class pedidosAdmin : System.Web.UI.Page
     {
         public List<Pedido> listaLecturaPedido;
+        public List<Pedido> pedidosFiltrados;
         string busqueda;
         string seleccionado;
 
@@ -25,6 +26,7 @@ namespace TPC_Equipo_5
                 if (!IsPostBack)
                 {
                     cargarddl();
+                    rblFiltroBusqueda.SelectedIndex = 0;
                 }
             }
             catch (Exception ex)
@@ -43,7 +45,7 @@ namespace TPC_Equipo_5
                 if (ValidarTextBox(busqueda))
                 {
                     filtrarProducto(busqueda);
-                    dgvPedidos.DataSource = listaLecturaPedido;
+                    dgvPedidos.DataSource = pedidosFiltrados;
                     dgvPedidos.DataBind();
                 }
                 else
@@ -51,6 +53,9 @@ namespace TPC_Equipo_5
                     cargardatos();
                     dgvPedidos.DataSource = listaLecturaPedido;
                     dgvPedidos.DataBind();
+                    rblFiltroBusqueda.SelectedIndex = 0;
+                    ddlOrdenar.SelectedIndex = 0;
+                    ChkCompletados.Checked = false;
                 }
             }
             catch (Exception ex)
@@ -64,23 +69,43 @@ namespace TPC_Equipo_5
         {
             try
             {
-                List<Pedido> listaFiltrada;
+                busqueda = txtBuscar.Text;
+                ordenarProducto(busqueda);
+            }
+            catch (Exception ex)
+            {
 
-                if (ddlOrdenar.SelectedValue == "Más recientes")
+                throw ex;
+            }
+        }
+
+        protected void ChkCompletados_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                busqueda = txtBuscar.Text;
+                if (ValidarTextBox(busqueda))
                 {
-                    listaFiltrada = listaLecturaPedido.OrderByDescending(x => x.fecha).ToList();
-                }
-                else if (ddlOrdenar.SelectedValue == "Más antiguos")
-                {
-                    listaFiltrada = listaLecturaPedido.OrderBy(x => x.fecha).ToList();
+                    filtrarProducto(busqueda);
+                    ordenarProducto(busqueda);
+                    if (ChkCompletados.Checked)
+                    {
+                        quitarCompletados(busqueda);
+                    }
+                    else
+                    {
+                        dgvPedidos.DataSource = pedidosFiltrados;
+                        dgvPedidos.DataBind();
+                    }
                 }
                 else
                 {
-                    listaFiltrada = listaLecturaPedido.OrderBy(x => x.id).ToList();
+                    ordenarProducto(busqueda);
+                    if (ChkCompletados.Checked)
+                    {   
+                        quitarCompletados(busqueda);
+                    }
                 }
-                listaLecturaPedido = listaFiltrada;
-                dgvPedidos.DataSource = listaLecturaPedido;
-                dgvPedidos.DataBind();
             }
             catch (Exception ex)
             {
@@ -143,16 +168,117 @@ namespace TPC_Equipo_5
         {
             try
             {
-                List<Pedido> listaFiltrada;
-                listaFiltrada = listaLecturaPedido.FindAll(x => x.id.ToString().ToUpper().Contains(filtro.ToUpper()));
-                listaLecturaPedido = listaFiltrada;
+                if (rblFiltroBusqueda.SelectedValue == "N° Pedido")
+                {
+                    pedidosFiltrados = listaLecturaPedido.FindAll(x => x.id.ToString().ToUpper().Contains(filtro.ToUpper()));
+                }
+                else if (rblFiltroBusqueda.SelectedValue == "Cliente")
+                {
+                    pedidosFiltrados = listaLecturaPedido.FindAll(x => x.usuario.usuario.ToUpper().Contains(filtro.ToUpper()));
+                }
+                else if (rblFiltroBusqueda.SelectedValue == "Fecha")
+                {
+                    pedidosFiltrados = listaLecturaPedido.FindAll(x => x.fecha.ToString().ToUpper().Contains(filtro.ToUpper()));
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
         }
+
+        private void ordenarProducto(string busqueda)
+        {
+            List<Pedido> listaFiltrada;
+            if (ValidarTextBox(busqueda))
+            {
+                if (ChkCompletados.Checked)
+                {
+                    quitarCompletados(busqueda);
+                    filtrarProducto(busqueda);
+                    if (ddlOrdenar.SelectedValue == "Más recientes")
+                    {
+                        listaFiltrada = pedidosFiltrados.OrderByDescending(x => x.fecha).ToList();
+                    }
+                    else if (ddlOrdenar.SelectedValue == "Más antiguos")
+                    {
+                        listaFiltrada = pedidosFiltrados.OrderBy(x => x.fecha).ToList();
+                    }
+                    else
+                    {
+                        listaFiltrada = pedidosFiltrados.OrderBy(x => x.id).ToList();
+                    }
+                    pedidosFiltrados = listaFiltrada;
+                    dgvPedidos.DataSource = pedidosFiltrados;
+                    dgvPedidos.DataBind();
+                }
+                else
+                {
+                    cargardatos();
+                    dgvPedidos.DataSource = listaLecturaPedido;
+                    dgvPedidos.DataBind();
+                }
+            }
+            else
+            {
+                if (ChkCompletados.Checked)
+                {
+                    quitarCompletados(busqueda);
+                    if (ddlOrdenar.SelectedValue == "Más recientes")
+                    {
+                        listaFiltrada = listaLecturaPedido.OrderByDescending(x => x.fecha).ToList();
+                    }
+                    else if (ddlOrdenar.SelectedValue == "Más antiguos")
+                    {
+                        listaFiltrada = listaLecturaPedido.OrderBy(x => x.fecha).ToList();
+                    }
+                    else
+                    {
+                        listaFiltrada = listaLecturaPedido.OrderBy(x => x.id).ToList();
+                    }
+                    listaLecturaPedido = listaFiltrada;
+                    dgvPedidos.DataSource = listaLecturaPedido;
+                    dgvPedidos.DataBind();
+                }
+                else
+                {
+                    if (ddlOrdenar.SelectedValue == "Más recientes")
+                    {
+                        listaFiltrada = listaLecturaPedido.OrderByDescending(x => x.fecha).ToList();
+                    }
+                    else if (ddlOrdenar.SelectedValue == "Más antiguos")
+                    {
+                        listaFiltrada = listaLecturaPedido.OrderBy(x => x.fecha).ToList();
+                    }
+                    else
+                    {
+                        listaFiltrada = listaLecturaPedido.OrderBy(x => x.id).ToList();
+                    }
+                    listaLecturaPedido = listaFiltrada;
+                    dgvPedidos.DataSource = listaLecturaPedido;
+                    dgvPedidos.DataBind();
+                }
+            }
+        }
+        private void quitarCompletados(string busqueda)
+        {
+            List<Pedido> listaFiltrada;
+            if (ValidarTextBox(busqueda))
+            {
+                listaFiltrada = pedidosFiltrados.FindAll(x => x.estadoPedido.nombre != "Completado");
+                pedidosFiltrados = listaFiltrada;
+                dgvPedidos.DataSource = pedidosFiltrados;
+                dgvPedidos.DataBind();
+            }
+            else
+            {
+                listaFiltrada = listaLecturaPedido.FindAll(x => x.estadoPedido.nombre != "Completado");
+                listaLecturaPedido = listaFiltrada;
+                dgvPedidos.DataSource = listaLecturaPedido;
+                dgvPedidos.DataBind();
+            }
+        }
+
         public void cargarddl()
         {
             try
