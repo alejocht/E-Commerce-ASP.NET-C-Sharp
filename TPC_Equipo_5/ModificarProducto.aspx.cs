@@ -25,6 +25,7 @@ namespace TPC_Equipo_5
                 {
                     Session["NuevasImagenes"] = new List<Imagen>();
                     Session["ImagenesBorrar"] = new List<Imagen>();
+                    Session["ListaTemporal"] = new List<Imagen>();
                     cargarddl();
 
                     ckbActivo.Checked = seleccionado.estado;
@@ -32,6 +33,7 @@ namespace TPC_Equipo_5
                     txtDescripcion.Text = seleccionado.descripcion;
                     txtPrecio.Text = seleccionado.precio.ToString();
                     txtStock.Text = seleccionado.stock.ToString();
+                    Session["ListaTemporal"] = seleccionado.imagenes;
 
 
                     buscarIndiceDDLCategoria(seleccionado);
@@ -39,10 +41,14 @@ namespace TPC_Equipo_5
 
                     LecturaImagen lecturaImagen = new LecturaImagen();
                     seleccionado.imagenes = lecturaImagen.listar(seleccionado.id);
-                    dgv_ImgProductos.DataSource = seleccionado.imagenes;
+
+                    dgv_ImgProductos.DataSource = (List<Imagen>)Session["ListaTemporal"];
                     dgv_ImgProductos.DataBind();
 
-                    if(seleccionado.imagenes.Count > 0)
+                    dgv_nuevasImg.DataSource = (List<Imagen>)Session["NuevasImagenes"];
+                    dgv_nuevasImg.DataBind();
+
+                    if (seleccionado.imagenes.Count > 0)
                     {
                         seleccionado.imagenPrincipal = seleccionado.imagenes[0].imagenUrl;
                         imgProducto.ImageUrl = seleccionado.imagenPrincipal;
@@ -81,8 +87,11 @@ namespace TPC_Equipo_5
 
                 List<Imagen>ImagenesBorrar = new List<Imagen>();
                 List<Imagen>ImagenesNueva = new List<Imagen>();
+
+
                 ImagenesBorrar = (List<Imagen>)Session["ImagenesBorrar"];
                 ImagenesNueva = (List<Imagen>)Session["NuevasImagenes"];
+
                 foreach (Imagen imagen in ImagenesBorrar)
                 {
                     LecturaImagen lecturaImagen = new LecturaImagen();
@@ -108,17 +117,21 @@ namespace TPC_Equipo_5
         {
             Imagen aux = new Imagen();
             List<Imagen> nuevasImagenes = new List<Imagen>();
-            List<Imagen> imagenesTemporales = new List<Imagen>();
             aux.imagenUrl = txtImagenUrl.Text;
             aux.idProducto = seleccionado.id;
             aux.tipo = 1;
 
+            //La agrega a la lista de pendientes de cargar
             nuevasImagenes = (List<Imagen>)Session["NuevasImagenes"];
             nuevasImagenes.Add(aux);
             Session["NuevasImagenes"] = nuevasImagenes;
             
             txtImagenUrl.Text = string.Empty;
             imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+
+            
+            dgv_nuevasImg.DataSource = (List<Imagen>)Session["NuevasImagenes"];
+            dgv_nuevasImg.DataBind();
         }
         public void cargarddl()
         {
@@ -195,7 +208,7 @@ namespace TPC_Equipo_5
                 imgProducto.ImageUrl = txtImagenUrl.Text;
             }
         }
-        protected void dgv_ImgProductos_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void achicarLinks(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -213,13 +226,13 @@ namespace TPC_Equipo_5
         {
             Imagen imagenSeleccionada =  new Imagen();
             List<Imagen> imagenesBorrar = new List<Imagen>();
+
             int id = int.Parse(dgv_ImgProductos.SelectedDataKey.Value.ToString());
             imagenSeleccionada.id = id;
 
             imagenesBorrar = (List<Imagen>)Session["ImagenesBorrar"];
             imagenesBorrar.Add(imagenSeleccionada);
             Session["ImagenesBorrar"] = imagenesBorrar;
-
         }
         protected void BtnConfirmarEliminacion_Click(object sender, EventArgs e)
         {
@@ -247,6 +260,26 @@ namespace TPC_Equipo_5
         {
             confirmaEliminacion = true;
         }
+        protected void dgv_nuevasImg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Imagen> listaNueva = new List<Imagen>();
+            listaNueva = (List<Imagen>)Session["NuevasImagenes"];
+            if (dgv_nuevasImg.SelectedIndex >= 0)
+            {
 
+                int index = dgv_nuevasImg.SelectedIndex;
+
+
+                // Remover el elemento de la lista imagenesForm por su índice
+                if (index < listaNueva.Count)
+                {
+                    listaNueva.RemoveAt(index);
+                    Session["NuevasImagenes"] = listaNueva;
+                }
+                dgv_nuevasImg.DataSource = null;
+                dgv_nuevasImg.DataSource = (List<Imagen>)Session["NuevasImagenes"];
+                dgv_nuevasImg.DataBind();
+            }
+        }
     }
 }
