@@ -33,7 +33,7 @@ namespace TPC_Equipo_5
         {
             LecturaCategoria lecturaCategoria = new LecturaCategoria();
             List<Categoria> listaCategoria = new List<Categoria>();
-            listaCategoria = lecturaCategoria.listar();
+            listaCategoria = lecturaCategoria.listar(true);
 
             DDLCategoria.DataSource = listaCategoria;
             DDLCategoria.DataTextField = "Nombre";
@@ -42,7 +42,7 @@ namespace TPC_Equipo_5
 
             LecturaMarca lecturaMarca = new LecturaMarca();
             List<Marca> listaMarca = new List<Marca>();
-            listaMarca = lecturaMarca.listar();
+            listaMarca = lecturaMarca.listar(true);
 
             DDLMarca.DataSource = listaMarca;
             DDLMarca.DataTextField = "Nombre";

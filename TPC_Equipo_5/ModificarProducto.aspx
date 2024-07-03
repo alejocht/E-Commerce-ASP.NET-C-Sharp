@@ -49,12 +49,23 @@
                         </div>
 
                         <div class="m-lg-2">
-                            <asp:GridView ID="dgv_ImgProductos" runat="server" DataKeyNames="ID" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnRowDataBound="dgv_ImgProductos_RowDataBound" OnSelectedIndexChanged="dgv_ImgProductos_SelectedIndexChanged">
-                                <Columns>
-                                    <asp:BoundField HeaderText="Imagenes Cargadas" DataField="imagenUrl" />
-                                    <asp:CommandField ShowSelectButton="true" SelectText="Quitar" HeaderText="" />
-                                </Columns>
-                            </asp:GridView>
+                            <div cssclass="row">
+                                <asp:GridView ID="dgv_ImgProductos" runat="server" DataKeyNames="ID" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnRowDataBound="achicarLinks" OnSelectedIndexChanged="dgv_ImgProductos_SelectedIndexChanged">
+                                    <Columns>
+                                        <asp:BoundField HeaderText="Imagenes Cargadas" DataField="imagenUrl" />
+                                        <asp:CommandField ShowSelectButton="true" SelectText="Quitar" HeaderText="" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                            <div cssclass="row mt-2">
+                                <asp:GridView ID="dgv_nuevasImg" runat="server" DataKeyNames="ID" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnRowDataBound="achicarLinks" OnSelectedIndexChanged="dgv_nuevasImg_SelectedIndexChanged">
+                                    <Columns>
+                                        <asp:BoundField HeaderText="Nuevas Imagenes" DataField="imagenUrl" />
+                                        <asp:CommandField ShowSelectButton="true" SelectText="Quitar" HeaderText="" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+
                         </div>
 
                     </ContentTemplate>
@@ -76,13 +87,13 @@
                     <div class="col m-2 p-lg-4">
                         <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click"></asp:Button>
                     </div>
-                    <%if(confirmaEliminacion)
-                      { %>
-                        <div class="col m-2 p-lg-4">
-                            <asp:CheckBox Text="Confirmar Eliminacion" ID="chkConfirmarEliminacion" runat="server" />
-                            <asp:Button ID="BtnConfirmarEliminacion" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger" OnClick="BtnConfirmarEliminacion_Click"></asp:Button>
-                        </div>
-                  <%  } %>
+                    <%if (confirmaEliminacion)
+                        { %>
+                    <div class="col m-2 p-lg-4">
+                        <asp:CheckBox Text="Confirmar Eliminacion" ID="chkConfirmarEliminacion" runat="server" />
+                        <asp:Button ID="BtnConfirmarEliminacion" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger" OnClick="BtnConfirmarEliminacion_Click"></asp:Button>
+                    </div>
+                    <%  } %>
                 </ContentTemplate>
             </asp:UpdatePanel>
 

@@ -11,14 +11,21 @@ namespace LecturaDatos
 {
     public class LecturaProducto
     {
-        public List<Producto> listar() //return listaProductos
+        public List<Producto> listar(bool soloActivos = false) //return listaProductos
         {
             List<Producto> listaProductos = new List<Producto>();
             AccesoDatos datosProductos = new AccesoDatos();
             //AccesoDatos datosImagenes = new AccesoDatos();
             try
             {
-                datosProductos.SetearConsulta("SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, P.Estado as EstadoProducto , M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID");
+                if(soloActivos)
+                {
+                    datosProductos.SetearConsulta("SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, P.Estado as EstadoProducto , M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID WHERE P.Estado = 1");
+                }
+                else
+                {
+                    datosProductos.SetearConsulta("SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, P.Estado as EstadoProducto , M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID");         
+                }
                 datosProductos.EjecutarLectura();
                 while(datosProductos.Lector.Read())
                 {
@@ -181,7 +188,6 @@ namespace LecturaDatos
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -210,6 +216,108 @@ namespace LecturaDatos
             }
         }//elimina el producto en db pasandole el objeto por parametro
         //agregar baja logica
+        public List<Producto> filtradoAvanzado(string campo, string criterio , string filtro , string estado )
+        {
+            List<Producto> lista = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (campo == "Producto") campo = " P.Nombre ";
+                if (campo == "Descripcion") campo = " P.Descripcion ";
+                if (campo == "Marca") campo = " M.nombre ";
+                if (campo == "Categoria") campo = " CategoriaNombre ";
+                if (campo == "Precio") campo = " P.Precio ";
+                if (campo == "Stock") campo = " P.Stock ";
+                string consulta = "SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, P.Estado as EstadoProducto , M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P  INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID WHERE " + campo;
+                if (campo == " P.Nombre " || campo == " P.Descripcion " || campo == " M.nombre " || campo == " CategoriaNombre ")
+                {
+                    switch (criterio)
+                    {
+                        case "Contiene":
+                            consulta += " like '%"+filtro+"%' ";
+                            break;
+                        case "Comienza por":
+                            consulta += " like '%" + filtro+"' ";
+                            break;
+                        case "Termina Con":
+                            consulta += " like '" + filtro + "%' ";
+                            break;
+                    }
+                }
+                if (campo == " P.Precio " || campo == " P.Stock ")
+                {
+                    switch (criterio)
+                    {
+                        case "Igual a":
+                            consulta += " = " + filtro;
+                            break;
+                        case "Mayor a":
+                            consulta += " > " + filtro;
+                            break;
+                        case "Menor a":
+                            consulta += " > " + filtro;
+                            break;
+                    }
+                }
+                if (estado == "Activo") consulta += " and P.Estado = 1";
+                if (estado == "Inactivo") consulta += " and P.Estado = 0";
+
+                datos.SetearConsulta(consulta);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto aux = new Producto();
+                    aux.marca = new Marca();
+                    aux.categoria = new Categoria();
+                    aux.imagenes = new List<Imagen>();
+                    LecturaImagen lecturaImagen = new LecturaImagen();
+
+                    aux.id = (int)datos.Lector["ProductoID"];
+                    aux.nombre = (string)datos.Lector["ProductoNombre"];
+                    aux.descripcion = (string)datos.Lector["ProductoDescripcion"];
+                    aux.stock = (int)datos.Lector["ProductoStock"];
+                    aux.precio = (decimal)datos.Lector["ProductoPrecio"];
+                    aux.estado = (bool)datos.Lector["EstadoProducto"];
+
+                    //Carga de Marca y categoria
+                    if (!Convert.IsDBNull(datos.Lector["MarcaID"]))
+                        aux.marca.id = (int)datos.Lector["MarcaID"];
+                    if (!Convert.IsDBNull(datos.Lector["MarcaNombre"]))
+                        aux.marca.nombre = (string)datos.Lector["MarcaNombre"];
+
+                    if (!Convert.IsDBNull(datos.Lector["CategoriaID"]))
+                        aux.categoria.id = (int)datos.Lector["CategoriaID"];
+                    if (!Convert.IsDBNull(datos.Lector["CategoriaNombre"]))
+                        aux.categoria.nombre = (string)datos.Lector["CategoriaNombre"];
+
+                    //Carga de Imagenes + imagenprincipal (la que sale en la tarjeta)
+                    aux.imagenes = lecturaImagen.listar(aux.id);
+
+                    if (aux.imagenes.Count != 0)
+                    {
+                        Random random = new Random();
+                        int cantidadImagenes = aux.imagenes.Count;
+                        int numeroAleatorio = random.Next(0, cantidadImagenes);
+
+                        aux.imagenPrincipal = aux.imagenes[numeroAleatorio].imagenUrl;
+                    }
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            
+        }
     }
 
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
@@ -17,14 +19,21 @@ namespace TPC_Equipo_5
         string busqueda;
         public bool listaMostrable;
         string seleccionado;
+        public bool FiltroValido { get; set; }
+        public string msgError { get; set; }
+        public bool filtroAvanzado { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {   
+               
+                filtroAvanzado = chk_FiltroAvanzado.Checked;
                 cargardatos();
                 if (!IsPostBack)
                 {
+                    FiltroValido = true;
+                    chk_FiltroAvanzado.Checked = false;
                     cargarddl();
                 }
             }
@@ -119,7 +128,6 @@ namespace TPC_Equipo_5
                 throw ex;
             }
         }
-
         protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -133,7 +141,6 @@ namespace TPC_Equipo_5
                 throw ex;
             }        
         }
-
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             try
@@ -228,6 +235,94 @@ namespace TPC_Equipo_5
 
                 throw ex;
             }
+        }
+        protected void chk_FiltroAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            filtroAvanzado = chk_FiltroAvanzado.Checked;
+            txtBuscar.Enabled = !filtroAvanzado;
+        }
+        protected void ddl_campo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddl_criterio.Items.Clear();
+            if(ddl_campo.SelectedItem.ToString() == "Producto" || ddl_campo.SelectedItem.ToString() == "Descripcion" || ddl_campo.SelectedItem.ToString() == "Marca" || ddl_campo.SelectedItem.ToString() == "Categoria")
+            {
+                
+                ddl_criterio.Items.Add("Contiene");
+                ddl_criterio.Items.Add("Comienza por");
+                ddl_criterio.Items.Add("Termina Con");
+            }   
+            if (ddl_campo.SelectedItem.ToString() == "Precio" || ddl_campo.SelectedItem.ToString() == "Stock")
+            {
+
+                ddl_criterio.Items.Add("Igual a");
+                ddl_criterio.Items.Add("Mayor a");
+                ddl_criterio.Items.Add("Menor a");
+            }
+
+            ddl_estado.Items.Clear();
+            ddl_estado.Items.Add("Todo");
+            ddl_estado.Items.Add("Activo");
+            ddl_estado.Items.Add("Inactivo");
+
+        }
+        protected void btnAccionarFiltroAvanzado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(validarFiltroAvanzado())
+                {
+                    LecturaProducto lecturaProducto = new LecturaProducto();
+                    dgvProductos.DataSource = null;
+                    dgvProductos.DataSource = lecturaProducto.filtradoAvanzado(ddl_campo.SelectedItem.ToString(), ddl_criterio.SelectedItem.ToString(), txtFiltro.Text, ddl_estado.SelectedItem.ToString());
+                    dgvProductos.DataBind();
+                }
+                else
+                {
+                    FiltroValido = false;
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool validarFiltroAvanzado()
+        {
+            if(string.IsNullOrEmpty(ddl_campo.SelectedItem.ToString()))
+            {
+                msgError = "Debes seleccionar un campo para usar el filtro";
+                return false;
+            }
+            if(string.IsNullOrEmpty(ddl_criterio.SelectedItem.ToString()))
+            {
+                msgError = "Debes elegir un criterio para usar el filtro";
+                return false;
+            }
+            if(string.IsNullOrEmpty(txtFiltro.Text))
+            {
+                msgError = "Debes completar el campo Filtro";
+                return false;
+            }
+            if((ddl_campo.SelectedItem.ToString() == "Precio" || ddl_campo.SelectedItem.ToString() == "Stock") && !(filtroTieneNumero()))
+            {
+                msgError = "El campo solo permite numeros";
+                return false;
+            }
+            return true;
+        }
+        protected bool filtroTieneNumero()
+        {
+            double numero;
+            bool validacion;
+            validacion = double.TryParse(txtFiltro.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out numero);
+
+            if (!validacion)
+            {
+                validacion = double.TryParse(txtFiltro.Text, NumberStyles.Any, new CultureInfo("es-ES"), out numero);
+            }
+            
+            return validacion;
         }
     }
 }

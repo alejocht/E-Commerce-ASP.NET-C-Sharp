@@ -23,26 +23,37 @@ namespace TPC_Equipo_5
                 seleccionado = lecturaProducto.listar(id);
                 if (!IsPostBack)
                 {
+                    Session["NuevasImagenes"] = new List<Imagen>();
+                    Session["ImagenesBorrar"] = new List<Imagen>();
+                    Session["ListaTemporal"] = new List<Imagen>();
                     cargarddl();
-                    
+                    buscarIndiceDDLCategoria(seleccionado);
+                    buscarIndiceDDLMarca(seleccionado);
+
                     ckbActivo.Checked = seleccionado.estado;
                     txtNombre.Text = seleccionado.nombre;
                     txtDescripcion.Text = seleccionado.descripcion;
                     txtPrecio.Text = seleccionado.precio.ToString();
                     txtStock.Text = seleccionado.stock.ToString();
-                    //faltarian los items de la ddl
-                    buscarIndiceDDLCategoria(seleccionado);
-                    buscarIndiceDDLMarca(seleccionado);
+                    Session["ListaTemporal"] = seleccionado.imagenes;
+
+
+
                     LecturaImagen lecturaImagen = new LecturaImagen();
                     seleccionado.imagenes = lecturaImagen.listar(seleccionado.id);
-                    dgv_ImgProductos.DataSource = seleccionado.imagenes;
+
+                    dgv_ImgProductos.DataSource = (List<Imagen>)Session["ListaTemporal"];
                     dgv_ImgProductos.DataBind();
-                }
-                    if(seleccionado.imagenes.Count > 0)
+
+                    dgv_nuevasImg.DataSource = (List<Imagen>)Session["NuevasImagenes"];
+                    dgv_nuevasImg.DataBind();
+
+                    if (seleccionado.imagenes.Count > 0)
                     {
                         seleccionado.imagenPrincipal = seleccionado.imagenes[0].imagenUrl;
                         imgProducto.ImageUrl = seleccionado.imagenPrincipal;
                     }
+                }
             }
             catch (Exception ex)
             {
@@ -67,20 +78,37 @@ namespace TPC_Equipo_5
             try
             {
                 seleccionado.estado = ckbActivo.Checked;
-                seleccionado.id = int.Parse(Request.QueryString["id"].ToString());
                 seleccionado.categoria.id = int.Parse(DDLCategoria.SelectedItem.Value);
                 seleccionado.marca.id = int.Parse(DDLMarca.SelectedItem.Value);
                 seleccionado.descripcion = txtDescripcion.Text;
                 seleccionado.precio = decimal.Parse(txtPrecio.Text);
                 seleccionado.stock = int.Parse(txtStock.Text);
                 seleccionado.nombre = txtNombre.Text;
+
+                List<Imagen>ImagenesBorrar = new List<Imagen>();
+                List<Imagen>ImagenesNueva = new List<Imagen>();
+
+
+                ImagenesBorrar = (List<Imagen>)Session["ImagenesBorrar"];
+                ImagenesNueva = (List<Imagen>)Session["NuevasImagenes"];
+
+                foreach (Imagen imagen in ImagenesBorrar)
+                {
+                    LecturaImagen lecturaImagen = new LecturaImagen();
+                    lecturaImagen.eliminarFisica(imagen);
+                }
+                foreach (Imagen imagen in ImagenesNueva)
+                {
+                    LecturaImagen lecturaImagen2 = new LecturaImagen();
+                    lecturaImagen2.agregar(imagen);
+                }
+
                 LecturaProducto lecturaProducto = new LecturaProducto();
                 lecturaProducto.modificar(seleccionado);
                 Response.Redirect("productosAdmin.aspx", false);
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             
@@ -88,18 +116,22 @@ namespace TPC_Equipo_5
         protected void btnAgregarImagen_Click(object sender, EventArgs e)
         {
             Imagen aux = new Imagen();
+            List<Imagen> nuevasImagenes = new List<Imagen>();
             aux.imagenUrl = txtImagenUrl.Text;
-            List<Imagen> listaNueva = (List<Imagen>)dgv_ImgProductos.DataSource;
-            if(listaNueva == null)
-            {
-                listaNueva = new List<Imagen>();
-            }
-            listaNueva.Add(aux);
+            aux.idProducto = seleccionado.id;
+            aux.tipo = 1;
+
+            //La agrega a la lista de pendientes de cargar
+            nuevasImagenes = (List<Imagen>)Session["NuevasImagenes"];
+            nuevasImagenes.Add(aux);
+            Session["NuevasImagenes"] = nuevasImagenes;
+            
             txtImagenUrl.Text = string.Empty;
             imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
-            dgv_ImgProductos.DataSource = null;
-            dgv_ImgProductos.DataSource = listaNueva;
-            dgv_ImgProductos.DataBind();
+
+            
+            dgv_nuevasImg.DataSource = (List<Imagen>)Session["NuevasImagenes"];
+            dgv_nuevasImg.DataBind();
         }
         public void cargarddl()
         {
@@ -107,7 +139,7 @@ namespace TPC_Equipo_5
             {
                 LecturaCategoria lecturaCategoria = new LecturaCategoria();
                 List<Categoria> listaCategoria = new List<Categoria>();
-                listaCategoria = lecturaCategoria.listar();
+                listaCategoria = lecturaCategoria.listar(true);
 
                 DDLCategoria.DataSource = listaCategoria;
                 DDLCategoria.DataTextField = "Nombre";
@@ -116,7 +148,7 @@ namespace TPC_Equipo_5
 
                 LecturaMarca lecturaMarca = new LecturaMarca();
                 List<Marca> listaMarca = new List<Marca>();
-                listaMarca = lecturaMarca.listar();
+                listaMarca = lecturaMarca.listar(true);
 
                 DDLMarca.DataSource = listaMarca;
                 DDLMarca.DataTextField = "Nombre";
@@ -125,7 +157,6 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             
@@ -177,7 +208,7 @@ namespace TPC_Equipo_5
                 imgProducto.ImageUrl = txtImagenUrl.Text;
             }
         }
-        protected void dgv_ImgProductos_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void achicarLinks(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -194,10 +225,14 @@ namespace TPC_Equipo_5
         protected void dgv_ImgProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             Imagen imagenSeleccionada =  new Imagen();
-            string id = dgv_ImgProductos.SelectedDataKey.Value.ToString();
-            imagenSeleccionada.id = int.Parse(id);
-            LecturaImagen lecturaImagen = new LecturaImagen();
-            lecturaImagen.eliminarFisica(imagenSeleccionada);
+            List<Imagen> imagenesBorrar = new List<Imagen>();
+
+            int id = int.Parse(dgv_ImgProductos.SelectedDataKey.Value.ToString());
+            imagenSeleccionada.id = id;
+
+            imagenesBorrar = (List<Imagen>)Session["ImagenesBorrar"];
+            imagenesBorrar.Add(imagenSeleccionada);
+            Session["ImagenesBorrar"] = imagenesBorrar;
         }
         protected void BtnConfirmarEliminacion_Click(object sender, EventArgs e)
         {
@@ -225,6 +260,26 @@ namespace TPC_Equipo_5
         {
             confirmaEliminacion = true;
         }
+        protected void dgv_nuevasImg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Imagen> listaNueva = new List<Imagen>();
+            listaNueva = (List<Imagen>)Session["NuevasImagenes"];
+            if (dgv_nuevasImg.SelectedIndex >= 0)
+            {
 
+                int index = dgv_nuevasImg.SelectedIndex;
+
+
+                // Remover el elemento de la lista imagenesForm por su índice
+                if (index < listaNueva.Count)
+                {
+                    listaNueva.RemoveAt(index);
+                    Session["NuevasImagenes"] = listaNueva;
+                }
+                dgv_nuevasImg.DataSource = null;
+                dgv_nuevasImg.DataSource = (List<Imagen>)Session["NuevasImagenes"];
+                dgv_nuevasImg.DataBind();
+            }
+        }
     }
 }
