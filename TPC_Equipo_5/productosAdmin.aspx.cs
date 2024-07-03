@@ -273,14 +273,14 @@ namespace TPC_Equipo_5
         {
             try
             {
-
-                    if (string.IsNullOrEmpty(ddl_campo.SelectedItem.ToString()))
+                    
+                    if (ddl_campo.SelectedItem == null || string.IsNullOrEmpty(ddl_campo.SelectedItem.ToString()))
                     {
                         lblAvisoCampo.Text = "Debes seleccionar un campo para usar el filtro";
                         lblAvisoCampo.CssClass = "text-danger";
                         return;
                     }
-                    if (string.IsNullOrEmpty(ddl_criterio.SelectedItem.ToString()))
+                    if (ddl_criterio.SelectedItem == null || string.IsNullOrEmpty(ddl_criterio.SelectedItem.ToString()))
                     {
                         lblAvisoCriterio.Text = "Debes elegir un criterio para usar el filtro";
                         lblAvisoCriterio.CssClass = "text-danger";
@@ -303,6 +303,10 @@ namespace TPC_Equipo_5
                     dgvProductos.DataSource = null;
                     dgvProductos.DataSource = lecturaProducto.filtradoAvanzado(ddl_campo.SelectedItem.ToString(), ddl_criterio.SelectedItem.ToString(), txtFiltro.Text, ddl_estado.SelectedItem.ToString());
                     dgvProductos.DataBind();
+                    lblAvisoCampo.Text = "";
+                    lblAvisoCriterio.Text = "";
+                    lblAvisoFiltro.Text = "";
+                    lblAvisoEstado.Text = "";
 
             }
             catch (Exception ex)
