@@ -27,6 +27,8 @@ namespace TPC_Equipo_5
                     Session["ImagenesBorrar"] = new List<Imagen>();
                     Session["ListaTemporal"] = new List<Imagen>();
                     cargarddl();
+                    buscarIndiceDDLCategoria(seleccionado);
+                    buscarIndiceDDLMarca(seleccionado);
 
                     ckbActivo.Checked = seleccionado.estado;
                     txtNombre.Text = seleccionado.nombre;
@@ -36,8 +38,6 @@ namespace TPC_Equipo_5
                     Session["ListaTemporal"] = seleccionado.imagenes;
 
 
-                    buscarIndiceDDLCategoria(seleccionado);
-                    buscarIndiceDDLMarca(seleccionado);
 
                     LecturaImagen lecturaImagen = new LecturaImagen();
                     seleccionado.imagenes = lecturaImagen.listar(seleccionado.id);

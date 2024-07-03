@@ -11,6 +11,42 @@
                 <h1 class="text-center">Productos</h1>
             </div>
         </div>
+        <div class="form-check">
+            <asp:Label ID="lblFiltroAvanzado" runat="server" Text="Filtro Avanzado"></asp:Label>
+            <asp:CheckBox ID="chk_FiltroAvanzado" runat="server" AutoPostBack="true" OnCheckedChanged="chk_FiltroAvanzado_CheckedChanged" />
+        </div>
+        <%if (filtroAvanzado)
+            {  %>
+        <div class="row" style="padding: 30px 10px; align-items: end;">
+            <div class="col-3">
+                <asp:Label ID="lblCampo" runat="server" Text="Campo"></asp:Label>
+                <asp:DropDownList ID="ddl_campo" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddl_campo_SelectedIndexChanged" AutoPostBack="true">
+                    <asp:ListItem Text="Producto" />
+                    <asp:ListItem Text="Descripcion" />
+                    <asp:ListItem Text="Precio" />
+                    <asp:ListItem Text="Stock" />
+                    <asp:ListItem Text="Marca" />
+                    <asp:ListItem Text="Categoria" />
+                </asp:DropDownList>
+            </div>
+            <div class="col-3">
+                <asp:Label ID="lblCriterio" runat="server" Text="Criterio"></asp:Label>
+                <asp:DropDownList ID="ddl_criterio" runat="server" CssClass="form-select"></asp:DropDownList>
+            </div>
+            <div class="col-3">
+                <asp:Label ID="lblFiltro" runat="server" Text="Filtro"></asp:Label>
+                <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="col-3">
+                <asp:Label ID="lblEstado" runat="server" Text="Estado"></asp:Label>
+                <asp:DropDownList ID="ddl_estado" runat="server" CssClass="form-select"></asp:DropDownList>
+            </div>
+
+        </div>
+        <div class="row mx-auto p-2">
+            <asp:Button ID="btnAccionarFiltroAvanzado" runat="server" Text="Filtrar" CssClass="btn btn-outline-light" OnClick="btnAccionarFiltroAvanzado_Click" />
+        </div>
+        <%} %>
         <div class="row" style="padding: 30px 10px; align-items: end;">
             <div class="col-6">
                 <div class="row">
@@ -40,6 +76,16 @@
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
                         <asp:BoundField HeaderText="Precio" DataField="precio" />
                         <asp:BoundField HeaderText="Stock" DataField="stock" />
+                        <asp:TemplateField HeaderText="Marca">
+                            <ItemTemplate>
+                                <%# Eval("marca.nombre") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Categoria">
+                            <ItemTemplate>
+                                <%# Eval("categoria.nombre") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:CheckBoxField HeaderText="Activo" DataField="estado" />
                         <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Detalle" />
 

@@ -17,14 +17,18 @@ namespace TPC_Equipo_5
         string busqueda;
         public bool listaMostrable;
         string seleccionado;
+        public bool filtroAvanzado { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {   
+                
+                filtroAvanzado = chk_FiltroAvanzado.Checked;
                 cargardatos();
                 if (!IsPostBack)
                 {
+                    chk_FiltroAvanzado.Checked = false;
                     cargarddl();
                 }
             }
@@ -119,7 +123,6 @@ namespace TPC_Equipo_5
                 throw ex;
             }
         }
-
         protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -133,7 +136,6 @@ namespace TPC_Equipo_5
                 throw ex;
             }        
         }
-
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             try
@@ -226,6 +228,50 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+        }
+        protected void chk_FiltroAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            filtroAvanzado = chk_FiltroAvanzado.Checked;
+            txtBuscar.Enabled = !filtroAvanzado;
+        }
+        protected void ddl_campo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddl_criterio.Items.Clear();
+            if(ddl_campo.SelectedItem.ToString() == "Producto" || ddl_campo.SelectedItem.ToString() == "Descripcion" || ddl_campo.SelectedItem.ToString() == "Marca" || ddl_campo.SelectedItem.ToString() == "Categoria")
+            {
+                
+                ddl_criterio.Items.Add("Contiene");
+                ddl_criterio.Items.Add("Comienza por");
+                ddl_criterio.Items.Add("Termina Con");
+            }   
+            if (ddl_campo.SelectedItem.ToString() == "Precio" || ddl_campo.SelectedItem.ToString() == "Stock")
+            {
+
+                ddl_criterio.Items.Add("Igual a");
+                ddl_criterio.Items.Add("Mayor a");
+                ddl_criterio.Items.Add("Menor a");
+            }
+
+            ddl_estado.Items.Clear();
+            ddl_estado.Items.Add("Todo");
+            ddl_estado.Items.Add("Activo");
+            ddl_estado.Items.Add("Inactivo");
+
+        }
+
+        protected void btnAccionarFiltroAvanzado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LecturaProducto lecturaProducto = new LecturaProducto();
+                dgvProductos.DataSource = null;
+                dgvProductos.DataSource = lecturaProducto.filtradoAvanzado(ddl_campo.SelectedItem.ToString(), ddl_criterio.SelectedItem.ToString(), txtFiltro.Text, ddl_estado.SelectedItem.ToString());
+                dgvProductos.DataBind();
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }
