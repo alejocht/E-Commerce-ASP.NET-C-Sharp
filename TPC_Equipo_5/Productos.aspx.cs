@@ -30,6 +30,7 @@ namespace TPC_Equipo_5
                 RepeaterProducto.DataSource = listaProductos;
                 RepeaterProducto.DataBind();
             }
+            
         }
         protected void LinkButton_Click(object sender, EventArgs e)
         {

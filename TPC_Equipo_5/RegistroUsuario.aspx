@@ -140,7 +140,7 @@
                 </div>
                 <div class="d-flex gap-1 justify-content-center mt-1">
                     <div>ya tenes cuenta?</div>
-                    <a href="Usuario.aspx" class="text-decoration-none  fw-semibold" style="color: #c32a2a">Ingresa aca</a>
+                    <a href="Ventana_Usuario.aspx" class="text-decoration-none  fw-semibold" style="color: #c32a2a">Ingresa aca</a>
                 </div>
             </div>
         </div>

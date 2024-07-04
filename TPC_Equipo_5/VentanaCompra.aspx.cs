@@ -107,8 +107,9 @@ namespace TPC_Equipo_5
         protected void btnSiguiente_Click(object sender, EventArgs e)
         {
             Page.Validate();
-            if(!Page.IsValid)
-            { return; }
+            
+            //if(!Page.IsValid || cambiopag == 1)
+            //{ return; }
             switch (cambiopag)
             {
                 case 1:
@@ -131,7 +132,7 @@ namespace TPC_Equipo_5
             }
 
 
-            if (cambiopag < 3)
+            if (cambiopag < 4)
             {
                 cambiopag++;
             }

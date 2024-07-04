@@ -76,28 +76,39 @@ namespace TPC_Equipo_5
         protected void Btn_CrearCuenta_Click(object sender, EventArgs e)
         {
             Page.Validate();
-            if(!Page.IsValid)
+            if (!Page.IsValid)
             {
 
             }
             else
             {
-                
-                LecturaDatosUsuario lecturadatos = new LecturaDatosUsuario();
-                DatosUsuario datosUsuario = new DatosUsuario();             
-                datosUsuario.nombre = Txt_Nombre.Text;
-                datosUsuario.apellido= Txt_Apellido.Text;
-                datosUsuario.telefono = Txt_Telefono.Text;
-                datosUsuario.email = Txt_Email.Text;
-                datosUsuario.direccion= Txt_Direccion.Text;
-                 
-                datosUsuario.ciudad.id = int.Parse(DdlLocalidad.SelectedItem.Value);
-                lecturadatos.agregar(datosUsuario);
-                LecturaUsuario lecturaUsuario = new LecturaUsuario();
-                Usuario aux= new Usuario();
-                aux.usuario= Txt_Usuario.Text;
-                aux.password = Txt_Password.Text;                                  
-                lecturaUsuario.agregar(aux,datosUsuario);
+                try
+                {
+                    LecturaDatosUsuario lecturadatos = new LecturaDatosUsuario();
+                    DatosUsuario datosUsuario = new DatosUsuario();
+                    datosUsuario.nombre = Txt_Nombre.Text;
+                    datosUsuario.apellido = Txt_Apellido.Text;
+                    datosUsuario.telefono = Txt_Telefono.Text;
+                    datosUsuario.email = Txt_Email.Text;
+                    datosUsuario.direccion = Txt_Direccion.Text;
+
+                    datosUsuario.ciudad.id = int.Parse(DdlLocalidad.SelectedItem.Value);
+                    lecturadatos.agregar(datosUsuario);
+                    LecturaUsuario lecturaUsuario = new LecturaUsuario();
+                    Usuario aux = new Usuario();
+                    aux.usuario = Txt_Usuario.Text;
+                    aux.password = Txt_Password.Text;
+                    lecturaUsuario.agregar(aux, datosUsuario);
+
+                    //actualizo la session de usuario
+                    Response.Redirect("Ventana_Usuario.aspx", false);
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
         }
     }
