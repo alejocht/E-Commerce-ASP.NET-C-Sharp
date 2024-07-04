@@ -24,7 +24,7 @@ namespace LecturaDatos
                     aux.nombre = (string)datos.Lector["Nombres"];
                     aux.apellido = (string)datos.Lector["Apellidos"];
                     aux.email = (string)datos.Lector["Email"];
-                    aux.telefono = (int)datos.Lector["Telefono"];
+                    aux.telefono = (string)datos.Lector["Telefono"];
                     aux.direccion = (string)datos.Lector["Direccion"];
                     aux.ciudad.id = (int)(datos.Lector["IDCiudad"]);
 
@@ -58,7 +58,7 @@ namespace LecturaDatos
                     aux.nombre = (string)datos.Lector["Nombres"];
                     aux.apellido = (string)datos.Lector["Apellidos"];
                     aux.email = (string)datos.Lector["Email"];
-                    aux.telefono = (int)datos.Lector["Telefono"];
+                    aux.telefono = (string)datos.Lector["Telefono"];
                     aux.direccion = (string)datos.Lector["Direccion"];
                     aux.ciudad = lecturaCiudad.listar((int)datos.Lector["IDCiudad"]);
                 }

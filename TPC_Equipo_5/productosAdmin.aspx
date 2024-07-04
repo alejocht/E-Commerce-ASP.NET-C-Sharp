@@ -6,26 +6,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white">
 
-        <%if (!FiltroValido)
-          {  %> <script>$("#modalError").modal("show");</script> <%} %>
-        <!-- Modal -->
-        <div class="modal fade" id="modalError" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Deben Completarse todos los campos</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p> <%=msgError%> </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Entendido</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <div class="row">
             <div class="col-12">
@@ -49,18 +29,22 @@
                     <asp:ListItem Text="Marca" />
                     <asp:ListItem Text="Categoria" />
                 </asp:DropDownList>
+                <asp:Label ID="lblAvisoCampo" runat="server" Text="" CssClass="form-label"></asp:Label>
             </div>
             <div class="col-3">
                 <asp:Label ID="lblCriterio" runat="server" Text="Criterio"></asp:Label>
                 <asp:DropDownList ID="ddl_criterio" runat="server" CssClass="form-select"></asp:DropDownList>
+                <asp:Label ID="lblAvisoCriterio" runat="server" Text="" CssClass="form-label"></asp:Label>
             </div>
             <div class="col-3">
+                <asp:Label ID="lblAvisoFiltro" runat="server" Text="" CssClass="form-label"></asp:Label>
                 <asp:Label ID="lblFiltro" runat="server" Text="Filtro"></asp:Label>
                 <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="col-3">
                 <asp:Label ID="lblEstado" runat="server" Text="Estado"></asp:Label>
                 <asp:DropDownList ID="ddl_estado" runat="server" CssClass="form-select"></asp:DropDownList>
+                <asp:Label ID="lblAvisoEstado" runat="server" Text="" CssClass="form-label"></asp:Label>
             </div>
 
         </div>
@@ -91,7 +75,7 @@
         <div class="row">
             <div class="col-12">
 
-                <asp:GridView ID="dgvProductos" DataKeyNames="ID" runat="server" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged">
+                <asp:GridView ID="dgvProductos" DataKeyNames="ID" runat="server" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvProductos_PageIndexChanging">
                     <Columns>
                         <asp:BoundField HeaderText="Código" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />

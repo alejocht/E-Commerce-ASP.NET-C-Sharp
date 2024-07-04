@@ -32,7 +32,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <asp:GridView ID="dgvMarcas" runat="server" DataKeyNames="ID" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvMarcas_SelectedIndexChanged">
+                <asp:GridView ID="dgvMarcas" runat="server" DataKeyNames="ID" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvMarcas_SelectedIndexChanged" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvMarcas_PageIndexChanging">
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />

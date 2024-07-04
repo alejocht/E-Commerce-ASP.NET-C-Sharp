@@ -120,5 +120,11 @@ namespace TPC_Equipo_5
             ddlOrdenarMarca.Items.Add("Ascendente");
             ddlOrdenarMarca.Items.Add("Descendente");
         }
+
+        protected void dgvMarcas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvMarcas.PageIndex = e.NewPageIndex;
+            dgvMarcas.DataBind();
+        }
     }
 }

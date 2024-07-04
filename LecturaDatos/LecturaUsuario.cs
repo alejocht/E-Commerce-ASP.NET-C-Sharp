@@ -1,4 +1,5 @@
-﻿using Dominio.Usuarios;
+﻿using Dominio.Productos;
+using Dominio.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -136,6 +137,37 @@ namespace LecturaDatos
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void agregar(Usuario nuevo, DatosUsuario datospersonales)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                //agregar datos personales y enlazarlos a usuario
+                LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();
+                lecturaDatosUsuario.agregar(datospersonales);
+                List<DatosUsuario> lista = new List<DatosUsuario>();
+                lista = lecturaDatosUsuario.listar();
+                DatosUsuario aux = lista.Last();
+                int idDatosPersonales = aux.id;
+                //agregar ususario
+                datos.SetearConsulta("insert into Usuarios (Usuario,Clave,Administrar,IDDatos_Personales) values (@usuario, @clave, @admin, @iddatospersonales)");
+                datos.SetearParametro("@usuario", nuevo.usuario);
+                datos.SetearParametro("@clave", nuevo.password);               
+                datos.SetearParametro("@admin", nuevo.admin);
+                datos.SetearParametro("@iddatospersonales", idDatosPersonales);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
             finally

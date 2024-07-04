@@ -93,6 +93,7 @@
     <Content Include="defaultAdmin.aspx" />
     <Content Include="DetallePedidoAdmin.aspx" />
     <Content Include="DetalleProducto.aspx" />
+    <Content Include="error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="img\91a192b77d77a80a4b7e9768877d.jpg" />
     <Content Include="img\images.jpeg" />
@@ -113,7 +114,7 @@
     <Content Include="productosAdmin.aspx" />
     <Content Include="publicidadAdmin.aspx" />
     <Content Include="RegistroUsuario.aspx" />
-    <Content Include="Usuario.aspx" />
+    <Content Include="Ventana_Usuario.aspx" />
     <Content Include="VentanaCarrito.aspx" />
     <Content Include="VentanaCompra.aspx" />
     <Content Include="Web.config" />
@@ -174,6 +175,13 @@
     </Compile>
     <Compile Include="DetalleProducto.aspx.designer.cs">
       <DependentUpon>DetalleProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -256,12 +264,12 @@
     <Compile Include="siteAdmin.Master.designer.cs">
       <DependentUpon>siteAdmin.Master</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.aspx.cs">
-      <DependentUpon>Usuario.aspx</DependentUpon>
+    <Compile Include="Ventana_Usuario.aspx.cs">
+      <DependentUpon>Ventana_Usuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Usuario.aspx.designer.cs">
-      <DependentUpon>Usuario.aspx</DependentUpon>
+    <Compile Include="Ventana_Usuario.aspx.designer.cs">
+      <DependentUpon>Ventana_Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="VentanaCarrito.aspx.cs">
       <DependentUpon>VentanaCarrito.aspx</DependentUpon>
