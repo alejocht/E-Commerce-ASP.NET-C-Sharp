@@ -51,5 +51,25 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+        public void agregar(ProductosPedido nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("INSERT INTO Productos_x_pedido(ID_Pedido, ID_Producto, Cantidad) VALUES (@ID_Pedido, @ID_Producto, @Cantidad)");
+                datos.SetearParametro("@ID_Pedido", "(SELECT MAX(ID) FROM Pedidos)");
+                datos.SetearParametro("@ID_Producto", nuevo.producto);
+                datos.SetearParametro("@Cantidad", nuevo.cantidad);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }

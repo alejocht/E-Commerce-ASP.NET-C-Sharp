@@ -127,7 +127,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <asp:Button ID="Button1" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnCancelar_Click"></asp:Button>
+                <asp:Button ID="btnCancelar" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnCancelar_Click"></asp:Button>
             </div>
         </div>
     </div>
