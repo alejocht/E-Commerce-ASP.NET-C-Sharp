@@ -314,43 +314,6 @@ namespace TPC_Equipo_5
                 throw ex;
             }
         }
-        public bool validarFiltroAvanzado()
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(ddl_campo.SelectedItem.ToString()))
-                {
-                    lblAvisoCampo.Text = "Debes seleccionar un campo para usar el filtro";
-                    lblAvisoCampo.CssClass = "text-danger";
-                    return false;
-                }
-                if (string.IsNullOrEmpty(ddl_criterio.SelectedItem.ToString()))
-                {
-                    lblAvisoCriterio.Text = "Debes elegir un criterio para usar el filtro";
-                    lblAvisoCriterio.CssClass = "text-danger";
-                    return false;
-                }
-                if (string.IsNullOrEmpty(txtFiltro.Text))
-                {
-                    lblAvisoFiltro.Text = "Debes completar el campo Filtro";
-                    lblAvisoFiltro.CssClass = "text-danger";
-                    return false;
-                }
-                if ((ddl_campo.SelectedItem.ToString() == "Precio" || ddl_campo.SelectedItem.ToString() == "Stock") && !(filtroTieneNumero()))
-                {
-                    lblAvisoFiltro.Text = "El campo solo permite numeros";
-                    lblAvisoFiltro.CssClass = "text-danger";
-                    return false;
-                }
-                return true;
-            }
-
-            catch (Exception ex)
-            {
-                Session["Error"] = ex.ToString();
-                return false;
-            }
-        }
         protected bool filtroTieneNumero()
         {
             double numero;
@@ -363,6 +326,12 @@ namespace TPC_Equipo_5
             }
             
             return validacion;
+        }
+
+        protected void dgvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvProductos.PageIndex = e.NewPageIndex;
+            dgvProductos.DataBind();
         }
     }
 }

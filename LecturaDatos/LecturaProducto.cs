@@ -222,46 +222,95 @@ namespace LecturaDatos
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                if (campo == "Producto") campo = " P.Nombre ";
-                if (campo == "Descripcion") campo = " P.Descripcion ";
-                if (campo == "Marca") campo = " M.nombre ";
-                if (campo == "Categoria") campo = " CategoriaNombre ";
-                if (campo == "Precio") campo = " P.Precio ";
-                if (campo == "Stock") campo = " P.Stock ";
-                string consulta = "SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, P.Estado as EstadoProducto , M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P  INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID WHERE " + campo;
-                if (campo == " P.Nombre " || campo == " P.Descripcion " || campo == " M.nombre " || campo == " CategoriaNombre ")
+                string consulta = "SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, P.Estado as EstadoProducto , M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P  INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID WHERE ";
+                switch(campo)
                 {
-                    switch (criterio)
-                    {
-                        case "Contiene":
-                            consulta += " like '%"+filtro+"%' ";
-                            break;
-                        case "Comienza por":
-                            consulta += " like '%" + filtro+"' ";
-                            break;
-                        case "Termina Con":
-                            consulta += " like '" + filtro + "%' ";
-                            break;
-                    }
+                    case "Producto":
+                        switch(criterio)
+                        {
+                            case "Comienza por":
+                                consulta += "ProductoNombre like @filtro + '%'";
+                                break;
+                            case "Termina con":
+                                consulta += "ProductoNombre like '%' + @filtro";
+                                break;
+                            case "Contiene":
+                                consulta += "ProductoNombre like  '%' + @filtro '%'";
+                                break;
+                        }
+                        break;
+                    case "Descripcion":
+                        switch (criterio)
+                        {
+                            case "Comienza por":
+                                consulta += "P.Descripcion like '@filtro' + '%'";
+                                break;
+                            case "Termina con":
+                                consulta += "ProductoDescripcion like '%' + @filtro";
+                                break;
+                            case "Contiene":
+                                consulta += "ProductoDescripcion like  '%' + @filtro '%'";
+                                break;
+                        }
+                        break;
+                    case "Categoria":
+                        switch (criterio)
+                        {
+                            case "Comienza por":
+                                consulta += "CategoriaNombre like @filtro + '%'";
+                                break;
+                            case "Termina con":
+                                consulta += "CategoriaNombre like '%' + @filtro";
+                                break;
+                            case "Contiene":
+                                consulta += "CategoriaNombre like  '%' + @filtro '%'";
+                                break;
+                        }
+                        break;
+                    case "Marca":
+                        switch (criterio)
+                        {
+                            case "Empieza con":
+                                consulta += "MarcaNombre like @filtro + '%'";
+                                break;
+                            case "Termina con":
+                                consulta += "MarcaNombre like '%' + @filtro";
+                                break;
+                            case "Contiene":
+                                consulta += "MarcaNombre like  '%' + @filtro '%'";
+                                break;
+                        }
+                        break;
+                    case "Precio":
+                        switch (criterio)
+                        {
+                            case "Mayor a":
+                                consulta += "ProductoPrecio > @avanzado";
+                                break;
+                            case "Menor a":
+                                consulta += "ProductoPrecio < @avanzado";
+                                break;
+                            case "Igual a":
+                                consulta += "ProductoPrecio = @avanzado";
+                                break;
+                        }
+                        break;
+                    case "Stock":
+                        switch (criterio)
+                        {
+                            case "Mayor a":
+                                consulta += "ProductoStock > @avanzado";
+                                break;
+                            case "Menor a":
+                                consulta += "ProductoStock < @avanzado";
+                                break;
+                            case "Igual a":
+                                consulta += "ProductoStock = @avanzado";
+                                break;
+                        }
+                        break;
                 }
-                if (campo == " P.Precio " || campo == " P.Stock ")
-                {
-                    switch (criterio)
-                    {
-                        case "Igual a":
-                            consulta += " = " + filtro;
-                            break;
-                        case "Mayor a":
-                            consulta += " > " + filtro;
-                            break;
-                        case "Menor a":
-                            consulta += " > " + filtro;
-                            break;
-                    }
-                }
-                if (estado == "Activo") consulta += " and P.Estado = 1";
-                if (estado == "Inactivo") consulta += " and P.Estado = 0";
-
+                datos.SetearParametro("@filtro", filtro);
                 datos.SetearConsulta(consulta);
                 datos.EjecutarLectura();
 

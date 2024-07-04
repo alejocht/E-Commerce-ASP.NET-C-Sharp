@@ -75,7 +75,7 @@
         <div class="row">
             <div class="col-12">
 
-                <asp:GridView ID="dgvProductos" DataKeyNames="ID" runat="server" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged">
+                <asp:GridView ID="dgvProductos" DataKeyNames="ID" runat="server" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvProductos_PageIndexChanging">
                     <Columns>
                         <asp:BoundField HeaderText="Código" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
