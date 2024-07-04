@@ -17,14 +17,14 @@
     <script src="js/bootstrap.min.js"></script>
     <form id="form1" runat="server">
 
-        <div class="modal fade" id="modalCerrarSesion" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+        <div class="modal fade" id="modalCerrarSesion" tabindex="-1" aria-labelledby="darkModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-dark">
+                <div class="modal-content bg-dark">
                     <div class="modal-header">
-                        <h5 class="modal-title fs-5">Cerrar Sesión</h5>
+                        <h5 class="modal-title text-white fs-5">Cerrar Sesión</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body text-white">
                         ¿Está seguro de que desea cerrar sesión? Se perderá el progreso no guardado.
                     </div>
                     <div class="modal-footer">

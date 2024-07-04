@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white">
         <div class="row">
-                <asp:Label ID="lblNumeroPedido" runat="server" CssClass="h1" Text="XXXX"></asp:Label>
+            <asp:Label ID="lblNumeroPedido" runat="server" CssClass="h1" Text="XXXX"></asp:Label>
         </div>
         <div class="container" style="background-color: #1b1f23; margin: 15px; padding-top: 10px; padding-bottom: 10px; border-radius: 10px;">
             <div class="row">
@@ -90,11 +90,46 @@
         <div class="container text-start">
             <h5>Modificar estado del pedido</h5>
             <div class="row" style="margin-top: 20px">
-                <asp:Button ID="btnActualizar" runat="server" Text="Actualizar Pedido" CssClass="btn btn-success" OnClick="btnActualizar_Click" />
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalActualizar"> Actualizar Pedido </button>
             </div>
             <div class="row" style="margin-top: 10px">
-                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar Pedido" CssClass="btn btn-danger" OnClick="btnCancelar_Click" />
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalCancelar"> Cancelar Pedido </button>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modalActualizar" tabindex="-1" aria-labelledby="darkModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-dark">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title text-white fs-5">Actualizar Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-white">
+                    ¿Está seguro de que desea actualizar el estado del pedido? El estado del pedido se actualizará y el cambio se reflejará para el cliente.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnActualizar" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnActualizar_Click"></asp:Button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalCancelar" tabindex="-1" aria-labelledby="darkModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-dark">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title text-white fs-5">Cancelar Pedido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body text-white">
+                ¿Está seguro de que desea cancelar el pedido? Esta acción cancelará permanentemente el pedido y el cliente será notificado.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <asp:Button ID="btnCancelar" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnCancelar_Click"></asp:Button>
+            </div>
+        </div>
+    </div>
+</div>
 </asp:Content>
