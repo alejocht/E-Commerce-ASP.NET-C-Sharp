@@ -238,6 +238,10 @@ namespace TPC_Equipo_5
         }
         protected void chk_FiltroAvanzado_CheckedChanged(object sender, EventArgs e)
         {
+            lblAvisoCampo.Text = "";
+            lblAvisoCriterio.Text = "";
+            lblAvisoFiltro.Text = "";
+            lblAvisoEstado.Text = "";
             filtroAvanzado = chk_FiltroAvanzado.Checked;
             txtBuscar.Enabled = !filtroAvanzado;
         }
@@ -269,47 +273,46 @@ namespace TPC_Equipo_5
         {
             try
             {
-                if(validarFiltroAvanzado())
-                {
+                    
+                    if (ddl_campo.SelectedItem == null || string.IsNullOrEmpty(ddl_campo.SelectedItem.ToString()))
+                    {
+                        lblAvisoCampo.Text = "Debes seleccionar un campo para usar el filtro";
+                        lblAvisoCampo.CssClass = "text-danger";
+                        return;
+                    }
+                    if (ddl_criterio.SelectedItem == null || string.IsNullOrEmpty(ddl_criterio.SelectedItem.ToString()))
+                    {
+                        lblAvisoCriterio.Text = "Debes elegir un criterio para usar el filtro";
+                        lblAvisoCriterio.CssClass = "text-danger";
+                        return;
+                    }
+                    if (string.IsNullOrEmpty(txtFiltro.Text))
+                    {
+                        lblAvisoFiltro.Text = "Debes completar el campo Filtro";
+                        lblAvisoFiltro.CssClass = "text-danger";
+                        return;
+                    }
+                    if ((ddl_campo.SelectedItem.ToString() == "Precio" || ddl_campo.SelectedItem.ToString() == "Stock") && !(filtroTieneNumero()))
+                    {
+                        lblAvisoFiltro.Text = "El campo solo permite numeros";
+                        lblAvisoFiltro.CssClass = "text-danger";
+                        return;
+                    }
+
                     LecturaProducto lecturaProducto = new LecturaProducto();
                     dgvProductos.DataSource = null;
                     dgvProductos.DataSource = lecturaProducto.filtradoAvanzado(ddl_campo.SelectedItem.ToString(), ddl_criterio.SelectedItem.ToString(), txtFiltro.Text, ddl_estado.SelectedItem.ToString());
                     dgvProductos.DataBind();
-                }
-                else
-                {
-                    FiltroValido = false;
-                    return;
-                }
+                    lblAvisoCampo.Text = "";
+                    lblAvisoCriterio.Text = "";
+                    lblAvisoFiltro.Text = "";
+                    lblAvisoEstado.Text = "";
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-        }
-        public bool validarFiltroAvanzado()
-        {
-            if(string.IsNullOrEmpty(ddl_campo.SelectedItem.ToString()))
-            {
-                msgError = "Debes seleccionar un campo para usar el filtro";
-                return false;
-            }
-            if(string.IsNullOrEmpty(ddl_criterio.SelectedItem.ToString()))
-            {
-                msgError = "Debes elegir un criterio para usar el filtro";
-                return false;
-            }
-            if(string.IsNullOrEmpty(txtFiltro.Text))
-            {
-                msgError = "Debes completar el campo Filtro";
-                return false;
-            }
-            if((ddl_campo.SelectedItem.ToString() == "Precio" || ddl_campo.SelectedItem.ToString() == "Stock") && !(filtroTieneNumero()))
-            {
-                msgError = "El campo solo permite numeros";
-                return false;
-            }
-            return true;
         }
         protected bool filtroTieneNumero()
         {
@@ -323,6 +326,12 @@ namespace TPC_Equipo_5
             }
             
             return validacion;
+        }
+
+        protected void dgvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvProductos.PageIndex = e.NewPageIndex;
+            dgvProductos.DataBind();
         }
     }
 }

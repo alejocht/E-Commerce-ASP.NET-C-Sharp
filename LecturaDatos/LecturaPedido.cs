@@ -97,6 +97,15 @@ namespace LecturaDatos
             AccesoDatos datosPedidos = new AccesoDatos();
             try
             {
+                datosPedidos.SetearConsulta("INSERT INTO Pedidos (ID_MetodoDePago, ID_EstadosPedido, ID_Usuario, Fecha, Estado) VALUES (@IDMetodoDePago, @IDEstadoPedido, @IDUsuario, GETDATE(), 1)");
+                datosPedidos.SetearParametro("@IDMetodoDePago", nuevo.metodoPago.id);
+                datosPedidos.SetearParametro("@IDEstadoPedido", nuevo.estadoPedido.id);
+                datosPedidos.SetearParametro("@IDUsuario", nuevo.usuario.id);
+                datosPedidos.ejecutarAccion();
+                //definir lista de productos
+
+
+
 
             }
             catch (Exception ex)
