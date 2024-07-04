@@ -88,6 +88,6 @@ alter table Datos_Personales add Estado bit not null default 1;
 alter table Usuarios add Estado bit not null default 1;
 alter table Productos add Estado bit not null default 1;
 alter table Imagen add Estado bit not null default 1;
-alter table Pedido add Estado bit not null default 1;
+alter table Pedidos add Estado bit not null default 1;
 
 alter  table Imagen alter column ID_Producto INT NULL
