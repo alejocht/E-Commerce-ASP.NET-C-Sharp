@@ -17,36 +17,19 @@ namespace TPC_Equipo_5
         {
             if (!IsPostBack)
             {
-
-                if (listaLecturaProductos == null)
+                listaLecturaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
+                if(listaLecturaProductos != null)
                 {
-                    if (Session["listaArticulosEnCarrito"] != null)
-                    {
-                        listaLecturaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
-                    }
-                    else
-                    {
-                        listaLecturaProductos = new List<Producto>();
-                    }
+                    repCarrito.DataSource = listaLecturaProductos;
+                    repCarrito.DataBind();
 
+                    decimal SubtotalCarrito = CalcularCarritoTotal(listaLecturaProductos);
+                    lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
+
+                    lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
+                    lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
                 }
-                if (Session["ArticulosEnCarrito"] != null)
-                {
-                    producto = (Producto)Session["ArticulosEnCarrito"];
-                    listaLecturaProductos.Add(producto);
-                    Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
-
-                    Session["ArticulosEnCarrito"] = null;
-                }
-
-                repCarrito.DataSource = listaLecturaProductos;
-                repCarrito.DataBind();
-
-                decimal SubtotalCarrito = CalcularCarritoTotal(listaLecturaProductos);
-                lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
-
-                lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
-                lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
+                
             }
         }
         protected void btnEliminar_Click(object sender, EventArgs e)
@@ -96,17 +79,10 @@ namespace TPC_Equipo_5
         {
             Response.Redirect("Productos.aspx", false);
         }
-
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnComprar_Click(object sender, EventArgs e)
         {
             Response.Redirect("VentanaCompra.aspx", false);
         }
-
         private decimal CalcularCarritoTotal(List<Producto> productos)
         {
             decimal total = 0;

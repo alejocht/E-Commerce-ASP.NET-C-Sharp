@@ -15,14 +15,18 @@ namespace TPC_Equipo_5
         {
             try
             {
-                int ID = int.Parse(Request.QueryString["ID"].ToString());
-                LecturaProducto lecturaProducto = new LecturaProducto();
-                Producto producto = new Producto();
-                producto = lecturaProducto.listar(ID);
-                lblNombre.Text = producto.nombre.ToString();
-                lblDescripcion.Text = producto.descripcion.ToString();
-                lblPrecio.Text = "$" + producto.precio.ToString();
-                ImagenProducto.ImageUrl = producto.imagenPrincipal;
+                if(!IsPostBack)
+                {
+                    int ID = int.Parse(Request.QueryString["ID"].ToString());
+                    LecturaProducto lecturaProducto = new LecturaProducto();
+                    Producto producto = new Producto();
+                    producto = lecturaProducto.listar(ID);
+                    lblNombre.Text = producto.nombre.ToString();
+                    lblDescripcion.Text = producto.descripcion.ToString();
+                    lblPrecio.Text = "$" + producto.precio.ToString();
+                    txtCantidad.Text = "1";
+                    ImagenProducto.ImageUrl = producto.imagenPrincipal;
+                }
             }
             catch (Exception ex)
             {
@@ -37,11 +41,30 @@ namespace TPC_Equipo_5
 
         protected void BtnAgregarAlCarrito_Click(object sender, EventArgs e)
         {
-            int ID = int.Parse(Request.QueryString["ID"].ToString());
-            LecturaProducto lecturaProducto = new LecturaProducto();
-            Producto producto = new Producto();
-            producto = lecturaProducto.listar(ID);
-            Session.Add("ArticulosEnCarrito", producto);
+            try
+            {
+                int ID = int.Parse(Request.QueryString["ID"].ToString());
+                LecturaProducto lecturaProducto = new LecturaProducto();
+                Producto producto = new Producto();
+                producto = lecturaProducto.listar(ID);
+                List<Producto> listaCarrito;
+                listaCarrito = (List<Producto>)Session["listaArticulosEnCarrito"];
+                if (listaCarrito == null)
+                {
+                    listaCarrito = new List<Producto>();
+                }
+                for (int i = 0; i < int.Parse(txtCantidad.Text); i++)
+                {
+                    listaCarrito.Add(producto);
+                }
+                Session["listaArticulosEnCarrito"] = listaCarrito;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
     }
 }

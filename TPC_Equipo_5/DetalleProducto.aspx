@@ -24,6 +24,7 @@
                         <asp:Label ID="lblPrecio" runat="server" CssClass="h6"></asp:Label>
                     </div>
                     <div>
+                        <asp:TextBox ID="txtCantidad" runat="server" type="number" min="1" max="20"></asp:TextBox>
                         <asp:Button ID="BtnAgregarAlCarrito" runat="server" Text="Agregar al Carrito" OnClick="BtnAgregarAlCarrito_Click" CssClass="btn btn-success m-3" />
                     </div>
 
