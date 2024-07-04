@@ -42,33 +42,6 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.TextBox Txt_Telefono;
 
         /// <summary>
-        /// Control Rb_Mujer.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton Rb_Mujer;
-
-        /// <summary>
-        /// Control Rb_Hombre.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton Rb_Hombre;
-
-        /// <summary>
-        /// Control Rb_PnD.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton Rb_PnD;
-
-        /// <summary>
         /// Control Txt_Email.
         /// </summary>
         /// <remarks>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Web;
 
 
 namespace LecturaDatos
@@ -24,6 +25,8 @@ namespace LecturaDatos
             conexion = new SqlConnection("server=.\\SQLEXPRESS; database=TPC_EQUIPO_5; integrated security=true");
             comando = new SqlCommand();
         }
+
+       
         public void SetearConsulta(string consulta)
         {
             comando.CommandType = System.Data.CommandType.Text;

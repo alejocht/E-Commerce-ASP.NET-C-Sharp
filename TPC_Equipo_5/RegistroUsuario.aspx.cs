@@ -36,6 +36,7 @@ namespace TPC_Equipo_5
 
                     DdlLocalidad.DataSource = listaciudad;
                     DdlLocalidad.DataTextField = "Nombre";
+                    DdlLocalidad.DataValueField = "ID";
                     DdlLocalidad.DataBind();
                 }
 
@@ -82,19 +83,21 @@ namespace TPC_Equipo_5
             else
             {
                 
-               /* LecturaUsuario lecturaUsuario = new LecturaUsuario();
-                
                 LecturaDatosUsuario lecturadatos = new LecturaDatosUsuario();
-                DatosUsuario datosUsuario = new DatosUsuario();
-                Usuario aux = new Usuario();
-                
-                datosUsuario.nombre = Txt_Nombre.ToString();
-                datosUsuario.apellido= Txt_Apellido.ToString();
-                datosUsuario.telefono =  int.Parse(Txt_Telefono.Text);
-                datosUsuario.email= Txt_Email.ToString();
-                datosUsuario.direccion= Txt_Direccion.ToString();
+                DatosUsuario datosUsuario = new DatosUsuario();             
+                datosUsuario.nombre = Txt_Nombre.Text;
+                datosUsuario.apellido= Txt_Apellido.Text;
+                datosUsuario.telefono = Txt_Telefono.Text;
+                datosUsuario.email = Txt_Email.Text;
+                datosUsuario.direccion= Txt_Direccion.Text;
+                 
                 datosUsuario.ciudad.id = int.Parse(DdlLocalidad.SelectedItem.Value);
-                lecturadatos.agregar(datosUsuario);*/
+                lecturadatos.agregar(datosUsuario);
+                LecturaUsuario lecturaUsuario = new LecturaUsuario();
+                Usuario aux= new Usuario();
+                aux.usuario= Txt_Usuario.Text;
+                aux.password = Txt_Password.Text;                                  
+                lecturaUsuario.agregar(aux,datosUsuario);
             }
         }
     }

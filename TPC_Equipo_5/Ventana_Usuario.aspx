@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.Master" AutoEventWireup="true" CodeBehind="Ventana_Usuario.aspx.cs" Inherits="TPC_Equipo_5.Usuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.Master" AutoEventWireup="true" CodeBehind="~/Ventana_Usuario.aspx.cs" Inherits="TPC_Equipo_5.Ventana_Usuario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/stylePaginaWeb.css" rel="stylesheet" />
     

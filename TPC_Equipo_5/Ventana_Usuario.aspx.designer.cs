@@ -11,7 +11,7 @@ namespace TPC_Equipo_5
 {
 
 
-    public partial class Usuario
+    public partial class Ventana_Usuario
     {
 
         /// <summary>

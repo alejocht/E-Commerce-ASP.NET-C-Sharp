@@ -23,6 +23,7 @@
                         </div>
                         <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" ID="Txt_Nombre" />
                         <asp:RequiredFieldValidator Style="color: red;" CssClass="validation" ErrorMessage="Campo requerido" ControlToValidate="Txt_Nombre" runat="server" />
+                        <asp:RegularExpressionValidator ErrorMessage="formato incorrecto" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'.-]+$" ControlToValidate="Txt_Nombre" runat="server" />
                     </div>
                     <div class="input-group mt-1">
                         <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke">
@@ -30,41 +31,20 @@
                         </div>
                         <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" ID="Txt_Apellido" />
                         <asp:RequiredFieldValidator Style="color: red;" CssClass="validation" ErrorMessage="Campo requerido" ControlToValidate="Txt_Apellido" runat="server" />
+                        <asp:RegularExpressionValidator ErrorMessage="Formato incorrecto" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'.-]+$" ControlToValidate="Txt_Apellido" runat="server" />
                     </div>
                     <div class="input-group mt-1">
                         <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke">
                             <label>Telefono</label>
+
                         </div>
                         +54
                         <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" ID="Txt_Telefono" />
-                        <asp:RequiredFieldValidator Style="color: red;" CssClass="validation" ErrorMessage="Campo requerido" ControlToValidate="Txt_Telefono" runat="server" />
+                        <asp:RegularExpressionValidator ErrorMessage="Formato incorrecto!!" ValidationExpression="^\+?[\d\s-]+$" ControlToValidate="Txt_Telefono" runat="server" />
+
                     </div>
                 </div>
-                <div class=" mt-1 input-group">
 
-                    <div class="input-group-text" style="background-color: #c32a2a; width: 5.3rem; color: white">
-                        <label>Genero</label>
-                    </div>
-                    <div class="d-flex align-items-center gap-4 ms-2 ">
-
-                        <div class="pt-1" style="font-size: 0.9rem">
-                            <label>Mujer</label>
-                            <asp:RadioButton ID="Rb_Mujer" runat="server" CssClass="form-check-input" OnCheckedChanged="Rb_Mujer_CheckedChanged" GroupName="Genero" />
-                        </div>
-
-                        <div class="pt-1" style="font-size: 0.9rem">
-                            <label>Hombre</label>
-                            <asp:RadioButton ID="Rb_Hombre" runat="server" CssClass="form-check-input" OnCheckedChanged="Rb_Hombre_CheckedChanged" GroupName="Genero" />
-                        </div>
-
-                        <div class="pt-1" style="font-size: 0.9rem">
-                            <label>Prefiero no decirlo</label>
-                            <asp:RadioButton ID="Rb_PnD" runat="server" CssClass="form-check-input" OnCheckedChanged="Rb_PnD_CheckedChanged" GroupName="Genero" />
-                        </div>
-                    </div>
-
-
-                </div>
 
                 <hr />
                 <div class="text-center fw-bold mt-3" style="font-size: 0.8rem;">
@@ -76,8 +56,9 @@
                     <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke; width: 5.3rem">
                         <label>Email</label>
                     </div>
-                    <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" ID="Txt_Email" PlaceHolder="ejemplo@gmail.com" />
-                    <asp:RequiredFieldValidator Style="color: red;" CssClass="validation" ErrorMessage="Campo requerido" ControlToValidate="Txt_Email" runat="server" />
+                    <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" ID="Txt_Email" />
+                    <asp:RegularExpressionValidator ErrorMessage="Formato incorrecto..." ControlToValidate="Txt_Email" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                        runat="server" />
                 </div>
                 <div class="input-group mt-4">
 
@@ -145,6 +126,7 @@
                         <div class="input-group mt-1">
                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                 <label>Piso</label>
+
                             </div>
                             <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" ID="Txt_Piso" />
                         </div>
