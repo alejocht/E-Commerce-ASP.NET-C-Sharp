@@ -60,13 +60,22 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.Label lblEstado;
 
         /// <summary>
-        /// RepeaterProductosxPedido control.
+        /// RepProductosxPedido control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RepeaterProductosxPedido;
+        protected global::System.Web.UI.WebControls.Repeater RepProductosxPedido;
+
+        /// <summary>
+        /// lblTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotal;
 
         /// <summary>
         /// btnActualizar control.

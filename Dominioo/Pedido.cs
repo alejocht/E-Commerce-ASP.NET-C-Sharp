@@ -15,8 +15,6 @@ namespace Dominio.Pedidos
             id = -1;
             usuario = new Usuario();
             fecha = new DateTime();
-            productos = new List<Producto>();
-            importe = -1;
             estadoPedido = new EstadoPedido();
             metodoPago = new MetodoPago();
             estado = true;
@@ -24,8 +22,6 @@ namespace Dominio.Pedidos
         public int id { get; set; }
         public Usuario usuario { get; set; }
         public DateTime fecha { get; set; }
-        public List<Producto> productos { get; set; }
-        public decimal importe { get; set; }
         public EstadoPedido estadoPedido { get; set; }
         public MetodoPago metodoPago { get; set; }
         public bool estado { get; set; }

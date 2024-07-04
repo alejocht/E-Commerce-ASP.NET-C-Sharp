@@ -45,6 +45,7 @@
     <Compile Include="LecturaDatosUsuario.cs" />
     <Compile Include="LecturaMetodoPago.cs" />
     <Compile Include="LecturaPedido.cs" />
+    <Compile Include="LecturaProductosPedido.cs" />
     <Compile Include="LecturaUsuario.cs" />
     <Compile Include="LecturaProvincia.cs" />
     <Compile Include="LecturaEstadoPedido.cs" />

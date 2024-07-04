@@ -7,12 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white">
         <div class="row">
-            <div class="col">
-                <h1>PEDIDO #</h1>
-            </div>
-            <div class="col">
                 <asp:Label ID="lblNumeroPedido" runat="server" CssClass="h1" Text="XXXX"></asp:Label>
-            </div>
         </div>
         <div class="container" style="background-color: #1b1f23; margin: 15px; padding-top: 10px; padding-bottom: 10px; border-radius: 10px;">
             <div class="row">
@@ -54,45 +49,45 @@
             </div>
         </div>
         <div class="container" style="background-color: #1b1f23; margin: 15px; padding-top: 10px; padding-bottom: 10px; border-radius: 10px;">
-            <div class="row">
-                <div class="col">
+            <div class="row" style="margin-bottom: 20px; padding: 10px 20px;">
+                <div class="col-5">
                     <h5>Producto</h5>
                 </div>
-                <div class="col">
+                <div class="col-2 text-center">
+                    <h5>Marca</h5>
+                </div>
+                <div class="col text-center">
                     <h5>Cantidad</h5>
                 </div>
-                <div class="col">
+                <div class="col text-end">
                     <h5>Precio unitario</h5>
                 </div>
-                <div class="col">
-                    <h5>Total</h5>
-                </div>
             </div>
-            <asp:Repeater ID="RepeaterProductosxPedido" runat="server">
+            <asp:Repeater ID="RepProductosxPedido" runat="server">
                 <ItemTemplate>
-                    <div class="row">
-                        <div class="col">
-                            <asp:Label ID="lblProducto" runat="server" CssClass="h6" Text="Nombre del producto"></asp:Label>
+                    <div class="row align-items-center" style="padding: 2px 20px;">
+                        <div class="col-5">
+                            <h6>- <%#Eval("producto.nombre")%></h6>
                         </div>
-                        <div class="col">
-                            <asp:Label ID="lblCantidad" runat="server" CssClass="h6" Text="Cantidad"></asp:Label>
+                        <div class="col-2 text-center">
+                            <h6><%#Eval("producto.marca.nombre")%></h6>
                         </div>
-                        <div class="col">
-                            <asp:Label ID="lblPrecio" runat="server" CssClass="h6" Text="Precio unitario"></asp:Label>
+                        <div class="col text-center">
+                            <h6><%#Eval("Cantidad")%></h6>
                         </div>
-                        <div class="col">
-                            <asp:Label ID="lblTotalProducto" runat="server" CssClass="h6" Text="Total"></asp:Label>
+                        <div class="col text-end">
+                            <h6>$ <%#Eval("producto.precio")%></h6>
                         </div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
         <div class="row">
-            <div class="col">
-                <h2>Total $</h2>
+            <div class="col text-end">
+                <asp:Label ID="lblTotal" runat="server" CssClass="h2" Text="Total"></asp:Label>
             </div>
         </div>
-        <div class="container text-end">
+        <div class="container text-start">
             <h5>Modificar estado del pedido</h5>
             <div class="row" style="margin-top: 20px">
                 <asp:Button ID="btnActualizar" runat="server" Text="Actualizar Pedido" CssClass="btn btn-success" OnClick="btnActualizar_Click" />

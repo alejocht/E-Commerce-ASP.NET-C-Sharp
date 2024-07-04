@@ -13,21 +13,35 @@ namespace TPC_Equipo_5
     public partial class DetallePedidoAdmin : System.Web.UI.Page
     {
         Pedido seleccionado = new Pedido();
+        List<ProductosPedido> listaProductos = new List<ProductosPedido>();
+        decimal total = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                LecturaPedido lecturaPedido = new LecturaPedido();
                 int id = int.Parse(Request.QueryString["id"].ToString());
+
+                LecturaPedido lecturaPedido = new LecturaPedido();
                 seleccionado = lecturaPedido.listar(id);
+
+                LecturaProductosPedido lecturaProductosPedido = new LecturaProductosPedido();
+                listaProductos = lecturaProductosPedido.listar(id);
+
+                total = CalcularCarritoTotal(listaProductos);
 
                 if (!IsPostBack)
                 {
-                    lblNumeroPedido.Text = seleccionado.id.ToString();
+                    lblNumeroPedido.Text = "N° PEDIDO: " + id.ToString();
+
                     lblUsuario.Text = seleccionado.usuario.usuario.ToString();
                     lblMetodoPago.Text = seleccionado.metodoPago.nombre.ToString();
                     lblEstado.Text = seleccionado.estadoPedido.nombre.ToString();
                     lblFecha.Text = seleccionado.fecha.ToString();
+
+                    RepProductosxPedido.DataSource = listaProductos;
+                    RepProductosxPedido.DataBind();
+
+                    lblTotal.Text = "Total $ " + total.ToString();
                 }
             }
             catch (Exception ex)
@@ -45,6 +59,15 @@ namespace TPC_Equipo_5
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private decimal CalcularCarritoTotal(List<ProductosPedido> Productos)
+        {
+            foreach (var ProductosPedido in Productos)
+            {
+                total += (decimal)ProductosPedido.producto.precio * ProductosPedido.cantidad;
+            }
+            return total;
         }
     }
 }
