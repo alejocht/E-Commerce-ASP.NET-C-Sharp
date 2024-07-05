@@ -10,12 +10,41 @@
                 <asp:Button ID="BtnBack" runat="server" Text="Back" OnClick="Back_Click" CssClass="btn btn-danger btn-sm m-2" />
             </div>
             <div class="col">
-                <asp:Image ID="ImagenProducto" runat="server" CssClass="img-fluid" onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'"/>
+                <%if (carrusel)
+                    { %>
+
+                    <div id="carouselProducto" class="carousel slide">
+                        <div class="carousel-inner">
+                            <%foreach (Dominio.Productos.Imagen imagen in producto.imagenes)
+                                { %>
+                                <div class="carousel-item active">
+                                    <img src=<%=imagen.imagenUrl %> class="d-block w-100" alt="...">
+                                </div>
+                            <%} %>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProducto" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselProducto" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                <%}
+              else
+              { %>
+                <asp:Image ID="ImagenProducto" runat="server" CssClass="img-fluid" onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'" />
+            <%} %>
             </div>
             <div class="col">
                 <div class="container">
                     <div>
                         <asp:Label ID="lblNombre" runat="server" CssClass="h1"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblMarca" runat="server" CssClass="h4"></asp:Label>
+                        <asp:Label ID="lblCategoria" runat="server" CssClass="h4"></asp:Label>
                     </div>
                     <div>
                         <asp:Label ID="lblDescripcion" runat="server" CssClass="h4"></asp:Label>

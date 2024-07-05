@@ -11,6 +11,8 @@ namespace TPC_Equipo_5
 {
     public partial class DetalleProducto : System.Web.UI.Page
     {
+        public bool carrusel { get; set; }
+        public Producto producto { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -19,13 +21,15 @@ namespace TPC_Equipo_5
                 {
                     int ID = int.Parse(Request.QueryString["ID"].ToString());
                     LecturaProducto lecturaProducto = new LecturaProducto();
-                    Producto producto = new Producto();
                     producto = lecturaProducto.listar(ID);
                     lblNombre.Text = producto.nombre.ToString();
+                    if(producto.marca.nombre != null) lblMarca.Text = producto.marca.nombre.ToString();
+                    if(producto.categoria.nombre != null) lblCategoria.Text = producto.categoria.nombre.ToString();
                     lblDescripcion.Text = producto.descripcion.ToString();
                     lblPrecio.Text = "$" + producto.precio.ToString();
                     txtCantidad.Text = "1";
-                    ImagenProducto.ImageUrl = producto.imagenPrincipal;
+                    if(producto.imagenPrincipal != null)ImagenProducto.ImageUrl = producto.imagenPrincipal;
+                    if(producto.imagenes.Count > 1) carrusel = true;
                 }
             }
             catch (Exception ex)
