@@ -110,7 +110,7 @@
                             <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke; width: 5.3rem">
                                 <label>Email</label>
                             </div>
-                            <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" />
+                            <asp:TextBox ID="Txt_Email" CssClass="form-control" Style="flex: none; width: 40%;" runat="server" />
                         </div>
                         <div class="row mt-3">
                             <div class="col-4">
@@ -124,12 +124,12 @@
                             </div>
                             <div>
 
-                                <div class="input-group mt-1">
+                                <%--<div class="input-group mt-1">
                                     <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
                                         <label>Comentario:</label>
                                     </div>
                                     <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" />
-                                </div>
+                                </div>--%>
 
                             </div>
 
