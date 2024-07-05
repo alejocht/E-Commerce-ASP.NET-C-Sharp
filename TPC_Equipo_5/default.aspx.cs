@@ -16,24 +16,37 @@ namespace TPC_Equipo_5
         {
             try
             {
-                //Carga los primeros 3 productos de db
-                LecturaProducto lecturaProducto = new LecturaProducto();
-                listaProductos = new List<Producto>();
-                listaProductos = lecturaProducto.listar(true);
-                RepeaterProducto.DataSource = listaProductos.Take(3);
-                RepeaterProducto.DataBind();
+
+                    //Carga los primeros 3 productos de db
+                    LecturaProducto lecturaProducto = new LecturaProducto();
+                    listaProductos = new List<Producto>();
+                    listaProductos = lecturaProducto.listar(true);
+                    RepeaterProducto.DataSource = listaProductos.Take(3);
+                    RepeaterProducto.DataBind();
+
             }
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
             
         }
         protected void LinkButton_Click(object sender, EventArgs e)
         {
-            string ID = ((LinkButton)sender).CommandArgument.ToString();
-            Response.Redirect("DetalleProducto.aspx?ID=" + ID, false);
+            try
+            {
+
+                string ID = ((LinkButton)sender).CommandArgument.ToString();
+                Response.Redirect("DetalleProducto.aspx?ID=" + ID, false);
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
     }
 }

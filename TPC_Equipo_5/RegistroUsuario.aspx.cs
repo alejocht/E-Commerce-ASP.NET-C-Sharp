@@ -44,19 +44,30 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                Session.Add("error", ex);
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
 
         protected void DdlProvincias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LecturaCiudad lecturaciudad = new LecturaCiudad();
-            List<Ciudad> listaciudad = new List<Ciudad>();
-            int id = int.Parse(DdlProvincias.SelectedItem.Value);
-            listaciudad = lecturaciudad.listarPorProvincia(id);
-            DdlLocalidad.DataSource = listaciudad;
-            DdlLocalidad.DataTextField = "Nombre";
-            DdlLocalidad.DataBind();
+            try
+            {
+
+                LecturaCiudad lecturaciudad = new LecturaCiudad();
+                List<Ciudad> listaciudad = new List<Ciudad>();
+                int id = int.Parse(DdlProvincias.SelectedItem.Value);
+                listaciudad = lecturaciudad.listarPorProvincia(id);
+                DdlLocalidad.DataSource = listaciudad;
+                DdlLocalidad.DataTextField = "Nombre";
+                DdlLocalidad.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
 
         protected void Rb_Mujer_CheckedChanged(object sender, EventArgs e)

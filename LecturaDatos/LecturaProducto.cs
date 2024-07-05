@@ -101,8 +101,10 @@ namespace LecturaDatos
                     aux.stock = (int)datos.Lector["Stock"];
                     aux.precio = (decimal)datos.Lector["Precio"];
                     aux.estado = (bool)datos.Lector["Estado"];
-                    aux.marca = lecturaMarca.listar(id);
-                    aux.categoria = lecturaCategoria.listar(id);
+                    aux.marca.id = (int)datos.Lector["ID_Marca"];
+                    aux.categoria.id = (int)datos.Lector["ID_Categoria"];
+                    aux.marca = lecturaMarca.listar(aux.marca.id);
+                    aux.categoria = lecturaCategoria.listar(aux.categoria.id);
                     aux.imagenes = lecturaImagen.listar(id);
                     if(aux.imagenes.Count > 0)
                     {
@@ -222,20 +224,20 @@ namespace LecturaDatos
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "SELECT P.ID as ProductoID, P.Nombre as ProductoNombre, P.Descripcion as ProductoDescripcion, P.Stock as ProductoStock, P.Precio as ProductoPrecio, P.Estado as EstadoProducto , M.ID as MarcaID, M.nombre as MarcaNombre, C.ID as CategoriaID, C.nombre as CategoriaNombre FROM Productos P  INNER JOIN Marcas M on P.ID_Marca = M.ID INNER JOIN Categorias C on P.ID_Categoria = C.ID WHERE ";
+                string consulta = "select Productos.ID, Productos.Nombre, Productos.Descripcion, Productos.Precio, Productos.Stock, Marcas.nombre as marca, Categorias.nombre as categoria, Productos.Estado, Marcas.ID as marcaid, Categorias.ID as categoriasid from Productos inner join marcas on Marcas.ID = Productos.ID_Marca inner join Categorias on Categorias.ID = Productos.ID_Categoria where ";
                 switch(campo)
                 {
                     case "Producto":
                         switch(criterio)
                         {
                             case "Comienza por":
-                                consulta += "ProductoNombre like @filtro + '%'";
+                                consulta += "Productos.Nombre like @filtro + '%'";
                                 break;
                             case "Termina con":
-                                consulta += "ProductoNombre like '%' + @filtro";
+                                consulta += "Productos.Nombre like '%' + @filtro";
                                 break;
                             case "Contiene":
-                                consulta += "ProductoNombre like  '%' + @filtro '%'";
+                                consulta += "Productos.Nombre like  '%' + @filtro '%'";
                                 break;
                         }
                         break;
@@ -243,13 +245,13 @@ namespace LecturaDatos
                         switch (criterio)
                         {
                             case "Comienza por":
-                                consulta += "P.Descripcion like '@filtro' + '%'";
+                                consulta += "Productos.Descripcion like @filtro + '%'";
                                 break;
                             case "Termina con":
-                                consulta += "ProductoDescripcion like '%' + @filtro";
+                                consulta += "Productos.Descripcion like '%' + @filtro";
                                 break;
                             case "Contiene":
-                                consulta += "ProductoDescripcion like  '%' + @filtro '%'";
+                                consulta += "Productos.Descripcion like  '%' + @filtro '%'";
                                 break;
                         }
                         break;
@@ -257,13 +259,13 @@ namespace LecturaDatos
                         switch (criterio)
                         {
                             case "Comienza por":
-                                consulta += "CategoriaNombre like @filtro + '%'";
+                                consulta += "Categorias.Nombre like @filtro + '%'";
                                 break;
                             case "Termina con":
-                                consulta += "CategoriaNombre like '%' + @filtro";
+                                consulta += "Categorias.Nombre like '%' + @filtro";
                                 break;
                             case "Contiene":
-                                consulta += "CategoriaNombre like  '%' + @filtro '%'";
+                                consulta += "Categorias.Nombre like  '%' + @filtro '%'";
                                 break;
                         }
                         break;
@@ -271,13 +273,13 @@ namespace LecturaDatos
                         switch (criterio)
                         {
                             case "Empieza con":
-                                consulta += "MarcaNombre like @filtro + '%'";
+                                consulta += "Marcas.Nombre like @filtro + '%'";
                                 break;
                             case "Termina con":
-                                consulta += "MarcaNombre like '%' + @filtro";
+                                consulta += "Marcas.Nombre like '%' + @filtro";
                                 break;
                             case "Contiene":
-                                consulta += "MarcaNombre like  '%' + @filtro '%'";
+                                consulta += "Marcas.Nombre like  '%' + @filtro '%'";
                                 break;
                         }
                         break;
@@ -285,13 +287,13 @@ namespace LecturaDatos
                         switch (criterio)
                         {
                             case "Mayor a":
-                                consulta += "ProductoPrecio > @avanzado";
+                                consulta += "Productos.Precio > @filtro";
                                 break;
                             case "Menor a":
-                                consulta += "ProductoPrecio < @avanzado";
+                                consulta += "Productos.Precio < @filtro";
                                 break;
                             case "Igual a":
-                                consulta += "ProductoPrecio = @avanzado";
+                                consulta += "Productos.Precio = @filtro";
                                 break;
                         }
                         break;
@@ -299,13 +301,13 @@ namespace LecturaDatos
                         switch (criterio)
                         {
                             case "Mayor a":
-                                consulta += "ProductoStock > @avanzado";
+                                consulta += "Productos.Stock > @filtro";
                                 break;
                             case "Menor a":
-                                consulta += "ProductoStock < @avanzado";
+                                consulta += "Productos.Stock < @filtro";
                                 break;
                             case "Igual a":
-                                consulta += "ProductoStock = @avanzado";
+                                consulta += "Productos.Stock = @filtro";
                                 break;
                         }
                         break;
@@ -322,23 +324,23 @@ namespace LecturaDatos
                     aux.imagenes = new List<Imagen>();
                     LecturaImagen lecturaImagen = new LecturaImagen();
 
-                    aux.id = (int)datos.Lector["ProductoID"];
-                    aux.nombre = (string)datos.Lector["ProductoNombre"];
-                    aux.descripcion = (string)datos.Lector["ProductoDescripcion"];
-                    aux.stock = (int)datos.Lector["ProductoStock"];
-                    aux.precio = (decimal)datos.Lector["ProductoPrecio"];
-                    aux.estado = (bool)datos.Lector["EstadoProducto"];
+                    aux.id = (int)datos.Lector["ID"];
+                    aux.nombre = (string)datos.Lector["Nombre"];
+                    aux.descripcion = (string)datos.Lector["Descripcion"];
+                    aux.stock = (int)datos.Lector["Stock"];
+                    aux.precio = (decimal)datos.Lector["Precio"];
+                    aux.estado = (bool)datos.Lector["Estado"];
 
                     //Carga de Marca y categoria
-                    if (!Convert.IsDBNull(datos.Lector["MarcaID"]))
-                        aux.marca.id = (int)datos.Lector["MarcaID"];
-                    if (!Convert.IsDBNull(datos.Lector["MarcaNombre"]))
-                        aux.marca.nombre = (string)datos.Lector["MarcaNombre"];
+                    if (!Convert.IsDBNull(datos.Lector["marcaid"]))
+                        aux.marca.id = (int)datos.Lector["marcaid"];
+                    if (!Convert.IsDBNull(datos.Lector["marca"]))
+                        aux.marca.nombre = (string)datos.Lector["marca"];
 
-                    if (!Convert.IsDBNull(datos.Lector["CategoriaID"]))
-                        aux.categoria.id = (int)datos.Lector["CategoriaID"];
-                    if (!Convert.IsDBNull(datos.Lector["CategoriaNombre"]))
-                        aux.categoria.nombre = (string)datos.Lector["CategoriaNombre"];
+                    if (!Convert.IsDBNull(datos.Lector["categoriasid"]))
+                        aux.categoria.id = (int)datos.Lector["categoriasid"];
+                    if (!Convert.IsDBNull(datos.Lector["categoria"]))
+                        aux.categoria.nombre = (string)datos.Lector["categoria"];
 
                     //Carga de Imagenes + imagenprincipal (la que sale en la tarjeta)
                     aux.imagenes = lecturaImagen.listar(aux.id);

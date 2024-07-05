@@ -56,7 +56,7 @@
             </asp:ContentPlaceHolder>
         </div>
 
-        <footer id="footer" style="background-image: linear-gradient(to right, #D32F2F 0%, #b82727 100%); padding-inline: 10%">
+        <footer id="footer" style="background-image: linear-gradient(to right, #D32F2F 0%, #b82727 100%); padding-inline: 10% ">
             <div>
                 <div class="row pt-5 pb-5 text-white">
                     <div class="col-md-3">

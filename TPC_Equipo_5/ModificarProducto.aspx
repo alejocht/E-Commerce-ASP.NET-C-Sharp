@@ -76,10 +76,10 @@
         <div class="row">
             <div class="col m-2 p-lg-4">
                 <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
-            </div>
-            <div class="col m-2 p-lg-4">
                 <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-success" OnClick="btnModificar_Click"></asp:Button>
             </div>
+           <%-- <div class="col m-2 p-lg-4">
+            </div>--%>
 
 
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">

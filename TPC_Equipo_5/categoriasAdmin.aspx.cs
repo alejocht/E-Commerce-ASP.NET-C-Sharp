@@ -17,58 +17,98 @@ namespace TPC_Equipo_5
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargardatos();
-
-            if (!IsPostBack)
+            try
             {
-                cargarddl();
-                dgvCategorias.DataSource = listaLecturaCategoria;
-                dgvCategorias.DataBind();
+
+                cargardatos();
+
+                if (!IsPostBack)
+                {
+                    cargarddl();
+                    dgvCategorias.DataSource = listaLecturaCategoria;
+                    dgvCategorias.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
 
         protected void btnBusquedaCategoria_Click(object sender, EventArgs e)
         {
-            busqueda = txtBuscarCategoria.Text;
-            if (ValidarTextBox(busqueda))
+            try
             {
-                filtrarCategoria(busqueda);
-                dgvCategorias.DataSource = listaLecturaCategoria;
-                dgvCategorias.DataBind();
+
+                busqueda = txtBuscarCategoria.Text;
+                if (ValidarTextBox(busqueda))
+                {
+                    filtrarCategoria(busqueda);
+                    dgvCategorias.DataSource = listaLecturaCategoria;
+                    dgvCategorias.DataBind();
+                }
+                else
+                {
+                    cargardatos();
+                    dgvCategorias.DataSource = listaLecturaCategoria;
+                    dgvCategorias.DataBind();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                cargardatos();
-                dgvCategorias.DataSource = listaLecturaCategoria;
-                dgvCategorias.DataBind();
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
 
         protected void ddlOrdenarCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Categoria> listaFiltrada;
+            try
+            {
 
-            if (ddlOrdenarCategoria.SelectedValue == "Ascendente")
-            {
-                listaFiltrada = listaLecturaCategoria.OrderBy(x => x.nombre).ToList();
+                List<Categoria> listaFiltrada;
+
+                if (ddlOrdenarCategoria.SelectedValue == "Ascendente")
+                {
+                    listaFiltrada = listaLecturaCategoria.OrderBy(x => x.nombre).ToList();
+                }
+                else if (ddlOrdenarCategoria.SelectedValue == "Descendente")
+                {
+                    listaFiltrada = listaLecturaCategoria.OrderByDescending(x => x.nombre).ToList();
+                }
+                else
+                {
+                    listaFiltrada = listaLecturaCategoria.OrderBy(x => x.id).ToList();
+                }
+                listaLecturaCategoria = listaFiltrada;
+                dgvCategorias.DataSource = listaLecturaCategoria;
+                dgvCategorias.DataBind();
             }
-            else if (ddlOrdenarCategoria.SelectedValue == "Descendente")
+            catch (Exception ex)
             {
-                listaFiltrada = listaLecturaCategoria.OrderByDescending(x => x.nombre).ToList();
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
-            else
-            {
-                listaFiltrada = listaLecturaCategoria.OrderBy(x => x.id).ToList();
-            }
-            listaLecturaCategoria = listaFiltrada;
-            dgvCategorias.DataSource = listaLecturaCategoria;
-            dgvCategorias.DataBind();
         }
 
         protected void dgvCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string id = dgvCategorias.SelectedDataKey.Value.ToString();
-            Response.Redirect("ModificarCategoria.aspx?id="+id,false);
+            try
+            {
+
+                string id = dgvCategorias.SelectedDataKey.Value.ToString();
+                Response.Redirect("ModificarCategoria.aspx?id="+id,false);
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
 
         protected void btnAgregarCategoría_Click(object sender, EventArgs e)
@@ -80,10 +120,20 @@ namespace TPC_Equipo_5
 
         public void cargardatos()
         {
-            LecturaCategoria lecturaCategoria = new LecturaCategoria();
-            listaLecturaCategoria = lecturaCategoria.listar();
-            dgvCategorias.DataSource = listaLecturaCategoria;
-            dgvCategorias.DataBind();
+            try
+            {
+
+                LecturaCategoria lecturaCategoria = new LecturaCategoria();
+                listaLecturaCategoria = lecturaCategoria.listar();
+                dgvCategorias.DataSource = listaLecturaCategoria;
+                dgvCategorias.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
 
         protected bool ValidarTextBox(string busqueda)
@@ -110,22 +160,52 @@ namespace TPC_Equipo_5
 
         private void filtrarCategoria(string filtro)
         {
-            List<Categoria> listaFiltrada;
-            listaFiltrada = listaLecturaCategoria.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
-            listaLecturaCategoria = listaFiltrada;
+            try
+            {
+
+                List<Categoria> listaFiltrada;
+                listaFiltrada = listaLecturaCategoria.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
+                listaLecturaCategoria = listaFiltrada;
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
 
         public void cargarddl()
         {
-            ddlOrdenarCategoria.Items.Add("Por defecto");
-            ddlOrdenarCategoria.Items.Add("Ascendente");
-            ddlOrdenarCategoria.Items.Add("Descendente");
+            try
+            {
+
+                ddlOrdenarCategoria.Items.Add("Por defecto");
+                ddlOrdenarCategoria.Items.Add("Ascendente");
+                ddlOrdenarCategoria.Items.Add("Descendente");
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
 
         protected void dgvCategorias_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            dgvCategorias.PageIndex = e.NewPageIndex;
-            dgvCategorias.DataBind();
+            try
+            {
+
+                dgvCategorias.PageIndex = e.NewPageIndex;
+                dgvCategorias.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
     }
 }

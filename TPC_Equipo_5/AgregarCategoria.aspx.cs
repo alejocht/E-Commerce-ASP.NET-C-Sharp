@@ -18,17 +18,37 @@ namespace TPC_Equipo_5
 
         protected void btnCancelarProducto_Click(object sender, EventArgs e)
         {
-            Response.Redirect("categoriasAdmin.aspx",false);
+            try
+            {
+                Response.Redirect("categoriasAdmin.aspx",false);
+
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
 
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
-            LecturaCategoria lecturaCategoria = new LecturaCategoria();
-            Categoria nuevo = new Categoria();
-            if (txtCategoria.Text == "") return;
-            nuevo.nombre = txtCategoria.Text;
-            lecturaCategoria.agregar(nuevo);
-            Response.Redirect("categoriasAdmin.aspx", false);
+            try
+            {
+
+                LecturaCategoria lecturaCategoria = new LecturaCategoria();
+                Categoria nuevo = new Categoria();
+                if (txtCategoria.Text == "") return;
+                nuevo.nombre = txtCategoria.Text;
+                lecturaCategoria.agregar(nuevo);
+                Response.Redirect("categoriasAdmin.aspx", false);
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
     }
 }
