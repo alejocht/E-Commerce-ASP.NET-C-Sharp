@@ -7,7 +7,7 @@
     <div class="container" id="containerDetalle">
         <div class="row">
             <div class="col col-lg-2">
-                <asp:Button ID="BtnBack" runat="server" Text="Back" OnClick="Back_Click" CssClass="btn btn-danger btn-sm m-2" />
+                <asp:Button ID="BtnBack" runat="server" Text="Volver" OnClick="Back_Click" CssClass="btn btn-danger btn-sm m-2" />
             </div>
             <div class="col">
                 <%if (carrusel)
@@ -18,7 +18,7 @@
                             <%foreach (Dominio.Productos.Imagen imagen in producto.imagenes)
                                 { %>
                                 <div class="carousel-item active">
-                                    <img src=<%=imagen.imagenUrl %> class="d-block w-100" alt="...">
+                                    <img src=<%=imagen.imagenUrl %> class="d-block w-100" alt="..." onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'">
                                 </div>
                             <%} %>
                         </div>
