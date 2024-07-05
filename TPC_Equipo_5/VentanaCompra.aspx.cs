@@ -10,6 +10,7 @@ using Dominio.Usuarios;
 using Dominio.Productos;
 using System.Web.Routing;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Dominio.Pedidos;
 
 namespace TPC_Equipo_5
 {
@@ -17,6 +18,15 @@ namespace TPC_Equipo_5
     {
         public List<Producto> listaLecturaProductos;
         public Producto produ;
+
+        public Pedido pedido;
+        public LecturaPedido lecturaPedido;
+
+        public List<ProductosPedido> productosPedido;
+        public ProductosPedido productopedido;
+
+        public DatosUsuario datousuario;
+        
         
             
         protected void Page_Load(object sender, EventArgs e)
@@ -53,6 +63,14 @@ namespace TPC_Equipo_5
 
                     lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
                     lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
+                    //aca van los datos del usuario de la session
+                    datousuario = new DatosUsuario();
+                    datousuario.email = "nolopodescambiar@gmail.com";
+                    datousuario.direccion = "casitermino 23";
+                    Txt_Email.Text = datousuario.email;
+                    Txt_Calle_R.Text = datousuario.direccion;
+                    Txt_Calle_R.Enabled = false;
+                    Txt_Email.Enabled = false;
 
 
                 }
@@ -85,7 +103,17 @@ namespace TPC_Equipo_5
 
         protected void btnconfirmar_Click(object sender, EventArgs e)
         {
+            if (Transferencia.Checked)
+            {
+               /* pedido = new Pedido();
+                lecturaPedido  = new LecturaPedido();
+                productosPedido = new List<ProductosPedido>();
+                pedido.metodoPago.id = ;*/
+            }
+            else
+            {
 
+            }
 
 
 
