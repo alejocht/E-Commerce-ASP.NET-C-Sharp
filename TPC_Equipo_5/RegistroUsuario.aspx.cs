@@ -69,27 +69,13 @@ namespace TPC_Equipo_5
                 Response.Redirect("error.aspx", false);
             }
         }
-
-        protected void Rb_Mujer_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Rb_Hombre_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Rb_PnD_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+        
         protected void Btn_CrearCuenta_Click(object sender, EventArgs e)
         {
             Page.Validate();
             if (!Page.IsValid)
             {
-
+                return;
             }
             else
             {

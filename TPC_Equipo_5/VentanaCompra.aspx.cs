@@ -9,6 +9,7 @@ using Dominio;
 using Dominio.Usuarios;
 using Dominio.Productos;
 using System.Web.Routing;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace TPC_Equipo_5
 {
@@ -16,35 +17,14 @@ namespace TPC_Equipo_5
     {
         public List<Producto> listaLecturaProductos;
         public Producto produ;
-        Provincia provincia;
-        public int cambiopag = 1;
-        List<Provincia> ListaProvincias;
-        LecturaProvincia lecturaProvincias;
-        public bool Trasferencia = false;
-        public bool Mercadopago = false;
+        
+            
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 if (!IsPostBack)
                 {
-
-
-                    lecturaProvincias = new LecturaProvincia();
-                    List<Provincia> listaprovincia = lecturaProvincias.listar();
-                    LecturaCiudad lecturaciudad = new LecturaCiudad();
-                    List<Ciudad> listaciudad = lecturaciudad.listar();
-
-
-                    DdlProvincias.DataSource = listaprovincia;
-                    DdlProvincias.DataValueField = "ID";
-                    DdlProvincias.DataTextField = "Nombre";
-                    DdlProvincias.DataBind();
-
-                    DdlLocalidad.DataSource = listaciudad;
-                    DdlLocalidad.DataTextField = "Nombre";
-                    DdlLocalidad.DataBind();
-
                     if (listaLecturaProductos == null)
                     {
                         if (Session["listaArticulosEnCarrito"] != null)
@@ -68,22 +48,15 @@ namespace TPC_Equipo_5
                     repCarrito.DataSource = listaLecturaProductos;
                     repCarrito.DataBind();
 
+                    decimal SubtotalCarrito = CalcularTotal(listaLecturaProductos);
+                    lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
+
+                    lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
+                    lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
 
 
                 }
 
-                if (Session["Trasferencia"] != null)
-                {
-                    Trasferencia = (bool)Session["Trasferencia"];
-                }
-                else { Session["Trasferencia"] = Trasferencia; }
-
-
-                if (Session["Cambiopag"] == null)
-                {
-                    Session.Add("Cambiopag", cambiopag);
-                }
-                else { cambiopag = (int)Session["Cambiopag"]; }
             }
             catch (Exception ex)
             {
@@ -93,149 +66,53 @@ namespace TPC_Equipo_5
             }
 
         }
-
-        protected void DdlProvincias_SelectedIndexChanged(object sender, EventArgs e)
+        private decimal CalcularTotal(List<Producto> productos)
         {
-            try
-            {
+               decimal total = 0;
 
-                LecturaCiudad lecturaciudad = new LecturaCiudad();
-                List<Ciudad> listaciudad = new List<Ciudad>();
-                int id = int.Parse(DdlProvincias.SelectedItem.Value);
-                listaciudad = lecturaciudad.listarPorProvincia(id);
-                DdlLocalidad.DataSource = listaciudad;
-                DdlLocalidad.DataTextField = "Nombre";
-                DdlLocalidad.DataBind();
-            }
-            catch (Exception ex)
-            {
-
-                Session["error"] = ex.Message;
-                Response.Redirect("error.aspx", false);
-            }
-        }
-
-        protected void btnSiguiente_Click(object sender, EventArgs e)
-        {
-            Page.Validate();
-            
-            //if(!Page.IsValid || cambiopag == 1)
-            //{ return; }
-            switch (cambiopag)
-            {
-                case 1:
-                    {
-
-                    }
-                    break; 
-                case 2:
-                    {
-
-                    }
-                    break; 
-                case 3:
-                    {
-
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-
-            if (cambiopag < 4)
-            {
-                cambiopag++;
-            }
-            Session.Add("Cambiopag", cambiopag);
-        }
-
-        protected void btnAtras_Click(object sender, EventArgs e)
-        {
-            if (cambiopag > 1)
-            {
-                cambiopag--;
-            }
-
-            Session.Add("Cambiopag", cambiopag);
-        }
-
-        protected void btnTrasferencia_Click(object sender, EventArgs e)
-        {
-            if (Trasferencia == false)
-            {
-
-                Trasferencia = true;
-            }
-            else Trasferencia = false;
-            Session.Add("Trasferencia", Trasferencia);
-
-        }
-
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int IdProducto = int.Parse(((Button)sender).CommandArgument);
-                listaLecturaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
-
-                List<Producto> nuevaLista = new List<Producto>();
-                bool eliminado = false;
-
-                foreach (var producto in listaLecturaProductos)
+                foreach (var producto in productos)
                 {
-                    if (!eliminado && producto.id == IdProducto)
-                    {
-                        eliminado = true;
-                    }
-                    else
-                    {
-                        nuevaLista.Add(producto);
-                    }
+                    total += (decimal)producto.precio;
                 }
 
-                listaLecturaProductos = nuevaLista;
-                if (listaLecturaProductos.Count == 0)
-                {
-                    Session["ArticulosEnCarrito"] = null;
-                    Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
-                    Response.Redirect("default.aspx");
-                }
-                else
-                {
-                    repCarrito.DataSource = listaLecturaProductos;
-                    repCarrito.DataBind();
-                    Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
-                    site master = (site)Master;
-                    master.cantidadItems = listaLecturaProductos.Count().ToString();
-                }
-            }
-            catch (Exception ex)
-            {
+                return total; ;           
+        }
+        
+       
 
-                Session["error"] = ex.Message;
-                Response.Redirect("error.aspx", false);
-            }
+
+
+
+        protected void btnconfirmar_Click(object sender, EventArgs e)
+        {
+
+
+
 
         }
-        protected void Mp_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Mercadopago == false)
-            {
-                Mercadopago = true;
-                Trasferencia = false;
-            }
-            else { Mercadopago = false; }
-        }
 
-        protected void Tansf_CheckedChanged(object sender, EventArgs e)
+
+
+        protected void BtnSubir_Click(object sender, EventArgs e)
         {
-            if (Trasferencia == false)
+            //Terminar 
+            if (FileUpload1.HasFile)
             {
-                Trasferencia = true;
-                Mercadopago = false;
+                string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
+
+                int tam = FileUpload1.PostedFile.ContentLength;
+                Response.Write(ext + ", " + tam);
+                if (ext == ".png" && tam <= 1048576)
+                {
+                    FileUpload1.SaveAs(Server.MapPath("D:\\COSAS MARIANO\\UNI\\UNI\\Prog 3\\TPC\\TPC_Equipo_5\\BD\\Comprobantes" + FileUpload1.FileName));
+                    Response.Write("Se subio el archivo");
+                }
             }
-            else { Trasferencia = false; }
+            else
+            {
+                Response.Write("Selleciona un archivo a subir");
+            }
         }
     }
 }
+
