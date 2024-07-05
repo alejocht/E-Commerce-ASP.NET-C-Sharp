@@ -231,13 +231,13 @@ namespace LecturaDatos
                         switch(criterio)
                         {
                             case "Comienza por":
-                                consulta += "Productos.Nombre like @filtro + '%'";
+                                consulta += "Productos.Nombre like '"+filtro+"%'";
                                 break;
-                            case "Termina con":
-                                consulta += "Productos.Nombre like '%' + @filtro";
+                            case "Termina Con":
+                                consulta += "Productos.Nombre like '%"+filtro+"'";
                                 break;
                             case "Contiene":
-                                consulta += "Productos.Nombre like  '%' + @filtro '%'";
+                                consulta += "Productos.Nombre like '%"+filtro+"%'";
                                 break;
                         }
                         break;
@@ -245,13 +245,13 @@ namespace LecturaDatos
                         switch (criterio)
                         {
                             case "Comienza por":
-                                consulta += "Productos.Descripcion like @filtro + '%'";
+                                consulta += "Productos.Descripcion like '"+ filtro +"%'";
                                 break;
-                            case "Termina con":
-                                consulta += "Productos.Descripcion like '%' + @filtro";
+                            case "Termina Con":
+                                consulta += "Productos.Descripcion like '%" + filtro + "'";
                                 break;
                             case "Contiene":
-                                consulta += "Productos.Descripcion like  '%' + @filtro '%'";
+                                consulta += "Productos.Descripcion like  '%" + filtro + "%'";
                                 break;
                         }
                         break;
@@ -259,27 +259,27 @@ namespace LecturaDatos
                         switch (criterio)
                         {
                             case "Comienza por":
-                                consulta += "Categorias.Nombre like @filtro + '%'";
+                                consulta += "Categorias.Nombre like '" + filtro + "%'";
                                 break;
-                            case "Termina con":
-                                consulta += "Categorias.Nombre like '%' + @filtro";
+                            case "Termina Con":
+                                consulta += "Categorias.Nombre like '%" + filtro + "'";
                                 break;
                             case "Contiene":
-                                consulta += "Categorias.Nombre like  '%' + @filtro '%'";
+                                consulta += "Categorias.Nombre like  '%" + filtro + "%'";
                                 break;
                         }
                         break;
                     case "Marca":
                         switch (criterio)
                         {
-                            case "Empieza con":
-                                consulta += "Marcas.Nombre like @filtro + '%'";
+                            case "Comienza por":
+                                consulta += "Marcas.Nombre like '" + filtro + "%'";
                                 break;
-                            case "Termina con":
-                                consulta += "Marcas.Nombre like '%' + @filtro";
+                            case "Termina Con":
+                                consulta += "Marcas.Nombre like '%" + filtro + "'";
                                 break;
                             case "Contiene":
-                                consulta += "Marcas.Nombre like  '%' + @filtro '%'";
+                                consulta += "Marcas.Nombre like  '%" + filtro + "%'";
                                 break;
                         }
                         break;
@@ -287,13 +287,13 @@ namespace LecturaDatos
                         switch (criterio)
                         {
                             case "Mayor a":
-                                consulta += "Productos.Precio > @filtro";
+                                consulta += "Productos.Precio >" + filtro;
                                 break;
                             case "Menor a":
-                                consulta += "Productos.Precio < @filtro";
+                                consulta += "Productos.Precio <" + filtro;
                                 break;
                             case "Igual a":
-                                consulta += "Productos.Precio = @filtro";
+                                consulta += "Productos.Precio =" + filtro;
                                 break;
                         }
                         break;
@@ -301,18 +301,17 @@ namespace LecturaDatos
                         switch (criterio)
                         {
                             case "Mayor a":
-                                consulta += "Productos.Stock > @filtro";
+                                consulta += "Productos.Stock >" + filtro;
                                 break;
                             case "Menor a":
-                                consulta += "Productos.Stock < @filtro";
+                                consulta += "Productos.Stock <" + filtro;
                                 break;
                             case "Igual a":
-                                consulta += "Productos.Stock = @filtro";
+                                consulta += "Productos.Stock =" + filtro;
                                 break;
                         }
                         break;
                 }
-                datos.SetearParametro("@filtro", filtro);
                 datos.SetearConsulta(consulta);
                 datos.EjecutarLectura();
 
