@@ -39,9 +39,8 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                throw;
-                //Puede redireccionar a una pagina de error
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
         protected void btnBusqueda_Click(object sender, EventArgs e)
@@ -65,7 +64,8 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
             
         }
@@ -111,7 +111,8 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }  
         }
         protected List<Producto> filtrarXEstado(bool estado)
@@ -138,7 +139,8 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }        
         }
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
@@ -149,7 +151,8 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
         public void cargardatos()
@@ -164,7 +167,8 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
             
         }
@@ -176,10 +180,8 @@ namespace TPC_Equipo_5
                 {
                     return false;
                 }
-                else
-                {
                     return true;
-                }
+
             }
             catch (Exception ex)
             {
@@ -200,7 +202,8 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
             
         }
@@ -214,7 +217,8 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }         
 
         }
@@ -233,40 +237,61 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
         protected void chk_FiltroAvanzado_CheckedChanged(object sender, EventArgs e)
         {
-            lblAvisoCampo.Text = "";
-            lblAvisoCriterio.Text = "";
-            lblAvisoFiltro.Text = "";
-            lblAvisoEstado.Text = "";
-            filtroAvanzado = chk_FiltroAvanzado.Checked;
-            txtBuscar.Enabled = !filtroAvanzado;
+            try
+            {
+
+                lblAvisoCampo.Text = "";
+                lblAvisoCriterio.Text = "";
+                lblAvisoFiltro.Text = "";
+                lblAvisoEstado.Text = "";
+                filtroAvanzado = chk_FiltroAvanzado.Checked;
+                txtBuscar.Enabled = !filtroAvanzado;
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
         protected void ddl_campo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ddl_criterio.Items.Clear();
-            if(ddl_campo.SelectedItem.ToString() == "Producto" || ddl_campo.SelectedItem.ToString() == "Descripcion" || ddl_campo.SelectedItem.ToString() == "Marca" || ddl_campo.SelectedItem.ToString() == "Categoria")
+            try
             {
+
+                ddl_criterio.Items.Clear();
+                if(ddl_campo.SelectedItem.ToString() == "Producto" || ddl_campo.SelectedItem.ToString() == "Descripcion" || ddl_campo.SelectedItem.ToString() == "Marca" || ddl_campo.SelectedItem.ToString() == "Categoria")
+                {
                 
-                ddl_criterio.Items.Add("Contiene");
-                ddl_criterio.Items.Add("Comienza por");
-                ddl_criterio.Items.Add("Termina Con");
-            }   
-            if (ddl_campo.SelectedItem.ToString() == "Precio" || ddl_campo.SelectedItem.ToString() == "Stock")
+                    ddl_criterio.Items.Add("Contiene");
+                    ddl_criterio.Items.Add("Comienza por");
+                    ddl_criterio.Items.Add("Termina Con");
+                }   
+                if (ddl_campo.SelectedItem.ToString() == "Precio" || ddl_campo.SelectedItem.ToString() == "Stock")
+                {
+
+                    ddl_criterio.Items.Add("Igual a");
+                    ddl_criterio.Items.Add("Mayor a");
+                    ddl_criterio.Items.Add("Menor a");
+                }
+
+                ddl_estado.Items.Clear();
+                ddl_estado.Items.Add("Todo");
+                ddl_estado.Items.Add("Activo");
+                ddl_estado.Items.Add("Inactivo");
+            }
+            catch (Exception ex)
             {
 
-                ddl_criterio.Items.Add("Igual a");
-                ddl_criterio.Items.Add("Mayor a");
-                ddl_criterio.Items.Add("Menor a");
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
-
-            ddl_estado.Items.Clear();
-            ddl_estado.Items.Add("Todo");
-            ddl_estado.Items.Add("Activo");
-            ddl_estado.Items.Add("Inactivo");
 
         }
         protected void btnAccionarFiltroAvanzado_Click(object sender, EventArgs e)
@@ -311,11 +336,13 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
         protected bool filtroTieneNumero()
         {
+
             double numero;
             bool validacion;
             validacion = double.TryParse(txtFiltro.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out numero);
@@ -330,8 +357,18 @@ namespace TPC_Equipo_5
 
         protected void dgvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            dgvProductos.PageIndex = e.NewPageIndex;
-            dgvProductos.DataBind();
+            try
+            {
+                dgvProductos.PageIndex = e.NewPageIndex;
+                dgvProductos.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
     }
 }

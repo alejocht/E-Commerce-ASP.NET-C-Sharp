@@ -88,20 +88,31 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                Session.Add("error", ex);
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
 
         }
 
         protected void DdlProvincias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LecturaCiudad lecturaciudad = new LecturaCiudad();
-            List<Ciudad> listaciudad = new List<Ciudad>();
-            int id = int.Parse(DdlProvincias.SelectedItem.Value);
-            listaciudad = lecturaciudad.listarPorProvincia(id);
-            DdlLocalidad.DataSource = listaciudad;
-            DdlLocalidad.DataTextField = "Nombre";
-            DdlLocalidad.DataBind();
+            try
+            {
+
+                LecturaCiudad lecturaciudad = new LecturaCiudad();
+                List<Ciudad> listaciudad = new List<Ciudad>();
+                int id = int.Parse(DdlProvincias.SelectedItem.Value);
+                listaciudad = lecturaciudad.listarPorProvincia(id);
+                DdlLocalidad.DataSource = listaciudad;
+                DdlLocalidad.DataTextField = "Nombre";
+                DdlLocalidad.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
 
         protected void btnSiguiente_Click(object sender, EventArgs e)
@@ -163,39 +174,49 @@ namespace TPC_Equipo_5
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            int IdProducto = int.Parse(((Button)sender).CommandArgument);
-            listaLecturaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
-
-            List<Producto> nuevaLista = new List<Producto>();
-            bool eliminado = false;
-
-            foreach (var producto in listaLecturaProductos)
+            try
             {
-                if (!eliminado && producto.id == IdProducto)
+                int IdProducto = int.Parse(((Button)sender).CommandArgument);
+                listaLecturaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
+
+                List<Producto> nuevaLista = new List<Producto>();
+                bool eliminado = false;
+
+                foreach (var producto in listaLecturaProductos)
                 {
-                    eliminado = true;
+                    if (!eliminado && producto.id == IdProducto)
+                    {
+                        eliminado = true;
+                    }
+                    else
+                    {
+                        nuevaLista.Add(producto);
+                    }
+                }
+
+                listaLecturaProductos = nuevaLista;
+                if (listaLecturaProductos.Count == 0)
+                {
+                    Session["ArticulosEnCarrito"] = null;
+                    Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
+                    Response.Redirect("default.aspx");
                 }
                 else
                 {
-                    nuevaLista.Add(producto);
+                    repCarrito.DataSource = listaLecturaProductos;
+                    repCarrito.DataBind();
+                    Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
+                    site master = (site)Master;
+                    master.cantidadItems = listaLecturaProductos.Count().ToString();
                 }
             }
+            catch (Exception ex)
+            {
 
-            listaLecturaProductos = nuevaLista;
-            if (listaLecturaProductos.Count == 0)
-            {
-                Session["ArticulosEnCarrito"] = null;
-                Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
-                Response.Redirect("default.aspx");
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
-            else
-            {
-                repCarrito.DataSource = listaLecturaProductos;
-                repCarrito.DataBind();
-                Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
-                site master = (site)Master;
-                master.cantidadItems = listaLecturaProductos.Count().ToString();
-            }
+
         }
         protected void Mp_CheckedChanged(object sender, EventArgs e)
         {

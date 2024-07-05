@@ -16,58 +16,99 @@ namespace TPC_Equipo_5
         public bool listaMostrable;
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargardatos();
-
-            if (!IsPostBack)
+            try
             {
-                cargarddl();
-                dgvMarcas.DataSource = listaLecturaMarca;
-                dgvMarcas.DataBind();
+
+                cargardatos();
+
+                if (!IsPostBack)
+                {
+                    cargarddl();
+                    dgvMarcas.DataSource = listaLecturaMarca;
+                    dgvMarcas.DataBind();
+                }
             }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
+
         }
 
         protected void btnBusquedaMarca_Click(object sender, EventArgs e)
         {
-            busqueda = txtBuscarMarca.Text;
-            if (ValidarTextBox(busqueda))
+            try
             {
-                filtrarMarca(busqueda);
-                dgvMarcas.DataSource = listaLecturaMarca;
-                dgvMarcas.DataBind();
+
+                busqueda = txtBuscarMarca.Text;
+                if (ValidarTextBox(busqueda))
+                {
+                    filtrarMarca(busqueda);
+                    dgvMarcas.DataSource = listaLecturaMarca;
+                    dgvMarcas.DataBind();
+                }
+                else
+                {
+                    cargardatos();
+                    dgvMarcas.DataSource = listaLecturaMarca;
+                    dgvMarcas.DataBind();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                cargardatos();
-                dgvMarcas.DataSource = listaLecturaMarca;
-                dgvMarcas.DataBind();
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
 
         protected void ddlOrdenarMarca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Marca> listaFiltrada;
+            try
+            {
 
-            if (ddlOrdenarMarca.SelectedValue == "Ascendente")
-            {
-                listaFiltrada = listaLecturaMarca.OrderBy(x => x.nombre).ToList();
+                List<Marca> listaFiltrada;
+
+                if (ddlOrdenarMarca.SelectedValue == "Ascendente")
+                {
+                    listaFiltrada = listaLecturaMarca.OrderBy(x => x.nombre).ToList();
+                }
+                else if (ddlOrdenarMarca.SelectedValue == "Descendente")
+                {
+                    listaFiltrada = listaLecturaMarca.OrderByDescending(x => x.nombre).ToList();
+                }
+                else
+                {
+                    listaFiltrada = listaLecturaMarca.OrderBy(x => x.id).ToList();
+                }
+                listaLecturaMarca = listaFiltrada;
+                dgvMarcas.DataSource = listaLecturaMarca;
+                dgvMarcas.DataBind();
             }
-            else if (ddlOrdenarMarca.SelectedValue == "Descendente")
+            catch (Exception ex)
             {
-                listaFiltrada = listaLecturaMarca.OrderByDescending(x => x.nombre).ToList();
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
-            else
-            {
-                listaFiltrada = listaLecturaMarca.OrderBy(x => x.id).ToList();
-            }
-            listaLecturaMarca = listaFiltrada;
-            dgvMarcas.DataSource = listaLecturaMarca;
-            dgvMarcas.DataBind();
         }
 
         protected void dgvMarcas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string id = dgvMarcas.SelectedDataKey.Value.ToString();
-            Response.Redirect("ModificarMarca.aspx?id="+id, false);
+            try
+            {
+
+                string id = dgvMarcas.SelectedDataKey.Value.ToString();
+                Response.Redirect("ModificarMarca.aspx?id="+id, false);
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
 
 
             //Nueva ventana o usar javascript para abrir un modal
@@ -79,10 +120,20 @@ namespace TPC_Equipo_5
         }
         public void cargardatos()
         {
-            LecturaMarca lecturaMarca = new LecturaMarca();
-            listaLecturaMarca = lecturaMarca.listar();
-            dgvMarcas.DataSource = listaLecturaMarca;
-            dgvMarcas.DataBind();
+            try
+            {
+
+                LecturaMarca lecturaMarca = new LecturaMarca();
+                listaLecturaMarca = lecturaMarca.listar();
+                dgvMarcas.DataSource = listaLecturaMarca;
+                dgvMarcas.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
 
         protected bool ValidarTextBox(string busqueda)
@@ -109,22 +160,52 @@ namespace TPC_Equipo_5
 
         private void filtrarMarca(string filtro)
         {
-            List<Marca> listaFiltrada;
-            listaFiltrada = listaLecturaMarca.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
-            listaLecturaMarca = listaFiltrada;
+            try
+            {
+
+                List<Marca> listaFiltrada;
+                listaFiltrada = listaLecturaMarca.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
+                listaLecturaMarca = listaFiltrada;
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
 
         public void cargarddl()
         {
-            ddlOrdenarMarca.Items.Add("Por defecto");
-            ddlOrdenarMarca.Items.Add("Ascendente");
-            ddlOrdenarMarca.Items.Add("Descendente");
+            try
+            {
+                ddlOrdenarMarca.Items.Add("Por defecto");
+                ddlOrdenarMarca.Items.Add("Ascendente");
+                ddlOrdenarMarca.Items.Add("Descendente");
+
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
 
         protected void dgvMarcas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            dgvMarcas.PageIndex = e.NewPageIndex;
-            dgvMarcas.DataBind();
+            try
+            {
+                dgvMarcas.PageIndex = e.NewPageIndex;
+                dgvMarcas.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
     }
 }

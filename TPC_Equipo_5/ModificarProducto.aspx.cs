@@ -57,7 +57,8 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -69,7 +70,8 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
             
         }
@@ -109,29 +111,40 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
             
         }
         protected void btnAgregarImagen_Click(object sender, EventArgs e)
         {
-            Imagen aux = new Imagen();
-            List<Imagen> nuevasImagenes = new List<Imagen>();
-            aux.imagenUrl = txtImagenUrl.Text;
-            aux.idProducto = seleccionado.id;
-            aux.tipo = 1;
+            try
+            {
 
-            //La agrega a la lista de pendientes de cargar
-            nuevasImagenes = (List<Imagen>)Session["NuevasImagenes"];
-            nuevasImagenes.Add(aux);
-            Session["NuevasImagenes"] = nuevasImagenes;
+                Imagen aux = new Imagen();
+                List<Imagen> nuevasImagenes = new List<Imagen>();
+                aux.imagenUrl = txtImagenUrl.Text;
+                aux.idProducto = seleccionado.id;
+                aux.tipo = 1;
+
+                //La agrega a la lista de pendientes de cargar
+                nuevasImagenes = (List<Imagen>)Session["NuevasImagenes"];
+                nuevasImagenes.Add(aux);
+                Session["NuevasImagenes"] = nuevasImagenes;
             
-            txtImagenUrl.Text = string.Empty;
-            imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+                txtImagenUrl.Text = string.Empty;
+                imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
 
             
-            dgv_nuevasImg.DataSource = (List<Imagen>)Session["NuevasImagenes"];
-            dgv_nuevasImg.DataBind();
+                dgv_nuevasImg.DataSource = (List<Imagen>)Session["NuevasImagenes"];
+                dgv_nuevasImg.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
         public void cargarddl()
         {
@@ -157,7 +170,8 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
             
         }
@@ -176,7 +190,8 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
         public void buscarIndiceDDLMarca(Producto seleccionado)
@@ -194,45 +209,76 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
         protected void txtImagenUrl_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtImagenUrl.Text))
+            try
             {
-                imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+                if (string.IsNullOrEmpty(txtImagenUrl.Text))
+                {
+                    imgProducto.ImageUrl = "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
+                }
+                else
+                {
+                    imgProducto.ImageUrl = txtImagenUrl.Text;
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                imgProducto.ImageUrl = txtImagenUrl.Text;
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
         protected void achicarLinks(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            try
             {
-                TableCell campo = e.Row.Cells[0];
-                string imagenUrl = campo.Text;
-                int maximo_caracteres = 50;
-                if (imagenUrl.Length > maximo_caracteres)
+
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    campo.Text = imagenUrl.Substring(0, maximo_caracteres) + "...";
+                    TableCell campo = e.Row.Cells[0];
+                    string imagenUrl = campo.Text;
+                    int maximo_caracteres = 50;
+                    if (imagenUrl.Length > maximo_caracteres)
+                    {
+                        campo.Text = imagenUrl.Substring(0, maximo_caracteres) + "...";
+                    }
+                    campo.ToolTip = imagenUrl;
                 }
-                campo.ToolTip = imagenUrl;
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         } //acorta los url para que no se rompa el disenio
         protected void dgv_ImgProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Imagen imagenSeleccionada =  new Imagen();
-            List<Imagen> imagenesBorrar = new List<Imagen>();
+            try
+            {
 
-            int id = int.Parse(dgv_ImgProductos.SelectedDataKey.Value.ToString());
-            imagenSeleccionada.id = id;
+                Imagen imagenSeleccionada =  new Imagen();
+                List<Imagen> imagenesBorrar = new List<Imagen>();
 
-            imagenesBorrar = (List<Imagen>)Session["ImagenesBorrar"];
-            imagenesBorrar.Add(imagenSeleccionada);
-            Session["ImagenesBorrar"] = imagenesBorrar;
+                int id = int.Parse(dgv_ImgProductos.SelectedDataKey.Value.ToString());
+                imagenSeleccionada.id = id;
+
+                imagenesBorrar = (List<Imagen>)Session["ImagenesBorrar"];
+                imagenesBorrar.Add(imagenSeleccionada);
+                Session["ImagenesBorrar"] = imagenesBorrar;
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
         protected void BtnConfirmarEliminacion_Click(object sender, EventArgs e)
         {
@@ -253,7 +299,8 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
         protected void btnEliminar_Click(object sender, EventArgs e)
@@ -262,23 +309,33 @@ namespace TPC_Equipo_5
         }
         protected void dgv_nuevasImg_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Imagen> listaNueva = new List<Imagen>();
-            listaNueva = (List<Imagen>)Session["NuevasImagenes"];
-            if (dgv_nuevasImg.SelectedIndex >= 0)
+            try
             {
 
-                int index = dgv_nuevasImg.SelectedIndex;
-
-
-                // Remover el elemento de la lista imagenesForm por su índice
-                if (index < listaNueva.Count)
+                List<Imagen> listaNueva = new List<Imagen>();
+                listaNueva = (List<Imagen>)Session["NuevasImagenes"];
+                if (dgv_nuevasImg.SelectedIndex >= 0)
                 {
-                    listaNueva.RemoveAt(index);
-                    Session["NuevasImagenes"] = listaNueva;
+
+                    int index = dgv_nuevasImg.SelectedIndex;
+
+
+                    // Remover el elemento de la lista imagenesForm por su índice
+                    if (index < listaNueva.Count)
+                    {
+                        listaNueva.RemoveAt(index);
+                        Session["NuevasImagenes"] = listaNueva;
+                    }
+                    dgv_nuevasImg.DataSource = null;
+                    dgv_nuevasImg.DataSource = (List<Imagen>)Session["NuevasImagenes"];
+                    dgv_nuevasImg.DataBind();
                 }
-                dgv_nuevasImg.DataSource = null;
-                dgv_nuevasImg.DataSource = (List<Imagen>)Session["NuevasImagenes"];
-                dgv_nuevasImg.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
     }

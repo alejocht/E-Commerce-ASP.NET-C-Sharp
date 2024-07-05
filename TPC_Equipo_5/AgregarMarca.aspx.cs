@@ -18,7 +18,17 @@ namespace TPC_Equipo_5
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("marcasAdmin.aspx", false);
+            try
+            {
+                Response.Redirect("marcasAdmin.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -34,7 +44,8 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
     }

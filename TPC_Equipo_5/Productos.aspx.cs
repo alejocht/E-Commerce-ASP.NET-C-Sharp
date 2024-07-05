@@ -17,18 +17,28 @@ namespace TPC_Equipo_5
         bool listaMostrable;
         protected void Page_Load(object sender, EventArgs e)
         {
-            LecturaProducto lecturaProducto = new LecturaProducto();
-            listaProductos = new List<Producto>();
-            listaProductos = lecturaProducto.listar(true);
-            
-            busqueda = Request.QueryString["busqueda"];
-            if (busqueda != null) filtrarArticulo(busqueda);
-            validarListaMostrable();
-
-            if (!IsPostBack)
+            try
             {
-                RepeaterProducto.DataSource = listaProductos;
-                RepeaterProducto.DataBind();
+
+                LecturaProducto lecturaProducto = new LecturaProducto();
+                listaProductos = new List<Producto>();
+                listaProductos = lecturaProducto.listar(true);
+            
+                busqueda = Request.QueryString["busqueda"];
+                if (busqueda != null) filtrarArticulo(busqueda);
+                validarListaMostrable();
+
+                if (!IsPostBack)
+                {
+                    RepeaterProducto.DataSource = listaProductos;
+                    RepeaterProducto.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
             
         }
@@ -49,9 +59,19 @@ namespace TPC_Equipo_5
         }
         private void filtrarArticulo(string filtro)
         {
-            List<Producto> listaFiltrada;
-            listaFiltrada = listaProductos.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
-            listaProductos = listaFiltrada;
+            try
+            {
+
+                List<Producto> listaFiltrada;
+                listaFiltrada = listaProductos.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
+                listaProductos = listaFiltrada;
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
         }
     }
 }

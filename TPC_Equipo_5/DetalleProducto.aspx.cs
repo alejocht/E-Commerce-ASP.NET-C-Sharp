@@ -34,7 +34,8 @@ namespace TPC_Equipo_5
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
 
@@ -66,7 +67,8 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
             
         }

@@ -47,7 +47,8 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
 
@@ -63,11 +64,20 @@ namespace TPC_Equipo_5
 
         private decimal CalcularCarritoTotal(List<ProductosPedido> Productos)
         {
-            foreach (var ProductosPedido in Productos)
+            try
             {
-                total += (decimal)ProductosPedido.producto.precio * ProductosPedido.cantidad;
+
+                foreach (var ProductosPedido in Productos)
+                {
+                    total += (decimal)ProductosPedido.producto.precio * ProductosPedido.cantidad;
+                }
+                return total;
             }
-            return total;
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

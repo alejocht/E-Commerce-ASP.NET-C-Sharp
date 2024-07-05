@@ -101,8 +101,10 @@ namespace LecturaDatos
                     aux.stock = (int)datos.Lector["Stock"];
                     aux.precio = (decimal)datos.Lector["Precio"];
                     aux.estado = (bool)datos.Lector["Estado"];
-                    aux.marca = lecturaMarca.listar(id);
-                    aux.categoria = lecturaCategoria.listar(id);
+                    aux.marca.id = (int)datos.Lector["ID_Marca"];
+                    aux.categoria.id = (int)datos.Lector["ID_Categoria"];
+                    aux.marca = lecturaMarca.listar(aux.marca.id);
+                    aux.categoria = lecturaCategoria.listar(aux.categoria.id);
                     aux.imagenes = lecturaImagen.listar(id);
                     if(aux.imagenes.Count > 0)
                     {

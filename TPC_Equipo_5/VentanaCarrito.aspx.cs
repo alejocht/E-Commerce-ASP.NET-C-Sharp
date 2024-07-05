@@ -15,63 +15,83 @@ namespace TPC_Equipo_5
         public int indice = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
+
+                if (!IsPostBack)
+                {
+                    listaLecturaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
+                    if(listaLecturaProductos != null)
+                    {
+                        repCarrito.DataSource = listaLecturaProductos;
+                        repCarrito.DataBind();
+
+                        decimal SubtotalCarrito = CalcularCarritoTotal(listaLecturaProductos);
+                        lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
+
+                        lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
+                        lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
+                    }
+                
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
+        }
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                int IdProducto = int.Parse(((Button)sender).CommandArgument);
                 listaLecturaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
-                if(listaLecturaProductos != null)
+
+                List<Producto> nuevaLista = new List<Producto>();
+                bool eliminado = false;
+
+                foreach (var producto in listaLecturaProductos)
+                {
+                    if (!eliminado && producto.id == IdProducto)
+                    {
+                        eliminado = true;
+                    }
+                    else
+                    {
+                        nuevaLista.Add(producto);
+                    }
+                }
+
+                listaLecturaProductos = nuevaLista;
+                if (listaLecturaProductos.Count == 0)
+                {
+                    Session["ArticulosEnCarrito"] = null;
+                    Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
+                    Response.Redirect("default.aspx");
+                }
+                else
                 {
                     repCarrito.DataSource = listaLecturaProductos;
                     repCarrito.DataBind();
-
+                    Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
                     decimal SubtotalCarrito = CalcularCarritoTotal(listaLecturaProductos);
                     lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
 
                     lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
                     lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
-                }
-                
-            }
-        }
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            int IdProducto = int.Parse(((Button)sender).CommandArgument);
-            listaLecturaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
 
-            List<Producto> nuevaLista = new List<Producto>();
-            bool eliminado = false;
-
-            foreach (var producto in listaLecturaProductos)
-            {
-                if (!eliminado && producto.id == IdProducto)
-                {
-                    eliminado = true;
-                }
-                else
-                {
-                    nuevaLista.Add(producto);
+                    site master = (site)Master;
+                    master.cantidadItems = listaLecturaProductos.Count().ToString();
                 }
             }
-
-            listaLecturaProductos = nuevaLista;
-            if (listaLecturaProductos.Count == 0)
+            catch (Exception ex)
             {
-                Session["ArticulosEnCarrito"] = null;
-                Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
-                Response.Redirect("default.aspx");
-            }
-            else
-            {
-                repCarrito.DataSource = listaLecturaProductos;
-                repCarrito.DataBind();
-                Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
-                decimal SubtotalCarrito = CalcularCarritoTotal(listaLecturaProductos);
-                lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
 
-                lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
-                lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
-
-                site master = (site)Master;
-                master.cantidadItems = listaLecturaProductos.Count().ToString();
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
 
