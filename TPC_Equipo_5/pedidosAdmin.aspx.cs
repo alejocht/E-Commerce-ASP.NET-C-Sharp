@@ -196,18 +196,14 @@ namespace TPC_Equipo_5
         {
             try
             {
+                List<Pedido> listaFiltrada;
+                pedidosFiltrados = new List<Pedido>();
 
-                if (ChkEnProceso.Checked)
+                if (ValidarTextBox(busqueda))
                 {
-                    filtroEnProceso(busqueda);
-                    filtrarProducto(busqueda);
-                    if (ddlOrdenar.SelectedValue == "Más recientes")
+                    if (ChkEnProceso.Checked)
                     {
-                        listaFiltrada = pedidosFiltrados.OrderByDescending(x => x.fecha).ToList();
-                    }
-                    else if (ddlOrdenar.SelectedValue == "Más antiguos")
-                    {
-                        quitarCompletados(busqueda);
+                        filtroEnProceso(busqueda);
                         filtrarProducto(busqueda);
                         if (ddlOrdenar.SelectedValue == "Más recientes")
                         {
@@ -234,24 +230,9 @@ namespace TPC_Equipo_5
                 }
                 else
                 {
-                    cargardatos();
-                    dgvPedidos.DataSource = listaLecturaPedido;
-                    dgvPedidos.DataBind();
-                }
-            }
-            else
-            {
-                if (ChkEnProceso.Checked)
-                {
-                    filtroEnProceso(busqueda);
-                    if (ddlOrdenar.SelectedValue == "Más recientes")
+                    if (ChkEnProceso.Checked)
                     {
-                        listaFiltrada = listaLecturaPedido.OrderByDescending(x => x.fecha).ToList();
-                    }
-                    else if (ddlOrdenar.SelectedValue == "Más antiguos")
-
-                    {
-                        quitarCompletados(busqueda);
+                        filtroEnProceso(busqueda);
                         if (ddlOrdenar.SelectedValue == "Más recientes")
                         {
                             listaFiltrada = listaLecturaPedido.OrderByDescending(x => x.fecha).ToList();
@@ -295,12 +276,14 @@ namespace TPC_Equipo_5
                 Response.Redirect("error.aspx", false);
             }
         }
+
         private void quitarCompletados(string busqueda)
         {
             try
             {
-
                 List<Pedido> listaFiltrada;
+                pedidosFiltrados = new List<Pedido>();
+
                 if (ValidarTextBox(busqueda))
                 {
                     listaFiltrada = pedidosFiltrados.FindAll(x => x.estadoPedido.nombre != "Completado");
@@ -323,10 +306,13 @@ namespace TPC_Equipo_5
                 Session["error"] = ex.Message;
                 Response.Redirect("error.aspx", false);
 
+            }
         }
+
         private void filtroEnProceso(string busqueda)
         {
             List<Pedido> listaFiltrada;
+
             if (ValidarTextBox(busqueda))
             {
                 listaFiltrada = pedidosFiltrados.FindAll(x => x.estadoPedido.nombre != "Completado");
