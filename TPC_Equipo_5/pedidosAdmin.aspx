@@ -10,8 +10,6 @@
                 <h1 class="text-center">LISTA DE PEDIDOS</h1>
             </div>
         </div>
-        <div class="row">
-        </div>
         <div class="row" style="padding: 30px 10px; align-items: end;">
             <div class="col-6">
                 <div class="row">
@@ -25,7 +23,7 @@
             </div>
             <div class="col-6">
                 <div class="dropdown text-end">
-                    <asp:CheckBox ID="ChkCompletados" runat="server" Text="Filtrar Completados" style="margin-right: 20px;" OnCheckedChanged="ChkCompletados_CheckedChanged" AutoPostBack="true"/>
+                    <asp:CheckBox ID="ChkEnProceso" runat="server" Text="Filtrar en proceso" Style="margin-right: 20px;" OnCheckedChanged="ChkEnProceso_CheckedChanged" AutoPostBack="true" />
                     <asp:DropDownList ID="ddlOrdenar" runat="server" OnSelectedIndexChanged="ddlOrdenar_SelectedIndexChanged" AutoPostBack="true"
                         aria-label="Por defecto" CssClass="btn dropdown-menu-end btn-dark"
                         Style="background-color: #1b1f23; width: 30%;">
@@ -33,7 +31,7 @@
                 </div>
             </div>
             <div class="row" style="margin-top: 10px;">
-                <div class="col" >
+                <div class="col">
                     <asp:RadioButtonList ID="rblFiltroBusqueda" runat="server" RepeatColumns="3">
                         <asp:ListItem Text="N° Pedido" style="margin-right: 20px;" />
                         <asp:ListItem Text="Cliente" style="margin-right: 20px;" />
@@ -68,4 +66,3 @@
         </div>
     </div>
 </asp:Content>
-

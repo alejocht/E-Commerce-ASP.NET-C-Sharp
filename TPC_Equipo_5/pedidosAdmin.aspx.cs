@@ -54,7 +54,7 @@ namespace TPC_Equipo_5
                     dgvPedidos.DataBind();
                     rblFiltroBusqueda.SelectedIndex = 0;
                     ddlOrdenar.SelectedIndex = 0;
-                    ChkCompletados.Checked = false;
+                    ChkEnProceso.Checked = false;
                 }
             }
             catch (Exception ex)
@@ -80,7 +80,7 @@ namespace TPC_Equipo_5
             }
         }
 
-        protected void ChkCompletados_CheckedChanged(object sender, EventArgs e)
+        protected void ChkEnProceso_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
@@ -89,9 +89,9 @@ namespace TPC_Equipo_5
                 {
                     filtrarProducto(busqueda);
                     ordenarProducto(busqueda);
-                    if (ChkCompletados.Checked)
+                    if (ChkEnProceso.Checked)
                     {
-                        quitarCompletados(busqueda);
+                        filtroEnProceso(busqueda);
                     }
                     else
                     {
@@ -102,9 +102,9 @@ namespace TPC_Equipo_5
                 else
                 {
                     ordenarProducto(busqueda);
-                    if (ChkCompletados.Checked)
-                    {   
-                        quitarCompletados(busqueda);
+                    if (ChkEnProceso.Checked)
+                    {
+                        filtroEnProceso(busqueda);
                     }
                 }
             }
@@ -197,10 +197,15 @@ namespace TPC_Equipo_5
             try
             {
 
-                List<Pedido> listaFiltrada;
-                if (ValidarTextBox(busqueda))
+                if (ChkEnProceso.Checked)
                 {
-                    if (ChkCompletados.Checked)
+                    filtroEnProceso(busqueda);
+                    filtrarProducto(busqueda);
+                    if (ddlOrdenar.SelectedValue == "Más recientes")
+                    {
+                        listaFiltrada = pedidosFiltrados.OrderByDescending(x => x.fecha).ToList();
+                    }
+                    else if (ddlOrdenar.SelectedValue == "Más antiguos")
                     {
                         quitarCompletados(busqueda);
                         filtrarProducto(busqueda);
@@ -229,7 +234,22 @@ namespace TPC_Equipo_5
                 }
                 else
                 {
-                    if (ChkCompletados.Checked)
+                    cargardatos();
+                    dgvPedidos.DataSource = listaLecturaPedido;
+                    dgvPedidos.DataBind();
+                }
+            }
+            else
+            {
+                if (ChkEnProceso.Checked)
+                {
+                    filtroEnProceso(busqueda);
+                    if (ddlOrdenar.SelectedValue == "Más recientes")
+                    {
+                        listaFiltrada = listaLecturaPedido.OrderByDescending(x => x.fecha).ToList();
+                    }
+                    else if (ddlOrdenar.SelectedValue == "Más antiguos")
+
                     {
                         quitarCompletados(busqueda);
                         if (ddlOrdenar.SelectedValue == "Más recientes")
@@ -296,11 +316,37 @@ namespace TPC_Equipo_5
                     dgvPedidos.DataBind();
                 }
             }
+
             catch (Exception ex)
             {
 
                 Session["error"] = ex.Message;
                 Response.Redirect("error.aspx", false);
+
+        }
+        private void filtroEnProceso(string busqueda)
+        {
+            List<Pedido> listaFiltrada;
+            if (ValidarTextBox(busqueda))
+            {
+                listaFiltrada = pedidosFiltrados.FindAll(x => x.estadoPedido.nombre != "Completado");
+                pedidosFiltrados = listaFiltrada;
+                listaFiltrada = pedidosFiltrados.FindAll(x => x.estadoPedido.nombre != "Cancelado");
+                pedidosFiltrados = listaFiltrada;
+
+                dgvPedidos.DataSource = pedidosFiltrados;
+                dgvPedidos.DataBind();
+            }
+            else
+            {
+                listaFiltrada = listaLecturaPedido.FindAll(x => x.estadoPedido.nombre != "Completado");
+                listaLecturaPedido = listaFiltrada;
+                listaFiltrada = listaLecturaPedido.FindAll(x => x.estadoPedido.nombre != "Cancelado");
+                listaLecturaPedido = listaFiltrada;
+
+                dgvPedidos.DataSource = listaLecturaPedido;
+                dgvPedidos.DataBind();
+
             }
         }
 

@@ -2,6 +2,7 @@
 using Dominio.Productos;
 using Dominio.Usuarios;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,6 @@ namespace LecturaDatos
 {
     public class LecturaPedido
     {
-        //falta desarrollar la lista de items en el pedido
-        //falta calcular el importe de la lista de items
         public List<Pedido> listar()
         {
             List<Pedido> listaPedidos = new List<Pedido>();
@@ -21,7 +20,7 @@ namespace LecturaDatos
             {
                 datosPedidos.SetearConsulta("select P.ID as PedidoID, MP.ID as MetodoPagoID, MP.Metodo_de_pago as MetodoPagoNombre, EP.ID as EstadoPedidoID, EP.Descripcion as EstadoPedidoNombre, U.ID as UsuarioID, U.Usuario as UsuarioNombre, Fecha from Pedidos P INNER JOIN Metodos_de_pago MP on MP.ID = P.ID_MetodoDePago INNER JOIN Estados_Pedido EP on EP.ID = P.ID_EstadosPedido INNER JOIN Usuarios U on u.ID = P.ID_Usuario");
                 datosPedidos.EjecutarLectura();
-                while (datosPedidos.Lector.Read()) 
+                while (datosPedidos.Lector.Read())
                 {
                     Pedido aux = new Pedido();
                     aux.metodoPago = new MetodoPago();
@@ -59,13 +58,13 @@ namespace LecturaDatos
                 datosPedidos.CerrarConexion();
             }
         }
-        public Pedido listar(int id) 
+        public Pedido listar(int id)
         {
             AccesoDatos datosPedidos = new AccesoDatos();
             try
             {
                 datosPedidos.SetearConsulta("select * from Pedidos where ID = @id");
-                datosPedidos.SetearParametro("@id",id);
+                datosPedidos.SetearParametro("@id", id);
                 datosPedidos.EjecutarLectura();
                 Pedido aux = new Pedido();
                 while (datosPedidos.Lector.Read())
@@ -92,21 +91,15 @@ namespace LecturaDatos
                 datosPedidos.CerrarConexion();
             }
         }
-        public void agregar(Pedido nuevo) 
+        public void agregar(Pedido nuevo)
         {
             AccesoDatos datosPedidos = new AccesoDatos();
             try
             {
-                datosPedidos.SetearConsulta("INSERT INTO Pedidos (ID_MetodoDePago, ID_EstadosPedido, ID_Usuario, Fecha, Estado) VALUES (@IDMetodoDePago, @IDEstadoPedido, @IDUsuario, GETDATE(), 1)");
+                datosPedidos.SetearConsulta("INSERT INTO Pedidos (ID_MetodoDePago, ID_EstadosPedido, ID_Usuario, Fecha, Estado) VALUES (@IDMetodoDePago, 1, @IDUsuario, GETDATE(), 1)");
                 datosPedidos.SetearParametro("@IDMetodoDePago", nuevo.metodoPago.id);
-                datosPedidos.SetearParametro("@IDEstadoPedido", nuevo.estadoPedido.id);
                 datosPedidos.SetearParametro("@IDUsuario", nuevo.usuario.id);
                 datosPedidos.ejecutarAccion();
-                //definir lista de productos
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -117,13 +110,43 @@ namespace LecturaDatos
                 datosPedidos.CerrarConexion();
             }
         }
-        public void  modificar(Pedido nuevo)
+        public void modificarEstado(int id, int estado)
         {
-
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("UPDATE Pedidos SET ID_EstadosPedido = @IDEstadoPedido WHERE ID = @ID");
+                datos.SetearParametro("@ID", id);
+                datos.SetearParametro("@IDEstadoPedido", estado + 1);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
-        public void eliminarFisica(Pedido nuevo)
+        public void bajaLogica(int id)
         {
-
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("UPDATE Pedidos SET ID_EstadosPedido = @IDEstadoPedido WHERE ID = @ID");
+                datos.SetearParametro("@ID", id);
+                datos.SetearParametro("@IDEstadoPedido", 4);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
     }
 }
