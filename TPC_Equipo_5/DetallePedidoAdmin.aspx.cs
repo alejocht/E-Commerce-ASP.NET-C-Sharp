@@ -14,12 +14,14 @@ namespace TPC_Equipo_5
     {
         Pedido seleccionado = new Pedido();
         List<ProductosPedido> listaProductos = new List<ProductosPedido>();
+        int id = 0;
         decimal total = 0;
+        public int estadoPedido = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                int id = int.Parse(Request.QueryString["id"].ToString());
+                id = int.Parse(Request.QueryString["id"].ToString());
 
                 LecturaPedido lecturaPedido = new LecturaPedido();
                 seleccionado = lecturaPedido.listar(id);
@@ -27,6 +29,7 @@ namespace TPC_Equipo_5
                 LecturaProductosPedido lecturaProductosPedido = new LecturaProductosPedido();
                 listaProductos = lecturaProductosPedido.listar(id);
 
+                estadoPedido = seleccionado.estadoPedido.id;
                 total = CalcularCarritoTotal(listaProductos);
 
                 if (!IsPostBack)
@@ -51,14 +54,25 @@ namespace TPC_Equipo_5
             }
         }
 
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("pedidosAdmin.aspx", false);
+        }
+
         protected void btnActualizar_Click(object sender, EventArgs e)
         {
+            LecturaPedido lecturaPedido = new LecturaPedido();
+            lecturaPedido.modificarEstado(id, estadoPedido);
 
+            Response.Redirect("DetallePedidoAdmin.aspx?id=" + id.ToString(), false);
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
+            LecturaPedido lecturaPedido = new LecturaPedido();
+            lecturaPedido.bajaLogica(id);
 
+            Response.Redirect("DetallePedidoAdmin.aspx?id=" + id.ToString(), false);
         }
 
         private decimal CalcularCarritoTotal(List<ProductosPedido> Productos)

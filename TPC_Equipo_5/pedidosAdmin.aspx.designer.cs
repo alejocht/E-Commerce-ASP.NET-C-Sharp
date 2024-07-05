@@ -33,13 +33,13 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.Button btnBusqueda;
 
         /// <summary>
-        /// ChkCompletados control.
+        /// ChkEnProceso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkCompletados;
+        protected global::System.Web.UI.WebControls.CheckBox ChkEnProceso;
 
         /// <summary>
         /// ddlOrdenar control.

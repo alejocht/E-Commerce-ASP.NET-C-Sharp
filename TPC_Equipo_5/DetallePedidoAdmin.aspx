@@ -7,7 +7,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white">
         <div class="row">
-            <asp:Label ID="lblNumeroPedido" runat="server" CssClass="h1" Text="XXXX"></asp:Label>
+            <div class="col">
+                <asp:Label ID="lblNumeroPedido" runat="server" CssClass="h1" Text="XXXX"></asp:Label>
+            </div>
+            <div class="col text-end align-content-center">
+                <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-secondary" OnClick="btnVolver_Click" />
+            </div>
         </div>
         <div class="container" style="background-color: #1b1f23; margin: 15px; padding-top: 10px; padding-bottom: 10px; border-radius: 10px;">
             <div class="row">
@@ -87,15 +92,19 @@
                 <asp:Label ID="lblTotal" runat="server" CssClass="h2" Text="Total"></asp:Label>
             </div>
         </div>
+        <%if (estadoPedido < 3)
+            {%>
         <div class="container text-start">
             <h5>Modificar estado del pedido</h5>
             <div class="row" style="margin-top: 20px">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalActualizar"> Actualizar Pedido </button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalActualizar">Actualizar Pedido </button>
             </div>
             <div class="row" style="margin-top: 10px">
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalCancelar"> Cancelar Pedido </button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalCancelar">Cancelar Pedido </button>
             </div>
         </div>
+        <%
+            }%>
     </div>
 
     <div class="modal fade" id="modalActualizar" tabindex="-1" aria-labelledby="darkModalLabel" aria-hidden="true">
@@ -116,20 +125,20 @@
         </div>
     </div>
     <div class="modal fade" id="modalCancelar" tabindex="-1" aria-labelledby="darkModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-dark">
-        <div class="modal-content bg-dark">
-            <div class="modal-header">
-                <h5 class="modal-title text-white fs-5">Cancelar Pedido</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
-            <div class="modal-body text-white">
-                ¿Está seguro de que desea cancelar el pedido? Esta acción cancelará permanentemente el pedido y el cliente será notificado.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <asp:Button ID="btnCancelar" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnCancelar_Click"></asp:Button>
+        <div class="modal-dialog modal-dialog-dark">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title text-white fs-5">Cancelar Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-white">
+                    ¿Está seguro de que desea cancelar el pedido? Esta acción cancelará permanentemente el pedido y el cliente será notificado.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnCancelar" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnCancelar_Click"></asp:Button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </asp:Content>

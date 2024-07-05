@@ -2,6 +2,7 @@
 using Dominio.Productos;
 using Dominio.Usuarios;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -109,16 +110,15 @@ namespace LecturaDatos
                 datosPedidos.CerrarConexion();
             }
         }
-        public void modificar(int id)
+        public void modificarEstado(int id, int estado)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.SetearConsulta("UPDATE Pedidos SET ID_EstadosPedido = @IDEstadoPedido WHERE ID = @ID");
                 datos.SetearParametro("@ID", id);
-                datos.SetearParametro("@IDEstadoPedido", "ID_EstadosPedido" + 1);
+                datos.SetearParametro("@IDEstadoPedido", estado + 1);
                 datos.ejecutarAccion();
-
             }
             catch (Exception ex)
             {
@@ -129,7 +129,7 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
-        public void eliminarLogica(int id)
+        public void bajaLogica(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
