@@ -15,39 +15,12 @@ namespace TPC_Equipo_5
     {
 
         /// <summary>
-        /// imgDetallePublicidad1 control.
+        /// RepeaterPublicidad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgDetallePublicidad1;
-
-        /// <summary>
-        /// btnVisualizarPublicidad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVisualizarPublicidad;
-
-        /// <summary>
-        /// btnModificarPublicidad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarPublicidad;
-
-        /// <summary>
-        /// btnEliminarPublicidad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminarPublicidad;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterPublicidad;
     }
 }
