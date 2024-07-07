@@ -75,6 +75,7 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+
         public void agregarLista(List<Imagen> lista)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -160,5 +161,98 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         } // elimina la imagen
+
+
+        public List<Imagen> listarPublicidad()
+        {
+            List<Imagen> lista = new List<Imagen>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("select * from Imagen where Tipo_Imagen = 3 and Estado = 1");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Imagen aux = new Imagen();
+                    aux.id = (int)datos.Lector["ID"];
+                    aux.imagenUrl = (string)datos.Lector["UrlImagen"];
+                    aux.tipo = (int)datos.Lector["Tipo_Imagen"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void AgregarPublicidad(string imagenUrl)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("insert into Imagen(UrlImagen, Tipo_Imagen, Estado) values (@urlimagen, 3, 1)");
+                datos.SetearParametro("@urlimagen", imagenUrl);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void ActualizarPublicidad(int id, string imagenUrl)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("update Imagen set UrlImagen = @urlimagen where ID = @id");
+                datos.SetearParametro("@urlimagen", imagenUrl);
+                datos.SetearParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void eliminarPublicidad(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("update Imagen set Estado = 0 where ID = @id");
+                datos.SetearParametro("@ID", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }
