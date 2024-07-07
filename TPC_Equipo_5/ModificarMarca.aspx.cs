@@ -54,7 +54,7 @@ namespace TPC_Equipo_5
                 if(string.IsNullOrEmpty(txtNombre.Text))
                 {
                     Session["error"] = "El nombre de la marca no puede estar vacio";
-                    Response.Redirect("error.aspx", false);
+                    Response.Redirect("error.aspx");
                 }
                 LecturaMarca lecturaMarca = new LecturaMarca();
                 seleccionada.nombre = txtNombre.Text;

@@ -6,11 +6,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white">
         <div class="row g-3">
-            <div class="col">
-                <label class="form-label">Nombre de la categoria</label>
+            <div class=" form-floating mb-3 col">
                 <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+                <label id="lblCategoria" for="txtCategoria">Nombre de la categoria</label>
             </div>
-            <div class="col">
+            <div class="col ">
                 <label class="form-check-label">Activo</label>
                 <asp:CheckBox ID="ckbActivo" runat="server" />
             </div>

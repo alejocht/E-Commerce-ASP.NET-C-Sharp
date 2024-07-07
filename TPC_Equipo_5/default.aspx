@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" id="containerPrincipal">
+    <div class="container cuerpo" id="containerPrincipal">
         <div id="carouselPublicitario" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselPublicitario" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
