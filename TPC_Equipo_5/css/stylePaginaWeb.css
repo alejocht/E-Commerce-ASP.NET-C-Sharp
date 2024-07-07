@@ -14,3 +14,7 @@ body{
 footer{
     margin-top:auto;
 }
+.cuerpo {
+    min-height: 400px;
+    
+}

@@ -13,26 +13,28 @@
                     <br />
                     <asp:CheckBox ID="ckbActivo" runat="server" />
                 </div>
-
+                <%--Nombre Requerido--%>
                 <label class="form-label">Nombre</label>
-                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-
+                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" type="text" MaxLength="80" MinLength="1" required="true"></asp:TextBox>
+                <%--Precio Requerido--%>
                 <label class="form-label">Precio</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" min="0" required="true"></asp:TextBox>
                 </div>
+                <%--Descripcion Opcional--%>
                 <label class="form-label">Descripción</label>
-                <asp:TextBox ID="txtDescripcion" runat="server" TextMode="Multiline" CssClass="form-control" Rows="5"></asp:TextBox>
-
+                <asp:TextBox ID="txtDescripcion" runat="server" TextMode="Multiline" CssClass="form-control" Rows="5" type="text" MaxLength="160" MinLength="1"></asp:TextBox>
+                <%--Stock Opcional o 0--%>
                 <label class="form-label">Stock</label>
-                <asp:TextBox ID="txtStock" runat="server" CssClass="form-control"></asp:TextBox>
-
+                <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" min="0" type="number" step="1"></asp:TextBox>
+                <%--Categoria Requerido--%>
                 <asp:Label ID="Label1" runat="server" Text="Categoría" CssClass="form-label" />
-                <asp:DropDownList ID="DDLCategoria" runat="server" CssClass="form-select" aria-label="Default"></asp:DropDownList>
-
+                <asp:DropDownList ID="DDLCategoria" runat="server" CssClass="form-select" aria-label="Default" required="true"></asp:DropDownList>
+                <%--Marca Requerido--%>
                 <asp:Label ID="Label2" runat="server" Text="Marca" CssClass="form-label" />
-                <asp:DropDownList ID="DDLMarca" runat="server" CssClass="form-select" aria-label="Default"></asp:DropDownList>
+                <asp:DropDownList ID="DDLMarca" runat="server" CssClass="form-select" aria-label="Default" requerid="true"></asp:DropDownList>
+                <%--Imagenes Opcional--%>
             </div>
             <div class="col d-flex flex-wrap">
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -45,7 +47,7 @@
                             ImageUrl="https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png"
                             AutoPostBack="true" />
                         <div class="mt-2">
-                            <asp:Button ID="btnAgregarImagen" Text="Agregar Imagen" runat="server" CssClass="btn btn-success" OnClick="btnAgregarImagen_Click" />
+                            <asp:Button ID="btnAgregarImagen" Text="Agregar Imagen" runat="server" CssClass="btn btn-success" OnClick="btnAgregarImagen_Click" formnovalidate="true"/>
                         </div>
 
                         <div class="m-lg-2">
@@ -75,14 +77,14 @@
         </div>
         <div class="row">
             <div class="col m-2 p-lg-4">
-                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" formnovalidate="true" />
                 <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-success" OnClick="btnModificar_Click"></asp:Button>
             </div>
            <%-- <div class="col m-2 p-lg-4">
             </div>--%>
 
 
-            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+           <%-- <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
                     <div class="col m-2 p-lg-4">
                         <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click"></asp:Button>
@@ -95,7 +97,7 @@
                     </div>
                     <%  } %>
                 </ContentTemplate>
-            </asp:UpdatePanel>
+            </asp:UpdatePanel>--%>
 
         </div>
     </div>

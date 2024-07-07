@@ -79,6 +79,27 @@ namespace TPC_Equipo_5
         {
             try
             {
+                if (Validacion.validarTexto(txtNombre.Text))
+                {
+                    Session["error"] = "el campo nombre no puede estar vacio";
+                    Response.Redirect("error.aspx");
+                }
+                if (Validacion.validarTexto(txtDescripcion.Text))
+                {
+                    Session["error"] = "el campo Descripcion no puede estar vacio";
+                    Response.Redirect("error.aspx");
+                }
+                if(Validacion.esNumeroEntero(txtStock.Text))
+                {
+                    Session["error"] = "el campo Stock solo permite numeros enteros";
+                    Response.Redirect("error.aspx");
+                }
+                if(Validacion.esNumeroDecimal(txtPrecio.Text))
+                {
+                    Session["error"] = "el campo Precio solo permite numeros decimales";
+                    Response.Redirect("error.aspx");
+                }
+
                 seleccionado.estado = ckbActivo.Checked;
                 seleccionado.categoria.id = int.Parse(DDLCategoria.SelectedItem.Value);
                 seleccionado.marca.id = int.Parse(DDLMarca.SelectedItem.Value);
@@ -109,6 +130,7 @@ namespace TPC_Equipo_5
                 lecturaProducto.modificar(seleccionado);
                 Response.Redirect("productosAdmin.aspx", false);
             }
+            catch (System.Threading.ThreadAbortException ex) { }
             catch (Exception ex)
             {
                 Session["error"] = ex.Message;
@@ -120,7 +142,11 @@ namespace TPC_Equipo_5
         {
             try
             {
-
+                if (Validacion.validarTexto(txtNombre.Text))
+                {
+                    Session["error"] = "el campo nombre no puede estar vacio";
+                    Response.Redirect("error.aspx");
+                }
                 Imagen aux = new Imagen();
                 List<Imagen> nuevasImagenes = new List<Imagen>();
                 aux.imagenUrl = txtImagenUrl.Text;
@@ -139,6 +165,7 @@ namespace TPC_Equipo_5
                 dgv_nuevasImg.DataSource = (List<Imagen>)Session["NuevasImagenes"];
                 dgv_nuevasImg.DataBind();
             }
+            catch (System.Threading.ThreadAbortException ex) { }
             catch (Exception ex)
             {
 
@@ -272,6 +299,8 @@ namespace TPC_Equipo_5
                 imagenesBorrar = (List<Imagen>)Session["ImagenesBorrar"];
                 imagenesBorrar.Add(imagenSeleccionada);
                 Session["ImagenesBorrar"] = imagenesBorrar;
+
+
             }
             catch (Exception ex)
             {
@@ -280,29 +309,29 @@ namespace TPC_Equipo_5
                 Response.Redirect("error.aspx", false);
             }
         }
-        protected void BtnConfirmarEliminacion_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if(chkConfirmarEliminacion.Checked)
-                {
-                    LecturaProducto lecturaProducto = new LecturaProducto();
-                    foreach (var imagen in seleccionado.imagenes)
-                    {
-                        LecturaImagen lecturaImagen = new LecturaImagen();
-                        lecturaImagen.eliminarFisica(imagen);
-                    }
-                    lecturaProducto.eliminarFisica(seleccionado);
-                    Response.Redirect("productosAdmin.aspx", false);
-                }          
-            }
-            catch (Exception ex)
-            {
+        //protected void BtnConfirmarEliminacion_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if(chkConfirmarEliminacion.Checked)
+        //        {
+        //            LecturaProducto lecturaProducto = new LecturaProducto();
+        //            foreach (var imagen in seleccionado.imagenes)
+        //            {
+        //                LecturaImagen lecturaImagen = new LecturaImagen();
+        //                lecturaImagen.eliminarFisica(imagen);
+        //            }
+        //            lecturaProducto.eliminarFisica(seleccionado);
+        //            Response.Redirect("productosAdmin.aspx", false);
+        //        }          
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                Session["error"] = ex.Message;
-                Response.Redirect("error.aspx", false);
-            }
-        }
+        //        Session["error"] = ex.Message;
+        //        Response.Redirect("error.aspx", false);
+        //    }
+        //}
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             confirmaEliminacion = true;

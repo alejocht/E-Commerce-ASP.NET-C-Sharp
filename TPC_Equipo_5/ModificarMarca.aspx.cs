@@ -51,12 +51,18 @@ namespace TPC_Equipo_5
         {
             try
             {
+                if(string.IsNullOrEmpty(txtNombre.Text))
+                {
+                    Session["error"] = "El nombre de la marca no puede estar vacio";
+                    Response.Redirect("error.aspx");
+                }
                 LecturaMarca lecturaMarca = new LecturaMarca();
                 seleccionada.nombre = txtNombre.Text;
                 seleccionada.estado = ckbActivo.Checked;
                 lecturaMarca.modificar(seleccionada);
                 Response.Redirect("marcasAdmin.aspx", false);
             }
+            catch (System.Threading.ThreadAbortException ex) { }
             catch (Exception ex)
             {
                 Session["error"] = ex.Message;

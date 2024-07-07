@@ -75,9 +75,9 @@
         <div class="row">
             <div class="col-12">
 
-                <asp:GridView ID="dgvProductos" DataKeyNames="ID" runat="server" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvProductos_PageIndexChanging">
+                <asp:GridView ID="dgvProductos" DataKeyNames="id" runat="server" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvProductos_PageIndexChanging">
                     <Columns>
-                        <asp:BoundField HeaderText="Código" DataField="id" />
+                        <asp:BoundField HeaderText="ID" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
                         <asp:BoundField HeaderText="Precio" DataField="precio" />
                         <asp:BoundField HeaderText="Stock" DataField="stock" />
@@ -99,14 +99,14 @@
             </div>
         </div>
         <div class="row" style="padding: 20px 10px;">
-            <div class="col-2">
+           <%-- <div class="col-2">
                 <asp:Button ID="btnAnterior" runat="server" Text="Anterior" CssClass="btn btn-outline-light" />
                 <asp:Button ID="btnSiguiente" runat="server" Text="Siguiente" CssClass="btn btn-outline-light" />
             </div>
             <div class="col-6 align-content-center">
                 <asp:Label ID="lblPagina" runat="server" Text="Página: X" CssClass="form-label"></asp:Label>
                 <asp:Label ID="lblTotal" runat="server" Text=" de XX" CssClass="form-label"></asp:Label>
-            </div>
+            </div>--%>
             <div class="col text-end">
                 <asp:Button ID="btnAgregarProducto" type="button" runat="server" Text="Agregar Producto" class="btn btn-outline-light" OnClick="btnAgregarProducto_Click" />
             </div>

@@ -29,9 +29,9 @@ namespace TPC_Equipo_5
             {   
                
                 filtroAvanzado = chk_FiltroAvanzado.Checked;
-                cargardatos();
                 if (!IsPostBack)
                 {
+                    cargardatos();
                     FiltroValido = true;
                     chk_FiltroAvanzado.Checked = false;
                     cargarddl();
@@ -325,8 +325,9 @@ namespace TPC_Equipo_5
                     }
 
                     LecturaProducto lecturaProducto = new LecturaProducto();
+                    List<Producto> nuevaLista = lecturaProducto.filtradoAvanzado(ddl_campo.SelectedItem.ToString(), ddl_criterio.SelectedItem.ToString(), txtFiltro.Text, ddl_estado.SelectedItem.ToString());
                     dgvProductos.DataSource = null;
-                    dgvProductos.DataSource = lecturaProducto.filtradoAvanzado(ddl_campo.SelectedItem.ToString(), ddl_criterio.SelectedItem.ToString(), txtFiltro.Text, ddl_estado.SelectedItem.ToString());
+                    dgvProductos.DataSource = nuevaLista;
                     dgvProductos.DataBind();
                     lblAvisoCampo.Text = "";
                     lblAvisoCriterio.Text = "";
@@ -354,7 +355,6 @@ namespace TPC_Equipo_5
             
             return validacion;
         }
-
         protected void dgvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try

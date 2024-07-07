@@ -49,9 +49,10 @@ namespace TPC_Equipo_5
         {
             try
             {
-                if (txtCategoria.Text == "")
+                if (string.IsNullOrEmpty(txtCategoria.Text))
                 {
-                    return;
+                    Session["error"] = "La categoria no puede tener un nombre vacio";
+                    Response.Redirect("error.aspx");
                 }
                 LecturaCategoria lecturaCategoria = new LecturaCategoria();
                 seleccionada.nombre = txtCategoria.Text;
@@ -59,6 +60,7 @@ namespace TPC_Equipo_5
                 lecturaCategoria.modificar(seleccionada);
                 Response.Redirect("categoriasAdmin.aspx", false);
             }
+            catch (System.Threading.ThreadAbortException ex) { }
             catch (Exception ex)
             {
                 Session["error"] = ex.Message;
