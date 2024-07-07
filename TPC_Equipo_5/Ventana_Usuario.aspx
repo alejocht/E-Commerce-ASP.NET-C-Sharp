@@ -19,7 +19,7 @@
                         alt="usurname-icon"
                         style="height: 1rem;" />
                 </div>
-                <input class="form-control" type="text" placeholder="Nombre de usuario" />
+                <asp:TextBox ID="TxtUser" CssClass="form-control" type="text" runat="server" placeholder="nombre de usuario"></asp:TextBox>
             </div>
             <div class="input-group mt-1" >
                 <div class="input-group-text" style="background-color: #c32a2a">
@@ -27,7 +27,7 @@
                         alt="usurname-icon"
                         style="height: 1rem;" />
                 </div>
-                <input class="form-control" type="password" placeholder="Clave" />
+                <asp:TextBox ID="TxtPass" CssClass="form-control" type="password" placeholder="Clave" runat="server"></asp:TextBox>
             </div>
             <div class="d-flex justify-content-around mt-1">
                 <div class="d-flex align-items-center gap-1">

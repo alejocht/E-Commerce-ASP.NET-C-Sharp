@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio.Usuarios;
+using LecturaDatos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +19,29 @@ namespace TPC_Equipo_5
 
         protected void Btn_login_Click(object sender, EventArgs e)
         {
-            Response.Redirect("defaultAdmin.aspx", false);
+            Usuario usuario = new Usuario();
+            LecturaUsuario lecturaUsuario = new LecturaUsuario();
+            try
+            {
+                usuario.usuario = TxtUser.Text;
+                usuario.password = TxtPass.Text;
+                if(lecturaUsuario.loguear(usuario))
+                {
+                    Session.Add("usuario", usuario);
+                    //TxtUser.Text = "Ingreso correcto";
+                }
+                else
+                {
+                    Session.Add("error", "user o pass incorrectos");
+                    Response.Redirect("error.aspx", false);
+                }
+                //Response.Redirect("defaultAdmin.aspx", false);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Dominio.Productos;
 using Dominio.Usuarios;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -164,6 +166,33 @@ namespace LecturaDatos
                 datos.SetearParametro("@admin", nuevo.admin);
                 datos.SetearParametro("@iddatospersonales", idDatosPersonales);
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public bool loguear(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("select ID, Administrar from Usuarios where Usuario = @user and Clave = @pass");
+                datos.SetearParametro("@user", usuario.usuario);
+                datos.SetearParametro("@pass", usuario.password);
+                datos.EjecutarLectura();
+                while(datos.Lector.Read())
+                {
+                    usuario.id = (int)datos.Lector["ID"];
+                    usuario.admin = (bool)datos.Lector["Administrar"];
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
