@@ -8,24 +8,14 @@
     <div class="container" id="containerPrincipal">
         <div id="carouselPublicitario" class="carousel slide">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselPublicitario" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselPublicitario" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselPublicitario" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselPublicitario" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <asp:PlaceHolder ID="carouselIndicators" runat="server">
+                    <asp:Literal ID="indicadorLiteral" runat="server" />
+                </asp:PlaceHolder>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://i.imgur.com/PSPDiah.jpeg" class="d-block w-100" alt="Imagen Publicitario 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/dZQLSHU.jpeg" class="d-block w-100" alt="Imagen Publicitario 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/oYcqOx6.jpeg" class="d-block w-100" alt="Imagen Publicitario 3">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.imgur.com/wxnSZ3u.jpeg" class="d-block w-100" alt="Imagen Publicitario 4.">
-                </div>
+                <asp:PlaceHolder ID="carouselInner" runat="server">
+                    <asp:Literal ID="itemLiteral" runat="server" />
+                </asp:PlaceHolder>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselPublicitario" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -46,7 +36,7 @@
                             <img src="<%#Eval("imagenPrincipal") %>" class="w-100 h-70 object-fit-cover" alt="..." onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'">
                             <div class="card-body" style="position: relative;">
                                 <asp:LinkButton ID="LinkButton" runat="server" CssClass="text-decoration-none" CommandArgument='<%#Eval("ID") %>' CommandName="IDProducto" OnClick="LinkButton_Click"> 
-                <h5 class="card-title m-2 text-center fw-bolder"><%#Eval("nombre") %></h5>
+                                    <h5 class="card-title m-2 text-center fw-bolder"><%#Eval("nombre") %></h5>
                                 </asp:LinkButton>
                                 <h5 class="card-subtitle m-1 p-0 text-body-secondary text-end" style="position: absolute; bottom: 0; right: 0; margin-bottom: 0.5rem;">$<%#Eval("precio") %></h5>
                             </div>

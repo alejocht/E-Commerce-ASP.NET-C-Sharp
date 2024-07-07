@@ -21,14 +21,24 @@ namespace TPC_Equipo_5
             listaPublicidad = new List<Imagen>();
             listaPublicidad = LecturaImagen.listarPublicidad();
 
-            contador = listaPublicidad.Count;
-
-            if (!IsPostBack)
+            try
             {
-                RepPublicidad.DataSource = listaPublicidad;
-                RepPublicidad.DataBind();
+                contador = listaPublicidad.Count;
+
+                if (!IsPostBack)
+                {
+                    RepPublicidad.DataSource = listaPublicidad;
+                    RepPublicidad.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
+
         protected void btnModalAgregar_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "ResetModal",
@@ -48,7 +58,8 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
 
@@ -66,7 +77,8 @@ namespace TPC_Equipo_5
             catch (Exception ex)
             {
 
-                throw ex;
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
             }
         }
 
