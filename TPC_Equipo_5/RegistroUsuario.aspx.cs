@@ -23,21 +23,7 @@ namespace TPC_Equipo_5
                 {
 
 
-                    lecturaProvincias = new LecturaProvincia();
-                    List<Provincia> listaprovincia = lecturaProvincias.listar();
-                    LecturaCiudad lecturaciudad = new LecturaCiudad();
-                    List<Ciudad> listaciudad = lecturaciudad.listar();
-
-
-                    DdlProvincias.DataSource = listaprovincia;
-                    DdlProvincias.DataValueField = "ID";
-                    DdlProvincias.DataTextField = "Nombre";
-                    DdlProvincias.DataBind();
-
-                    DdlLocalidad.DataSource = listaciudad;
-                    DdlLocalidad.DataTextField = "Nombre";
-                    DdlLocalidad.DataValueField = "ID";
-                    DdlLocalidad.DataBind();
+                    
                 }
 
             }
@@ -49,26 +35,7 @@ namespace TPC_Equipo_5
             }
         }
 
-        protected void DdlProvincias_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-
-                LecturaCiudad lecturaciudad = new LecturaCiudad();
-                List<Ciudad> listaciudad = new List<Ciudad>();
-                int id = int.Parse(DdlProvincias.SelectedItem.Value);
-                listaciudad = lecturaciudad.listarPorProvincia(id);
-                DdlLocalidad.DataSource = listaciudad;
-                DdlLocalidad.DataTextField = "Nombre";
-                DdlLocalidad.DataBind();
-            }
-            catch (Exception ex)
-            {
-
-                Session["error"] = ex.Message;
-                Response.Redirect("error.aspx", false);
-            }
-        }
+        
         
         protected void Btn_CrearCuenta_Click(object sender, EventArgs e)
         {
@@ -84,12 +51,8 @@ namespace TPC_Equipo_5
                     LecturaDatosUsuario lecturadatos = new LecturaDatosUsuario();
                     DatosUsuario datosUsuario = new DatosUsuario();
                     datosUsuario.nombre = Txt_Nombre.Text;
-                    datosUsuario.apellido = Txt_Apellido.Text;
-                    datosUsuario.telefono = Txt_Telefono.Text;
-                    datosUsuario.email = Txt_Email.Text;
-                    datosUsuario.direccion = Txt_Direccion.Text;
-
-                    datosUsuario.ciudad.id = int.Parse(DdlLocalidad.SelectedItem.Value);
+                    datosUsuario.apellido = Txt_Apellido.Text;                 
+                    datosUsuario.email = Txt_Email.Text;                                  
                     lecturadatos.agregar(datosUsuario);
                     LecturaUsuario lecturaUsuario = new LecturaUsuario();
                     Usuario aux = new Usuario();

@@ -7,7 +7,7 @@
 
     <%  if (listaLecturaProductos != null && listaLecturaProductos.Count() != 0)
         { %>
-    <div class="container" id="containerPrincipal" style="height: 800px;">
+    <div class="container" id="containerPrincipal" >
         <div class="row">
             <asp:Repeater runat="server" ID="repCarrito">
                 <ItemTemplate>

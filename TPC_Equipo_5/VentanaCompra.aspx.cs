@@ -26,15 +26,26 @@ namespace TPC_Equipo_5
         public ProductosPedido productopedido;
 
         public DatosUsuario datousuario;
-        
-        
-            
+        public int Pagina = 1;
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
+                    if (Session["pag"] == null)
+                    {
+                        Pagina = 1;
+                        Session.Add("pag", Pagina);
+                    }
+                    else { Pagina = (int)Session["pag"]; }
                 if (!IsPostBack)
                 {
+                    Pagina = 1;
+                    Session.Add("pag", Pagina);
+
+
                     if (listaLecturaProductos == null)
                     {
                         if (Session["listaArticulosEnCarrito"] != null)
@@ -86,17 +97,17 @@ namespace TPC_Equipo_5
         }
         private decimal CalcularTotal(List<Producto> productos)
         {
-               decimal total = 0;
+            decimal total = 0;
 
-                foreach (var producto in productos)
-                {
-                    total += (decimal)producto.precio;
-                }
+            foreach (var producto in productos)
+            {
+                total += (decimal)producto.precio;
+            }
 
-                return total; ;           
+            return total; ;
         }
-        
-       
+
+
 
 
 
@@ -105,10 +116,10 @@ namespace TPC_Equipo_5
         {
             if (Transferencia.Checked)
             {
-               /* pedido = new Pedido();
-                lecturaPedido  = new LecturaPedido();
-                productosPedido = new List<ProductosPedido>();
-                pedido.metodoPago.id = ;*/
+                /* pedido = new Pedido();
+                 lecturaPedido  = new LecturaPedido();
+                 productosPedido = new List<ProductosPedido>();
+                 pedido.metodoPago.id = ;*/
             }
             else
             {
@@ -139,6 +150,31 @@ namespace TPC_Equipo_5
             else
             {
                 Response.Write("Selleciona un archivo a subir");
+            }
+        }
+
+
+
+        protected void BtnSiguiente_Click(object sender, EventArgs e)
+        {
+            if (Pagina < 3)
+            {   
+                if(Pagina == 2 )
+                {
+                    
+                }
+                Pagina++;
+                Session.Add("pag", Pagina);
+
+            }
+        }
+
+        protected void BtnAtras_Click(object sender, EventArgs e)
+        {
+            if (Pagina > 1 && Pagina < 4)
+            {
+                Pagina--;
+                Session.Add("pag", Pagina);
             }
         }
     }

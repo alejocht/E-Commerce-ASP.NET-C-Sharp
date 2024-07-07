@@ -78,15 +78,6 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.RadioButton Mp;
 
         /// <summary>
-        /// Control Txt_Email.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txt_Email;
-
-        /// <summary>
         /// Control Txt_Calle_R.
         /// </summary>
         /// <remarks>
@@ -94,6 +85,15 @@ namespace TPC_Equipo_5
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Txt_Calle_R;
+
+        /// <summary>
+        /// Control Txt_Email.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Txt_Email;
 
         /// <summary>
         /// Control FileUpload1.
@@ -114,6 +114,15 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.Button BtnSubir;
 
         /// <summary>
+        /// Control BtnAtras.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnAtras;
+
+        /// <summary>
         /// Control btnconfirmar.
         /// </summary>
         /// <remarks>
@@ -121,5 +130,14 @@ namespace TPC_Equipo_5
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnconfirmar;
+
+        /// <summary>
+        /// Control BtnSiguiente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnSiguiente;
     }
 }
