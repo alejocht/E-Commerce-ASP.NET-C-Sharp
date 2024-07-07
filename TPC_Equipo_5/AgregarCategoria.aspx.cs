@@ -38,11 +38,16 @@ namespace TPC_Equipo_5
 
                 LecturaCategoria lecturaCategoria = new LecturaCategoria();
                 Categoria nuevo = new Categoria();
-                if (txtCategoria.Text == "") return;
+                if (string.IsNullOrEmpty(txtCategoria.Text))
+                {
+                    Session["error"] = "La categoria no puede tener un nombre vacio";
+                    Response.Redirect("error.aspx");
+                }
                 nuevo.nombre = txtCategoria.Text;
                 lecturaCategoria.agregar(nuevo);
                 Response.Redirect("categoriasAdmin.aspx", false);
             }
+            catch (System.Threading.ThreadAbortException ex) { }
             catch (Exception ex)
             {
 

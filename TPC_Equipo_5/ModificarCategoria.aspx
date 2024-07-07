@@ -8,7 +8,7 @@
         <div class="row g-3">
             <div class="col">
                 <label class="form-label">Nombre de la categoria</label>
-                <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control" required="true"></asp:TextBox>
             </div>
             <div class="col">
                 <label class="form-check-label">Activo</label>
@@ -22,9 +22,9 @@
             <div class="col m-2 p-lg-4">
                 <asp:Button ID="btnAgregar" runat="server" Text="Modificar" CssClass="btn btn-success" OnClick="btnModificar_Click" />
             </div>
-            <div class="col m-2 p-lg-4">
+           <%-- <div class="col m-2 p-lg-4">
                 <asp:Button ID="BtnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="BtnEliminar_Click" />
-            </div>
+            </div>--%>
         </div>
         <div style="padding: 100px 10px;">
         </div>

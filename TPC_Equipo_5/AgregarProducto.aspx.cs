@@ -87,6 +87,7 @@ namespace TPC_Equipo_5
         {
             try
             {
+
                 Imagen aux = new Imagen();
                 aux.imagenUrl = txtImagenUrl.Text;
                 imagenesForm.Add(aux);
@@ -129,6 +130,16 @@ namespace TPC_Equipo_5
         {
             try
             {
+                if (Validacion.validarTexto(txtNombre.Text))
+                {
+                    Session["error"] = "el campo nombre no puede estar vacio";
+                    Response.Redirect("error.aspx");
+                }
+                if (Validacion.validarTexto(txtDescripcion.Text))
+                {
+                    Session["error"] = "el campo Descripcion no puede estar vacio";
+                    Response.Redirect("error.aspx");
+                }
 
                 seleccionado.categoria.id = int.Parse(DDLCategoria.SelectedItem.Value);
                 seleccionado.marca.id = int.Parse(DDLMarca.SelectedItem.Value);
@@ -141,6 +152,7 @@ namespace TPC_Equipo_5
                 lecturaProducto.agregar(seleccionado);
                 Response.Redirect("productosAdmin.aspx", false);
             }
+            catch(System.Threading.ThreadAbortException ex) { }
             catch (Exception ex)
             {
 

@@ -37,11 +37,16 @@ namespace TPC_Equipo_5
             {
                 LecturaMarca lecturaMarca = new LecturaMarca();
                 Marca nuevo = new Marca();
-                if (txtNombre.Text == "") return;
+                if (string.IsNullOrEmpty(txtNombre.Text))
+                {
+                    Session["error"] = "La categoria no puede tener un nombre vacio";
+                    Response.Redirect("error.aspx");
+                }
                 nuevo.nombre = txtNombre.Text;
                 lecturaMarca.agregar(nuevo);
                 Response.Redirect("marcasAdmin.aspx", false);
             }
+            catch (System.Threading.ThreadAbortException ex) { }
             catch (Exception ex)
             {
                 Session["error"] = ex.Message;
