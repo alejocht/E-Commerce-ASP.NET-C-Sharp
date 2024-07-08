@@ -59,26 +59,24 @@ namespace TPC_Equipo_5
             try
             {
                 StringBuilder indicadorHtml = new StringBuilder();
-                StringBuilder slideHtml = new StringBuilder();
+                StringBuilder innerHtml = new StringBuilder();
 
-                for (int index = 0; index < listaImagenes.Count; index++)
+                for (int i = 0; i < listaImagenes.Count; i++)
                 {
-                    string isActiveClass = index == 0 ? "active" : "";
+                    string activo = i == 0 ? "active" : "";
 
-                    // Generar HTML del botón indicador
                     indicadorHtml.Append($@"
-                    <button type=""button"" data-bs-target=""#carouselPublicitario"" data-bs-slide-to=""{index}"" class=""{isActiveClass}"" aria-current=""{isActiveClass}"" aria-label=""Diapositiva {index + 1}"">
+                    <button type=""button"" data-bs-target=""#carouselPublicitario"" data-bs-slide-to=""{i}"" class=""{activo}"" aria-current=""{activo}"" aria-label=""Diapositiva {i + 1}"">
                     </button>");
 
-                    // Generar HTML del elemento de diapositiva
-                    slideHtml.Append($@"
-                    <div class=""carousel-item {isActiveClass}"">
-                        <img src=""{listaImagenes[index].imagenUrl}"" class=""d-block w-100"" alt=""{listaImagenes[index].id}"">
+                    innerHtml.Append($@"
+                    <div class=""carousel-item {activo}"">
+                        <img src=""{listaImagenes[i].imagenUrl}"" class=""d-block w-100"" alt=""{listaImagenes[i].id}"">
                     </div>");
                 }
 
-                indicadorLiteral.Text = indicadorHtml.ToString();
-                itemLiteral.Text = slideHtml.ToString();
+                indicatorsCarrusel.Text = indicadorHtml.ToString();
+                innerCarrusel.Text = innerHtml.ToString();
             }
             catch (Exception ex)
             {
