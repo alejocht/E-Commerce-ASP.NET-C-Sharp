@@ -2,19 +2,40 @@
     margin-top: 50px;
     margin-bottom: 100px;
 }
+
 #Titulo {
     text-align: center;
     font-size: 50px;
 }
-body{
+
+body {
     min-height: 100%;
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
 }
-footer{
-    margin-top:auto;
+
+footer {
+    margin-top: auto;
 }
+
 .cuerpo {
     min-height: 400px;
-    
+}
+
+#subtitulo {
+    margin-bottom: 30px;
+}
+
+.nav-link {
+    color: black;
+}
+
+    .nav-link:hover {
+        background-color: #9d3131;
+        color: white;
+    }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: white;
+    background-color: #D32F2F;
 }

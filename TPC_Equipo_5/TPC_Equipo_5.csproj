@@ -114,6 +114,7 @@
     <Content Include="productosAdmin.aspx" />
     <Content Include="publicidadAdmin.aspx" />
     <Content Include="RegistroUsuario.aspx" />
+    <Content Include="VentanaPerfilUsuario.aspx" />
     <Content Include="Ventana_Usuario.aspx" />
     <Content Include="VentanaCarrito.aspx" />
     <Content Include="VentanaCompra.aspx" />
@@ -264,6 +265,13 @@
     </Compile>
     <Compile Include="siteAdmin.Master.designer.cs">
       <DependentUpon>siteAdmin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="VentanaPerfilUsuario.aspx.cs">
+      <DependentUpon>VentanaPerfilUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VentanaPerfilUsuario.aspx.designer.cs">
+      <DependentUpon>VentanaPerfilUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ventana_Usuario.aspx.cs">
       <DependentUpon>Ventana_Usuario.aspx</DependentUpon>
