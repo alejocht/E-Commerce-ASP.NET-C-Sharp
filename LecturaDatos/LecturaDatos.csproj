@@ -55,6 +55,7 @@
     <Compile Include="LecturaMarca.cs" />
     <Compile Include="LecturaProducto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceEmail.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dominioo\Dominio.csproj">

@@ -119,7 +119,7 @@
 
                                 <div class="pt-1" style="font-size: 0.9rem">
                                     <label>Transferencia bancaria 💵</label>
-                                    <asp:RadioButton ID="Transferencia" runat="server" CssClass="form-check-input" GroupName="Metodo_de_pago" AutoPostBack="true" />
+                                    <asp:RadioButton ID="Transferencia" runat="server" CssClass="form-check-input" GroupName="Metodo_de_pago" OnCheckedChanged="Transferencia_CheckedChanged" AutoPostBack="true" />
                                 </div>
 
                                 <div class="pt-1" style="font-size: 0.9rem">

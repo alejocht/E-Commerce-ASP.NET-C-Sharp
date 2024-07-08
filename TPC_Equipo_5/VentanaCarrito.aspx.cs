@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace TPC_Equipo_5
 {
     public partial class VentanaCarrito : System.Web.UI.Page
@@ -13,6 +14,8 @@ namespace TPC_Equipo_5
         public List<Producto> listaLecturaProductos;
         public Producto producto;
         public int indice = 0;
+       
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             try

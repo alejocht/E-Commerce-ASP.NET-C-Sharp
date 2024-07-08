@@ -33,11 +33,8 @@
                         <asp:RequiredFieldValidator Style="color: red;" CssClass="validation" ErrorMessage="Campo requerido" ControlToValidate="Txt_Apellido" runat="server" />
                         <asp:RegularExpressionValidator ErrorMessage="Formato incorrecto" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'.-]+$" ControlToValidate="Txt_Apellido" runat="server" />
                     </div>
-                    
                 </div>
-
-
-                <hr />               
+                <hr />
                 <div class="input-group mt-1">
                     <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke; width: 5.3rem">
                         <label>Email</label>
@@ -64,7 +61,7 @@
                     <asp:RequiredFieldValidator Style="color: red;" CssClass="validation" ErrorMessage="Campo requerido" ControlToValidate="Txt_Password" runat="server" />
                     <asp:RegularExpressionValidator ErrorMessage="Tu contraseña debe tener almenos 1 Mayuscula, 1 minuscual y 1 numero y almenos 8 caracteres" ControlToValidate="Txt_Password" runat="server" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" />
                 </div>
-                <hr />                
+                <hr />
                 <div class="d-flex gap-1 justify-content-center mt-5">
                     <div>
                         <asp:Button ID="Btn_CrearCuenta" Text="Crear Cuenta" CssClass="btn btn-primary" BackColor="#c32a2a" OnClick="Btn_CrearCuenta_Click" runat="server" />

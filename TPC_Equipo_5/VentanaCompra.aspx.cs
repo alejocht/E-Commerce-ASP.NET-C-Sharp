@@ -29,17 +29,21 @@ namespace TPC_Equipo_5
         public int Pagina = 1;
 
 
+        public ServiceEmail email;
+        bool Transferenciabool = false;
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                    if (Session["pag"] == null)
-                    {
-                        Pagina = 1;
-                        Session.Add("pag", Pagina);
-                    }
-                    else { Pagina = (int)Session["pag"]; }
+                if (Session["pag"] == null)
+                {
+                    Pagina = 1;
+                    Session.Add("pag", Pagina);
+                }
+                else { Pagina = (int)Session["pag"]; }
                 if (!IsPostBack)
                 {
                     Pagina = 1;
@@ -114,8 +118,14 @@ namespace TPC_Equipo_5
 
         protected void btnconfirmar_Click(object sender, EventArgs e)
         {
-            if (Transferencia.Checked)
+            if (Session["transferencia"] != null)
             {
+                email = new ServiceEmail();
+                string correodestino = "marianstoessel1@gmail.com";
+                string asunto = "Compra Exitosa";
+                string cuerpo = "Tu compra fue realizada con existo pronto nos pondremos en contacto";
+                email.armarcorreo(correodestino, asunto, cuerpo);
+                email.enviarEmail();
                 /* pedido = new Pedido();
                  lecturaPedido  = new LecturaPedido();
                  productosPedido = new List<ProductosPedido>();
@@ -137,15 +147,15 @@ namespace TPC_Equipo_5
             //Terminar 
             if (FileUpload1.HasFile)
             {
-                string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
+                //string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
 
-                int tam = FileUpload1.PostedFile.ContentLength;
-                Response.Write(ext + ", " + tam);
-                if (ext == ".png" && tam <= 1048576)
-                {
-                    FileUpload1.SaveAs(Server.MapPath("D:\\COSAS MARIANO\\UNI\\UNI\\Prog 3\\TPC\\TPC_Equipo_5\\BD\\Comprobantes" + FileUpload1.FileName));
-                    Response.Write("Se subio el archivo");
-                }
+                //int tam = FileUpload1.PostedFile.ContentLength;
+                //Response.Write(ext + ", " + tam);
+                //if (ext == ".png" && tam <= 1048576)
+                //{
+                //    FileUpload1.SaveAs(Server.MapPath("D:\\COSAS MARIANO\\UNI\\UNI\\Prog 3\\TPC\\TPC_Equipo_5\\BD\\Comprobantes" + FileUpload1.FileName));
+                //    Response.Write("Se subio el archivo");
+                //}
             }
             else
             {
@@ -158,10 +168,10 @@ namespace TPC_Equipo_5
         protected void BtnSiguiente_Click(object sender, EventArgs e)
         {
             if (Pagina < 3)
-            {   
-                if(Pagina == 2 )
+            {
+                if (Pagina == 2)
                 {
-                    
+
                 }
                 Pagina++;
                 Session.Add("pag", Pagina);
@@ -175,6 +185,19 @@ namespace TPC_Equipo_5
             {
                 Pagina--;
                 Session.Add("pag", Pagina);
+            }
+        }
+
+        protected void Transferencia_CheckedChanged(object sender, EventArgs e)
+        {
+            if(Transferencia.Checked) 
+            { 
+                Transferenciabool = true;
+                Session.Add("transferencia", Transferenciabool);
+            }
+            else {
+                Transferenciabool = false;
+                Session.Add("transferencia", Transferenciabool);
             }
         }
     }
