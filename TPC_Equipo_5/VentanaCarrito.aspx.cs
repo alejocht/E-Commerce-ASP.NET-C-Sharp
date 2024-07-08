@@ -70,7 +70,7 @@ namespace TPC_Equipo_5
                 {
                     Session["ArticulosEnCarrito"] = null;
                     Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
-                    Response.Redirect("default.aspx");
+                    Response.Redirect("default.aspx", false);
                 }
                 else
                 {
