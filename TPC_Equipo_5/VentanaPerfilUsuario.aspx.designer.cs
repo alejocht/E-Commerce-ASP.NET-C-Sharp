@@ -87,13 +87,13 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.Label LblUsuario;
 
         /// <summary>
-        /// LblContraseña control.
+        /// LblPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblContraseña;
+        protected global::System.Web.UI.WebControls.Label LblPassword;
 
         /// <summary>
         /// btnModificarDatosUsuario control.
@@ -105,22 +105,13 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.Button btnModificarDatosUsuario;
 
         /// <summary>
-        /// LblCalle control.
+        /// LblDireccion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblCalle;
-
-        /// <summary>
-        /// LblNumero control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblNumero;
+        protected global::System.Web.UI.WebControls.Label LblDireccion;
 
         /// <summary>
         /// LblProvincia control.

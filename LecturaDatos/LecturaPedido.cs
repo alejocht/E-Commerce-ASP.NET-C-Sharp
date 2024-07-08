@@ -148,5 +148,41 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+        public List<Pedido> listarxUsuario(int idUsuario)
+        {
+            List<Pedido> listaPedidos = new List<Pedido>();
+            AccesoDatos datosPedidos = new AccesoDatos();
+            try
+            {
+                datosPedidos.SetearConsulta("SELECT * FROM Pedidos P WHERE P.ID_Usuario = @idUsuario");
+                datosPedidos.SetearParametro("@idUsuario", idUsuario);
+                datosPedidos.EjecutarLectura();
+                Pedido aux = new Pedido();
+                while (datosPedidos.Lector.Read())
+                {
+                    LecturaMetodoPago lecturaMetodoPago = new LecturaMetodoPago();
+                    LecturaEstadoPedido lecturaEstadoPedido = new LecturaEstadoPedido();
+                    LecturaUsuario lecturaUsuario = new LecturaUsuario();
+
+                    aux.id = (int)datosPedidos.Lector["ID"];
+                    aux.fecha = (DateTime)datosPedidos.Lector["Fecha"];
+
+                    aux.metodoPago = lecturaMetodoPago.listar((int)datosPedidos.Lector["ID_MetodoDePago"]);
+                    aux.estadoPedido = lecturaEstadoPedido.listar((int)datosPedidos.Lector["ID_EstadosPedido"]);
+                    aux.usuario = lecturaUsuario.listar((int)datosPedidos.Lector["ID_Usuario"]);
+
+                    listaPedidos.Add(aux);
+                }
+                return listaPedidos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datosPedidos.CerrarConexion();
+            }
+        }
     }
 }

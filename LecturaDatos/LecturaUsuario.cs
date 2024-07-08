@@ -204,6 +204,5 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
-
     }
 }
