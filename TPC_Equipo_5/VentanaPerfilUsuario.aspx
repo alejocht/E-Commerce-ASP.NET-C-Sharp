@@ -32,7 +32,7 @@
                         <div class="tab-pane fade" id="v-pills-mispedidos" role="tabpanel" aria-labelledby="v-pills-mispedidos-tab" tabindex="0">
                             <h2 style="margin-bottom: 20px;">Mis pedidos</h2>
                             <%--                            agregar un if para que si no hay pedidos muestre un mensaje--%>
-                            <asp:GridView ID="dgvPedidosUsuario" runat="server" DataKeyNames="id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false">
+                            <asp:GridView ID="dgvPedidosUsuario" runat="server" DataKeyNames="id" CssClass="table table-bordered" AutoGenerateColumns="false">
                                 <Columns>
                                     <asp:BoundField HeaderText="N° Pedido" DataField="id" />
                                     <asp:BoundField HeaderText="Método de pago" DataField="metodoPago.nombre" />
@@ -77,7 +77,7 @@
                                             <asp:Label ID="LblUsuario" runat="server" Text="Usuario" CssClass="h4"></asp:Label>
                                         </div>
                                         <div class="row">
-                                            <asp:Label ID="LblContraseña" runat="server" Text="Contraseña" CssClass="h4"></asp:Label>
+                                            <asp:Label ID="LblPassword" runat="server" Text="Contraseña" CssClass="h4"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
@@ -88,17 +88,13 @@
                             <h2 style="margin-bottom: 20px;">Mi Dirección</h2>
                             <div class="row">
                                 <div class="col">
-                                    <h4>Calle:</h4>
-                                    <h4>Numero:</h4>
+                                    <h4>Dirección:</h4>
                                     <h4>provincia:</h4>
                                     <h4>Ciudad:</h4>
                                 </div>
                                 <div class="col">
                                     <div class="row">
-                                        <asp:Label ID="LblCalle" runat="server" Text="Calle" CssClass="h4"></asp:Label>
-                                    </div>
-                                    <div class="row">
-                                        <asp:Label ID="LblNumero" runat="server" Text="Numero" CssClass="h4"></asp:Label>
+                                        <asp:Label ID="LblDireccion" runat="server" Text="Calle" CssClass="h4"></asp:Label>
                                     </div>
                                     <div class="row">
                                         <asp:Label ID="LblProvincia" runat="server" Text="Provincia" CssClass="h4"></asp:Label>
