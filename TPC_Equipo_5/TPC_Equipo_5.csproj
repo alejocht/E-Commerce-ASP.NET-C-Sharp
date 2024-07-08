@@ -89,6 +89,7 @@
     <Content Include="css\bootstrap.rtl.min.css" />
     <Content Include="css\EstilosBannerCarousel.css" />
     <Content Include="css\stylePaginaWeb.css" />
+    <Content Include="css\stylePerfilUsuario.css" />
     <Content Include="default.aspx" />
     <Content Include="defaultAdmin.aspx" />
     <Content Include="DetallePedidoAdmin.aspx" />

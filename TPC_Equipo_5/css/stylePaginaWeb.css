@@ -25,17 +25,3 @@ footer {
 #subtitulo {
     margin-bottom: 30px;
 }
-
-.nav-link {
-    color: black;
-}
-
-    .nav-link:hover {
-        background-color: #9d3131;
-        color: white;
-    }
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: white;
-    background-color: #D32F2F;
-}
