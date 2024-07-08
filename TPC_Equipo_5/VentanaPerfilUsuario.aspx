@@ -28,20 +28,29 @@
                     <div class="tab-content col" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-inicio" role="tabpanel" aria-labelledby="v-pills-inicio-tab" tabindex="0">
                             <h2 style="margin-bottom: 20px;">Inicio</h2>
-                            <p>En esta ventana usted podrá navegar en las distintas secciones disponibles para consultas de pedidos y modificación de datos, entre otras cosas</p>
+                            <h4>En esta ventana usted podrá navegar en las distintas secciones disponibles para, consultas de pedidos, modificación de datos, entre otras cosas.</h4>
                         </div>
                         <div class="tab-pane fade" id="v-pills-mispedidos" role="tabpanel" aria-labelledby="v-pills-mispedidos-tab" tabindex="0">
                             <h2 style="margin-bottom: 20px;">Mis pedidos</h2>
-                            <%--                            agregar un if para que si no hay pedidos muestre un mensaje--%>
-                            <asp:GridView ID="dgvPedidosUsuario" runat="server" DataKeyNames="id" CssClass="table table-bordered" AutoGenerateColumns="false">
+                            <% if (listaLecturaPedido.Count() > 0)
+                                {%>
+                            <asp:GridView ID="dgvPedidosUsuario" runat="server" DataKeyNames="id" CssClass="table table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvPedidosUsuario_SelectedIndexChanged">
                                 <Columns>
                                     <asp:BoundField HeaderText="N° Pedido" DataField="id" />
-                                    <asp:BoundField HeaderText="Método de pago" DataField="metodoPago.nombre" />
                                     <asp:BoundField HeaderText="Fecha" DataField="fecha" />
                                     <asp:BoundField HeaderText="Estado" DataField="estadoPedido.nombre" />
                                     <asp:CommandField SelectText="Ver detalles" ShowSelectButton="true" />
                                 </Columns>
                             </asp:GridView>
+                            <%
+                                }
+                                else
+                                 {%>
+
+                                <h4>Todavia no tienes compras hechas para visualizar un pedido.</h4>
+
+                            <%
+                                }%>
                         </div>
                         <div class="tab-pane fade" id="v-pills-misdatos" role="tabpanel" aria-labelledby="v-pills-misdatos-tab" tabindex="0">
                             <h2 style="margin-bottom: 20px;">Datos Personales</h2>
@@ -66,7 +75,7 @@
                                         <asp:Label ID="LblTelefono" runat="server" Text="Telefono" CssClass="h4"></asp:Label>
                                     </div>
                                 </div>
-                                <asp:Button ID="btnModificarDatosPersonales" Style="margin-top: 10px;" runat="server" Text="Modificar Datos Personales" CssClass="btn btn-dark" />
+                                <asp:Button ID="btnModificarDatosPersonales" Style="margin-top: 10px;" runat="server" Text="Modificar Datos Personales" CssClass="btn btn-dark" OnClick="btnModificarDatosPersonales_Click" />
                                 <h2 style="margin: 20px 0 20px 0;">Datos de Usuario</h2>
                                 <div class="row">
                                     <div class="col">
@@ -82,7 +91,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <asp:Button ID="btnModificarDatosUsuario" Style="margin-top: 10px;" runat="server" Text="Modificar Datos de Usuario" CssClass="btn btn-dark" />
+                                <asp:Button ID="btnModificarDatosUsuario" Style="margin-top: 10px;" runat="server" Text="Modificar Datos de Usuario" CssClass="btn btn-dark" OnClick="btnModificarDatosUsuario_Click" />
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-midireccion" role="tabpanel" aria-labelledby="v-pills-midireccion-tab" tabindex="0">
@@ -104,14 +113,33 @@
                                         <asp:Label ID="LblCiudad" runat="server" Text="Ciudad" CssClass="h4"></asp:Label>
                                     </div>
                                 </div>
-                                <asp:Button ID="btnModificarDireccion" Style="margin-top: 10px;" runat="server" Text="Modificar Dirección" CssClass="btn btn-dark" />
+                                <asp:Button ID="btnModificarDireccion" Style="margin-top: 10px;" runat="server" Text="Modificar Dirección" CssClass="btn btn-dark" OnClick="btnModificarDireccion_Click" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card-footer text-end">
-                <asp:Button ID="BtnCerrarSesion" runat="server" Text="Cerrar Sesión" CssClass="btn btn-danger" />
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalCerrarSesion">
+                    Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalCerrarSesion" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5">Cerrar Sesión</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro de que desea cerrar sesión? Se perderá el progreso no guardado.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar Sesión" CssClass="btn btn-danger" OnClick="btnCerrarSesion_Click"></asp:Button>
+                </div>
             </div>
         </div>
     </div>

@@ -16,6 +16,7 @@ namespace TPC_Equipo_5
         Usuario usuarioSeleccionado = new Usuario();
         DatosUsuario datosSeleccionado = new DatosUsuario();
         int idUsuario = 2; // idUsuario = 2 es un ejemplo, debería ser el id del usuario logueado
+        string seleccionado;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -66,6 +67,41 @@ namespace TPC_Equipo_5
                 Session["error"] = ex.Message;
                 Response.Redirect("error.aspx", false);
             }
+        }
+
+        protected void dgvPedidosUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                seleccionado = dgvPedidosUsuario.SelectedDataKey.Value.ToString();
+                Response.Redirect("DetallePedido.aspx?id=" + seleccionado, false);
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
+        }
+
+        protected void btnModificarDatosPersonales_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnModificarDatosUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnModificarDireccion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("default.aspx", false);
         }
     }
 }

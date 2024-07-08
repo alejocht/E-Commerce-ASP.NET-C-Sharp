@@ -92,6 +92,7 @@
     <Content Include="css\stylePerfilUsuario.css" />
     <Content Include="default.aspx" />
     <Content Include="defaultAdmin.aspx" />
+    <Content Include="DetallePedido.aspx" />
     <Content Include="DetallePedidoAdmin.aspx" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="Error.aspx" />
@@ -149,6 +150,13 @@
     </Compile>
     <Compile Include="categoriasAdmin.aspx.designer.cs">
       <DependentUpon>categoriasAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallePedido.aspx.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePedido.aspx.designer.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="Validacion.cs" />
     <Compile Include="default.aspx.cs">
