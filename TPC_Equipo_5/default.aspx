@@ -9,12 +9,12 @@
         <div id="carouselPublicitario" class="carousel slide">
             <div class="carousel-indicators">
                 <asp:PlaceHolder ID="carouselIndicators" runat="server">
-                    <asp:Literal ID="indicadorLiteral" runat="server" />
+                    <asp:Literal ID="indicatorsCarrusel" runat="server" />
                 </asp:PlaceHolder>
             </div>
             <div class="carousel-inner">
                 <asp:PlaceHolder ID="carouselInner" runat="server">
-                    <asp:Literal ID="itemLiteral" runat="server" />
+                    <asp:Literal ID="innerCarrusel" runat="server" />
                 </asp:PlaceHolder>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselPublicitario" data-bs-slide="prev">

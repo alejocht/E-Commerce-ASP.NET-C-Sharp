@@ -24,13 +24,13 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.PlaceHolder carouselIndicators;
 
         /// <summary>
-        /// indicadorLiteral control.
+        /// indicatorsCarrusel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal indicadorLiteral;
+        protected global::System.Web.UI.WebControls.Literal indicatorsCarrusel;
 
         /// <summary>
         /// carouselInner control.
@@ -42,13 +42,13 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.PlaceHolder carouselInner;
 
         /// <summary>
-        /// itemLiteral control.
+        /// innerCarrusel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal itemLiteral;
+        protected global::System.Web.UI.WebControls.Literal innerCarrusel;
 
         /// <summary>
         /// RepeaterProducto control.
