@@ -1,4 +1,5 @@
 ﻿using Dominio.Pedidos;
+using Dominio.Usuarios;
 using Dominio.Productos;
 using LecturaDatos;
 using System;
@@ -12,8 +13,9 @@ namespace TPC_Equipo_5
 {
     public partial class DetallePedidoAdmin : System.Web.UI.Page
     {
-        Pedido seleccionado = new Pedido();
         List<ProductosPedido> listaProductos = new List<ProductosPedido>();
+        Pedido seleccionado = new Pedido();
+        DatosUsuario usuario = new DatosUsuario();
         int id = 0;
         decimal total = 0;
         public int estadoPedido = 0;
@@ -29,6 +31,9 @@ namespace TPC_Equipo_5
                 LecturaProductosPedido lecturaProductosPedido = new LecturaProductosPedido();
                 listaProductos = lecturaProductosPedido.listar(id);
 
+                LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();
+                usuario = lecturaDatosUsuario.listar(seleccionado.usuario.id);
+
                 estadoPedido = seleccionado.estadoPedido.id;
                 total = CalcularCarritoTotal(listaProductos);
 
@@ -43,6 +48,12 @@ namespace TPC_Equipo_5
 
                     RepProductosxPedido.DataSource = listaProductos;
                     RepProductosxPedido.DataBind();
+
+                    lblNombre.Text = usuario.nombre.ToString();
+                    lblApellido.Text = usuario.apellido.ToString();
+                    lblEmail.Text = usuario.email.ToString();
+                    lblTelefono.Text = usuario.telefono.ToString();
+                    lblDireccion.Text = usuario.direccion.ToString();
 
                     lblTotal.Text = "Total $ " + total.ToString();
                 }

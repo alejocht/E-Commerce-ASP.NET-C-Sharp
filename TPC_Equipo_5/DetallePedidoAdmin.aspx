@@ -20,7 +20,7 @@
                     <h5>Nombre de usuario:</h5>
                 </div>
                 <div class="col">
-                    <asp:Label ID="lblUsuario" runat="server" CssClass="h5" Text="Nombre del cliente"></asp:Label>
+                    <asp:Label ID="lblUsuario" runat="server" CssClass="h5" Text="Nombre de Usuario"></asp:Label>
                 </div>
             </div>
             <div class="row">
@@ -45,6 +45,48 @@
                 </div>
                 <div class="col">
                     <asp:Label ID="lblEstado" runat="server" CssClass="h5" Text="Estado del pedido"></asp:Label>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="background-color: #1b1f23; margin: 15px; padding-top: 10px; padding-bottom: 10px; border-radius: 10px;">
+            <div class="row">
+                <div class="col">
+                    <h5>Nombres:</h5>
+                </div>
+                <div class="col">
+                    <asp:Label ID="lblNombre" runat="server" CssClass="h5" Text="Nombre del cliente"></asp:Label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Apellidos:</h5>
+                </div>
+                <div class="col">
+                    <asp:Label ID="lblApellido" runat="server" CssClass="h5" Text="Apellido del cliente"></asp:Label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Email:</h5>
+                </div>
+                <div class="col">
+                    <asp:Label ID="lblEmail" runat="server" CssClass="h5" Text="Email del cliente"></asp:Label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Teléfono:</h5>
+                </div>
+                <div class="col">
+                    <asp:Label ID="lblTelefono" runat="server" CssClass="h5" Text="Telefono del cliente"></asp:Label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Dirección:</h5>
+                </div>
+                <div class="col">
+                    <asp:Label ID="lblDireccion" runat="server" CssClass="h5" Text="Direccion del cliente"></asp:Label>
                 </div>
             </div>
         </div>
