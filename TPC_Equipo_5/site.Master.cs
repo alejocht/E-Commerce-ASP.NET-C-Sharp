@@ -77,5 +77,10 @@ namespace TPC_Equipo_5
                 Response.Redirect("Productos.aspx", false);
             }
         }
+
+        protected void btnSuscribite_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
