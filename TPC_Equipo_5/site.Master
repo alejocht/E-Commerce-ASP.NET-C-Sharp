@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="site.master.cs" Inherits="TPC_Equipo_5.site" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="site.master.cs" Inherits="TPC_Equipo_5.site" %>
 
 <!DOCTYPE html>
 
@@ -27,6 +27,12 @@
                     </div>
                     <div>
                         <ul class="navbar-nav me-auto ml-3 mb-2 mb-lg-0" style="color: white; width: 20%;">
+                            <%if (BotonAdmin)
+                              { %>
+                                <li class="nav-item">
+                                    <a class="nav-link " aria-current="page" href="defaultAdmin.aspx">Administrar</a>
+                                </li>
+                            <%} %>
                             <li class="nav-item">
                                 <a class="nav-link " aria-current="page" href="Productos.aspx">Productos</a>
                             </li>
@@ -34,10 +40,9 @@
                                 <a class="nav-link " aria-current="page" href="#footer">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex" aria-current="page" href="Ventana_Usuario.aspx">
-                                    <img style="width: 24px; height: 24px; margin-right: 5px;" src="https://i.imgur.com/RR9DK3V.png" alt="Usuario">
-                                    <asp:Label ID="lblLoginUsuario" runat="server" Text="Login"></asp:Label>
-                                </a>
+
+                                <asp:HyperLink ID="HyperLink1" runat="server" CssClass="m-1 pt-1"><img style="width: 24px; height: 24px" src="https://i.imgur.com/RR9DK3V.png" alt="Usuario"></asp:HyperLink>
+                             
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link " aria-current="page" href="VentanaCarrito.aspx">
@@ -47,6 +52,7 @@
                             <li class="nav-item">
                                 <asp:Label ID="Contador" runat="server" Text=""></asp:Label>
                             </li>
+
                         </ul>
                     </div>
                 </div>

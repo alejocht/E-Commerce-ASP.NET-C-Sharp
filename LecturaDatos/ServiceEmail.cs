@@ -27,7 +27,7 @@ namespace LecturaDatos
         public void armarcorreo(string emailDestino, string asunto, string cuerpo)
         {
             email = new MailMessage();
-            email.From = new MailAddress("noresponder@ovcloaked.com");
+            email.From = new MailAddress("pruebalab3carrito@gmail.com");
             email.To.Add(emailDestino);
             email.Subject = asunto;
             email.IsBodyHtml = true;

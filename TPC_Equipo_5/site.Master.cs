@@ -15,7 +15,7 @@ namespace TPC_Equipo_5
         int cantidad;
         string busqueda;
         List<Producto> listaDeCompras;
-        public ServiceEmail email;
+        public bool BotonAdmin { get; set; }
         public string cantidadItems
         {
             get { return cantidadItems; }
@@ -30,7 +30,7 @@ namespace TPC_Equipo_5
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!(Page is Ventana_Usuario || Page is _default || Page is Productos || Page is DetalleProducto || Page is VentanaCarrito))
+            if (!(Page is Ventana_Usuario || Page is _default || Page is Productos || Page is DetalleProducto || Page is VentanaCarrito || Page is RegistroUsuario))
             {
                 if (Seguridad.sesionActiva(Session["usuario"]))
                 {
@@ -38,7 +38,10 @@ namespace TPC_Equipo_5
                 }
 
             }
-
+            if(Seguridad.esAdmin(Session["usuario"]))
+            {
+                BotonAdmin = true;
+            }
             if (Session["listaArticulosEnCarrito"] == null)
             {
                 Contador.Text = "";
@@ -48,6 +51,15 @@ namespace TPC_Equipo_5
                 listaDeCompras = (List<Producto>)Session["listaArticulosEnCarrito"];
                 cantidad = listaDeCompras.Count();
                 Contador.Text = cantidad.ToString();
+            }
+
+            if(!Seguridad.sesionActiva(Session["usuario"]))
+            {
+                HyperLink1.NavigateUrl = "VentanaPerfilUsuario.aspx";
+            }
+            else
+            {
+                HyperLink1.NavigateUrl = "Ventana_Usuario.aspx";
             }
         }
 
@@ -63,26 +75,6 @@ namespace TPC_Equipo_5
             {
                 //caso en el que tiene que mostrar todo
                 Response.Redirect("Productos.aspx", false);
-            }
-        }
-
-        protected void btnSuscribite_Click(object sender, EventArgs e)
-        {
-            string nombre;
-            string correo;
-            nombre = txtNombreSuscribite.Text;
-            correo = txtMailSuscribite.Text;
-
-            string asunto = "Suscripcion a OVCloaked";
-            string cuerpo = "Usted ha sido registrado en nuestra newslestter. Gracias por suscribirte a OVCloaked, " + nombre + "!";
-
-            if (ValidarTextBox(nombre) && ValidarTextBox(correo))
-            {
-                email = new ServiceEmail();
-                email.armarcorreo(correo, asunto, cuerpo);
-                email.enviarEmail();
-
-                lblValidacionSuscribite.Text = " Registrado con exito!";
             }
         }
     }

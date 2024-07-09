@@ -13,8 +13,7 @@ namespace TPC_Equipo_5
 {
     public partial class RegistroUsuario : System.Web.UI.Page
     {
-        List<Provincia> ListaProvincias;
-        LecturaProvincia lecturaProvincias;
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -59,6 +58,9 @@ namespace TPC_Equipo_5
                     aux.usuario = Txt_Usuario.Text;
                     aux.password = Txt_Password.Text;
                     lecturaUsuario.agregar(aux, datosUsuario);
+
+                    ServiceEmail email = new ServiceEmail();
+                    email.armarcorreo(Txt_Email.Text, "Cuenta creada correctamente 🥳", "Tu cuenta fue creada con exito! Asegurate de tener todos tu datos actualizado en tu perfil!! nos vemos pronto ❤️");
 
                     //actualizo la session de usuario
                     Response.Redirect("Ventana_Usuario.aspx", false);

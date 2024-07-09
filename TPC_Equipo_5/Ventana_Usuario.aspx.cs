@@ -11,9 +11,10 @@ namespace TPC_Equipo_5
 {
     public partial class Ventana_Usuario : System.Web.UI.Page
     {
+           public bool correo_enviado= false;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            correo_enviado = false;
         }
 
 
@@ -28,7 +29,7 @@ namespace TPC_Equipo_5
                 if(lecturaUsuario.loguear(usuario))
                 {
                     Session.Add("usuario", usuario);
-                    //TxtUser.Text = "Ingreso correcto";
+                    Response.Redirect("VentanaPerfilUsuario.aspx", false);
                 }
                 else
                 {
@@ -42,6 +43,17 @@ namespace TPC_Equipo_5
 
                 throw ex;
             }
+        }
+
+        protected void btnOlvidemipass_Click(object sender, EventArgs e)
+        {
+            ServiceEmail email = new ServiceEmail();
+            Usuario user = new Usuario();
+            LecturaUsuario datos = new LecturaUsuario();
+            user = (Usuario)Session["usuario"];
+            datos.recuperarcontraseña(Txt_Email.Text, user);
+            correo_enviado = true;
+           
         }
     }
 }
