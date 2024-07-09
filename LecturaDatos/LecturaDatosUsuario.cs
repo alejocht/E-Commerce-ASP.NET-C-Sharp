@@ -138,7 +138,5 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
-       
-        
     }
 }

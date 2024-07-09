@@ -7,7 +7,6 @@ using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace LecturaDatos
 {
@@ -65,43 +64,6 @@ namespace LecturaDatos
                     aux.dato.id = (int)datos.Lector["IDDatos_Personales"];
                     aux.dato = lecturaDatosUsuario.listar(aux.dato.id);
                 }
-                return aux;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-        }
-        public Usuario recuperarcontraseña(string correo, Usuario user)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                
-                datos.SetearConsulta("select U.Clave from Datos_Personales D inner join Usuarios U on U.IDDatos_Personales=D.ID WHERE D.Email = @email");
-                datos.SetearParametro("@email", correo);
-                datos.EjecutarLectura();
-                Usuario aux = new Usuario();
-                while (datos.Lector.Read())
-                {
-                    LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();                   
-                    aux.password = (string)(datos.Lector["Clave"]);                   
-                }
-                ServiceEmail email = new ServiceEmail();
-                if (aux.password == "") {
-                    email.armarcorreo(correo, "Recuperacion de contraseña", "Este correo no pertenece a ninguna cuenta.");
-                }
-                else
-                {
-                email.armarcorreo(correo, "Recuperacion de contraseña", "Su contraseña es:" + aux.password);
-
-                }
-                email.enviarEmail();
                 return aux;
             }
             catch (Exception ex)

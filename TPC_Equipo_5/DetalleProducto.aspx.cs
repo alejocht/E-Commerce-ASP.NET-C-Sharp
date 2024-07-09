@@ -62,8 +62,6 @@ namespace TPC_Equipo_5
                 {
                     listaCarrito.Add(producto);
                 }
-                Label lblaux = (Label)Master.FindControl("Contador");
-                lblaux.Text = listaCarrito.Count().ToString();
                 Session["listaArticulosEnCarrito"] = listaCarrito;
             }
             catch (Exception ex)

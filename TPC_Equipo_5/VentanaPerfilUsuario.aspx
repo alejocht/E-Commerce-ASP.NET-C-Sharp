@@ -32,7 +32,7 @@
                         </div>
                         <div class="tab-pane fade" id="v-pills-mispedidos" role="tabpanel" aria-labelledby="v-pills-mispedidos-tab" tabindex="0">
                             <h2 style="margin-bottom: 20px;">Mis pedidos</h2>
-                            <% if (listaLecturaPedido != null && listaLecturaPedido.Count() > 0)
+                            <% if (listaLecturaPedido.Count() > 0)
                                 {%>
                             <asp:GridView ID="dgvPedidosUsuario" runat="server" DataKeyNames="id" CssClass="table table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvPedidosUsuario_SelectedIndexChanged">
                                 <Columns>
