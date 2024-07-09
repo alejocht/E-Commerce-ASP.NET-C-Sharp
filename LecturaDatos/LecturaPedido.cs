@@ -66,9 +66,9 @@ namespace LecturaDatos
                 datosPedidos.SetearConsulta("select * from Pedidos where ID = @id");
                 datosPedidos.SetearParametro("@id", id);
                 datosPedidos.EjecutarLectura();
+                Pedido aux = new Pedido();
                 while (datosPedidos.Lector.Read())
                 {
-                    Pedido aux = new Pedido();
                     LecturaMetodoPago lecturaMetodoPago = new LecturaMetodoPago();
                     LecturaEstadoPedido lecturaEstadoPedido = new LecturaEstadoPedido();
                     LecturaUsuario lecturaUsuario = new LecturaUsuario();

@@ -3,16 +3,16 @@
     margin-bottom: 100px;
 }
 
-.nav-link {
+.btn-link {
     color: black;
 }
 
-    .nav-link:hover {
+    .btn-link:hover {
         background-color: #9d3131;
         color: white;
     }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .btn-link.active, .nav-pills .show > .btn-link {
     color: white;
     background-color: #D32F2F;
 }

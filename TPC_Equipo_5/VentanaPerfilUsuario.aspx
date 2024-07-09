@@ -20,10 +20,10 @@
             <div class="card-body" style="min-height: 300px;">
                 <div class="d-flex align-items-start">
                     <div class="nav flex-column nav-pills me-5 col-3" id="navUsuario" role="tablist" aria-orientation="vertical">
-                        <button class="nav-link active fs-4" id="v-pills-inicio-tab" data-bs-toggle="pill" data-bs-target="#v-pills-inicio" type="button" role="tab" aria-controls="v-pills-inicio" aria-selected="true">Inicio</button>
-                        <button class="nav-link fs-4" id="v-pills-mispedidos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-mispedidos" type="button" role="tab" aria-controls="v-pills-mispedidos" aria-selected="false">Pedidos</button>
-                        <button class="nav-link fs-4" id="v-pills-misdatos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-misdatos" type="button" role="tab" aria-controls="v-pills-misdatos" aria-selected="false">Mis Datos</button>
-                        <button class="nav-link fs-4" id="v-pills-midireccion-tab" data-bs-toggle="pill" data-bs-target="#v-pills-midireccion" type="button" role="tab" aria-controls="v-pills-midireccion" aria-selected="false">Mi dirección</button>
+                        <button class="nav-link btn-link active fs-4" id="v-pills-inicio-tab" data-bs-toggle="pill" data-bs-target="#v-pills-inicio" type="button" role="tab" aria-controls="v-pills-inicio" aria-selected="true">Inicio</button>
+                        <button class="nav-link btn-link fs-4" id="v-pills-mispedidos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-mispedidos" type="button" role="tab" aria-controls="v-pills-mispedidos" aria-selected="false">Pedidos</button>
+                        <button class="nav-link btn-link fs-4" id="v-pills-misdatos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-misdatos" type="button" role="tab" aria-controls="v-pills-misdatos" aria-selected="false">Mis Datos</button>
+                        <button class="nav-link btn-link fs-4" id="v-pills-midireccion-tab" data-bs-toggle="pill" data-bs-target="#v-pills-midireccion" type="button" role="tab" aria-controls="v-pills-midireccion" aria-selected="false">Mi dirección</button>
                     </div>
                     <div class="tab-content col" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-inicio" role="tabpanel" aria-labelledby="v-pills-inicio-tab" tabindex="0">
