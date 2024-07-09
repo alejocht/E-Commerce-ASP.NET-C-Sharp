@@ -15,6 +15,7 @@ namespace TPC_Equipo_5
         int cantidad;
         string busqueda;
         List<Producto> listaDeCompras;
+        public bool BotonAdmin { get; set; }
         public string cantidadItems
         {
             get { return cantidadItems; }
@@ -37,7 +38,10 @@ namespace TPC_Equipo_5
                 }
 
             }
-
+            if(Seguridad.esAdmin(Session["usuario"]))
+            {
+                BotonAdmin = true;
+            }
             if (Session["listaArticulosEnCarrito"] == null)
             {
                 Contador.Text = "";
@@ -48,6 +52,7 @@ namespace TPC_Equipo_5
                 cantidad = listaDeCompras.Count();
                 Contador.Text = cantidad.ToString();
             }
+
             if(!Seguridad.sesionActiva(Session["usuario"]))
             {
                 HyperLink1.NavigateUrl = "VentanaPerfilUsuario.aspx";
