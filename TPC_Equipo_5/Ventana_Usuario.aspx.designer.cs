@@ -15,7 +15,29 @@ namespace TPC_Equipo_5
     {
 
         /// <summary>
+
         /// TxtUser control.
+
+        /// Control Txt_Email.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Txt_Email;
+
+        /// <summary>
+        /// Control btnOlvidemipass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOlvidemipass;
+
+        /// <summary>
+        /// Control TxtUser.
+
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

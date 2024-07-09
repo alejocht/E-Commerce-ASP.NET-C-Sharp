@@ -60,6 +60,9 @@ namespace TPC_Equipo_5
                     aux.password = Txt_Password.Text;
                     lecturaUsuario.agregar(aux, datosUsuario);
 
+                    ServiceEmail email = new ServiceEmail();
+                    email.armarcorreo(Txt_Email.Text, "Cuenta creada correctamente 🥳", "Tu cuenta fue creada con exito! Asegurate de tener todos tu datos actualizado en tu perfil!! nos vemos pronto ❤️");
+
                     //actualizo la session de usuario
                     Response.Redirect("Ventana_Usuario.aspx", false);
 
