@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div>
-                <asp:Button class="btn text-white w-100 mt-4" ID="Btn_login" Style="background-color: #c32a2a" Text="Login" runat="server" OnClick="Btn_login_Click" />
+                <asp:Button class="btn text-white w-100 mt-4" ID="Btn_loguearse" Style="background-color: #c32a2a" Text="Login" runat="server" OnClick="Btn_login_Click" />
 
             </div>
             <div class="d-flex gap-1 justify-content-center mt-1">
