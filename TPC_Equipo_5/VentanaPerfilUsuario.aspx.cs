@@ -25,18 +25,18 @@ namespace TPC_Equipo_5
                 cargardatos();
                 if (!IsPostBack)
                 {
-                    LblBienvenidaUsuario.Text = "Bienvenido " + datosSeleccionado.nombre + " " + datosSeleccionado.apellido;
-                    LblNombre.Text = datosSeleccionado.nombre;
-                    LblApellido.Text = datosSeleccionado.apellido;
-                    LblEmail.Text = datosSeleccionado.email;
-                    LblTelefono.Text = datosSeleccionado.telefono;
+                    LblBienvenidaUsuario.Text = "Bienvenido " + datosSeleccionado.nombre + " " + datosSeleccionado.apellido.ToString();
+                    LblNombre.Text = datosSeleccionado.nombre.ToString();
+                    LblApellido.Text = datosSeleccionado.apellido.ToString();
+                    LblEmail.Text = datosSeleccionado.email.ToString();
+                    LblTelefono.Text = datosSeleccionado.telefono.ToString();
 
-                    LblUsuario.Text = usuarioSeleccionado.usuario;
-                    LblPassword.Text = usuarioSeleccionado.password;
+                    LblUsuario.Text = usuarioSeleccionado.usuario.ToString();
+                    LblPassword.Text = usuarioSeleccionado.password.ToString();
 
-                    LblDireccion.Text = datosSeleccionado.direccion;
-                    LblProvincia.Text = datosSeleccionado.ciudad.provincia.nombre;
-                    LblCiudad.Text = datosSeleccionado.ciudad.nombre;
+                    LblDireccion.Text = datosSeleccionado.direccion.ToString();
+                    LblProvincia.Text = datosSeleccionado.ciudad.provincia.nombre.ToString();
+                    LblCiudad.Text = datosSeleccionado.ciudad.nombre.ToString();
 
                 }
             }
