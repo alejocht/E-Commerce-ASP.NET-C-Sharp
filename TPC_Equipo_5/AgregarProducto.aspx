@@ -4,7 +4,7 @@
     <link href="css/stylePaginaWeb.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" id="containerPrincipal" style="color: white">
+    <div class="container" id="containerPrincipal" style="color: white; min-height: 600px">
         <div class="row g-3">
             <div class="col">
                 <%--Nombre Requerido--%>
@@ -15,7 +15,7 @@
                 <div class="input-group">
                     <span class="input-group-text">$</span>
                     <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" type="number" step=".01" min="0" required="true"></asp:TextBox>
-                <%--Descripcion Opcional--%>
+                    <%--Descripcion Opcional--%>
                 </div>
                 <label class="form-label">Descripción</label>
                 <asp:TextBox ID="txtDescripcion" runat="server" TextMode="Multiline" CssClass="form-control" Rows="5" type="text" MaxLength="160" MinLength="1"></asp:TextBox>
@@ -69,7 +69,5 @@
                 <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click"></asp:Button>
             </div>
         </div>
-    </div>
-    <div style="padding: 100px 10px;">
     </div>
 </asp:Content>

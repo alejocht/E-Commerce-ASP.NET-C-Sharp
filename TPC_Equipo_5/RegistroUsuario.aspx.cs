@@ -13,8 +13,7 @@ namespace TPC_Equipo_5
 {
     public partial class RegistroUsuario : System.Web.UI.Page
     {
-        List<Provincia> ListaProvincias;
-        LecturaProvincia lecturaProvincias;
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             try

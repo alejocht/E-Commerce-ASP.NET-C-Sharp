@@ -4,7 +4,7 @@
     <link href="css/stylePaginaWeb.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" id="containerPrincipal" style="color: white">
+    <div class="container" id="containerPrincipal" style="color: white; min-height: 615px">
         <div class="row g-3">
             <div class="">
                 <label class="form-label" for="txtNombre">Nombre de la marca</label>

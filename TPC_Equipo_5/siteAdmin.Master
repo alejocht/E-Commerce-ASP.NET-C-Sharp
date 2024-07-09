@@ -75,7 +75,7 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-        <footer id="footer" style="background-color: #1b1f23; padding-inline: 10%">
+        <footer id="footer" style="background-color: #1b1f23; padding-inline: 10%; margin-top: auto; position: relative; bottom: 0;">
             <div>
                 <div class="row pt-5 pb-4 text-white text-center text-opacity-75">
                     <p>© 2024 OverCloaked - Todos los derechos reservados.</p>

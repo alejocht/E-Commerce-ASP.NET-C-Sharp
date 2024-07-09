@@ -4,7 +4,7 @@
     <link href="css/stylePaginaWeb.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" id="containerPrincipal" style="color: white">
+    <div class="container" id="containerPrincipal" style="color: white; min-height: 600px">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="text-center">LISTA DE PEDIDOS</h1>
