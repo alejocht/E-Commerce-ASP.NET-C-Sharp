@@ -21,10 +21,7 @@
                         <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" ID="Txt_Email" />
                         <asp:RegularExpressionValidator ErrorMessage="Formato incorrecto..." ControlToValidate="Txt_Email" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                             runat="server" />
-                    </div>
-                    <%if ( correo_enviado == true) { %>
-                    <div style="color:red">Su contraseña fue enviado con exito!</div>
-                    <%} %>
+                    </div>                   
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -58,11 +55,7 @@
                 </div>
                 <asp:TextBox ID="TxtPass" CssClass="form-control" type="password" placeholder="Clave" runat="server"></asp:TextBox>
             </div>
-            <div class="d-flex justify-content-around mt-1">
-                <div class="d-flex align-items-center gap-1">
-                    <input class="form-check-input" type="checkbox" />
-                    <div class="pt-1" style="font-size: 0.9rem">Remember me</div>
-                </div>
+            <div class="d-flex justify-content-around mt-1">              
                 <div class="nav-item pt-1">
                     <button type="button" class="nav-link " style="color:red;" data-bs-toggle="modal" data-bs-target="#RecuperarContraseña">
                         Forgot your password
