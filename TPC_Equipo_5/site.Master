@@ -112,11 +112,15 @@
                         <h6>Recibi ofertas por mail!</h6>
                         <div class="mb-3">
                             <asp:TextBox ID="txtNombreSuscribite" runat="server" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
+                            <asp:RequiredFieldValidator Style="color: white;" CssClass="validation" ErrorMessage="Campo requerido" ControlToValidate="txtNombreSuscribite" runat="server" />
+                            <asp:RegularExpressionValidator ErrorMessage="Formato incorrecto" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'.-]+$" ControlToValidate="txtNombreSuscribite" runat="server" />
                         </div>
                         <div class="mb-3">
                             <asp:TextBox ID="txtMailSuscribite" runat="server" CssClass="form-control" placeholder="Email"></asp:TextBox>
+                            <asp:RequiredFieldValidator Style="color: white;" CssClass="validation" ErrorMessage="Campo requerido" ControlToValidate="txtMailSuscribite" runat="server" />
+                            <asp:RegularExpressionValidator ErrorMessage="Formato incorrecto..." ControlToValidate="txtMailSuscribite" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" runat="server" />
                         </div>
-                        <asp:Button ID="btnSuscribite" runat="server" Text="Suscribite" CssClass="btn btn-primary" Style="background-color: #ff3535; border-color: #b82727" OnClick="btnSuscribite_Click" />
+                        <asp:Button ID="btnSuscribite" runat="server" Text="Suscribite" CssClass="btn btn-primary" Style="background-color: #ff3535; border-color: #b82727" />
                         <asp:Label ID="lblValidacionSuscribite" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
