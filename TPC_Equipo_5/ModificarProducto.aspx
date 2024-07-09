@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container" id="containerPrincipal" style="color: white">
+    <div class="container" id="containerPrincipal" style="color: white; min-height: 600px">
         <div class="row g-3">
             <div class="col">
                 <div>
@@ -47,7 +47,7 @@
                             ImageUrl="https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png"
                             AutoPostBack="true" />
                         <div class="mt-2">
-                            <asp:Button ID="btnAgregarImagen" Text="Agregar Imagen" runat="server" CssClass="btn btn-success" OnClick="btnAgregarImagen_Click" formnovalidate="true"/>
+                            <asp:Button ID="btnAgregarImagen" Text="Agregar Imagen" runat="server" CssClass="btn btn-success" OnClick="btnAgregarImagen_Click" formnovalidate="true" />
                         </div>
 
                         <div class="m-lg-2">
@@ -80,11 +80,11 @@
                 <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" formnovalidate="true" />
                 <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-success" OnClick="btnModificar_Click"></asp:Button>
             </div>
-           <%-- <div class="col m-2 p-lg-4">
+            <%-- <div class="col m-2 p-lg-4">
             </div>--%>
 
 
-           <%-- <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <%-- <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
                     <div class="col m-2 p-lg-4">
                         <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click"></asp:Button>
@@ -98,9 +98,6 @@
                     <%  } %>
                 </ContentTemplate>
             </asp:UpdatePanel>--%>
-
         </div>
-    </div>
-    <div style="padding: 100px 10px;">
     </div>
 </asp:Content>

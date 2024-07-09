@@ -4,12 +4,12 @@
     <link href="css/stylePaginaWeb.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" id="containerPrincipal" style="color: white">
+    <div class="container" id="containerPrincipal" style="color: white; min-height: 600px">
 
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center">Productos</h1>
+                <h1 class="text-center">LISTA DE PRODUCTOS</h1>
             </div>
         </div>
         <div class="form-check">

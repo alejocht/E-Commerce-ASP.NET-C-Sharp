@@ -4,7 +4,7 @@
     <link href="css/stylePaginaWeb.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" id="containerPrincipal" style="color: white">
+    <div class="container" id="containerPrincipal" style="color: white; min-height: 600px">
         <div class="row">
             <div>
                 <h1 class="text-center">BIENVENIDO AL PANEL DE ADMINISTRACIÓN</h1>

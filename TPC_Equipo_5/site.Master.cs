@@ -15,6 +15,7 @@ namespace TPC_Equipo_5
         int cantidad;
         string busqueda;
         List<Producto> listaDeCompras;
+        public ServiceEmail email;
         public string cantidadItems
         {
             get { return cantidadItems; }
@@ -62,6 +63,30 @@ namespace TPC_Equipo_5
             {
                 //caso en el que tiene que mostrar todo
                 Response.Redirect("Productos.aspx", false);
+            }
+        }
+
+        protected void btnSuscribite_Click(object sender, EventArgs e)
+        {
+            string nombre;
+            string correo;
+            nombre = txtNombreSuscribite.Text;
+            correo = txtMailSuscribite.Text;
+
+            string asunto = "Suscripcion a OVCloaked";
+            string cuerpo = "Usted ha sido registrado en nuestra newslestter. Gracias por suscribirte a OVCloaked, " + nombre + "!";
+
+            if (ValidarTextBox(nombre) && ValidarTextBox(correo))
+            {
+                email = new ServiceEmail();
+                email.armarcorreo(correo, asunto, cuerpo);
+                email.enviarEmail();
+
+                lblValidacionSuscribite.Text = " Registrado con exito!";
+            }
+            else
+            {
+                lblValidacionSuscribite.Text = " Debe completar todos los campos *";
             }
         }
     }

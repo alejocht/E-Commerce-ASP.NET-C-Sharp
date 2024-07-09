@@ -116,7 +116,8 @@
                         <div class="mb-3">
                             <asp:TextBox ID="txtMailSuscribite" runat="server" CssClass="form-control" placeholder="Email"></asp:TextBox>
                         </div>
-                        <asp:Button ID="btnSuscribite" runat="server" Text="Suscribite" CssClass="btn btn-primary" Style="background-color: #ff3535; border-color: #b82727" />
+                        <asp:Button ID="btnSuscribite" runat="server" Text="Suscribite" CssClass="btn btn-primary" Style="background-color: #ff3535; border-color: #b82727" OnClick="btnSuscribite_Click" />
+                        <asp:Label ID="lblValidacionSuscribite" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
                 <div class="row pb-4 text-white text-center text-opacity-75">

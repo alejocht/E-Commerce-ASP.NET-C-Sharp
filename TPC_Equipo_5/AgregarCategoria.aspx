@@ -4,7 +4,7 @@
     <link href="css/stylePaginaWeb.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" id="containerPrincipal" style="color: white">
+    <div class="container" id="containerPrincipal" style="color: white; min-height: 615px">
         <div class="row g-3">
             <div class="form-floating mb-3 col">
                 <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control" type="text" minlength="1" MaxLength="80" required="true"></asp:TextBox>
