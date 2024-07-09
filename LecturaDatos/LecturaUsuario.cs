@@ -182,7 +182,7 @@ namespace LecturaDatos
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("select ID, Administrar from Usuarios where Usuario = @user and Clave = @pass");
+                datos.SetearConsulta("select Usuarios.ID, Administrar, Datos_Personales.ID as IDDatos  from Usuarios inner join Datos_Personales on Datos_Personales.ID = Usuarios.IDDatos_Personales where Usuario = @user and Clave = @pass");
                 datos.SetearParametro("@user", usuario.usuario);
                 datos.SetearParametro("@pass", usuario.password);
                 datos.EjecutarLectura();
@@ -190,6 +190,9 @@ namespace LecturaDatos
                 {
                     usuario.id = (int)datos.Lector["ID"];
                     usuario.admin = (bool)datos.Lector["Administrar"];
+                    usuario.dato.id = (int)datos.Lector["IDDatos"];
+                    LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();
+                    usuario.dato = lecturaDatosUsuario.listar(usuario.dato.id);
                     return true;
                 }
                 return false;

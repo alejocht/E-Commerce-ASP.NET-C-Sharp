@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Dominio.Productos;
+using LecturaDatos;
 
 namespace TPC_Equipo_5
 {
@@ -28,6 +29,15 @@ namespace TPC_Equipo_5
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!(Page is Ventana_Usuario || Page is _default || Page is Productos || Page is DetalleProducto || Page is VentanaCarrito))
+            {
+                if (Seguridad.sesionActiva(Session["usuario"]))
+                {
+                    Response.Redirect("Ventana_Usuario.aspx", false);
+                }
+
+            }
+
             if (Session["listaArticulosEnCarrito"] == null)
             {
                 Contador.Text = "";
