@@ -6,9 +6,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white">
         <div class="row g-3">
-            <div class=" form-floating mb-3 col">
-                <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+            <div class="">
                 <label id="lblCategoria" for="txtCategoria">Nombre de la categoria</label>
+                <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control" required="true"></asp:TextBox>
             </div>
             <div class="col ">
                 <label class="form-check-label">Activo</label>
@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             <div class="col m-2 p-lg-4">
-                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" formnovalidate="true"/>
             </div>
             <div class="col m-2 p-lg-4">
                 <asp:Button ID="btnAgregar" runat="server" Text="Modificar" CssClass="btn btn-success" OnClick="btnModificar_Click" />
