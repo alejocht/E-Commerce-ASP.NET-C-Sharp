@@ -84,6 +84,10 @@ namespace TPC_Equipo_5
 
                 lblValidacionSuscribite.Text = " Registrado con exito!";
             }
+            else
+            {
+                lblValidacionSuscribite.Text = " Debe completar todos los campos *";
+            }
         }
     }
 }
