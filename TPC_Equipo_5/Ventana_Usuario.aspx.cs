@@ -29,7 +29,7 @@ namespace TPC_Equipo_5
                 if(lecturaUsuario.loguear(usuario))
                 {
                     Session.Add("usuario", usuario);
-                    //TxtUser.Text = "Ingreso correcto";
+                    Response.Redirect("VentanaPerfilUsuario.aspx", false);
                 }
                 else
                 {

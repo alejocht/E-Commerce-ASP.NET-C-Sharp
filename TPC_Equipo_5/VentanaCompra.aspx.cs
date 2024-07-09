@@ -25,7 +25,7 @@ namespace TPC_Equipo_5
         public List<ProductosPedido> productosPedido;
         public ProductosPedido productopedido;
 
-        public DatosUsuario datousuario;
+        public Usuario usuario;
         public int Pagina = 1;
 
 
@@ -49,6 +49,7 @@ namespace TPC_Equipo_5
                     Pagina = 1;
                     Session.Add("pag", Pagina);
 
+                    usuario = (Usuario)Session["usuario"];
 
                     if (listaLecturaProductos == null)
                     {
@@ -79,11 +80,8 @@ namespace TPC_Equipo_5
                     lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
                     lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
                     //aca van los datos del usuario de la session
-                    datousuario = new DatosUsuario();
-                    datousuario.email = "nolopodescambiar@gmail.com";
-                    datousuario.direccion = "casitermino 23";
-                    Txt_Email.Text = datousuario.email;
-                    Txt_Calle_R.Text = datousuario.direccion;
+                    Txt_Email.Text = usuario.dato.email;
+                    Txt_Calle_R.Text = usuario.dato.direccion;
                     Txt_Calle_R.Enabled = false;
                     Txt_Email.Enabled = false;
 
