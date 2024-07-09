@@ -36,7 +36,7 @@ namespace TPC_Equipo_5
                     Session.Add("error", "user o pass incorrectos");
                     Response.Redirect("error.aspx", false);
                 }
-                //Response.Redirect("defaultAdmin.aspx", false);
+                //intento de arreglar boton
             }
             catch (Exception ex)
             {
