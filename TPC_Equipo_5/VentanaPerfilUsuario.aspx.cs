@@ -1,4 +1,4 @@
-﻿using Dominio.Pedidos;
+using Dominio.Pedidos;
 using Dominio.Usuarios;
 using LecturaDatos;
 using System;
@@ -25,6 +25,7 @@ namespace TPC_Equipo_5
                 //cargardatos();
                 if (!IsPostBack)
                 {
+
                     if ((Usuario)Session["usuario"] != null)
                     {
                         

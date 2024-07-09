@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="site.master.cs" Inherits="TPC_Equipo_5.site" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="site.master.cs" Inherits="TPC_Equipo_5.site" %>
 
 <!DOCTYPE html>
 
@@ -40,7 +40,14 @@
                                 <a class="nav-link " aria-current="page" href="#footer">About</a>
                             </li>
                             <li class="nav-item">
+
                                 <asp:HyperLink ID="HyperLink1" runat="server" CssClass="m-1 pt-1"><img style="width: 24px; height: 24px" src="https://i.imgur.com/RR9DK3V.png" alt="Usuario"></asp:HyperLink>
+
+
+                                <a class="nav-link d-flex" aria-current="page" href="Ventana_Usuario.aspx">
+                                    <img style="width: 24px; height: 24px; margin-right: 5px;" src="https://i.imgur.com/RR9DK3V.png" alt="Usuario">
+                                    <asp:Label ID="lblLoginUsuario" runat="server" Text="Login"></asp:Label>
+                                </a>
 
                             </li>
                             <li class="nav-item">
