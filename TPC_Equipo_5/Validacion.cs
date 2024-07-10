@@ -31,6 +31,16 @@ namespace TPC_Equipo_5
             }
             return false;
         }
+        public static bool esStockValido(object control)
+        {
+            if (control is TextBox txtbox)
+            {
+                if(txtbox.Text == "")
+                    return false;
+                if(int.Parse(txtbox.Text) < 0) return false;     
+            }
+            return false;
+        }
 
         public static bool esNumeroDecimal(object control)
         {
@@ -41,5 +51,6 @@ namespace TPC_Equipo_5
             }
             return false;
         }
+
     }
 }

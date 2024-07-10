@@ -6,9 +6,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white; min-height: 615px">
         <div class="row g-3">
-            <div class="form-floating mb-3 col">
-                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" minlength="1" MaxLength="80" required="true"></asp:TextBox>
-                <label id="lblMarca" for="txtNombre" class="form-label">Nombre de la marca</label>
+            <div class=" mb-3 col">
+                <label id="lblMarca" for="txtNombre" class="form-label">* Nombre de la marca</label>
+                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" minlength="1" MaxLength="80" required="true" placeholder="Nombre de la marca"></asp:TextBox>
             </div>
         </div>
         <div class="row">

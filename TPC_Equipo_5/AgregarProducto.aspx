@@ -8,25 +8,25 @@
         <div class="row g-3">
             <div class="col">
                 <%--Nombre Requerido--%>
-                <label class="form-label">Nombre</label>
-                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" type="text" MaxLength="80" MinLength="1" required="true"></asp:TextBox>
+                <label class="form-label">* Nombre</label>
+                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" type="text" MaxLength="80" MinLength="1" required="true" placeholder="Nombre"></asp:TextBox>
                 <%--Precio Requerido--%>
-                <label class="form-label">Precio</label>
+                <label class="form-label">* Precio</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" type="number" step=".01" min="0" required="true"></asp:TextBox>
+                    <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" type="number" step=".01" min="0" required="true" placeholder="00.0"></asp:TextBox>
                     <%--Descripcion Opcional--%>
                 </div>
                 <label class="form-label">Descripción</label>
-                <asp:TextBox ID="txtDescripcion" runat="server" TextMode="Multiline" CssClass="form-control" Rows="5" type="text" MaxLength="160" MinLength="1"></asp:TextBox>
+                <asp:TextBox ID="txtDescripcion" runat="server" TextMode="Multiline" CssClass="form-control" Rows="5" type="text" MaxLength="160" MinLength="1" placeholder="Descripcion"></asp:TextBox>
                 <%--Stock Opcional o 0--%>
-                <label class="form-label">Stock</label>
-                <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" min="0" type="number" step="1"></asp:TextBox>
+                <label class="form-label">* Stock</label>
+                <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" min="0" type="number" step="1" placeholder="0"></asp:TextBox>
                 <%--Categoria Requerido--%>
-                <asp:Label ID="Label1" runat="server" Text="Categoría" CssClass="form-label" />
+                <asp:Label ID="Label1" runat="server" Text="* Categoría" CssClass="form-label" />
                 <asp:DropDownList ID="DDLCategoria" runat="server" CssClass="form-select" aria-label="Default" required="true"></asp:DropDownList>
                 <%--Marca Requerido--%>
-                <asp:Label ID="Label2" runat="server" Text="Marca" CssClass="form-label" />
+                <asp:Label ID="Label2" runat="server" Text="* Marca" CssClass="form-label" />
                 <asp:DropDownList ID="DDLMarca" runat="server" CssClass="form-select" aria-label="Default" requerid="true"></asp:DropDownList>
                 <%--Imagenes Opcional--%>
             </div>
@@ -35,7 +35,7 @@
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <label class="form-label">Imagen URL</label>
-                        <asp:TextBox ID="txtImagenUrl" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtImagenUrl_TextChanged">
+                        <asp:TextBox ID="txtImagenUrl" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtImagenUrl_TextChanged" placeholder="URL">
                         </asp:TextBox>
                         <asp:Image ID="imgProducto" runat="server" CssClass="img-thumbnail mt-4"
                             ImageUrl="https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png"

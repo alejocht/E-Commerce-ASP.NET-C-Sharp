@@ -24,7 +24,7 @@
                 <asp:DropDownList ID="ddl_campo" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddl_campo_SelectedIndexChanged" AutoPostBack="true">
                     <asp:ListItem Text="Producto" />
                     <asp:ListItem Text="Descripcion" />
-                    <asp:ListItem Text="Precio" />
+                    <asp:ListItem Text="Precio"/>
                     <asp:ListItem Text="Stock" />
                     <asp:ListItem Text="Marca" />
                     <asp:ListItem Text="Categoria" />
@@ -79,7 +79,7 @@
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="id" />
                         <asp:BoundField HeaderText="Nombre" DataField="nombre" />
-                        <asp:BoundField HeaderText="Precio" DataField="precio" />
+                        <asp:BoundField HeaderText="Precio" DataFormatString="{0:C}" DataField="precio" />
                         <asp:BoundField HeaderText="Stock" DataField="stock" />
                         <asp:TemplateField HeaderText="Marca">
                             <ItemTemplate>

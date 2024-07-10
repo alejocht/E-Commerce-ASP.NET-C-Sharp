@@ -7,8 +7,8 @@
     <div class="container" id="containerPrincipal" style="color: white; min-height: 615px">
         <div class="row g-3">
             <div class="">
-                <label class="form-label" for="txtNombre">Nombre de la marca</label>
-                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" type="text" minlength="1" MaxLength="80" required="true"></asp:TextBox>
+                <label class="form-label" for="txtNombre">* Nombre de la marca</label>
+                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" type="text" minlength="1" MaxLength="80" required="true" placeholder="Nombre de la marca"></asp:TextBox>
             </div>
             <div class="col">
                 <label class="form-check-label">Activo</label>

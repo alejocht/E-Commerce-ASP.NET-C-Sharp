@@ -18,6 +18,7 @@ namespace TPC_Equipo_5
         {
             try
             {
+
                 //Carga los primeros 3 productos de db
                 LecturaProducto lecturaProducto = new LecturaProducto();
                 listaProductos = new List<Producto>();

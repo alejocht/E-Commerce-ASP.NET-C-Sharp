@@ -24,6 +24,7 @@ namespace TPC_Equipo_5
 
                 if (!IsPostBack)
                 {
+
                     cargarddl();
                     dgvCategorias.DataSource = listaLecturaCategoria;
                     dgvCategorias.DataBind();

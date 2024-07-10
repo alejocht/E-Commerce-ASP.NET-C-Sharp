@@ -99,6 +99,10 @@ namespace TPC_Equipo_5
                     Session["error"] = "el campo Precio solo permite numeros decimales";
                     Response.Redirect("error.aspx");
                 }
+                if(string.IsNullOrEmpty(txtStock.Text))
+                {
+                    txtStock.Text = "0";
+                }
 
                 seleccionado.estado = ckbActivo.Checked;
                 seleccionado.categoria.id = int.Parse(DDLCategoria.SelectedItem.Value);
@@ -106,6 +110,8 @@ namespace TPC_Equipo_5
                 seleccionado.descripcion = txtDescripcion.Text;
                 seleccionado.precio = decimal.Parse(txtPrecio.Text);
                 seleccionado.stock = int.Parse(txtStock.Text);
+                if (seleccionado.stock < 1) 
+                    seleccionado.stock = 0;
                 seleccionado.nombre = txtNombre.Text;
 
                 List<Imagen>ImagenesBorrar = new List<Imagen>();

@@ -17,9 +17,9 @@ namespace TPC_Equipo_5
         {
             try
             {
-
                 if (!IsPostBack)
                 {
+
                     cargarddl();
                     imagenesForm = new List<Imagen>();
                     Session["ImagenesCargadas"] = imagenesForm;
@@ -140,12 +140,21 @@ namespace TPC_Equipo_5
                     Session["error"] = "el campo Descripcion no puede estar vacio";
                     Response.Redirect("error.aspx");
                 }
+                if (string.IsNullOrEmpty(txtStock.Text))
+                {
+                    txtStock.Text = "0";
+                }
+
 
                 seleccionado.categoria.id = int.Parse(DDLCategoria.SelectedItem.Value);
                 seleccionado.marca.id = int.Parse(DDLMarca.SelectedItem.Value);
                 seleccionado.descripcion = txtDescripcion.Text;
                 seleccionado.precio = decimal.Parse(txtPrecio.Text);
                 seleccionado.stock = int.Parse(txtStock.Text);
+
+                if (seleccionado.stock < 1) 
+                    seleccionado.stock = 0;
+
                 seleccionado.nombre = txtNombre.Text;
                 seleccionado.imagenes = (List<Imagen>)Session["ImagenesCargadas"];
                 LecturaProducto lecturaProducto = new LecturaProducto();
