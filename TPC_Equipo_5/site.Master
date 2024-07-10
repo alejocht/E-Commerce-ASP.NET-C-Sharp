@@ -5,6 +5,7 @@
 <html>
 <head runat="server">
     <title>OverCloaked Tienda Virtual </title>
+    <link rel="icon" href="https://i.imgur.com/9E31weS.png" type="image/png" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
