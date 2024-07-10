@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Dominio.Productos;
+using Dominio.Usuarios;
 using LecturaDatos;
 
 namespace TPC_Equipo_5
@@ -56,6 +57,9 @@ namespace TPC_Equipo_5
             if(!Seguridad.sesionActiva(Session["usuario"]))
             {
                 HyperLink1.NavigateUrl = "VentanaPerfilUsuario.aspx";
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["usuario"];
+                lblUsuario.Text = usuario.dato.nombre;
             }
             else
             {

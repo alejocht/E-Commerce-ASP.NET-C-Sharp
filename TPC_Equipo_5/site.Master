@@ -22,7 +22,7 @@
                         <img style="height: 50px" src="https://i.imgur.com/9ffo48f.png" alt="OverCloaked">
                     </a>
                     <div class="d-inline-flex p-2 w-50 justify-content-center" style="max-width: 500px; align-items: center" id="navbarSupportedContent">
-                        <asp:TextBox ID="txtBusqueda" runat="server" CssClass="form-control me-2" placeholder="Buscar árticulos"></asp:TextBox>
+                        <asp:TextBox ID="txtBusqueda" runat="server" CssClass="form-control me-2" placeholder="Buscar articulos"></asp:TextBox>
                         <asp:ImageButton ID="imgBusqueda" runat="server" ImageUrl="https://i.imgur.com/nsJrYF4.png" Width="24px" Height="24px" OnClick="imgBusqueda_Click" />
                     </div>
                     <div>
@@ -71,7 +71,7 @@
             <div>
                 <div class="row pt-5 pb-5 text-white">
                     <div class="col-md-3">
-                        <h5>Navegación</h5>
+                        <h5>Navegacion</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" style="color: white" href="#header">Inicio</a>
