@@ -2,19 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/stylePerfilUsuario.css" rel="stylesheet" />
-    <script>
-        function validatePassword() {
-            var password = document.getElementById('txtPassword').value;
-            var repeatPassword = document.getElementById('txtRepetirPassword').value;
-            var errorLabel = document.getElementById('lblError');
-
-            if (password !== repeatPassword) {
-                errorLabel.style.display = 'block'; // Show error message
-            } else {
-                errorLabel.style.display = 'none'; // Hide error message
-            }
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container d-flex justify-content-center" id="containerPrincipal">
@@ -49,7 +36,7 @@
                             <asp:GridView ID="dgvPedidosUsuario" runat="server" DataKeyNames="id" CssClass="table table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvPedidosUsuario_SelectedIndexChanged">
                                 <Columns>
                                     <asp:BoundField HeaderText="N° Pedido" DataField="id" />
-                                    <asp:BoundField HeaderText="Fecha" DataField="fecha" DataFormatString="{0:dd/MM/yyyy}"/>
+                                    <asp:BoundField HeaderText="Fecha" DataField="fecha" DataFormatString="{0:dd/MM/yyyy}" />
                                     <asp:BoundField HeaderText="Estado" DataField="estadoPedido.nombre" />
                                     <asp:CommandField SelectText="Ver detalles" ShowSelectButton="true" />
                                 </Columns>
@@ -223,7 +210,7 @@
                                 <h6>Repetir Contraseña:</h6>
                             </div>
                             <div class="col">
-                                <asp:TextBox ID="txtRepetirPassword" runat="server" CssClass="form-control h6" TextMode="Password" onkeyup="validatePassword()" required="true"></asp:TextBox>
+                                <asp:TextBox ID="txtRepetirPassword" runat="server" CssClass="form-control h6" TextMode="Password" required="true"></asp:TextBox>
                                 <asp:Label ID="lblError" runat="server" Text="" CssClass="text-danger"></asp:Label>
                             </div>
                         </div>
@@ -231,7 +218,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <asp:Button ID="btnMOdificarUsuario" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnMOdificarUsuario_Click" />
+                    <asp:Button ID="btnMOdificarUsuario" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnModificarUsuario_Click" />
                 </div>
             </div>
         </div>

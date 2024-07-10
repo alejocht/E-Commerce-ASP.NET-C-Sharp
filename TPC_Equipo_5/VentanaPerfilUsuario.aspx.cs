@@ -87,11 +87,11 @@ namespace TPC_Equipo_5
             }
         }
 
-        protected void btnMOdificarUsuario_Click(object sender, EventArgs e)
+        protected void btnModificarUsuario_Click(object sender, EventArgs e)
         {
             try
             {
-                if(txtUsuario.Text == "" || txtPassword.Text == "")
+                if(txtPassword.Text != txtRepetirPassword.Text)
                 {
                     throw new Exception("Debe completar los campos de usuario y contraseña");
                 }
@@ -102,7 +102,7 @@ namespace TPC_Equipo_5
                 usuario.password = txtPassword.Text;
 
                 LecturaUsuario lecturaUsuario = new LecturaUsuario();
-                lecturaUsuario.modificar(usuario);
+                lecturaUsuario.modificarDatos(usuario);
 
                 Response.Redirect("VentanaPerfilusuario.aspx", false);
             }
