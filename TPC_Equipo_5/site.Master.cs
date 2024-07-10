@@ -31,7 +31,7 @@ namespace TPC_Equipo_5
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Page is Ventana_Usuario || Page is _default || Page is Productos || Page is DetalleProducto || Page is VentanaCarrito))
+            if (!(Page is Ventana_Usuario || Page is _default || Page is Productos || Page is DetalleProducto || Page is VentanaCarrito || Page is RegistroUsuario))
             {
                 if (Seguridad.sesionActiva(Session["usuario"]))
                 {
