@@ -52,8 +52,7 @@ namespace TPC_Equipo_5
                     DatosUsuario datosUsuario = new DatosUsuario();
                     datosUsuario.nombre = Txt_Nombre.Text;
                     datosUsuario.apellido = Txt_Apellido.Text;                 
-                    datosUsuario.email = Txt_Email.Text;                                  
-                    lecturadatos.agregar(datosUsuario);
+                    datosUsuario.email = Txt_Email.Text;                                                     
                     LecturaUsuario lecturaUsuario = new LecturaUsuario();
                     Usuario aux = new Usuario();
                     aux.usuario = Txt_Usuario.Text;

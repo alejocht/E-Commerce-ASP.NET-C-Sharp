@@ -218,10 +218,9 @@ namespace LecturaDatos
                 DatosUsuario aux = lista.Last();
                 int idDatosPersonales = aux.id;
                 //agregar ususario
-                datos.SetearConsulta("insert into Usuarios (Usuario,Clave,Administrar,IDDatos_Personales) values (@usuario, @clave, @admin, @iddatospersonales)");
+                datos.SetearConsulta("insert into Usuarios (Usuario,Clave,Administrar,IDDatos_Personales) values (@usuario, @clave, 0, @iddatospersonales)");
                 datos.SetearParametro("@usuario", nuevo.usuario);
-                datos.SetearParametro("@clave", nuevo.password);               
-                datos.SetearParametro("@admin", nuevo.admin);
+                datos.SetearParametro("@clave", nuevo.password);                             
                 datos.SetearParametro("@iddatospersonales", idDatosPersonales);
                 datos.ejecutarAccion();
             }

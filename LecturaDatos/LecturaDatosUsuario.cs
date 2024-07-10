@@ -23,10 +23,17 @@ namespace LecturaDatos
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["Nombres"];
                     aux.apellido = (string)datos.Lector["Apellidos"];
-                    aux.email = (string)datos.Lector["Email"];
-                    aux.telefono = (string)datos.Lector["Telefono"];
-                    aux.direccion = (string)datos.Lector["Direccion"];
-                    aux.ciudad.id = (int)(datos.Lector["IDCiudad"]);
+                    if (!Convert.IsDBNull(datos.Lector["Email"]))
+                        aux.email = (string)datos.Lector["Email"];
+
+                    if (!Convert.IsDBNull(datos.Lector["Telefono"]))
+                        aux.telefono = (string)datos.Lector["Telefono"];
+
+                    if (!Convert.IsDBNull(datos.Lector["Direccion"]))
+                        aux.direccion = (string)datos.Lector["Direccion"];
+    
+                    if(!Convert.IsDBNull(datos.Lector["IDCiudad"]))
+                        aux.ciudad.id = (int)(datos.Lector["IDCiudad"]);
 
                     lista.Add(aux);
                 }
@@ -57,10 +64,17 @@ namespace LecturaDatos
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["Nombres"];
                     aux.apellido = (string)datos.Lector["Apellidos"];
-                    aux.email = (string)datos.Lector["Email"];
-                    aux.telefono = (string)datos.Lector["Telefono"];
-                    aux.direccion = (string)datos.Lector["Direccion"];
-                    aux.ciudad = lecturaCiudad.listar((int)datos.Lector["IDCiudad"]);
+                    if (!Convert.IsDBNull(datos.Lector["Email"]))
+                        aux.email = (string)datos.Lector["Email"];
+
+                    if (!Convert.IsDBNull(datos.Lector["Telefono"]))
+                        aux.telefono = (string)datos.Lector["Telefono"];
+
+                    if (!Convert.IsDBNull(datos.Lector["Direccion"]))
+                        aux.direccion = (string)datos.Lector["Direccion"];
+
+                    if (!Convert.IsDBNull(datos.Lector["IDCiudad"]))
+                        aux.ciudad.id = (int)(datos.Lector["IDCiudad"]);
                 }
 
                 return aux;
@@ -79,13 +93,10 @@ namespace LecturaDatos
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("insert into Datos_Personales(Nombres,Apellidos,Email,Telefono,Direccion,IDCiudad) values (@nombre, @apellido, @email, @telefono, @direccion, @idciudad)");
+                datos.SetearConsulta("insert into Datos_Personales(Nombres,Apellidos,Email) values (@nombre, @apellido, @email)");
                 datos.SetearParametro("@nombre", nuevo.nombre);
                 datos.SetearParametro("@apellido", nuevo.apellido);
-                datos.SetearParametro("@email", nuevo.email);
-                datos.SetearParametro("@telefono", nuevo.telefono);
-                datos.SetearParametro("@direccion", nuevo.direccion);
-                datos.SetearParametro("@idciudad", nuevo.ciudad.id);
+                datos.SetearParametro("@email", nuevo.email);               
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
