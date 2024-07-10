@@ -29,9 +29,9 @@ namespace TPC_Equipo_5
             {   
                
                 filtroAvanzado = chk_FiltroAvanzado.Checked;
+                cargardatos();
                 if (!IsPostBack)
                 {
-                    cargardatos();
                     FiltroValido = true;
                     chk_FiltroAvanzado.Checked = false;
                     cargarddl();
@@ -213,7 +213,8 @@ namespace TPC_Equipo_5
             {
                 List<Producto> listaFiltrada;
                 listaFiltrada = listaLecturaProducto.FindAll(x => x.nombre.ToUpper().Contains(filtro.ToUpper()));
-                listaLecturaProducto = listaFiltrada;
+                if(listaFiltrada != null)
+                    listaLecturaProducto = listaFiltrada;
             }
             catch (Exception ex)
             {

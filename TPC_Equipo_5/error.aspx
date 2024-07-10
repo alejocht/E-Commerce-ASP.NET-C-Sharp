@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.Master" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="TPC_Equipo_5.Error" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/stylePaginaWeb.css" rel="stylesheet" />
-    <style>        #div1 { height: 300px;
+    <style>        #div1 { height: 350px;
                     }
     </style>
 </asp:Content>

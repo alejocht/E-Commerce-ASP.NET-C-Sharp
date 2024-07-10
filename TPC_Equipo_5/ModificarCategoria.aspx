@@ -7,8 +7,8 @@
     <div class="container" id="containerPrincipal" style="color: white; min-height: 615px">
         <div class="row g-3">
             <div class="">
-                <label id="lblCategoria" for="txtCategoria">Nombre de la categoria</label>
-                <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+                <label id="lblCategoria" for="txtCategoria">* Nombre de la categoria</label>
+                <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control" required="true" placeholder="Nombre de la categoria"></asp:TextBox>
             </div>
             <div class="col ">
                 <label class="form-check-label">Activo</label>

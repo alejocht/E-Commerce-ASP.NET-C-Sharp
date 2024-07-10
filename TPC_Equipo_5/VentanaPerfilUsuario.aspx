@@ -49,7 +49,7 @@
                             <asp:GridView ID="dgvPedidosUsuario" runat="server" DataKeyNames="id" CssClass="table table-bordered" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvPedidosUsuario_SelectedIndexChanged">
                                 <Columns>
                                     <asp:BoundField HeaderText="N° Pedido" DataField="id" />
-                                    <asp:BoundField HeaderText="Fecha" DataField="fecha" />
+                                    <asp:BoundField HeaderText="Fecha" DataField="fecha" DataFormatString="{0:dd/MM/yyyy}"/>
                                     <asp:BoundField HeaderText="Estado" DataField="estadoPedido.nombre" />
                                     <asp:CommandField SelectText="Ver detalles" ShowSelectButton="true" />
                                 </Columns>

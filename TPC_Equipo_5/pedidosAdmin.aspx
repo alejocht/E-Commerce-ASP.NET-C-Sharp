@@ -46,7 +46,7 @@
                     <Columns>
                         <asp:BoundField HeaderText="N° Pedido" DataField="id" />
                         <asp:BoundField HeaderText="Cliente" DataField="usuario.usuario" />
-                        <asp:BoundField HeaderText="Fecha" DataField="fecha" />
+                        <asp:BoundField HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" DataField="fecha" />
                         <asp:BoundField HeaderText="Método de pago" DataField="metodoPago.nombre" />
                         <asp:BoundField HeaderText="Estado" DataField="estadoPedido.nombre" />
                         <asp:CommandField SelectText="Ver detalles" ShowSelectButton="true" />
