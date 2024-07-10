@@ -158,9 +158,10 @@ namespace LecturaDatos
             AccesoDatos datos = new AccesoDatos();
             try
             {
+                
                 datos.SetearConsulta("update Datos_Personales set Direccion = @Direccion, IDCiudad = @IDCiudad where ID = @id");
-                datos.SetearParametro("@Direccion", nuevo.nombre);
-                datos.SetearParametro("@IDCiudad", nuevo.apellido);
+                datos.SetearParametro("@Direccion", nuevo.direccion);
+                datos.SetearParametro("@IDCiudad", nuevo.ciudad.id);
                 datos.SetearParametro("@id", nuevo.id);
                 datos.ejecutarAccion();
             }

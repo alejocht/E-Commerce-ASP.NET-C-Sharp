@@ -96,7 +96,7 @@ namespace LecturaDatos
             AccesoDatos datosPedidos = new AccesoDatos();
             try
             {
-                datosPedidos.SetearConsulta("INSERT INTO Pedidos (ID_MetodoDePago, ID_EstadosPedido, ID_Usuario, Fecha, Estado) VALUES (@IDMetodoDePago, 1, @IDUsuario, GETDATE(), 1)");
+                datosPedidos.SetearConsulta("INSERT INTO Pedidos (ID_MetodoDePago, ID_EstadosPedido, ID_Usuario, Fecha) VALUES (@IDMetodoDePago, 1, @IDUsuario, GETDATE())");
                 datosPedidos.SetearParametro("@IDMetodoDePago", nuevo.metodoPago.id);
                 datosPedidos.SetearParametro("@IDUsuario", nuevo.usuario.id);
                 datosPedidos.ejecutarAccion();

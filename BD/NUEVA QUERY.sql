@@ -78,3 +78,6 @@ create table Productos_x_pedido(
 	ID_Producto int not null foreign key references Productos(ID),
 	Cantidad int not null
 )
+
+alter table imagen
+ add Estado bit not null default 1

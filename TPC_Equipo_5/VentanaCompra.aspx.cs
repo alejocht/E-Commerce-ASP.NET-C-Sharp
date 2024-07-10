@@ -174,23 +174,23 @@ namespace TPC_Equipo_5
 
         protected void BtnSubir_Click(object sender, EventArgs e)
         {
-            //Terminar 
-            if (FileUpload1.HasFile)
-            {
-                //string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
+            ////Terminar 
+            //if (FileUpload1.HasFile)
+            //{
+            //    //string ext = System.IO.Path.GetExtension(FileUpload1.FileName);
 
-                //int tam = FileUpload1.PostedFile.ContentLength;
-                //Response.Write(ext + ", " + tam);
-                //if (ext == ".png" && tam <= 1048576)
-                //{
-                //    FileUpload1.SaveAs(Server.MapPath("D:\\COSAS MARIANO\\UNI\\UNI\\Prog 3\\TPC\\TPC_Equipo_5\\BD\\Comprobantes" + FileUpload1.FileName));
-                //    Response.Write("Se subio el archivo");
-                //}
-            }
-            else
-            {
-                Response.Write("Selleciona un archivo a subir");
-            }
+            //    //int tam = FileUpload1.PostedFile.ContentLength;
+            //    //Response.Write(ext + ", " + tam);
+            //    //if (ext == ".png" && tam <= 1048576)
+            //    //{
+            //    //    FileUpload1.SaveAs(Server.MapPath("D:\\COSAS MARIANO\\UNI\\UNI\\Prog 3\\TPC\\TPC_Equipo_5\\BD\\Comprobantes" + FileUpload1.FileName));
+            //    //    Response.Write("Se subio el archivo");
+            //    //}
+            //}
+            //else
+            //{
+            //    Response.Write("Selleciona un archivo a subir");
+            //}
         }
         protected void BtnSiguiente_Click(object sender, EventArgs e)
         {
