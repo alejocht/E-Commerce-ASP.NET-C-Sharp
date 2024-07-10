@@ -38,7 +38,7 @@ CREATE TABLE Usuarios(
     ID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     Usuario VARCHAR(50) NOT NULL, 
     Clave VARCHAR(50) NOT NULL,
-    Administrar BIT NOT NULL,
+    Administrar BIT NOT NULL default 0,
     IDDatos_Personales INT NOT NULL FOREIGN KEY REFERENCES Datos_Personales(ID)
 )
 CREATE TABLE Productos(
@@ -48,7 +48,7 @@ CREATE TABLE Productos(
 	Nombre VARCHAR(80) NOT NULL,
 	Descripcion VARCHAR(160) NULL,
 	Precio money,
-	Stock int NOT NULL,
+	Stock int NOT NULL ,
 	Estado bit not null default 1
 )
 CREATE TABLE Imagen(
