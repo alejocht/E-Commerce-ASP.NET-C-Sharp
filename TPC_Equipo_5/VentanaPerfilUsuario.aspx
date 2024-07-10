@@ -2,7 +2,19 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/stylePerfilUsuario.css" rel="stylesheet" />
+    <script>
+        function validatePassword() {
+            var password = document.getElementById('txtPassword').value;
+            var repeatPassword = document.getElementById('txtRepetirPassword').value;
+            var errorLabel = document.getElementById('lblError');
 
+            if (password !== repeatPassword) {
+                errorLabel.style.display = 'block'; // Show error message
+            } else {
+                errorLabel.style.display = 'none'; // Hide error message
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container d-flex justify-content-center" id="containerPrincipal">
@@ -45,15 +57,15 @@
                             <%
                                 }
                                 else
-                                 {%>
+                                {%>
 
-                                <h4>Todavia no tienes compras hechas para visualizar un pedido.</h4>
+                            <h4>Todavia no tienes compras hechas para visualizar un pedido.</h4>
 
                             <%
                                 }%>
                         </div>
                         <div class="tab-pane fade" id="v-pills-misdatos" role="tabpanel" aria-labelledby="v-pills-misdatos-tab" tabindex="0">
-                            <h2 style="margin-bottom: 20px;">Datos Personales</h2>
+                            <h2 style="margin-bottom: 20px;">Mis Datos</h2>
                             <div class="row">
                                 <div class="col">
                                     <h4>Nombres:</h4>
@@ -75,9 +87,11 @@
                                         <asp:Label ID="LblTelefono" runat="server" Text="Telefono" CssClass="h4"></asp:Label>
                                     </div>
                                 </div>
-                                <asp:Button ID="btnModificarDatosPersonales" Style="margin-top: 10px;" runat="server" Text="Modificar Datos Personales" CssClass="btn btn-dark" OnClick="btnModificarDatosPersonales_Click" />
-                                <h2 style="margin: 20px 0 20px 0;">Datos de Usuario</h2>
-                                <div class="row">
+                                <button type="button" class="btn btn-dark" style="margin-top: 10px" data-bs-toggle="modal" data-bs-target="#modalModificarMisDatos">
+                                    Modificar Mis Datos Personales
+                                </button>
+                                <h2 style="margin-top: 20px;">Mi Cuenta</h2>
+                                <div class="row" style="margin-top: 20px;">
                                     <div class="col">
                                         <h4>Usuario:</h4>
                                         <h4>Contraseña:</h4>
@@ -87,11 +101,14 @@
                                             <asp:Label ID="LblUsuario" runat="server" Text="Usuario" CssClass="h4"></asp:Label>
                                         </div>
                                         <div class="row">
-                                            <asp:Label ID="LblPassword" runat="server" Text="Contraseña" CssClass="h4"></asp:Label>
+                                            <asp:Label ID="lblPassword" runat="server" Text="******" CssClass="h4"></asp:Label>
                                         </div>
                                     </div>
+
                                 </div>
-                                <asp:Button ID="btnModificarDatosUsuario" Style="margin-top: 10px;" runat="server" Text="Modificar Datos de Usuario" CssClass="btn btn-dark" OnClick="btnModificarDatosUsuario_Click" />
+                                <button type="button" class="btn btn-dark" style="margin-top: 10px" data-bs-toggle="modal" data-bs-target="#modalModificarMiCuenta">
+                                    Modificar Mi Cuenta
+                                </button>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-midireccion" role="tabpanel" aria-labelledby="v-pills-midireccion-tab" tabindex="0">
@@ -113,7 +130,9 @@
                                         <asp:Label ID="LblCiudad" runat="server" Text="Ciudad" CssClass="h4"></asp:Label>
                                     </div>
                                 </div>
-                                <asp:Button ID="btnModificarDireccion" Style="margin-top: 10px;" runat="server" Text="Modificar Dirección" CssClass="btn btn-dark" OnClick="btnModificarDireccion_Click" />
+                                <button type="button" class="btn btn-dark" style="margin-top: 10px" data-bs-toggle="modal" data-bs-target="#modalModificarMiDireccion">
+                                    Modificar Mi Dirección
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -126,12 +145,143 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modalModificarMisDatos" tabindex="-1" aria-hidden="False">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5">Modificar Mis Datos</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container" style="margin-top: 20px;">
+                        <div class="row">
+                            <div class="col">
+                                <h6>Nombre:</h6>
+                            </div>
+                            <div class="col">
+                                <asp:TextBox ID="txtNombres" runat="server" CssClass="form-control h6" required="true"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6>Apellido:</h6>
+                            </div>
+                            <div class="col">
+                                <asp:TextBox ID="txtApellidos" runat="server" CssClass="form-control h6" required="true"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6>Email:</h6>
+                            </div>
+                            <div class="col">
+                                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control h6" required="true"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6>Telefono:</h6>
+                            </div>
+                            <div class="col">
+                                <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control h6" required="true"></asp:TextBox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnModificarMisDatos" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnModificarMisDatos_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalModificarMiCuenta" tabindex="-1" aria-hidden="False">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5">Modificar Mi Cuenta</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container" style="margin-top: 20px;">
+                        <div class="row">
+                            <div class="col">
+                                <h6>Usuario:</h6>
+                            </div>
+                            <div class="col">
+                                <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control h6" required="true"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6>Contraseña:</h6>
+                            </div>
+                            <div class="col">
+                                <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control h6" required="true"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6>Repetir Contraseña:</h6>
+                            </div>
+                            <div class="col">
+                                <asp:TextBox ID="txtRepetirPassword" runat="server" CssClass="form-control h6" TextMode="Password" onkeyup="validatePassword()" required="true"></asp:TextBox>
+                                <asp:Label ID="lblError" runat="server" Text="" CssClass="text-danger"></asp:Label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnMOdificarUsuario" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnMOdificarUsuario_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalModificarMiDireccion" tabindex="-1" aria-hidden="False">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5">Modificar Mi Dirección</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container" style="margin-top: 20px;">
+                        <div class="row">
+                            <div class="col">
+                                <h6>Dirección:</h6>
+                            </div>
+                            <div class="col">
+                                <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control h6" required="true"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6>Provincia:</h6>
+                            </div>
+                            <div class="col">
+                                <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-control h6" AppendDataBoundItems="true"></asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6>Ciudad:</h6>
+                            </div>
+                            <div class="col">
+                                <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="form-control h6" AppendDataBoundItems="true"></asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnModificarDireccion" runat="server" Text="Confirmar" CssClass="btn btn-success" OnClick="btnModificarMiDireccion_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="modalCerrarSesion" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title fs-5">Cerrar Sesión</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
                     ¿Está seguro de que desea cerrar sesión? Se perderá el progreso no guardado.

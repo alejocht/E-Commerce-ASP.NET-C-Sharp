@@ -120,6 +120,48 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+        public void modificarDatos(DatosUsuario nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("update Datos_Personales set Nombres = @nombre, Apellidos = @apellido, Email = @email, Telefono = @telefono where ID = @id");
+                datos.SetearParametro("@nombre", nuevo.nombre);
+                datos.SetearParametro("@apellido", nuevo.apellido);
+                datos.SetearParametro("@email", nuevo.email);
+                datos.SetearParametro("@telefono", nuevo.telefono);
+                datos.SetearParametro("@id", nuevo.id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void modificarDireccion(DatosUsuario nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("update Datos_Personales set Direccion = @Direccion, IDCiudad = @IDCiudad where ID = @id");
+                datos.SetearParametro("@Direccion", nuevo.nombre);
+                datos.SetearParametro("@IDCiudad", nuevo.apellido);
+                datos.SetearParametro("@id", nuevo.id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
         public void eliminarFisica(DatosUsuario nuevo)
         {
             AccesoDatos datos = new AccesoDatos();

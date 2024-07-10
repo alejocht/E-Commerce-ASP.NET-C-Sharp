@@ -166,6 +166,26 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
+        public void modificarDatos(Usuario nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("update Usuarios set Usuario = @usuario, Clave = @clave where ID = @id");
+                datos.SetearParametro("@usuario", nuevo.usuario);
+                datos.SetearParametro("@clave", nuevo.password);
+                datos.SetearParametro("@id", nuevo.id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
         public void borrarFisica(Usuario nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
