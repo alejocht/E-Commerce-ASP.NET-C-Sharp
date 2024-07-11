@@ -50,5 +50,20 @@ namespace TPC_Equipo_5
                 Response.Redirect("error.aspx", false);
             }
         }
+
+        protected void dgv_usuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string seleccionado = dgv_usuarios.SelectedDataKey.Value.ToString();
+                Response.Redirect("ModificarPerfil.aspx?id=" + seleccionado, false);
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
+        }
     }
 }

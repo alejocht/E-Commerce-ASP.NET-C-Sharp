@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerPrincipal" style="color: white; min-height: 600px">
-        <asp:GridView ID="dgv_usuarios" DataKeyNames="id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" AllowPaging="true" PageSize="5" runat="server" OnPageIndexChanging="dgv_usuarios_PageIndexChanging">
+        <asp:GridView ID="dgv_usuarios" DataKeyNames="id" CssClass="table table-dark table-bordered" AutoGenerateColumns="false" AllowPaging="true" PageSize="5" runat="server" OnPageIndexChanging="dgv_usuarios_PageIndexChanging" OnSelectedIndexChanged="dgv_usuarios_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField HeaderText="ID" DataField="id" />
                 <asp:BoundField HeaderText="Usuario" DataField="usuario" />
@@ -20,6 +20,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:CheckBoxField HeaderText="Admin" DataField="admin" />
+                <asp:CommandField ShowSelectButton="true" SelectText="Modificar" HeaderText="Detalle"/>
             </Columns>
         </asp:GridView>
     </div>
