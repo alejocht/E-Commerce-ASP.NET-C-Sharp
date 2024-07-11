@@ -27,7 +27,6 @@ namespace TPC_Equipo_5
         public Usuario usuario;
         public int Pagina = 1;
 
-
         public ServiceEmail email;
         bool Transferenciabool = false;
 
@@ -196,12 +195,19 @@ namespace TPC_Equipo_5
         {
             if (Pagina < 3)
             {
-                if (Pagina == 2)
+                if (string.IsNullOrEmpty(Txt_Calle_R.Text) || Txt_Calle_R.Text == "Debo ser completado")
                 {
-
+                    Txt_Calle_R.Text = "Debo ser completado";
+                    LinkPerfil.Visible = true;
+                    LinkPerfil.Text = "Click aqui para modificar mis datos";
+                    LinkPerfil.NavigateUrl = "VentanaPerfilUsuario.aspx";
+                    return;
                 }
-                Pagina++;
-                Session.Add("pag", Pagina);
+                else
+                {
+                    Pagina++;
+                    Session.Add("pag", Pagina);
+                }
 
             }
         }

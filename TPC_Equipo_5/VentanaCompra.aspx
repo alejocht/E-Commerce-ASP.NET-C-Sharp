@@ -146,6 +146,8 @@
                                         <label>Direccion de envio</label>
                                     </div>
                                     <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" ID="Txt_Calle_R" />
+
+                                    <asp:HyperLink ID="LinkPerfil" runat="server" CssClass="lm-3"></asp:HyperLink>
                                 </div>
                             </div>
                         </div>
