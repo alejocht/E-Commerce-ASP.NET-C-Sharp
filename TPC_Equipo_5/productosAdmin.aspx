@@ -99,14 +99,6 @@
             </div>
         </div>
         <div class="row" style="padding: 20px 10px;">
-           <%-- <div class="col-2">
-                <asp:Button ID="btnAnterior" runat="server" Text="Anterior" CssClass="btn btn-outline-light" />
-                <asp:Button ID="btnSiguiente" runat="server" Text="Siguiente" CssClass="btn btn-outline-light" />
-            </div>
-            <div class="col-6 align-content-center">
-                <asp:Label ID="lblPagina" runat="server" Text="Página: X" CssClass="form-label"></asp:Label>
-                <asp:Label ID="lblTotal" runat="server" Text=" de XX" CssClass="form-label"></asp:Label>
-            </div>--%>
             <div class="col text-end">
                 <asp:Button ID="btnAgregarProducto" type="button" runat="server" Text="Agregar Producto" class="btn btn-outline-light" OnClick="btnAgregarProducto_Click" />
             </div>
