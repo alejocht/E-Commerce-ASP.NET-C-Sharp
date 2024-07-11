@@ -87,11 +87,13 @@
         <%   }
             else
             { %>
-        <div class="container" id="containerCarritoVacio" style="height: 500px">
+        <div class="container" id="containerCarritoVacio" style="height: 600px">
             <div class="row">
                 <div class="col">
-                    <h3>Lista de productos</h3>
-                    <p>No hay productos en el carrito de momento, no te quedes con las ganas!</p>
+                    <hr />
+                    <h1>Carrito vacio</h1>
+                    <hr />
+                    <h4>No hay productos en el carrito de momento, no te quedes con las ganas! 😁 😁 😁</h4>
                     <div class="container">
                         <div class="row">
                             <div class="col">

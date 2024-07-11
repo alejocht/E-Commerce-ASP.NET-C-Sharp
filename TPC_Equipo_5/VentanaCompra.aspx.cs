@@ -197,7 +197,7 @@ namespace TPC_Equipo_5
             {
                 if (string.IsNullOrEmpty(Txt_Calle_R.Text) || Txt_Calle_R.Text == "Debo ser completado")
                 {
-                    Txt_Calle_R.Text = "Debo ser completado";
+                    Txt_Calle_R.Text = "Debo ser completado  ⛔";
                     LinkPerfil.Visible = true;
                     LinkPerfil.Text = "Click aqui para modificar mis datos";
                     LinkPerfil.NavigateUrl = "VentanaPerfilUsuario.aspx";
@@ -217,6 +217,10 @@ namespace TPC_Equipo_5
             {
                 Pagina--;
                 Session.Add("pag", Pagina);
+            }
+            if (Pagina == 1)
+            {
+                Response.Redirect("VentanaCarrito.aspx",false);
             }
         }
         protected void Transferencia_CheckedChanged(object sender, EventArgs e)

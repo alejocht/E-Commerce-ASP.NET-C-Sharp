@@ -22,15 +22,15 @@
             <div class="modal-dialog modal-dialog-dark">
                 <div class="modal-content bg-dark">
                     <div class="modal-header">
-                        <h5 class="modal-title text-white fs-5">Cerrar Sesión</h5>
+                        <h5 class="modal-title text-white fs-5">Volver a E-Commerce</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body text-white">
-                        ¿Está seguro de que desea cerrar sesión? Se perderá el progreso no guardado.
+                        ¿Está seguro de que desea volver a la vista de Cliente?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar Sesión" CssClass="btn btn-danger" OnClick="btnCerrarSesion_Click"></asp:Button>
+                        <asp:Button ID="btnCerrarSesion" runat="server" Text="Volver a Lado Cliente" CssClass="btn btn-danger" OnClick="btnCerrarSesion_Click"></asp:Button>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#modalCerrarSesion">
-                                    Cerrar Sesión
+                                    Volver a lado cliente
                                 </button>
                             </li>
                         </ul>

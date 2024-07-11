@@ -173,12 +173,11 @@
                             </div>
                             <div>
                                 <div>
-                                    Carga aqui tu comprobante de pago
-
-                                </div>
-                                <div>
-                                    <asp:FileUpload ID="FileUpload1" runat="server" CssClass="btn btn-primary" Style="background-color: #c32a2a color()" />
-                                    <asp:Button ID="BtnSubir" Text="Subir archivo" OnClick="BtnSubir_Click" runat="server" />
+                                    <p>
+                                        Manda tu comprobante de pago a nuestro mail
+                                        <br />
+                                        Una vez confirmado el pago, iniciaremos con la logistica del envio
+                                    </p>
                                 </div>
                             </div>
 

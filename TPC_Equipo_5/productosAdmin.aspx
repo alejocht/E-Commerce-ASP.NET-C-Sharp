@@ -92,7 +92,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:CheckBoxField HeaderText="Activo" DataField="estado" />
-                        <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Detalle" />
+                        <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Detalle"/>
 
                     </Columns>
                 </asp:GridView>

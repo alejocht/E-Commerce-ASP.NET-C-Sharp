@@ -6,9 +6,9 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" id="containerDetalle">
-        <div class="row">
+        <div class="row" style="height: 600px">
             <div class="col col-lg-2">
-                <asp:Button ID="BtnBack" runat="server" Text="Volver" OnClick="Back_Click" CssClass="btn btn-danger btn-sm m-2" />
+                <asp:Button ID="BtnBack" runat="server" Text="⬅️ Volver" OnClick="Back_Click" CssClass="btn btn-danger btn-sm m-2" />
             </div>
             <div class="col">
                 <%if (carrusel)
@@ -54,7 +54,7 @@
                         <asp:Label ID="lblPrecio" runat="server" CssClass="h6"></asp:Label>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtCantidad" runat="server" type="number" min="1" max="20"></asp:TextBox>
+                        <asp:TextBox ID="txtCantidad" runat="server" type="number" min="1" max="20" CssClass="form-control"></asp:TextBox>
                         <asp:Button ID="BtnAgregarAlCarrito" runat="server" Text="Agregar al Carrito" OnClick="BtnAgregarAlCarrito_Click" CssClass="btn btn-success m-3" />
                     </div>
 

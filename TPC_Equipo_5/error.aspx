@@ -7,7 +7,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
-    <h1>Ha ocurrido un error imprevisto :(</h1>
+    <h1>Ha ocurrido un error imprevisto 🤕 🤕 🤕</h1>
     <hr />
     <div id="div1">
         <h4>Descripcion del error: </h4>
