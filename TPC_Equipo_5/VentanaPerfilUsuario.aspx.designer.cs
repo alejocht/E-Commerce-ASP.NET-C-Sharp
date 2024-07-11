@@ -33,87 +33,6 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.GridView dgvPedidosUsuario;
 
         /// <summary>
-        /// Control LblNombre.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblNombre;
-
-        /// <summary>
-        /// Control LblApellido.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblApellido;
-
-        /// <summary>
-        /// Control LblEmail.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEmail;
-
-        /// <summary>
-        /// Control LblTelefono.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTelefono;
-
-        /// <summary>
-        /// Control LblUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblUsuario;
-
-        /// <summary>
-        /// Control lblPassword.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPassword;
-
-        /// <summary>
-        /// Control LblDireccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblDireccion;
-
-        /// <summary>
-        /// Control LblProvincia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblProvincia;
-
-        /// <summary>
-        /// Control LblCiudad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblCiudad;
-
-        /// <summary>
         /// Control txtNombres.
         /// </summary>
         /// <remarks>
@@ -150,13 +69,13 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.TextBox txtTelefono;
 
         /// <summary>
-        /// Control btnModificarMisDatos.
+        /// Control btnModificardatosPersonales.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarMisDatos;
+        protected global::System.Web.UI.WebControls.Button btnModificardatosPersonales;
 
         /// <summary>
         /// Control txtUsuario.
@@ -186,22 +105,13 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.TextBox txtRepetirPassword;
 
         /// <summary>
-        /// Control lblError.
+        /// Control btnModificarMiCuenta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
-
-        /// <summary>
-        /// Control btnMOdificarUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMOdificarUsuario;
+        protected global::System.Web.UI.WebControls.Button btnModificarMiCuenta;
 
         /// <summary>
         /// Control txtDireccion.
@@ -231,13 +141,13 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.DropDownList ddlCiudad;
 
         /// <summary>
-        /// Control btnModificarDireccion.
+        /// Control BtnModificarMiDireccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarDireccion;
+        protected global::System.Web.UI.WebControls.Button BtnModificarMiDireccion;
 
         /// <summary>
         /// Control btnCerrarSesion.

@@ -17,7 +17,7 @@ namespace LecturaDatos
                 List<DatosUsuario> lista = new List<DatosUsuario>();
                 datos.SetearConsulta("select * from Datos_Personales");
                 datos.EjecutarLectura();
-                while(datos.Lector.Read())
+                while (datos.Lector.Read())
                 {
                     DatosUsuario aux = new DatosUsuario();
                     aux.id = (int)datos.Lector["ID"];
@@ -31,8 +31,8 @@ namespace LecturaDatos
 
                     if (!Convert.IsDBNull(datos.Lector["Direccion"]))
                         aux.direccion = (string)datos.Lector["Direccion"];
-    
-                    if(!Convert.IsDBNull(datos.Lector["IDCiudad"]))
+
+                    if (!Convert.IsDBNull(datos.Lector["IDCiudad"]))
                         aux.ciudad.id = (int)(datos.Lector["IDCiudad"]);
 
                     lista.Add(aux);
@@ -59,8 +59,7 @@ namespace LecturaDatos
                 datos.SetearParametro("@id", id);
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
-                { 
-                    LecturaCiudad lecturaCiudad = new LecturaCiudad();
+                {                   
                     aux.id = (int)datos.Lector["ID"];
                     aux.nombre = (string)datos.Lector["Nombres"];
                     aux.apellido = (string)datos.Lector["Apellidos"];
@@ -96,7 +95,7 @@ namespace LecturaDatos
                 datos.SetearConsulta("insert into Datos_Personales(Nombres,Apellidos,Email) values (@nombre, @apellido, @email)");
                 datos.SetearParametro("@nombre", nuevo.nombre);
                 datos.SetearParametro("@apellido", nuevo.apellido);
-                datos.SetearParametro("@email", nuevo.email);               
+                datos.SetearParametro("@email", nuevo.email);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -155,15 +154,34 @@ namespace LecturaDatos
         }
         public void modificarDireccion(DatosUsuario nuevo)
         {
-            AccesoDatos datos = new AccesoDatos();
+                AccesoDatos datosciudad = new AccesoDatos();
+                AccesoDatos datos = new AccesoDatos();
+                int idciudad = new int();
             try
-            {
+            {               
+                datosciudad.SetearConsulta("select c.ID from Ciudades C where C.IDProvincia = @idprovincia and C.Nombre= @nombreciudad");
+                datosciudad.SetearParametro("@idprovincia", nuevo.ciudad.provincia.id);
+                datosciudad.SetearParametro("@nombreciudad", nuevo.ciudad.nombre);
+                datosciudad.EjecutarLectura();
+                while (datosciudad.Lector.Read())
+                {
+
+                    idciudad = (int)(datosciudad.Lector["ID"]);
+
+                }
                 
+                datosciudad.CerrarConexion();
+
+
+                
+
                 datos.SetearConsulta("update Datos_Personales set Direccion = @Direccion, IDCiudad = @IDCiudad where ID = @id");
                 datos.SetearParametro("@Direccion", nuevo.direccion);
-                datos.SetearParametro("@IDCiudad", nuevo.ciudad.id);
+                datos.SetearParametro("@IDCiudad", idciudad);
                 datos.SetearParametro("@id", nuevo.id);
                 datos.ejecutarAccion();
+                nuevo.ciudad.id = idciudad;
+                
             }
             catch (Exception ex)
             {
@@ -192,7 +210,7 @@ namespace LecturaDatos
                 datos.CerrarConexion();
             }
         }
-       
-        
+
+
     }
 }
