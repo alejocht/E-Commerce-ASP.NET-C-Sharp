@@ -13,7 +13,7 @@
                 <hr />
                 <h1>parece que no obtuvimos productos para mostrarte 🤕 🤕 🤕</h1>
                 <hr />
-                <h4>prueba con otra busqueda o refresca la pagina</h4>
+                <h4>prueba con otra busqueda</h4>
             </div>
         <%} %>
         <%if (listaProductos.Count < 4)

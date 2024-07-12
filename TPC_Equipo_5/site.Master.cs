@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
+using Dominio.Pedidos;
 using Dominio.Productos;
 using Dominio.Usuarios;
 using LecturaDatos;
@@ -15,7 +16,7 @@ namespace TPC_Equipo_5
     {
         int cantidad;
         string busqueda;
-        List<Producto> listaDeCompras;
+        List<ProductosPedido> listaDeCompras;
         public bool BotonAdmin { get; set; }
         public string cantidadItems
         {
@@ -31,7 +32,7 @@ namespace TPC_Equipo_5
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Page is Ventana_Usuario || Page is _default || Page is Productos || Page is DetalleProducto || Page is VentanaCarrito || Page is RegistroUsuario))
+            if (!(Page is Ventana_Usuario || Page is _default || Page is Productos || Page is DetalleProducto || Page is VentanaCarrito || Page is RegistroUsuario || Page is Error))
             {
                 if (Seguridad.sesionActiva(Session["usuario"]))
                 {
@@ -43,15 +44,19 @@ namespace TPC_Equipo_5
             {
                 BotonAdmin = true;
             }
-            if (Session["listaArticulosEnCarrito"] == null)
+            if (Session["Carrito"] == null)
             {
                 Contador.Text = "";
             }
             else
             {
-                listaDeCompras = (List<Producto>)Session["listaArticulosEnCarrito"];
-                cantidad = listaDeCompras.Count();
-                Contador.Text = cantidad.ToString();
+                listaDeCompras = (List<ProductosPedido>)Session["Carrito"];
+                int acumulador = 0;
+                foreach (var item in listaDeCompras)
+                {
+                    acumulador += item.cantidad;
+                }
+                Contador.Text = acumulador.ToString();
             }
 
             if(!Seguridad.sesionActiva(Session["usuario"]))

@@ -25,3 +25,7 @@ footer {
 #subtitulo {
     margin-bottom: 30px;
 }
+
+.no-keyboard {
+    pointer-events: none;
+}

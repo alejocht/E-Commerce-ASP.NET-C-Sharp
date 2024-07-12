@@ -16,9 +16,6 @@ namespace TPC_Equipo_5
 {
     public partial class VentanaCompra : System.Web.UI.Page
     {
-        public List<Producto> listaLecturaProductos;
-        public Producto produ;
-
         public Pedido pedido;
         public LecturaPedido lecturaPedido;
 
@@ -30,8 +27,7 @@ namespace TPC_Equipo_5
         public ServiceEmail email;
         bool Transferenciabool = false;
 
-
-
+        public LecturaDatosUsuario LecturaDatosUsuario;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -41,7 +37,11 @@ namespace TPC_Equipo_5
                     Pagina = 1;
                     Session.Add("pag", Pagina);
                 }
-                else { Pagina = (int)Session["pag"]; }
+                else
+                { 
+                    Pagina = (int)Session["pag"]; 
+                }
+
                 if (!IsPostBack)
                 {
                     Pagina = 1;
@@ -54,35 +54,19 @@ namespace TPC_Equipo_5
                         Txt_Calle_R.Text = usuario.dato.direccion;
                     }
 
-                    if (listaLecturaProductos == null)
+                    if (Session["Carrito"] != null)
                     {
-                        if (Session["listaArticulosEnCarrito"] != null)
-                        {
-                            listaLecturaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
-                        }
-                        else
-                        {
-                            listaLecturaProductos = new List<Producto>();
-                        }
-
+                        productosPedido = (List<ProductosPedido>)Session["Carrito"];
                     }
-                    if (Session["ArticulosEnCarrito"] != null)
-                    {
-                        produ = (Producto)Session["ArticulosEnCarrito"];
-                        listaLecturaProductos.Add(produ);
-                        Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
 
-                        Session["ArticulosEnCarrito"] = null;
-                    }
-                    repCarrito.DataSource = listaLecturaProductos;
+                    repCarrito.DataSource = productosPedido;
                     repCarrito.DataBind();
 
-                    decimal SubtotalCarrito = CalcularTotal(listaLecturaProductos);
+                    decimal SubtotalCarrito = CalcularTotal(productosPedido);
                     lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
 
                     lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
                     lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
-                    //aca van los datos del usuario de la session
                     
                     Txt_Calle_R.Enabled = false;
                     Txt_Email.Enabled = false;
@@ -110,7 +94,63 @@ namespace TPC_Equipo_5
 
             return total; ;
         }
+        protected void btnconfirmarOpcional_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["transferencia"] != null)
+                {
+                    pedido = new Pedido();
+                    lecturaPedido = new LecturaPedido();
+                    productosPedido = (List<ProductosPedido>)Session["Carrito"];
 
+                    pedido.usuario = (Usuario)Session["usuario"];
+
+
+                    if (Transferencia.Checked)
+                        pedido.metodoPago.id = 3;
+                    else
+                        pedido.metodoPago.id = 4;
+
+                    lecturaPedido.agregar(pedido);
+
+                    pedido = lecturaPedido.listar().Last();
+                    pedido.usuario = (Usuario)Session["usuario"];
+
+                    //Agregar Cada Producto y su cantidad a la base de datos
+                    foreach (ProductosPedido ProductoPedido in productosPedido)
+                    {
+                        ProductoPedido.pedido.id = pedido.id;
+                        LecturaProductosPedido lecturaProductosPedido = new LecturaProductosPedido();
+                        lecturaProductosPedido.agregar(ProductoPedido);
+                    }
+
+                    Session["Carrito"] = null;
+
+                    //envio de mail
+                    email = new ServiceEmail();
+                    string correodestino = pedido.usuario.dato.email;
+                    string asunto = "OverCloacked: Tu compra ha sido Exitosa";
+                    string cuerpo = "Tu compra fue realizada con exito! pronto nos pondremos en contacto";
+                    email.armarcorreo(correodestino, asunto, cuerpo);
+                    email.enviarEmail();
+
+                    Response.Redirect("default.aspx", false);
+                    Session["listaArticulosEnCarrito"] = null;
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex.Message);
+                Response.Redirect("error.aspx",false);
+            }
+
+        }
         protected void btnconfirmar_Click(object sender, EventArgs e)
         {
             if (Session["transferencia"] != null)
@@ -170,7 +210,6 @@ namespace TPC_Equipo_5
             }
 
         }
-
         protected void BtnSubir_Click(object sender, EventArgs e)
         {
             ////Terminar 
@@ -202,12 +241,16 @@ namespace TPC_Equipo_5
                     LinkPerfil.Text = "Click aqui para modificar mis datos";
                     LinkPerfil.NavigateUrl = "VentanaPerfilUsuario.aspx";
                     return;
-                }
-                else
+                }      
+                if(Pagina == 2 && !(Transferencia.Checked) && !(Mp.Checked))
                 {
-                    Pagina++;
-                    Session.Add("pag", Pagina);
+                        lblValidarMetodoPago.Text = "Definir un metodo de pago es requisito obligatorio para continuar ⛔";
+                        return ;
+
                 }
+
+                Pagina++;
+                Session.Add("pag", Pagina);
 
             }
         }
@@ -217,10 +260,6 @@ namespace TPC_Equipo_5
             {
                 Pagina--;
                 Session.Add("pag", Pagina);
-            }
-            if (Pagina == 1)
-            {
-                Response.Redirect("VentanaCarrito.aspx",false);
             }
         }
         protected void Transferencia_CheckedChanged(object sender, EventArgs e)
@@ -234,6 +273,17 @@ namespace TPC_Equipo_5
                 Transferenciabool = false;
                 Session.Add("transferencia", Transferenciabool);
             }
+        }
+        private decimal CalcularTotal(List<ProductosPedido> productos)
+        {
+            decimal total = 0;
+
+            foreach (var producto in productos)
+            {
+                total += (decimal)producto.producto.precio * producto.cantidad;
+            }
+
+            return total;
         }
     }
 }
