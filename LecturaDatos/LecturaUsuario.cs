@@ -33,6 +33,7 @@ namespace LecturaDatos
                     aux.admin = (bool)datos.Lector["Administrar"];
                     aux.dato.id = (int)datos.Lector["IDDatos_Personales"];
                     aux.dato = lecturaDatosUsuario.listar(aux.dato.id);
+                    lista.Add(aux);
                 }
 
                 return lista;
