@@ -7,7 +7,7 @@
 
     <%  if ((listaProductosPedidos != null && listaProductosPedidos.Count() != 0) && repCarrito.DataSource != null)
         { %>
-    <div class="container" id="containerPrincipal" >
+    <div class="container" id="containerPrincipal">
         <div class="row">
             <asp:Repeater runat="server" ID="repCarrito">
                 <ItemTemplate>
@@ -38,8 +38,12 @@
                                         <div class="row">
 
                                             <div class="col-6 text-end">
-                                                <asp:TextBox CssClass="form-control" ID="txtCantidad" runat="server" type="number" step="1" min="1" Text='<%# Eval("cantidad").ToString() %>'></asp:TextBox>
-                                                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminarOpcional_Click" CommandArgument='<%# Eval("producto.id") %>' CommandName="IdArticulo" />
+                                                <div class="d-inline-block">
+                                                    <asp:TextBox Enabled="false" CssClass="form-control no-keyboard" ID="txtCantidad" runat="server" type="number" step="1" Min="1" Text='<%# Eval("cantidad").ToString() %>'></asp:TextBox>
+                                                </div>
+                                                <div class="d-inline-block">
+                                                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminarOpcional_Click" CommandArgument='<%# Eval("producto.id") %>' CommandName="IdArticulo" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

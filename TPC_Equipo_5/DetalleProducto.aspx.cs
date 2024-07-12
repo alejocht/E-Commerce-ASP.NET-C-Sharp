@@ -48,6 +48,11 @@ namespace TPC_Equipo_5
         {
             try
             {
+                if(!Validacion.esNumeroEntero(txtCantidad))
+                {
+                    lblCantidad.Text = "Solo se permiten numeros enteros y positivos ⛔";
+                    return;
+                }
                 //averiguar producto
                 int ID = int.Parse(Request.QueryString["ID"].ToString());
                 LecturaProducto lecturaProducto = new LecturaProducto();

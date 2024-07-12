@@ -8,7 +8,7 @@
     <asp:UpdatePanel runat="server">
         <contenttemplate>
             <div class="container d-flex justify-content-center align-items-center ">
-                <div class="card shadow p-3 mb-5 mt-5 bg-body-tertiary rounded  bg-white p-5 rounded-5 text-secondary" style="width: auto; border-color: #c32a2a; height: auto;">
+                <div class="card shadow p-3 mb-5 mt-5 bg-body-tertiary rounded  bg-white p-5 rounded-5 text-secondary" style="min-width: 600px; border-color: #c32a2a; height: auto;">
                     <div class="row">
                         <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                             <%switch (Pagina)
@@ -51,28 +51,28 @@
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-4">
-                                                    <img src="<%#Eval("imagenPrincipal")%>" class="card-img-top" alt="Image description" onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'">
+                                                    <img src="<%#Eval("producto.imagenPrincipal")%>" class="card-img-top" alt="Image description" onerror="this.src='https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png'">
                                                 </div>
                                                 <div class="col text-start p-md-5">
                                                     <div class="container">
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div>
-                                                                    <label>Articulo: <%#Eval("Nombre")%> </label>
+                                                                    <label>Articulo: <%#Eval("producto.nombre")%> </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label>Descripcion: <%#Eval("Descripcion")%> </label>
+                                                                    <label>Descripcion: <%#Eval("producto.descripcion")%> </label>
 
                                                                 </div>
                                                                 <div>
-                                                                    <label>Precio: $ <%#Eval("Precio")%> </label>
+                                                                    <label>Precio: $ <%#Eval("producto.precio")%> </label>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="container text-start">
                                                         <div class="row">
-                                                            <label>cantidad: </label>
+                                                            <label>cantidad: <%#Eval("cantidad") %> </label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -119,15 +119,16 @@
 
                                 <div class="pt-1" style="font-size: 0.9rem">
                                     <label>Transferencia bancaria 💵</label>
-                                    <asp:RadioButton ID="Transferencia" runat="server" CssClass="form-check-input" GroupName="Metodo_de_pago" OnCheckedChanged="Transferencia_CheckedChanged" AutoPostBack="true" />
+                                    <asp:RadioButton ID="Transferencia" runat="server" CssClass="form-check-input" required GroupName="Metodo_de_pago" OnCheckedChanged="Transferencia_CheckedChanged" AutoPostBack="true" />
                                 </div>
 
                                 <div class="pt-1" style="font-size: 0.9rem">
                                     <label>Mercado Pago </label>
                                     <asp:Image ImageUrl="https://cdn.icon-icons.com/icons2/3913/PNG/512/mercadopago_logo_icon_248494.png" runat="server" Style="width: 2rem; height: 2rem;" />
 
-                                    <asp:RadioButton ID="Mp" runat="server" CssClass="form-check-input mb-auto" GroupName="Metodo_de_pago" AutoPostBack="true" />
+                                    <asp:RadioButton ID="Mp" runat="server" CssClass="form-check-input mb-auto" required GroupName="Metodo_de_pago" AutoPostBack="true" />
                                 </div>
+                                <asp:Label ID="lblValidarMetodoPago" runat="server"></asp:Label>
                             </div>
                         </div>
                         <%} %>

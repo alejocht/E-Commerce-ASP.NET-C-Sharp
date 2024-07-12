@@ -22,11 +22,10 @@ namespace TPC_Equipo_5
         {
             try
             {
-
-                if (!IsPostBack)
+                if(!IsPostBack)
                 {
                     listaProductosPedidos = (List<ProductosPedido>)Session["Carrito"];
-                    if(listaProductosPedidos != null)
+                    if (listaProductosPedidos != null)
                     {
                         repCarrito.DataSource = listaProductosPedidos;
                         repCarrito.DataBind();
@@ -37,8 +36,7 @@ namespace TPC_Equipo_5
                         lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
                         lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
                     }
-                
-                }
+                }          
             }
             catch (Exception ex)
             {
@@ -87,6 +85,7 @@ namespace TPC_Equipo_5
                     lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
                     lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
 
+                }
                     Label lblaux = (Label)Master.FindControl("Contador");
                     int contador = 0;
                     foreach (ProductosPedido productoRequerido in nuevaLista)
@@ -94,7 +93,6 @@ namespace TPC_Equipo_5
                         contador += productoRequerido.cantidad;
                     }
                     lblaux.Text = contador.ToString();
-                }
             }
             catch (Exception ex)
             {
@@ -155,7 +153,6 @@ namespace TPC_Equipo_5
                 Response.Redirect("error.aspx", false);
             }
         }
-
         protected void btnContinuarComprando_Click(object sender, EventArgs e)
         {
             Response.Redirect("Productos.aspx", false);
@@ -185,6 +182,23 @@ namespace TPC_Equipo_5
             }
 
             return total;
+        }
+        protected void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+           TextBox txtCantidad = sender as TextBox;
+            
+            int numero;
+            if(int.TryParse(txtCantidad.Text,out numero))
+            {
+                if (int.Parse(txtCantidad.Text) < 1)
+                {
+                    txtCantidad.Text = "1";
+                }
+            }
+            else
+            {
+                txtCantidad.Text = "1";
+            }
         }
     }
 }

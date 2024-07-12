@@ -81,10 +81,10 @@
                                 <a class="nav-link" aria-current="page" style="color: white" href="Productos.aspx">Productos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" style="color: white" href="Usuario.aspx">Usuario</a>
+                                <a class="nav-link" aria-current="page" style="color: white" href="Ventana_Usuario.aspx">Usuario</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" style="color: white" href="Carrito.aspx">Carrito</a>
+                                <a class="nav-link" aria-current="page" style="color: white" href="VentanaCarrito.aspx">Carrito</a>
                             </li>
                         </ul>
                     </div>
@@ -137,5 +137,6 @@
             </div>
         </footer>
     </form>
+        
 </body>
 </html>
