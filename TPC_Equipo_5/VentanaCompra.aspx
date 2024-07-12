@@ -209,7 +209,7 @@
                                 { %>
                             <div class="text-end mt-3 col-6">
                                 <div class=" ">
-                                    <asp:Button ID="btnconfirmar" runat="server" Text="CONFIRMAR COMPRA" CssClass="btn btn-primary" OnClick="btnconfirmar_Click" Style="background-color: #c32a2a; color: whitesmoke;" />
+                                    <asp:Button ID="btnconfirmar" runat="server" Text="CONFIRMAR COMPRA" CssClass="btn btn-primary" OnClick="btnconfirmarOpcional_Click" Style="background-color: #c32a2a; color: whitesmoke;" />
                                 </div>
                             </div>
                             <%}

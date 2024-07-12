@@ -30,8 +30,6 @@ namespace TPC_Equipo_5
         public ServiceEmail email;
         bool Transferenciabool = false;
 
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -110,7 +108,50 @@ namespace TPC_Equipo_5
 
             return total; ;
         }
+        protected void btnconfirmarOpcional_Click(object sender, EventArgs e)
+        {
+            if (Session["transferencia"] != null)
+            {
+                pedido = new Pedido();
+                lecturaPedido = new LecturaPedido();
+                productosPedido = (List<ProductosPedido>)Session["Carrito"];
+                
+                pedido.usuario = (Usuario)Session["usuario"];
 
+                if (Transferencia.Checked)
+                    pedido.metodoPago.id = 3;
+                else
+                    pedido.metodoPago.id = 4;
+
+                lecturaPedido.agregar(pedido);
+
+                pedido = lecturaPedido.listar().Last();
+
+                //Agregar Cada Producto y su cantidad a la base de datos
+                foreach (ProductosPedido ProductoPedido in productosPedido)
+                {
+                    ProductoPedido.pedido.id = pedido.id;
+                    LecturaProductosPedido lecturaProductosPedido = new LecturaProductosPedido();
+                    lecturaProductosPedido.agregar(ProductoPedido);
+                }
+
+                //envio de mail
+                email = new ServiceEmail();
+                string correodestino = pedido.usuario.dato.email;
+                string asunto = "OverCloacked: Tu compra ha sido Exitosa";
+                string cuerpo = "Tu compra fue realizada con exito! pronto nos pondremos en contacto";
+                email.armarcorreo(correodestino, asunto, cuerpo);
+                email.enviarEmail();
+
+                Response.Redirect("default.aspx", false);
+                Session["listaArticulosEnCarrito"] = null;
+            }
+            else
+            {
+
+            }
+
+        }
         protected void btnconfirmar_Click(object sender, EventArgs e)
         {
             if (Session["transferencia"] != null)
@@ -170,7 +211,6 @@ namespace TPC_Equipo_5
             }
 
         }
-
         protected void BtnSubir_Click(object sender, EventArgs e)
         {
             ////Terminar 

@@ -1,4 +1,5 @@
-﻿using Dominio.Productos;
+﻿using Dominio.Pedidos;
+using Dominio.Productos;
 using LecturaDatos;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,73 @@ namespace TPC_Equipo_5
         protected void Back_Click(object sender, EventArgs e)
         {
             Response.Redirect("Productos.aspx", false);
+        }
+        protected void BtnAgregarAlCarritoOpcional_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //averiguar producto
+                int ID = int.Parse(Request.QueryString["ID"].ToString());
+                LecturaProducto lecturaProducto = new LecturaProducto();
+                Producto producto = new Producto();
+                producto = lecturaProducto.listar(ID);
+
+                //averiguar cantidad
+                int cantidadSolicitada = int.Parse(txtCantidad.Text);
+
+                //Cargarlo en un objeto que pueda albergar ambos datos
+                ProductosPedido productoSolicitado = new ProductosPedido();
+                productoSolicitado.producto = producto;
+                productoSolicitado.cantidad = cantidadSolicitada;
+
+                //agregar el producto al carrito o en todo caso iniciar un nuevo carrito
+                List<ProductosPedido> listaCarrito = new List<ProductosPedido>();
+                if (Session["Carrito"] != null)
+                {
+                    listaCarrito = (List<ProductosPedido>)Session["Carrito"];
+                    if(listaCarrito.Any(x => x.producto.id == productoSolicitado.producto.id))
+                    {
+                        incrementarCantidadDelMismoProducto(listaCarrito, productoSolicitado);
+                    }
+                    else
+                    {
+                        listaCarrito.Add(productoSolicitado);
+                    }
+                    Session["Carrito"] = listaCarrito;
+                }
+                else
+                {
+                    listaCarrito = new List<ProductosPedido>();
+                    listaCarrito.Add(productoSolicitado);
+                    Session["Carrito"] = listaCarrito;
+                }
+
+                //cambiar contador del master
+                Label lblaux = (Label)Master.FindControl("Contador");
+                int contador = 0;
+                foreach (ProductosPedido productoRequerido in listaCarrito)
+                {
+                    contador += productoRequerido.cantidad;
+                }
+                lblaux.Text = contador.ToString();
+
+                //devolver el textbox cantidad a una cantidad decente
+                txtCantidad.Text = "1";
+
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex.Message);
+                Response.Redirect("error.aspx",false);
+            }     
+        }
+
+        private void incrementarCantidadDelMismoProducto(List<ProductosPedido> listaCarrito, ProductosPedido productoSolicitado)
+        {
+            int indice  = listaCarrito.FindIndex(x => x.producto.id == productoSolicitado.producto.id);
+            listaCarrito[indice].cantidad += productoSolicitado.cantidad;
+
         }
 
         protected void BtnAgregarAlCarrito_Click(object sender, EventArgs e)

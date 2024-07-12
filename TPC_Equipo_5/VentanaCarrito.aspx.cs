@@ -1,4 +1,5 @@
-﻿using Dominio.Productos;
+﻿using Dominio.Pedidos;
+using Dominio.Productos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace TPC_Equipo_5
     public partial class VentanaCarrito : System.Web.UI.Page
     {
         public List<Producto> listaLecturaProductos;
+        public List<ProductosPedido> listaProductosPedidos;
         public Producto producto;
         public int indice = 0;
        
@@ -23,19 +25,75 @@ namespace TPC_Equipo_5
 
                 if (!IsPostBack)
                 {
-                    listaLecturaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
-                    if(listaLecturaProductos != null)
+                    listaProductosPedidos = (List<ProductosPedido>)Session["Carrito"];
+                    if(listaProductosPedidos != null)
                     {
-                        repCarrito.DataSource = listaLecturaProductos;
+                        repCarrito.DataSource = listaProductosPedidos;
                         repCarrito.DataBind();
 
-                        decimal SubtotalCarrito = CalcularCarritoTotal(listaLecturaProductos);
+                        decimal SubtotalCarrito = CalcularCarritoTotal(listaProductosPedidos);
                         lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
 
                         lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
                         lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
                     }
                 
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
+        }
+        protected void btnEliminarOpcional_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                int IdProducto = int.Parse(((Button)sender).CommandArgument);
+                listaProductosPedidos = (List<ProductosPedido>)Session["Carrito"];
+
+                List<ProductosPedido> nuevaLista = new List<ProductosPedido>();
+                bool eliminado = false;
+
+                foreach (var producto in listaProductosPedidos)
+                {
+                    if (!eliminado && producto.producto.id == IdProducto)
+                    {
+                        eliminado = true;
+                    }
+                    else
+                    {
+                        nuevaLista.Add(producto);
+                    }
+                }
+
+                if (nuevaLista.Count == 0)
+                {
+                    Session["ArticulosEnCarrito"] = null;
+                    Session.Add("Carrito", nuevaLista);
+                    //Response.Redirect("default.aspx", false);
+                }
+                else
+                {
+                    repCarrito.DataSource = nuevaLista;
+                    repCarrito.DataBind();
+                    Session.Add("Carrito", nuevaLista);
+                    decimal SubtotalCarrito = CalcularCarritoTotal(nuevaLista);
+                    lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
+
+                    lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
+                    lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
+
+                    Label lblaux = (Label)Master.FindControl("Contador");
+                    int contador = 0;
+                    foreach (ProductosPedido productoRequerido in nuevaLista)
+                    {
+                        contador += productoRequerido.cantidad;
+                    }
+                    lblaux.Text = contador.ToString();
                 }
             }
             catch (Exception ex)
@@ -113,6 +171,17 @@ namespace TPC_Equipo_5
             foreach (var producto in productos)
             {
                 total += (decimal)producto.precio;
+            }
+
+            return total;
+        }
+        private decimal CalcularCarritoTotal(List<ProductosPedido> productos)
+        {
+            decimal total = 0;
+
+            foreach (var producto in productos)
+            {
+                total += (decimal)producto.producto.precio * producto.cantidad;
             }
 
             return total;
