@@ -3,6 +3,7 @@ using Dominio.Usuarios;
 using LecturaDatos;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -150,6 +151,8 @@ namespace TPC_Equipo_5
         {
             try
             {
+                Page.Validate();
+                if(!Page.IsValid) { return; }              
                 DatosUsuario datosUsuario = new DatosUsuario();
 
                 datosUsuario.id = ((Usuario)Session["usuario"]).id;
@@ -174,20 +177,21 @@ namespace TPC_Equipo_5
         {
             try
             {
-                if (txtPassword.Text != txtRepetirPassword.Text)
-                {
-                    throw new Exception("Los Campos deben ser iguales");
-                }
-                Usuario usuario = new Usuario();
+                Page.Validate();
+                if (!Page.IsValid){return;}
+                                
+                    Usuario usuario = new Usuario();
 
-                usuario.id = ((Usuario)Session["usuario"]).id;
-                usuario.usuario = txtUsuario.Text;
-                usuario.password = txtPassword.Text;
+                    usuario.id = ((Usuario)Session["usuario"]).id;
+                    usuario.usuario = txtUsuario.Text;
+                    usuario.password = txtPassword.Text;
 
-                LecturaUsuario lecturaUsuario = new LecturaUsuario();
-                lecturaUsuario.modificarDatos(usuario);
+                    LecturaUsuario lecturaUsuario = new LecturaUsuario();
+                    lecturaUsuario.modificarDatos(usuario);
 
-                Response.Redirect("VentanaPerfilusuario.aspx", false);
+                    Response.Redirect("VentanaPerfilusuario.aspx", false);
+               
+                
             }
             catch (Exception ex)
             {
@@ -212,6 +216,8 @@ namespace TPC_Equipo_5
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid) { return; }
                 DatosUsuario datosUsuario = new DatosUsuario();
 
                 datosUsuario.id = ((Usuario)Session["usuario"]).id;

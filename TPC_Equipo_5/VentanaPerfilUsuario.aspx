@@ -43,56 +43,84 @@
                                 }%>
                             <hr />
                             <h2 style="margin-bottom: 20px; text-align: center">Datos Usuario</h2>
-                            <div class="row">
-                                <div class="col">
-                                    <h4>Nombres:</h4>
-                                    <h4>Apellidos:</h4>
-                                    <h4>Email:</h4>
-                                    <h4>Telefono:</h4>
+                            <div class="conteiner">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>Nombres:</h4>
+                                    </div>
+
+                                    <div class="col">
+                                        <asp:TextBox ID="txtNombres" runat="server" Text="Nombre" CssClass="h4 w-100 text-center "></asp:TextBox>
+                                        <asp:RegularExpressionValidator ValidationGroup="valdatos" ErrorMessage="Formato incorrecto..." ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'.-]+$" ControlToValidate="txtNombres" runat="server" />
+                                    </div>
+
                                 </div>
-                                <div class="col">
-                                    <div class="row">
-                                        <asp:TextBox ID="txtNombres" runat="server" Text="Nombre" CssClass="h4"></asp:TextBox>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <h4>Apellidos:</h4>
                                     </div>
-                                    <div class="row">
-                                        <asp:TextBox ID="txtApellidos" runat="server" Text="Apellido" CssClass="h4"></asp:TextBox>
-                                    </div>
-                                    <div class="row">
-                                        <asp:TextBox ID="txtEmail" runat="server" Text="Email" CssClass="h4"></asp:TextBox>
-                                    </div>
-                                    <div class="row">
-                                        <asp:TextBox ID="txtTelefono" runat="server" Text="Telefono" CssClass="h4"></asp:TextBox>
+                                    <div class="col">
+                                        <asp:TextBox ID="txtApellidos" runat="server" Text="Apellido" CssClass="h4 w-100 text-center "></asp:TextBox>
+                                        <asp:RegularExpressionValidator ValidationGroup="valdatos" ErrorMessage="Formato incorrecto..." ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'.-]+$" ControlToValidate="txtNombres" runat="server" />
                                     </div>
                                 </div>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <h4>Email:</h4>
+
+                                    </div>
+                                    <div class="col">
+                                        <asp:TextBox ID="txtEmail" runat="server" Text="Email" CssClass="h4 w-100 text-center" Style="width: stretch"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ValidationGroup="valdatos" ErrorMessage="Formato incorrecto..." ControlToValidate="txtEmail" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                            runat="server" />
+
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <h4>Telefono:</h4>
+
+                                    </div>
+                                    <div class="col">
+                                        <asp:TextBox ID="txtTelefono" runat="server" Text="Telefono" CssClass="h4 w-100 text-center" Style="width: stretch"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ErrorMessage="Formato incorrecto..." ValidationExpression="^\+?[\d\s-]+$" ControlToValidate="txtTelefono" runat="server" />
+
+                                    </div>
+                                </div>
+
+
                                 <hr />
-                                <asp:Button type="button" Text="Modificar Mis Datos Personales" runat="server" ID="btnModificardatosPersonales" class="btn btn-dark" Style="margin-top: 10px" OnClick="btnModificardatosPersonales_Click"></asp:Button>
+                                <div class="row">
+
+                                    <asp:Button type="button" Text="Modificar Mis Datos Personales" runat="server" ID="btnModificardatosPersonales" class="btn btn-dark" Style="margin-top: 10px; width: stretch" OnClick="btnModificardatosPersonales_Click"></asp:Button>
+                                </div>
                                 <h2 style="margin-top: 20px; text-align: center">Mi Cuenta</h2>
                                 <div class="row" style="margin-top: 20px;">
                                     <div class="col">
                                         <h4>Usuario:</h4>
                                         <h4>Contraseña:</h4>
-                                        <h4>Repetir Contraseña:</h4>
-
                                     </div>
                                     <div class="col">
-                                        <div class="row">
-                                            <asp:TextBox ID="txtUsuario" runat="server" Text="Usuario" CssClass="h4"></asp:TextBox>
+                                        <div class="row ">
+                                            <asp:TextBox ID="txtUsuario" runat="server" Text="Usuario" CssClass="h4 text-center"></asp:TextBox>
                                         </div>
                                         <div class="row">
-                                            <asp:TextBox ID="txtPassword" runat="server" Text="******" CssClass="h4"></asp:TextBox>
-                                        </div>
-                                        <div class="row">
-                                            <asp:TextBox ID="txtRepetirPassword" runat="server" Text="******" CssClass="h4"></asp:TextBox>
+                                            <asp:TextBox ID="txtPassword" runat="server" Text="******" CssClass="h4 text-center"></asp:TextBox>
+                                            <asp:RequiredFieldValidator Style="color: red;" CssClass="validation" ErrorMessage="Campo requerido" ControlToValidate="txtPassword" runat="server" />
+                                            <asp:RegularExpressionValidator ValidationGroup="ValCuenta" ErrorMessage="Tu contraseña debe tener almenos 1 Mayuscula, 1 minuscual y 1 numero y almenos 8 caracteres" ControlToValidate="txtPassword" runat="server" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" />
                                         </div>
                                     </div>
                                     <hr />
                                 </div>
-                                <asp:Button runat="server" Text="Modificar Mi Cuenta" ID="btnModificarMiCuenta" type="button" class="btn btn-dark" Style="margin-top: 10px" OnClick="btnModificarMiCuenta_Click"></asp:Button>
+                                <div class="row">
+                                    <asp:Button runat="server" Text="Modificar Mi Cuenta" ID="btnModificarMiCuenta" type="button" class="btn btn-dark" Style="margin-top: 10px; width: stretch" OnClick="btnModificarMiCuenta_Click"></asp:Button>
+
+                                </div>
                             </div>
                             <asp:UpdatePanel runat="server">
                                 <ContentTemplate>
 
-                                    <hr />
+
 
                                     <h2 style="margin-bottom: 20px; text-align: center">Mi Dirección</h2>
                                     <div class="row">
@@ -103,7 +131,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="row">
-                                                <asp:TextBox ID="txtDireccion" runat="server" CssClass="h4"></asp:TextBox>
+                                                <asp:TextBox ID="txtDireccion" runat="server" CssClass="h4 text-center"></asp:TextBox>
                                             </div>
                                             <div class="row">
                                                 <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged1" CssClass="btn"></asp:DropDownList>
@@ -112,8 +140,10 @@
                                                 <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="btn"></asp:DropDownList>
                                             </div>
                                         </div>
-                                        <asp:Button runat="server" Text="Modificar Mi Cuenta" ID="BtnModificarMiDireccion" OnClick="BtnModificarMiDireccion_Click1" type="button" class="btn btn-dark" Style="margin-top: 10px"></asp:Button>
+                                        <hr />
                                     </div>
+                                    <div class="row">
+                                        <asp:Button runat="server" Text="Modificar Mi Cuenta" ID="BtnModificarMiDireccion" OnClick="BtnModificarMiDireccion_Click1" type="button" class="btn btn-dark" Style="margin-top: 10px"></asp:Button>
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
