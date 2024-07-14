@@ -64,8 +64,6 @@ namespace TPC_Equipo_5
             try
             {
                 string seleccionado = dgvPedidos.SelectedDataKey.Value.ToString();
-                string paginaActual = Request.Url.PathAndQuery;
-                Session["UltPag"] = paginaActual;
                 Response.Redirect("DetallePedidoAdmin.aspx?id=" + seleccionado, false);
             }
             catch (Exception ex)
@@ -80,8 +78,7 @@ namespace TPC_Equipo_5
         {
             try
             {
-                string pagina = (string)Session["UltPag"];
-                Response.Redirect(pagina, false);
+                Response.Redirect("usuariosAdmin.aspx", false);
             }
             catch (Exception ex)
             {

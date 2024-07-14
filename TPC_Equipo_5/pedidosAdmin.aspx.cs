@@ -121,8 +121,6 @@ namespace TPC_Equipo_5
             try
             {
                 seleccionado = dgvPedidos.SelectedDataKey.Value.ToString();
-                string paginaActual = Request.Url.AbsolutePath.ToString();
-                Session["UltPag"] = paginaActual;
                 Response.Redirect("DetallePedidoAdmin.aspx?id=" + seleccionado, false);
             }
             catch (Exception ex)

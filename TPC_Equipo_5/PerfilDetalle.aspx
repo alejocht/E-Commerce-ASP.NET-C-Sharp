@@ -12,7 +12,7 @@
     <div class="container m-4" style="min-height: 600px">
         <div class="row justify-content-center">
             <div class="col">
-                <asp:Button ID="BtnVolver" runat="server" Text="Volver" CssClass="btn btn-secondary" OnClick="BtnVolver_Click"/>
+                <%--<asp:Button ID="BtnVolver" runat="server" Text="Volver" CssClass="btn btn-secondary" OnClick="BtnVolver_Click"/>--%>
             </div>
             <div class="col-md-8">
                 <asp:Label ID="lblUsuario" runat="server" CssClass="h1 p-2"></asp:Label>

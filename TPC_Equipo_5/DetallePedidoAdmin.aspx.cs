@@ -71,8 +71,7 @@ namespace TPC_Equipo_5
         {
             try
             {
-                string pagina = (string)Session["UltPag"];
-                Response.Redirect(pagina, false);
+                Response.Redirect("pedidosAdmin.aspx", false);
             }
             catch (Exception ex)
             {

@@ -56,8 +56,6 @@ namespace TPC_Equipo_5
             try
             {
                 string seleccionado = dgv_usuarios.SelectedDataKey.Value.ToString();
-                string paginaActual = Request.Url.AbsolutePath.ToString();
-                Session["UltPag"] = paginaActual;
                 Response.Redirect("PerfilDetalle.aspx?id=" + seleccionado, false);
             }
             catch (Exception ex)
