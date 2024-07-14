@@ -18,10 +18,10 @@ namespace TPC_Equipo_5
             LecturaUsuario lecturaUsuario = new LecturaUsuario();
             int id = int.Parse(Request.QueryString["id"].ToString());
             Usuario usuario = lecturaUsuario.listar(id);
+            cargardatos(id);
             if(!IsPostBack)
             {
                 lblUsuario.Text = usuario.usuario;
-                cargardatos(id);
                 TxtMail.Text = usuario.dato.email;
                 TxtNombre.Text = usuario.dato.nombre;
                 TxtApellido.Text = usuario.dato.apellido;
@@ -84,6 +84,22 @@ namespace TPC_Equipo_5
             {
 
                 Session.Add("error", ex.Message);
+                Response.Redirect("error.aspx", false);
+            }
+        }
+
+        protected void dgvPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                dgvPedidos.PageIndex = e.NewPageIndex;
+                dgvPedidos.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
                 Response.Redirect("error.aspx", false);
             }
         }
