@@ -20,7 +20,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:CheckBoxField HeaderText="Admin" DataField="admin" />
-                <asp:CommandField ShowSelectButton="true" SelectText="Modificar" HeaderText="Detalle"/>
+                <asp:CommandField ShowSelectButton="true" SelectText="Ver Usuario" HeaderText="Detalle"/>
             </Columns>
         </asp:GridView>
     </div>

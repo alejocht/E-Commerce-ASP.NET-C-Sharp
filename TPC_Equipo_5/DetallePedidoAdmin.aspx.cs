@@ -39,8 +39,9 @@ namespace TPC_Equipo_5
 
                 if (!IsPostBack)
                 {
+                    
+                    lblUsuario.NavigateUrl = "PerfilDetalle.aspx?id="+usuario.id.ToString();
                     lblNumeroPedido.Text = "N° PEDIDO: " + id.ToString();
-
                     lblUsuario.Text = seleccionado.usuario.usuario.ToString();
                     lblMetodoPago.Text = seleccionado.metodoPago.nombre.ToString();
                     lblEstado.Text = seleccionado.estadoPedido.nombre.ToString();
@@ -68,7 +69,18 @@ namespace TPC_Equipo_5
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("pedidosAdmin.aspx", false);
+            try
+            {
+                string pagina = (string)Session["UltPag"];
+                Response.Redirect(pagina, false);
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex.Message);
+                Response.Redirect("error.aspx",false);
+            }
+            
         }
 
         protected void btnActualizar_Click(object sender, EventArgs e)

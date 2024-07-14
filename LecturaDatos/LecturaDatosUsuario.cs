@@ -74,6 +74,8 @@ namespace LecturaDatos
 
                     if (!Convert.IsDBNull(datos.Lector["IDCiudad"]))
                         aux.ciudad.id = (int)(datos.Lector["IDCiudad"]);
+                        LecturaCiudad lecturaCiudad = new LecturaCiudad();
+                        aux.ciudad = lecturaCiudad.listar(aux.ciudad.id);
                 }
 
                 return aux;

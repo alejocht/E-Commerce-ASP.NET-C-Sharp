@@ -20,7 +20,7 @@
                     <h5>Nombre de usuario:</h5>
                 </div>
                 <div class="col">
-                    <asp:Label ID="lblUsuario" runat="server" CssClass="h5" Text="Nombre de Usuario"></asp:Label>
+                    <asp:HyperLink ID="lblUsuario" CssClass="h5" runat="server"></asp:HyperLink>    
                 </div>
             </div>
             <div class="row">
