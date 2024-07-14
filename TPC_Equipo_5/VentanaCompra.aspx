@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.Master" AutoEventWireup="true" CodeBehind="VentanaCompra.aspx.cs" Inherits="TPC_Equipo_5.VentanaCompra" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
@@ -6,7 +7,7 @@
     <%//Rquerido para usar update panel %>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel runat="server">
-        <contenttemplate>
+        <ContentTemplate>
             <div class="container d-flex justify-content-center align-items-center ">
                 <div class="card shadow p-3 mb-5 mt-5 bg-body-tertiary rounded  bg-white p-5 rounded-5 text-secondary" style="min-width: 600px; border-color: #c32a2a; height: auto;">
                     <div class="row">
@@ -23,7 +24,7 @@
                             <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%; background-color: #c32a2a;"></div>
                             <%break;
                                 }
-%>
+                            %>
                         </div>
 
                         <div class="text-center mt-3">
@@ -46,7 +47,7 @@
                     <div class="container mt-3">
                         <div class="row">
                             <asp:Repeater runat="server" ID="repCarrito">
-                                <itemtemplate>
+                                <ItemTemplate>
                                     <div>
                                         <div class="container">
                                             <div class="row">
@@ -80,7 +81,7 @@
                                         </div>
                                     </div>
                                     <hr style="width: 90%; margin-inline: 10%;" />
-                                </itemtemplate>
+                                </ItemTemplate>
                             </asp:Repeater>
                         </div>
                         <div class="text-end">
@@ -88,22 +89,15 @@
                                 <div class="row">
                                     <div class="col">
                                         <div>
-                                            <asp:Label ID="lblSubTotal" runat="server" Text="Subtotal: xxxx" CssClass="p" />
-                                        </div>
-                                        <div>
-                                            <asp:Label ID="lblEnvio" runat="server" Text="Envio: xxxx" CssClass="p" />
-                                        </div>
-                                        <div>
                                             <asp:Label ID="lblTotalCompra" runat="server" Text="Total: $xxxx" CssClass="h4" />
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <%}
-%>
+                        %>
 
                         <%if (Pagina == 2)
                             { %><div class="text-center fs-1 fw-bold mt-3">
@@ -115,7 +109,7 @@
                             <div class="input-group-text" style="background-color: #c32a2a; width: auto; color: white">
                                 <label>Como quieres abonar?</label>
                             </div>
-                            <div class="d-flex align-items-center gap-4 ms-2 ">
+                            <div class="d-flex align-items-center gap-4 ms-2">
 
                                 <div class="pt-1" style="font-size: 0.9rem">
                                     <label>Transferencia bancaria 💵</label>
@@ -143,26 +137,26 @@
                             <div class="col">
 
                                 <div class="input-group mt-1">
-                                    <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke;">
+                                    <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke; width: 35%;">
                                         <label>Direccion de envio</label>
                                     </div>
-                                    <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" ID="Txt_Calle_R" />
+                                    <asp:TextBox CssClass="form-control" Style="flex: none; width: 65%;" runat="server" ID="Txt_Calle_R" />
 
                                     <asp:HyperLink ID="LinkPerfil" runat="server" CssClass="lm-3"></asp:HyperLink>
                                 </div>
                             </div>
                         </div>
                         <div class="input-group mt-1">
-                            <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke; width: 5.3rem">
+                            <div class="input-group-text" style="background-color: #c32a2a; color: whitesmoke; width: 35%;">
                                 <label>Email</label>
                             </div>
-                            <asp:TextBox ID="Txt_Email" CssClass="form-control" Style="flex: none; width: 40%;" runat="server" />
+                            <asp:TextBox ID="Txt_Email" CssClass="form-control" Style="flex: none; width: 65%;" runat="server" />
                         </div>
                         <%} %>
                         <%if (Transferencia.Checked && Pagina == 2)
 
                             { %>
-                        <div class="row text-center align-content-center">
+                        <div class="row text-center align-content-center" style="display: block; margin-top: 15px;">
                             <div>
                                 Nombre: Ovcloaked SA
                             </div>
@@ -228,8 +222,8 @@
             </div>
 
 
-        </contenttemplate>
+        </ContentTemplate>
     </asp:UpdatePanel>
-    
+
 </asp:Content>
 

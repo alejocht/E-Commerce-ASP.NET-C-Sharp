@@ -3,13 +3,14 @@
 <%@ MasterType VirtualPath="~/site.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/stylePaginaWeb.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" id="containerDetalle">
+    <div class="container" id="containerPrincipal">
         <div class="row" style="height: 600px">
             <div class="col col-lg-2">
-                <asp:Button ID="BtnBack" runat="server" Text="⬅️ Volver" OnClick="Back_Click" formnovalidate="true" CssClass="btn btn-danger btn-sm m-2" />
+                <asp:Button ID="BtnBack" runat="server" Text="Volver" OnClick="Back_Click" formnovalidate="true" CssClass="btn btn-danger btn-sm m-2" />
             </div>
             <div class="col">
                 <%if (carrusel)
@@ -45,25 +46,27 @@
                     <div>
                         <asp:Label ID="lblNombre" runat="server" CssClass="h1"></asp:Label>
                         <br />
-                        <asp:Label ID="lblMarca" runat="server" CssClass="h4"></asp:Label>
-                        <asp:Label ID="lblCategoria" runat="server" CssClass="h4"></asp:Label>
+
                     </div>
-                    <div>
-                        <asp:Label ID="lblDescripcion" runat="server" CssClass="h4"></asp:Label>
-                    </div>
-                    <div>
-                        <asp:Label ID="lblPrecio" runat="server" CssClass="h6"></asp:Label>
+                    <div style="margin-top: 15px;">
+                        <asp:Label ID="lblPrecio" runat="server" CssClass="h4"></asp:Label>
                     </div>
                     <div>
                         <div class="d-inline-block">
-                            <asp:TextBox  ID="txtCantidad" runat="server" required="true" Type="number" min="1" max="20" step="1" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtCantidad" runat="server" required="true" Type="number" min="1" max="20" step="1" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="d-inline-block">
                             <asp:Button ID="BtnAgregarAlCarrito" runat="server" Text="Agregar al Carrito" OnClick="BtnAgregarAlCarritoOpcional_Click" CssClass="btn btn-success m-3" />
                         </div>
-                            <asp:Label ID="lblCantidad" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="lblCantidad" runat="server" Text=""></asp:Label>
                     </div>
-
+                    <div>
+                        <asp:Label ID="lblMarca" runat="server" CssClass="h5"></asp:Label>
+                        <asp:Label ID="lblCategoria" runat="server" CssClass="h5"></asp:Label>
+                    </div>
+                    <div>
+                        <asp:Label ID="lblDescripcion" runat="server" CssClass="p"></asp:Label>
+                    </div>
                 </div>
             </div>
         </div>

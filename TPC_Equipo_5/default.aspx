@@ -45,42 +45,5 @@
                 </ItemTemplate>
             </asp:Repeater>
         </div>
-        <br />
-        <div id="carouselMarcas" class="carousel center-align" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active" style="text-align: center">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/adata.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/amd.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/asrock.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/asus.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/corsair.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/epson.jpg" alt="...">
-                </div>
-                <div class="carousel-item" style="text-align: center">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/evga.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/gigabyte.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/hp.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/intel.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/jbl.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/lenovo.jpg" alt="...">
-                </div>
-                <div class="carousel-item" style="text-align: center">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/logitech.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/microsoft.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/motorola.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/msi.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/IMG/ryr-computacion-01-2021/206_03-07-2023-01-07-50-marcas_paraweb_razer-1.png" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/redragon.jpg" alt="...">
-                </div>
-                <div class="carousel-item" style="text-align: center">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/samsung.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/sandisk.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/sapphire.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/sony.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/toshiba.jpg" alt="...">
-                    <img src="https://www.qloud.ar/SITES/MARCAS/western-digital.jpg" alt="...">
-                </div>
-            </div>
-        </div>
     </div>
 </asp:Content>

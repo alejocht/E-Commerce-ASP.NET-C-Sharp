@@ -30,11 +30,8 @@ namespace TPC_Equipo_5
                         repCarrito.DataSource = listaProductosPedidos;
                         repCarrito.DataBind();
 
-                        decimal SubtotalCarrito = CalcularCarritoTotal(listaProductosPedidos);
-                        lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
-
-                        lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
-                        lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
+                        decimal totalCarrito = CalcularCarritoTotal(listaProductosPedidos);
+                        lblTotalCompra.Text = "Total: $" + (totalCarrito).ToString("0.00");
                     }
                 }          
             }
@@ -79,11 +76,8 @@ namespace TPC_Equipo_5
                     repCarrito.DataSource = nuevaLista;
                     repCarrito.DataBind();
                     Session.Add("Carrito", nuevaLista);
-                    decimal SubtotalCarrito = CalcularCarritoTotal(nuevaLista);
-                    lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
-
-                    lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
-                    lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
+                    decimal totalCarrito = CalcularCarritoTotal(nuevaLista);
+                    lblTotalCompra.Text = "Total: $" + (totalCarrito).ToString("0.00");
 
                 }
                     Label lblaux = (Label)Master.FindControl("Contador");
@@ -136,11 +130,9 @@ namespace TPC_Equipo_5
                     repCarrito.DataSource = listaLecturaProductos;
                     repCarrito.DataBind();
                     Session.Add("listaArticulosEnCarrito", listaLecturaProductos);
-                    decimal SubtotalCarrito = CalcularCarritoTotal(listaLecturaProductos);
-                    lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
+                    decimal totalCarrito = CalcularCarritoTotal(listaLecturaProductos);
 
-                    lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
-                    lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
+                    lblTotalCompra.Text = "Total: $" + (totalCarrito).ToString("0.00");
 
                     site master = (site)Master;
                     master.cantidadItems = listaLecturaProductos.Count().ToString();

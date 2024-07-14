@@ -59,7 +59,7 @@
                     </div>
                     <asp:TextBox CssClass="form-control" Style="flex: none; width: 40%;" runat="server" ID="Txt_Password" type="password" />
                     <asp:RequiredFieldValidator Style="color: red;" CssClass="validation" ErrorMessage="Campo requerido" ControlToValidate="Txt_Password" runat="server" />
-                    <asp:RegularExpressionValidator ErrorMessage="Tu contraseña debe tener almenos 1 Mayuscula, 1 minuscual y 1 numero y almenos 8 caracteres" ControlToValidate="Txt_Password" runat="server" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" />
+                    <asp:RegularExpressionValidator ErrorMessage="Tu contraseña debe tener al menos: 1 Mayuscula - 1 minuscula - 1 número - 8 caracteres Minimo" ControlToValidate="Txt_Password" runat="server" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" />
                 </div>
                 <hr />
                 <div class="d-flex gap-1 justify-content-center mt-5">

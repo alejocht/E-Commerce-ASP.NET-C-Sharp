@@ -62,11 +62,8 @@ namespace TPC_Equipo_5
                     repCarrito.DataSource = productosPedido;
                     repCarrito.DataBind();
 
-                    decimal SubtotalCarrito = CalcularTotal(productosPedido);
-                    lblSubTotal.Text = "Subtotal: $" + SubtotalCarrito.ToString("F2");
-
-                    lblEnvio.Text = "Envío: $" + 5000.ToString("0.00"); ;
-                    lblTotalCompra.Text = "Total: $" + (SubtotalCarrito + 5000).ToString("0.00");
+                    decimal totalCarrito = CalcularTotal(productosPedido);
+                    lblTotalCompra.Text = "Total: $" + (totalCarrito).ToString("0.00");
                     
                     Txt_Calle_R.Enabled = false;
                     Txt_Email.Enabled = false;
@@ -108,9 +105,9 @@ namespace TPC_Equipo_5
 
 
                     if (Transferencia.Checked)
-                        pedido.metodoPago.id = 3;
+                        pedido.metodoPago.id = 1;
                     else
-                        pedido.metodoPago.id = 4;
+                        pedido.metodoPago.id = 2;
 
                     lecturaPedido.agregar(pedido);
 

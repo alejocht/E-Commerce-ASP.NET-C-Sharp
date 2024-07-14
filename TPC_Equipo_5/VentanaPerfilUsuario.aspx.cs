@@ -27,6 +27,7 @@ namespace TPC_Equipo_5
         LecturaProvincia lecturaProvincia = new LecturaProvincia();
         LecturaCiudad lecturaCiudad = new LecturaCiudad();
         int idUsuario = 0;
+        int idDatosPersonales = 0;
         string seleccionado;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -36,10 +37,9 @@ namespace TPC_Equipo_5
 
                 if (!IsPostBack)
                 {
-
                     if ((Usuario)Session["usuario"] != null)
                     {
-                        if (((Usuario)Session["usuario"]).dato.ciudad == null)
+                        if (((Usuario)Session["usuario"]).dato.ciudad.id == -1)
                         {
                             ddlCargar();
                         }
@@ -54,6 +54,7 @@ namespace TPC_Equipo_5
                             ddlCiudad.DataBind();
                         }
                         idUsuario = ((Usuario)Session["usuario"]).id;
+                        idDatosPersonales = ((Usuario)Session["usuario"]).dato.id;
                         cargarDatos();
                         LblBienvenidaUsuario.Text = "Bienvenido " + listaLecturaDatosUsuario.nombre + " " + listaLecturaDatosUsuario.apellido;
 
@@ -92,7 +93,7 @@ namespace TPC_Equipo_5
             LecturaUsuario lecturaUsuario = new LecturaUsuario();
             listaLecturaUsuario = lecturaUsuario.listar(idUsuario);
             LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();
-            listaLecturaDatosUsuario = lecturaDatosUsuario.listar(idUsuario);
+            listaLecturaDatosUsuario = lecturaDatosUsuario.listar(idDatosPersonales);
 
             txtNombres.Text = listaLecturaDatosUsuario.nombre.ToString();
             txtApellidos.Text = listaLecturaDatosUsuario.apellido;
@@ -228,8 +229,6 @@ namespace TPC_Equipo_5
 
                 LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();
                 lecturaDatosUsuario.modificarDireccion(datosUsuario);
-
-                 
                               
                 usuariologeado = (Usuario)Session["usuario"];
                 usuariologeado.dato.direccion = datosUsuario.direccion;

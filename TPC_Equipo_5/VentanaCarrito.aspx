@@ -36,12 +36,11 @@
                                     </div>
                                     <div class="container">
                                         <div class="row">
-
-                                            <div class="col-6 text-end">
+                                            <div class="col-6">
                                                 <div class="d-inline-block">
                                                     <asp:TextBox Enabled="false" CssClass="form-control no-keyboard" ID="txtCantidad" runat="server" type="number" step="1" Min="1" Text='<%# Eval("cantidad").ToString() %>'></asp:TextBox>
                                                 </div>
-                                                <div class="d-inline-block">
+                                                <div class="d-inline-block" style="margin-top: 15px;">
                                                     <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminarOpcional_Click" CommandArgument='<%# Eval("producto.id") %>' CommandName="IdArticulo" />
                                                 </div>
                                             </div>
@@ -66,15 +65,8 @@
                     <div class="col">
                         <h4>Resumen del pedido</h4>
                         <div>
-                            <asp:Label ID="lblSubTotal" runat="server" Text="Subtotal: xxxx" CssClass="p" />
-                        </div>
-                        <div>
-                            <asp:Label ID="lblEnvio" runat="server" Text="Envio: xxxx" CssClass="p" />
-                        </div>
-                        <div>
                             <asp:Label ID="lblTotalCompra" runat="server" Text="Total: $xxxx" CssClass="h4" />
                         </div>
-
                     </div>
                 </div>
                 <div class="row">

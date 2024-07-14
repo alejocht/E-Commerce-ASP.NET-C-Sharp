@@ -70,8 +70,8 @@
 
         <footer id="footer" style="background-image: linear-gradient(to right, #D32F2F 0%, #b82727 100%); padding-inline: 10%; margin-top: auto; position: relative; bottom: 0;">
             <div>
-                <div class="row pt-5 pb-5 text-white">
-                    <div class="col-md-3">
+                <div class="row pt-5 pb-5 text-white text-center">
+                    <div class="col-md-4">
                         <h5>Navegacion</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item">
@@ -83,12 +83,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" style="color: white" href="Ventana_Usuario.aspx">Usuario</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" style="color: white" href="VentanaCarrito.aspx">Carrito</a>
-                            </li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <h5>Contacto</h5>
                         <ul class="nav flex-column" style="padding-block: 10px">
                             <li>
@@ -102,7 +99,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <ul class="nav flex-column">
                             <li style="margin-inline: 10px">
                                 <h5 style="margin-bottom: 15px">Redes sociales</h5>
@@ -118,21 +115,9 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
-                        <h5>Newslestter</h5>
-                        <h6>Recibi ofertas por mail!</h6>
-                        <div class="mb-3">
-                            <asp:TextBox ID="txtNombreSuscribite" runat="server" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
-                        </div>
-                        <div class="mb-3">
-                            <asp:TextBox ID="txtMailSuscribite" runat="server" CssClass="form-control" placeholder="Email"></asp:TextBox>
-                        </div>
-                        <asp:Button ID="btnSuscribite" runat="server" Text="Suscribite" CssClass="btn btn-primary" Style="background-color: #ff3535; border-color: #b82727" OnClick="btnSuscribite_Click" />
-                        <asp:Label ID="lblValidacionSuscribite" runat="server" Text=""></asp:Label>
-                    </div>
                 </div>
                 <div class="row pb-4 text-white text-center text-opacity-75">
-                    <p>© 2024 OverCloaked - Todos los derechos reservados.</p>
+                    <p>@ 2024 OverCloaked - Todos los derechos reservados.</p>
                 </div>
             </div>
         </footer>

@@ -351,5 +351,21 @@ namespace TPC_Equipo_5
                 Response.Redirect("error.aspx", false);
             }
         }
+
+        protected void dgvPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                dgvPedidos.PageIndex = e.NewPageIndex;
+                dgvPedidos.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+
+                Session["error"] = ex.Message;
+                Response.Redirect("error.aspx", false);
+            }
+        }
     }
 }

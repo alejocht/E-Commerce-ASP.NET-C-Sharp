@@ -27,7 +27,7 @@ namespace TPC_Equipo_5
                     if(producto.marca.nombre != null) lblMarca.Text = producto.marca.nombre.ToString();
                     if(producto.categoria.nombre != null) lblCategoria.Text = producto.categoria.nombre.ToString();
                     lblDescripcion.Text = producto.descripcion.ToString();
-                    lblPrecio.Text = "$" + producto.precio.ToString();
+                    lblPrecio.Text = "$" + producto.precio.ToString("0.00");
                     txtCantidad.Text = "1";
                     if(producto.imagenPrincipal != null)ImagenProducto.ImageUrl = producto.imagenPrincipal;
                     if(producto.imagenes.Count > 1) carrusel = true;
