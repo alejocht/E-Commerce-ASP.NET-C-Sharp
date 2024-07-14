@@ -15,6 +15,15 @@ namespace TPC_Equipo_5
     {
 
         /// <summary>
+        /// Control lblUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUsuario;
+
+        /// <summary>
         /// Control TxtMail.
         /// </summary>
         /// <remarks>
@@ -42,48 +51,48 @@ namespace TPC_Equipo_5
         protected global::System.Web.UI.WebControls.TextBox TxtApellido;
 
         /// <summary>
-        /// Control txtContrasenia.
+        /// Control txtProvincia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContrasenia;
+        protected global::System.Web.UI.WebControls.TextBox txtProvincia;
 
         /// <summary>
-        /// Control TxtRepetirContrasenia.
+        /// Control txtCiudad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtRepetirContrasenia;
+        protected global::System.Web.UI.WebControls.TextBox txtCiudad;
 
         /// <summary>
-        /// Control ChkAdmin.
+        /// Control TxtTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkAdmin;
+        protected global::System.Web.UI.WebControls.TextBox TxtTelefono;
 
         /// <summary>
-        /// Control BtnCancelar.
+        /// Control TxtDireccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCancelar;
+        protected global::System.Web.UI.WebControls.TextBox TxtDireccion;
 
         /// <summary>
-        /// Control BtnModificar.
+        /// Control dgvPedidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnModificar;
+        protected global::System.Web.UI.WebControls.GridView dgvPedidos;
     }
 }

@@ -122,7 +122,7 @@
     <Content Include="VentanaCompra.aspx" />
     <Content Include="Web.config" />
     <Content Include="usuariosAdmin.aspx" />
-    <Content Include="ModificarPerfil.aspx" />
+    <Content Include="PerfilDetalle.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgregarCategoria.aspx.cs">
@@ -312,12 +312,12 @@
     <Compile Include="usuariosAdmin.aspx.designer.cs">
       <DependentUpon>usuariosAdmin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ModificarPerfil.aspx.cs">
-      <DependentUpon>ModificarPerfil.aspx</DependentUpon>
+    <Compile Include="PerfilDetalle.aspx.cs">
+      <DependentUpon>PerfilDetalle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ModificarPerfil.aspx.designer.cs">
-      <DependentUpon>ModificarPerfil.aspx</DependentUpon>
+    <Compile Include="PerfilDetalle.aspx.designer.cs">
+      <DependentUpon>PerfilDetalle.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

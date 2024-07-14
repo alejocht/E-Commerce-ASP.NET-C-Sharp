@@ -56,7 +56,7 @@ namespace TPC_Equipo_5
             try
             {
                 string seleccionado = dgv_usuarios.SelectedDataKey.Value.ToString();
-                Response.Redirect("ModificarPerfil.aspx?id=" + seleccionado, false);
+                Response.Redirect("PerfilDetalle.aspx?id=" + seleccionado, false);
             }
             catch (Exception ex)
             {
