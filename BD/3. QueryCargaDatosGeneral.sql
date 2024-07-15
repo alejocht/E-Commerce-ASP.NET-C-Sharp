@@ -31,3 +31,23 @@
  ('https://asrock.com/mb/photo/B450M-HDV(L1).png',2,1),
  ('https://fullh4rd.com.ar/img/productos/4/memoria-16gb-2x8gb-ddr4-3200-corsair-vengeance-lpx-black-0.jpg',3,1),
  ('https://m.media-amazon.com/images/I/61EvAMKJQ6L._AC_SX679_.jpg',4,1);
+
+ delete Productos_x_pedido
+ delete Imagen
+ delete Productos
+ delete Marcas
+ delete Categorias
+ delete Pedidos
+ delete Tipos_Imagenes
+ delete Estados_Pedido
+ delete Metodos_de_pago
+ delete Usuarios
+ delete Datos_Personales
+
+ DBCC CHECKIDENT('Productos_x_pedido' , RESEED, 0)
+ DBCC CHECKIDENT('Imagen' , RESEED, 0)
+ DBCC CHECKIDENT('Productos' , RESEED, 0)
+ DBCC CHECKIDENT('Marcas' , RESEED, 0)
+  DBCC CHECKIDENT('Marcas' , RESEED, 0)
+
+
