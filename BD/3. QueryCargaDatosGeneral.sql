@@ -28,26 +28,57 @@
 
  insert into Imagen (UrlImagen,ID_Producto,Tipo_Imagen) values
  ('https://innovatech.ar/wp-content/uploads/2021/08/11-2.jpg',1,1),
+ ('https://imagenes.compragamer.com/productos/compragamer_Imganen_general_16755_Procesador_AMD_RYZEN_5_3600_4.2GHz_Turbo_AM4_Wraith_Stealth_Cooler_116595fc-grn.jpg',1,1),
  ('https://asrock.com/mb/photo/B450M-HDV(L1).png',2,1),
  ('https://fullh4rd.com.ar/img/productos/4/memoria-16gb-2x8gb-ddr4-3200-corsair-vengeance-lpx-black-0.jpg',3,1),
  ('https://m.media-amazon.com/images/I/61EvAMKJQ6L._AC_SX679_.jpg',4,1);
 
- delete Productos_x_pedido
- delete Imagen
- delete Productos
- delete Marcas
- delete Categorias
- delete Pedidos
- delete Tipos_Imagenes
- delete Estados_Pedido
- delete Metodos_de_pago
- delete Usuarios
- delete Datos_Personales
+ INSERT INTO Imagen(UrlImagen, Tipo_Imagen, Estado)
+VALUES ('https://i.imgur.com/PSPDiah.jpeg', 3, 1)
 
- DBCC CHECKIDENT('Productos_x_pedido' , RESEED, 0)
- DBCC CHECKIDENT('Imagen' , RESEED, 0)
- DBCC CHECKIDENT('Productos' , RESEED, 0)
- DBCC CHECKIDENT('Marcas' , RESEED, 0)
-  DBCC CHECKIDENT('Marcas' , RESEED, 0)
+INSERT INTO Imagen(UrlImagen, Tipo_Imagen, Estado)
+VALUES ('https://i.imgur.com/dZQLSHU.jpeg', 3, 1)
+
+INSERT INTO Imagen(UrlImagen, Tipo_Imagen, Estado)
+VALUES ('https://i.imgur.com/oYcqOx6.jpeg', 3, 1)
+
+INSERT INTO Imagen(UrlImagen, Tipo_Imagen, Estado)
+VALUES ('https://i.imgur.com/wxnSZ3u.jpeg', 3, 1)
+
+ INSERT INTO Metodos_de_pago(Metodo_de_pago)
+VALUES ('Efectivo')
+
+INSERT INTO Metodos_de_pago(Metodo_de_pago)
+VALUES ('Debito/Credito')
+
+INSERT INTO Metodos_de_pago(Metodo_de_pago)
+VALUES ('Tranferencia')
+
+INSERT INTO Metodos_de_pago(Metodo_de_pago)
+VALUES ('Otros')
+
+INSERT INTO Estados_Pedido(Descripcion)
+VALUES ('Preparación')
+
+INSERT INTO Estados_Pedido(Descripcion)
+VALUES ('Enviado')
+
+INSERT INTO Estados_Pedido(Descripcion)
+VALUES ('Completado')
+
+INSERT INTO Estados_Pedido(Descripcion)
+VALUES ('Cancelado')
+
+INSERT INTO Datos_Personales(Nombres, Apellidos, Email, Telefono, Direccion, IDCiudad)
+VALUES ('Roberto', 'Carlos', 'gemasaxlrose@gmail.com', '123456789', 'Av Falsa 123', 46)
+
+INSERT INTO Datos_Personales(Nombres, Apellidos, Email, Telefono, Direccion, IDCiudad)
+VALUES ('Radamel', 'Falcao', 'rfalcao@mail.com', '987654321', 'Av Colombia 321', 48)
+
+INSERT INTO Usuarios(Usuario, Clave, Administrar, IDDatos_Personales)
+VALUES ('User001', '1234', 1, 1)
+
+INSERT INTO Usuarios(Usuario, Clave, Administrar, IDDatos_Personales)
+VALUES ('User002', '1234', 0, 2)
 
 
