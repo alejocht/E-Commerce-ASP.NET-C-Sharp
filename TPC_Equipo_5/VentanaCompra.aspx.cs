@@ -95,7 +95,7 @@ namespace TPC_Equipo_5
         {
             try
             {
-                if (Session["Transferencia"] != null)
+                if (Session["transferencia"] != null)
                 {
                     pedido = new Pedido();
                     lecturaPedido = new LecturaPedido();
@@ -104,7 +104,7 @@ namespace TPC_Equipo_5
                     pedido.usuario = (Usuario)Session["usuario"];
 
 
-                    if (Transferencia.Checked)
+                    if (!Transferencia.Checked)
                         pedido.metodoPago.id = 1;
                     else
                         pedido.metodoPago.id = 2;

@@ -42,7 +42,7 @@ use TPC_EQUIPO_5
  ('https://i.imgur.com/wxnSZ3u.jpeg', 3, 1);
 
  INSERT INTO Metodos_de_pago(Metodo_de_pago) values
- ('Tranferencia'),
+ ('Transferencia'),
  ('MercadoPago'),
  ('Otro');
 
