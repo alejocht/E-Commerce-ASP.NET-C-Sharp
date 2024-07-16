@@ -301,8 +301,20 @@ namespace TPC_Equipo_5
 
                 int id = int.Parse(dgv_ImgProductos.SelectedDataKey.Value.ToString());
                 imagenSeleccionada.id = id;
+                //NUEVO
+                int index = dgv_ImgProductos.SelectedIndex;
+                if (Session["ListaTemporal"] != null)
+                {
+                    List<Imagen> ImagenesActuales = (List<Imagen>)Session["ListaTemporal"];
+                    ImagenesActuales.RemoveAt(index);
+                    Session["ListaTemporal"] = ImagenesActuales;
+                    dgv_ImgProductos.DataSource = null;
+                    dgv_ImgProductos.DataSource = ImagenesActuales;
+                    dgv_ImgProductos.DataBind();
+                }
+                //NUEVO
 
-                imagenesBorrar = (List<Imagen>)Session["ImagenesBorrar"];
+               imagenesBorrar = (List<Imagen>)Session["ImagenesBorrar"];
                 imagenesBorrar.Add(imagenSeleccionada);
                 Session["ImagenesBorrar"] = imagenesBorrar;
 

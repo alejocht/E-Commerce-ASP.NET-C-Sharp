@@ -103,8 +103,9 @@ namespace TPC_Equipo_5
 
                     pedido.usuario = (Usuario)Session["usuario"];
 
+                    Transferenciabool = (bool)Session["transferencia"];
 
-                    if (!Transferencia.Checked)
+                    if (Transferenciabool == true)
                         pedido.metodoPago.id = 1;
                     else
                         pedido.metodoPago.id = 2;
@@ -148,65 +149,65 @@ namespace TPC_Equipo_5
             }
 
         }
-        protected void btnconfirmar_Click(object sender, EventArgs e)
-        {
-            if (Session["transferencia"] != null)
-            {
-                pedido = new Pedido();
-                lecturaPedido = new LecturaPedido();
-                productosPedido = new List<ProductosPedido>();
-                List<Producto> listaProductos = new List<Producto>();
-                listaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
+        //protected void btnconfirmar_Click(object sender, EventArgs e)
+        //{
+        //    if (Session["transferencia"] != null)
+        //    {
+        //        pedido = new Pedido();
+        //        lecturaPedido = new LecturaPedido();
+        //        productosPedido = new List<ProductosPedido>();
+        //        List<Producto> listaProductos = new List<Producto>();
+        //        listaProductos = (List<Producto>)Session["listaArticulosEnCarrito"];
 
-                pedido.usuario = (Usuario)Session["usuario"];
-                if (Transferencia.Checked)
-                    pedido.metodoPago.id = 3;
-                else
-                    pedido.metodoPago.id = 4;
+        //        pedido.usuario = (Usuario)Session["usuario"];
+        //        if (Transferencia.Checked)
+        //            pedido.metodoPago.id = 3;
+        //        else
+        //            pedido.metodoPago.id = 4;
 
-                lecturaPedido.agregar(pedido);
-                pedido = lecturaPedido.listar().Last();
+        //        lecturaPedido.agregar(pedido);
+        //        pedido = lecturaPedido.listar().Last();
 
-                //Pasar del carrito a una lista sin objetos repetidos
-                List<Producto> listaProductosDistinct = listaProductos.Distinct().ToList();
+        //        //Pasar del carrito a una lista sin objetos repetidos
+        //        List<Producto> listaProductosDistinct = listaProductos.Distinct().ToList();
 
-                foreach (Producto producto in listaProductosDistinct)
-                {
-                    ProductosPedido aux = new ProductosPedido();
-                    aux.producto = producto;
-                    productosPedido.Add(aux);
+        //        foreach (Producto producto in listaProductosDistinct)
+        //        {
+        //            ProductosPedido aux = new ProductosPedido();
+        //            aux.producto = producto;
+        //            productosPedido.Add(aux);
 
-                }
-                //Contar cuanta cantidad habia sido requerida en la lista original
-                foreach (ProductosPedido ProductoPedido in productosPedido)
-                {
-                    ProductoPedido.cantidad = listaProductos.FindAll(x => x == ProductoPedido.producto).Count();
-                    ProductoPedido.pedido.id = pedido.id;
-                }
-                //Agregar Cada Producto y su cantidad a la base de datos
-                foreach (ProductosPedido ProductoPedido in productosPedido)
-                {
-                    LecturaProductosPedido lecturaProductosPedido = new LecturaProductosPedido();
-                    lecturaProductosPedido.agregar(ProductoPedido);
-                }
+        //        }
+        //        //Contar cuanta cantidad habia sido requerida en la lista original
+        //        foreach (ProductosPedido ProductoPedido in productosPedido)
+        //        {
+        //            ProductoPedido.cantidad = listaProductos.FindAll(x => x == ProductoPedido.producto).Count();
+        //            ProductoPedido.pedido.id = pedido.id;
+        //        }
+        //        //Agregar Cada Producto y su cantidad a la base de datos
+        //        foreach (ProductosPedido ProductoPedido in productosPedido)
+        //        {
+        //            LecturaProductosPedido lecturaProductosPedido = new LecturaProductosPedido();
+        //            lecturaProductosPedido.agregar(ProductoPedido);
+        //        }
 
-                //envio de mail
-                email = new ServiceEmail();
-                string correodestino = "gemasaxlrose@gmail.com";
-                string asunto = "OverCloacked: Tu compra ha sido Exitosa";
-                string cuerpo = "Tu compra fue realizada con exito! pronto nos pondremos en contacto";
-                email.armarcorreo(correodestino, asunto, cuerpo);
-                email.enviarEmail();
+        //        //envio de mail
+        //        email = new ServiceEmail();
+        //        string correodestino = "gemasaxlrose@gmail.com";
+        //        string asunto = "OverCloacked: Tu compra ha sido Exitosa";
+        //        string cuerpo = "Tu compra fue realizada con exito! pronto nos pondremos en contacto";
+        //        email.armarcorreo(correodestino, asunto, cuerpo);
+        //        email.enviarEmail();
 
-                Response.Redirect("default.aspx", false);
-                Session["listaArticulosEnCarrito"] = null;
-            }
-            else
-            {
+        //        Response.Redirect("default.aspx", false);
+        //        Session["listaArticulosEnCarrito"] = null;
+        //    }
+        //    else
+        //    {
 
-            }
+        //    }
 
-        }
+        //}
         protected void BtnSubir_Click(object sender, EventArgs e)
         {
             ////Terminar 
