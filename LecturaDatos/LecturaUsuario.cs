@@ -84,14 +84,15 @@ namespace LecturaDatos
             try
             {
                 
-                datos.SetearConsulta("select U.Clave from Datos_Personales D inner join Usuarios U on U.IDDatos_Personales=D.ID WHERE D.Email = @email");
+                datos.SetearConsulta("select U.Clave,  U.Usuario from Datos_Personales D inner join Usuarios U on U.IDDatos_Personales=D.ID WHERE D.Email = @email");
                 datos.SetearParametro("@email", correo);
                 datos.EjecutarLectura();
                 Usuario aux = new Usuario();
                 while (datos.Lector.Read())
                 {
                     LecturaDatosUsuario lecturaDatosUsuario = new LecturaDatosUsuario();                   
-                    aux.password = (string)(datos.Lector["Clave"]);                   
+                    aux.password = (string)(datos.Lector["Clave"]);
+                    aux.usuario = (string)(datos.Lector["Usuario"]);
                 }
                 ServiceEmail email = new ServiceEmail();
                 if (aux.password == "") {
@@ -99,7 +100,7 @@ namespace LecturaDatos
                 }
                 else
                 {
-                email.armarcorreo(correo, "Recuperacion de contraseña", "Su contraseña es:" + aux.password);
+                email.armarcorreo(correo, "Recuperacion de contraseña", "Su nombre de Usuario es:" + aux.usuario +".Su contraseña es:" + aux.password );
 
                 }
                 email.enviarEmail();
