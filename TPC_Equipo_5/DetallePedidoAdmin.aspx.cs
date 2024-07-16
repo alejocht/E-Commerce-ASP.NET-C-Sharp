@@ -56,7 +56,7 @@ namespace TPC_Equipo_5
                     lblTelefono.Text = usuario.telefono.ToString();
                     lblDireccion.Text = usuario.direccion.ToString();
 
-                    lblTotal.Text = "Total $ " + total.ToString();
+                    lblTotal.Text = "Total $ " + total.ToString("0.00");
                 }
             }
             catch (Exception ex)

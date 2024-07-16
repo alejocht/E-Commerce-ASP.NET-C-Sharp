@@ -21,7 +21,7 @@ namespace TPC_Equipo_5
             cargardatos(id);
             if(!IsPostBack)
             {
-                lblUsuario.Text = usuario.usuario;
+                lblUsuario.Text = "Usuario: " + usuario.usuario;
                 TxtMail.Text = usuario.dato.email;
                 TxtNombre.Text = usuario.dato.nombre;
                 TxtApellido.Text = usuario.dato.apellido;
