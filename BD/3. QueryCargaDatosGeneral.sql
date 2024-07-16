@@ -29,7 +29,7 @@ use TPC_EQUIPO_5
  (4,4,'Placa de Video XFX Radeon RX 580 8GB GDDR5 GTS 2048SP','Buena relacion calidad-precio',179240,1);
 
  insert into Imagen (UrlImagen,ID_Producto,Tipo_Imagen) values
- ('https://innovatech.ar/wp-content/uploads/2021/08/11-2.jpg',1,1),
+ ('https://imagenes.compragamer.com/productos/compragamer_Imganen_general_16749_Procesador_AMD_RYZEN_5_3600_4.2GHz_Turbo_AM4_Wraith_Stealth_Cooler_f8ab4915-grn.jpg',1,1),
  ('https://imagenes.compragamer.com/productos/compragamer_Imganen_general_16755_Procesador_AMD_RYZEN_5_3600_4.2GHz_Turbo_AM4_Wraith_Stealth_Cooler_116595fc-grn.jpg',1,1),
  ('https://asrock.com/mb/photo/B450M-HDV(L1).png',2,1),
  ('https://fullh4rd.com.ar/img/productos/4/memoria-16gb-2x8gb-ddr4-3200-corsair-vengeance-lpx-black-0.jpg',3,1),

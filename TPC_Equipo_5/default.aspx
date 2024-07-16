@@ -26,8 +26,7 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <br />
-        <div class="row row-cols-1 row-cols-md-3 g-1 d-flex justify-content-center p-3">
+        <div class="row row-cols-1 row-cols-md-3 g-1 d-flex justify-content-center p-3 mt-3">
             <asp:Repeater ID="RepeaterProducto" runat="server">
                 <ItemTemplate>
                     <div class="col d-flex justify-content-center">

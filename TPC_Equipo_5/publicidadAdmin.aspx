@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <h3>Pantalla Principal</h3>
+                <h3>Pantalla Principal (Se recomienda usar un tamaño de 1600 x 580 px)</h3>
             </div>
             <div class="col text-end">
                 <asp:Button ID="btnModalAgregar" runat="server" Text="Agregar Publicidad" CssClass="btn btn-success" OnClick="btnModalAgregar_Click" />
