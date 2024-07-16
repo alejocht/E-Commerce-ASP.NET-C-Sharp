@@ -1,4 +1,6 @@
 -- borrar datos y reiniciar IDS
+USE TPC_EQUIPO_5
+
  delete Productos_x_pedido
  delete Imagen
  delete Productos

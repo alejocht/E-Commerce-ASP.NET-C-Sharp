@@ -1,4 +1,4 @@
-
+USE TPC_EQUIPO_5
 -- Volcar la base de datos para la tabla `provincias`
 --
 

@@ -1,3 +1,5 @@
+use TPC_EQUIPO_5
+
  insert into Marcas (nombre) values
  ('AMD'),
  ('Asrock'),
