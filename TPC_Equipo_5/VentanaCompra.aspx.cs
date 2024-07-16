@@ -95,7 +95,7 @@ namespace TPC_Equipo_5
         {
             try
             {
-                if (Session["transferencia"] != null)
+                if (Session["Transferencia"] != null)
                 {
                     pedido = new Pedido();
                     lecturaPedido = new LecturaPedido();

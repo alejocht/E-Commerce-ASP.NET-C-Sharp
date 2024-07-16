@@ -35,52 +35,29 @@ use TPC_EQUIPO_5
  ('https://fullh4rd.com.ar/img/productos/4/memoria-16gb-2x8gb-ddr4-3200-corsair-vengeance-lpx-black-0.jpg',3,1),
  ('https://m.media-amazon.com/images/I/61EvAMKJQ6L._AC_SX679_.jpg',4,1);
 
- INSERT INTO Imagen(UrlImagen, Tipo_Imagen, Estado)
-VALUES ('https://i.imgur.com/PSPDiah.jpeg', 3, 1)
+ INSERT INTO Imagen(UrlImagen, Tipo_Imagen, Estado) values
+ ('https://i.imgur.com/PSPDiah.jpeg', 3, 1),
+ ('https://i.imgur.com/dZQLSHU.jpeg', 3, 1),
+ ('https://i.imgur.com/oYcqOx6.jpeg', 3, 1),
+ ('https://i.imgur.com/wxnSZ3u.jpeg', 3, 1);
 
-INSERT INTO Imagen(UrlImagen, Tipo_Imagen, Estado)
-VALUES ('https://i.imgur.com/dZQLSHU.jpeg', 3, 1)
+ INSERT INTO Metodos_de_pago(Metodo_de_pago) values
+ ('Tranferencia'),
+ ('MercadoPago'),
+ ('Otro');
 
-INSERT INTO Imagen(UrlImagen, Tipo_Imagen, Estado)
-VALUES ('https://i.imgur.com/oYcqOx6.jpeg', 3, 1)
+ INSERT INTO Estados_Pedido(Descripcion) values
+ ('PreparaciÃ³n'),
+ ('Enviado'),
+ ('Completado'),
+ ('Cancelado');
 
-INSERT INTO Imagen(UrlImagen, Tipo_Imagen, Estado)
-VALUES ('https://i.imgur.com/wxnSZ3u.jpeg', 3, 1)
+ INSERT INTO Datos_Personales(Nombres, Apellidos, Email, Telefono, Direccion, IDCiudad) values
+ ('Roberto', 'Carlos', 'gemasaxlrose@gmail.com', '123456789', 'Av Falsa 123', 46),
+ ('Radamel', 'Falcao', 'rfalcao@mail.com', '987654321', 'Av Colombia 321', 48),
+ ('Emiliano', 'Martinez', 'emartinez@mail.com', '1122334455', 'Av Argentina 333', 90);
 
- INSERT INTO Metodos_de_pago(Metodo_de_pago)
-VALUES ('Efectivo')
-
-INSERT INTO Metodos_de_pago(Metodo_de_pago)
-VALUES ('Debito/Credito')
-
-INSERT INTO Metodos_de_pago(Metodo_de_pago)
-VALUES ('Tranferencia')
-
-INSERT INTO Metodos_de_pago(Metodo_de_pago)
-VALUES ('Otros')
-
-INSERT INTO Estados_Pedido(Descripcion)
-VALUES ('Preparación')
-
-INSERT INTO Estados_Pedido(Descripcion)
-VALUES ('Enviado')
-
-INSERT INTO Estados_Pedido(Descripcion)
-VALUES ('Completado')
-
-INSERT INTO Estados_Pedido(Descripcion)
-VALUES ('Cancelado')
-
-INSERT INTO Datos_Personales(Nombres, Apellidos, Email, Telefono, Direccion, IDCiudad)
-VALUES ('Roberto', 'Carlos', 'gemasaxlrose@gmail.com', '123456789', 'Av Falsa 123', 46)
-
-INSERT INTO Datos_Personales(Nombres, Apellidos, Email, Telefono, Direccion, IDCiudad)
-VALUES ('Radamel', 'Falcao', 'rfalcao@mail.com', '987654321', 'Av Colombia 321', 48)
-
-INSERT INTO Usuarios(Usuario, Clave, Administrar, IDDatos_Personales)
-VALUES ('User001', '1234', 1, 1)
-
-INSERT INTO Usuarios(Usuario, Clave, Administrar, IDDatos_Personales)
-VALUES ('User002', '1234', 0, 2)
-
-
+ INSERT INTO Usuarios(Usuario, Clave, Administrar, IDDatos_Personales) values
+ ('User001', '1234', 0, 1),
+ ('User002', '1234', 0, 2),
+ ('Admin001', 'Huevo123', 1, 3);
